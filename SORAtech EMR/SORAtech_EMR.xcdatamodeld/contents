@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Medicine" representedClassName="Medicine" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dosage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="line1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="line2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="maternalLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="medicineId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paternalLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="purpose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visitId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="visit" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Visit" inverseName="medicines" inverseEntity="Visit" syncable="YES"/>
+    </entity>
+    <entity name="Patient" representedClassName="Patient" syncable="YES">
+        <attribute name="alzheimerDisease" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="cancer" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateOfBirth" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="diabetes" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emeCity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emeEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emeFirstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emeLine1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emeLine2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emeMaternalLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emeMiddleName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emePaternalLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emePhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emeState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emeZip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empCity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empLine1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empLine2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empZip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="heartDisease" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="influenza" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="insuranceName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="kidneyDisease" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="line1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="line2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="majorInjury" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="maternalLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paternalLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="patientId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piCity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piDateOfBirth" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piEmpCity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piEmpEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piEmpLine1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piEmpLine2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piEmpName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piEmpPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piEmpState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piEmpZip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piFirstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piLine1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piLine2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piMaternalLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piMiddleName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piPaternalLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piSocialSecurityNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="piZip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="policyNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="relationshipToPrimaryInsured" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="respiratoryDiseases" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="septicemia" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="sGroupNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sInsuranceName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="socialSecurityNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiCity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiDateOfBirth" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiEmpCity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiEmpEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiEmpLine1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiEmpLine2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiEmpName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiEmpPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiEmpState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiEmpZip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiFirstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiLine1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiLine2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiMaternalLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiMiddleName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiPaternalLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiSocialSecurityNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPiZip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sPolicyNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="srelationshipToPrimaryInsured" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stroke" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="visits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Visit" inverseName="patient" inverseEntity="Visit" syncable="YES"/>
+    </entity>
+    <entity name="Visit" representedClassName="Visit" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="diastolicBloodPressure" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="height" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="patientId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="pulse" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="systolicBloodPressure" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visitId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="medicines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Medicine" inverseName="visit" inverseEntity="Medicine" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="visits" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Medicine" positionX="99" positionY="23" width="128" height="298"/>
+        <element name="Patient" positionX="-396" positionY="-106" width="128" height="1453"/>
+        <element name="Visit" positionX="-153" positionY="74" width="128" height="223"/>
+    </elements>
+</model>
