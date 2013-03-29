@@ -12,6 +12,8 @@
 		CE3160C216FED52E00118DC0 /* medicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160C116FED52E00118DC0 /* medicationCell.xib */; };
 		CE3160C516FED89600118DC0 /* Medicine.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160C416FED89600118DC0 /* Medicine.m */; };
 		CE3160C81701322D00118DC0 /* DoctorInfoInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160C71701322C00118DC0 /* DoctorInfoInputViewController.m */; };
+		CE3160CB1705403D00118DC0 /* NewPatientTBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160CA1705403C00118DC0 /* NewPatientTBViewController.m */; };
+		CE3160CE1705682D00118DC0 /* NPInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160CD1705682C00118DC0 /* NPInsuranceViewController.m */; };
 		CEF221BF16FC477B0025FF94 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221BE16FC477B0025FF94 /* UIKit.framework */; };
 		CEF221C116FC477B0025FF94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221C016FC477B0025FF94 /* Foundation.framework */; };
 		CEF221C316FC477B0025FF94 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221C216FC477B0025FF94 /* CoreGraphics.framework */; };
@@ -34,7 +36,7 @@
 		CEF2221C16FC486A0025FF94 /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF2220016FC486A0025FF94 /* information.png */; };
 		CEF2221D16FC486A0025FF94 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2220216FC486A0025FF94 /* LoginViewController.m */; };
 		CEF2221E16FC486A0025FF94 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF2220316FC486A0025FF94 /* MainStoryboard.storyboard */; };
-		CEF2221F16FC486A0025FF94 /* NewPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2220516FC486A0025FF94 /* NewPatientViewController.m */; };
+		CEF2221F16FC486A0025FF94 /* PatientPersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2220516FC486A0025FF94 /* PatientPersonalInfoViewController.m */; };
 		CEF2222016FC486A0025FF94 /* NewVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2220716FC486A0025FF94 /* NewVisitViewController.m */; };
 		CEF2222116FC486A0025FF94 /* outlook-default-person.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF2220816FC486A0025FF94 /* outlook-default-person.png */; };
 		CEF2222216FC486A0025FF94 /* PatientInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2220A16FC486A0025FF94 /* PatientInfoTableViewController.m */; };
@@ -81,6 +83,10 @@
 		CE3160C416FED89600118DC0 /* Medicine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Medicine.m; sourceTree = "<group>"; };
 		CE3160C61701322C00118DC0 /* DoctorInfoInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorInfoInputViewController.h; sourceTree = "<group>"; };
 		CE3160C71701322C00118DC0 /* DoctorInfoInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorInfoInputViewController.m; sourceTree = "<group>"; };
+		CE3160C91705403B00118DC0 /* NewPatientTBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPatientTBViewController.h; sourceTree = "<group>"; };
+		CE3160CA1705403C00118DC0 /* NewPatientTBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPatientTBViewController.m; sourceTree = "<group>"; };
+		CE3160CC1705682B00118DC0 /* NPInsuranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPInsuranceViewController.h; sourceTree = "<group>"; };
+		CE3160CD1705682C00118DC0 /* NPInsuranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPInsuranceViewController.m; sourceTree = "<group>"; };
 		CEF221BB16FC477B0025FF94 /* SORAtech EMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SORAtech EMR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF221BE16FC477B0025FF94 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEF221C016FC477B0025FF94 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -110,8 +116,8 @@
 		CEF2220116FC486A0025FF94 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		CEF2220216FC486A0025FF94 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		CEF2220316FC486A0025FF94 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		CEF2220416FC486A0025FF94 /* NewPatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPatientViewController.h; sourceTree = "<group>"; };
-		CEF2220516FC486A0025FF94 /* NewPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPatientViewController.m; sourceTree = "<group>"; };
+		CEF2220416FC486A0025FF94 /* PatientPersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientPersonalInfoViewController.h; sourceTree = "<group>"; };
+		CEF2220516FC486A0025FF94 /* PatientPersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientPersonalInfoViewController.m; sourceTree = "<group>"; };
 		CEF2220616FC486A0025FF94 /* NewVisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewVisitViewController.h; sourceTree = "<group>"; };
 		CEF2220716FC486A0025FF94 /* NewVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewVisitViewController.m; sourceTree = "<group>"; };
 		CEF2220816FC486A0025FF94 /* outlook-default-person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outlook-default-person.png"; sourceTree = "<group>"; };
@@ -222,6 +228,12 @@
 			isa = PBXGroup;
 			children = (
 				CEF2220316FC486A0025FF94 /* MainStoryboard.storyboard */,
+				CE3160CC1705682B00118DC0 /* NPInsuranceViewController.h */,
+				CE3160CD1705682C00118DC0 /* NPInsuranceViewController.m */,
+				CE3160C91705403B00118DC0 /* NewPatientTBViewController.h */,
+				CE3160CA1705403C00118DC0 /* NewPatientTBViewController.m */,
+				CEF2220416FC486A0025FF94 /* PatientPersonalInfoViewController.h */,
+				CEF2220516FC486A0025FF94 /* PatientPersonalInfoViewController.m */,
 				CE3160C61701322C00118DC0 /* DoctorInfoInputViewController.h */,
 				CE3160C71701322C00118DC0 /* DoctorInfoInputViewController.m */,
 				CE3160BF16FED38300118DC0 /* conditionCell.xib */,
@@ -251,8 +263,6 @@
 				CEF2220016FC486A0025FF94 /* information.png */,
 				CEF2220116FC486A0025FF94 /* LoginViewController.h */,
 				CEF2220216FC486A0025FF94 /* LoginViewController.m */,
-				CEF2220416FC486A0025FF94 /* NewPatientViewController.h */,
-				CEF2220516FC486A0025FF94 /* NewPatientViewController.m */,
 				CEF2220616FC486A0025FF94 /* NewVisitViewController.h */,
 				CEF2220716FC486A0025FF94 /* NewVisitViewController.m */,
 				CEF2220816FC486A0025FF94 /* outlook-default-person.png */,
@@ -450,7 +460,7 @@
 				CEF2221916FC486A0025FF94 /* ExistingVisitViewController.m in Sources */,
 				CEF2221B16FC486A0025FF94 /* HomeViewController.m in Sources */,
 				CEF2221D16FC486A0025FF94 /* LoginViewController.m in Sources */,
-				CEF2221F16FC486A0025FF94 /* NewPatientViewController.m in Sources */,
+				CEF2221F16FC486A0025FF94 /* PatientPersonalInfoViewController.m in Sources */,
 				CEF2222016FC486A0025FF94 /* NewVisitViewController.m in Sources */,
 				CEF2222216FC486A0025FF94 /* PatientInfoTableViewController.m in Sources */,
 				CEF2222316FC486A0025FF94 /* PatientSearchResultTVC.m in Sources */,
@@ -474,6 +484,8 @@
 				CEF2226516FCB9B30025FF94 /* Condition.m in Sources */,
 				CE3160C516FED89600118DC0 /* Medicine.m in Sources */,
 				CE3160C81701322D00118DC0 /* DoctorInfoInputViewController.m in Sources */,
+				CE3160CB1705403D00118DC0 /* NewPatientTBViewController.m in Sources */,
+				CE3160CE1705682D00118DC0 /* NPInsuranceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

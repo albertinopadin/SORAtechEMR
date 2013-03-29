@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Patient.h"
 
-@interface NewPatientViewController : UIViewController
+@interface PatientPersonalInfoViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextField *firstName;
 @property (strong, nonatomic) IBOutlet UITextField *middleName;
@@ -27,6 +27,6 @@
 
 @property (strong, nonatomic) Patient *patient;
 
-- (IBAction)okPressed:(id)sender;
+//- (IBAction)okPressed:(id)sender;
 
 @end
