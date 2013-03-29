@@ -16,6 +16,14 @@
 
 @synthesize myScrollView;
 
+@synthesize primaryInsuranceName, primaryInsurancePolicyNum, primaryInsuranceGroupNum, relationshipToPrimaryInsuree;
+
+@synthesize PIFirstName, PIMiddleName, PIPaternalLastName, PIMaternalLastName, PIDateofBirth, PISocialSecurityNum, PIAddressLine1, PIAddressLine2, PIState, PICity, PIZipCode, PIPhoneNum, PIEmail;
+
+@synthesize secondaryInsuranceName, secondaryInsurancePolicyNum, secondaryInsuranceGroupNum, relationshipToSecondaryInsuree;
+
+@synthesize SIFirstName, SIMiddleName, SIPaternalLastName, SIMaternalLastName, SIDateofBirth, SISocialSecurityNum, SIAddressLine1, SIAddressLine2, SIState, SICity, SIZipCode, SIPhoneNum, SIEmail;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

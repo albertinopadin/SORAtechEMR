@@ -2550,10 +2550,10 @@
             </objects>
             <point key="canvasLocation" x="3139" y="2888"/>
         </scene>
-        <!--View Controller - Employer Info-->
+        <!--Employer View Controller - Employer Info-->
         <scene sceneID="r5E-du-H6p">
             <objects>
-                <viewController id="nf3-2w-MjA" sceneMemberID="viewController">
+                <viewController id="nf3-2w-MjA" customClass="NPEmployerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y5V-pe-RIZ">
                         <rect key="frame" x="0.0" y="64" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2623,20 +2623,33 @@
                                 <color key="textColor" red="0.1063541638" green="0.16325580479999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Employer Email" minimumFontSize="17" id="OBa-4y-3YG">
+                                <rect key="frame" x="386" y="236" width="171" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Employer Info" image="folder.png" id="60u-1c-TQy"/>
+                    <connections>
+                        <outlet property="employerAddressLine1" destination="W4V-pL-mcR" id="dnm-ai-wH0"/>
+                        <outlet property="employerAddressLine2" destination="F9u-Nn-gjE" id="c1R-qg-1Yi"/>
+                        <outlet property="employerEmail" destination="OBa-4y-3YG" id="mIr-za-SVX"/>
+                        <outlet property="employerName" destination="mRy-rV-h4v" id="YnS-Nz-LSd"/>
+                        <outlet property="employerPhoneNum" destination="uDd-PM-sah" id="3R2-3p-e5J"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDW-jG-J4T" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarItem title="Item" id="1ia-dU-maM"/>
             </objects>
             <point key="canvasLocation" x="3139" y="4076"/>
         </scene>
-        <!--View Controller - Emergency Contact-->
+        <!--Emergency Contact View Controller - Emergency Contact-->
         <scene sceneID="3P7-AV-9C3">
             <objects>
-                <viewController id="BLp-sJ-QLi" sceneMemberID="viewController">
+                <viewController id="BLp-sJ-QLi" customClass="NPEmergencyContactViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HJ1-Bu-oY6">
                         <rect key="frame" x="0.0" y="64" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2749,6 +2762,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Emergency Contact" image="folder.png" id="yaK-hO-Mpo"/>
+                    <connections>
+                        <outlet property="emergencyCAddressLine1" destination="6Vv-Hw-RSU" id="zJP-Rr-8W1"/>
+                        <outlet property="emergencyCAddressLine2" destination="KuI-Ig-ei8" id="a0E-Py-vEM"/>
+                        <outlet property="emergencyCEmail" destination="ydm-HS-Ncs" id="Neg-sE-Stq"/>
+                        <outlet property="emergencyCFirstName" destination="aba-60-ZkL" id="EF4-Qe-2hv"/>
+                        <outlet property="emergencyCMaternalLastName" destination="Z9N-Wg-WwY" id="xQn-Qj-2gu"/>
+                        <outlet property="emergencyCMiddleName" destination="pfc-gy-AZ1" id="pMr-HN-8Uu"/>
+                        <outlet property="emergencyCPaternalLastName" destination="nMQ-Ex-Jtm" id="0xN-vA-mi2"/>
+                        <outlet property="emergencyCPhoneNumber" destination="JWu-bE-HZK" id="BTi-HQ-T5y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vF5-UC-GKx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarItem title="Item" id="e0z-yZ-Wc9"/>
@@ -3232,7 +3255,41 @@
                     <tabBarItem key="tabBarItem" title="Insurance" image="folder.png" id="HdA-lF-WPf"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="PIAddressLine1" destination="KUr-Ex-umC" id="oyF-pq-Fu9"/>
+                        <outlet property="PIAddressLine2" destination="BWd-Ax-nhM" id="npx-x7-EDt"/>
+                        <outlet property="PICity" destination="lO7-1i-OQa" id="uGh-Fs-oAY"/>
+                        <outlet property="PIDateofBirth" destination="FF9-KH-kWh" id="98K-qT-haE"/>
+                        <outlet property="PIEmail" destination="lP3-Og-wDj" id="3g7-9c-v4j"/>
+                        <outlet property="PIFirstName" destination="5ab-Ie-YRI" id="D3o-ck-4B7"/>
+                        <outlet property="PIMaternalLastName" destination="Hoe-9E-Kp1" id="Gpb-t9-qKh"/>
+                        <outlet property="PIMiddleName" destination="zdJ-ab-Ok1" id="JZ0-gM-cBc"/>
+                        <outlet property="PIPaternalLastName" destination="BMM-ez-9v0" id="Vfa-qg-MBa"/>
+                        <outlet property="PIPhoneNum" destination="hk5-CT-6Pu" id="qrY-uw-R9y"/>
+                        <outlet property="PISocialSecurityNum" destination="0MK-So-CFy" id="r6a-uX-z2l"/>
+                        <outlet property="PIState" destination="1zD-AX-b7C" id="Cjj-Rh-BTc"/>
+                        <outlet property="PIZipCode" destination="O2C-iO-IjF" id="nZv-yA-f0V"/>
+                        <outlet property="SIAddressLine1" destination="XMc-Cu-f2Z" id="cqy-SB-Gvn"/>
+                        <outlet property="SIAddressLine2" destination="asz-FP-Ruu" id="Pvb-uV-fYz"/>
+                        <outlet property="SICity" destination="NtA-dn-KC4" id="GmW-d1-t5n"/>
+                        <outlet property="SIDateofBirth" destination="b3j-e7-2AB" id="kcE-P1-Q6p"/>
+                        <outlet property="SIEmail" destination="csH-UR-NGn" id="k4a-Lh-1oh"/>
+                        <outlet property="SIFirstName" destination="sMK-C1-e5M" id="y46-U4-M7i"/>
+                        <outlet property="SIMaternalLastName" destination="gKc-VV-7HX" id="19Z-3L-MKC"/>
+                        <outlet property="SIMiddleName" destination="TdK-xX-SAB" id="SHc-p8-VWX"/>
+                        <outlet property="SIPaternalLastName" destination="e83-68-7Fz" id="WVK-V0-1Jx"/>
+                        <outlet property="SIPhoneNum" destination="TlO-uu-Yjt" id="6hp-Zp-IBM"/>
+                        <outlet property="SISocialSecurityNum" destination="WKf-qc-tT2" id="yfD-FG-Z8Q"/>
+                        <outlet property="SIState" destination="Dk6-gA-gJ0" id="tTg-9T-YKG"/>
+                        <outlet property="SIZipCode" destination="aST-EF-QgA" id="Tyo-Yj-uSu"/>
                         <outlet property="myScrollView" destination="qHw-Aj-DKy" id="Plz-VQ-aqW"/>
+                        <outlet property="primaryInsuranceGroupNum" destination="LBY-Lg-hUs" id="S4C-Jm-YRe"/>
+                        <outlet property="primaryInsuranceName" destination="nzH-w9-g6u" id="AdE-87-UOC"/>
+                        <outlet property="primaryInsurancePolicyNum" destination="O4H-J5-uQl" id="yCF-N7-mPc"/>
+                        <outlet property="relationshipToPrimaryInsuree" destination="DPW-dI-l2E" id="OVa-6F-kyk"/>
+                        <outlet property="relationshipToSecondaryInsuree" destination="Diz-ER-daj" id="31H-He-l7B"/>
+                        <outlet property="secondaryInsuranceGroupNum" destination="kR3-BB-Anx" id="Yyh-eo-l8V"/>
+                        <outlet property="secondaryInsuranceName" destination="4Um-cn-NfN" id="KxT-D1-ovy"/>
+                        <outlet property="secondaryInsurancePolicyNum" destination="g48-0R-tmH" id="54h-lC-iWf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JhC-VE-aZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3267,6 +3324,228 @@
         <image name="outlook-default-person.png" width="104" height="104"/>
         <image name="search.png" width="52" height="56"/>
     </resources>
+    <classes>
+        <class className="DoctorInfoInputViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoctorInfoInputViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLine1TB" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addressLine2TB" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="doctorFullNameTB" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emailTB" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="phoneNumberTB" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ExistingVisitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExistingVisitViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bloodPressure" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="height" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="notes" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="pulse" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="temperature" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="weight" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="HomeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logoutButtonPressed:"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButtonPressed:"/>
+                <relationship kind="outlet" name="loginKeyTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NPEmergencyContactViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NPEmergencyContactViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="emergencyCAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCMaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCMiddleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCPaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCPhoneNumber" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NPEmployerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NPEmployerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="employerAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerPhoneNum" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NPInsuranceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NPInsuranceViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="PIAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PICity" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIDateofBirth" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIMaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIMiddleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIPaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIPhoneNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PISocialSecurityNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIState" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIZipCode" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SICity" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIDateofBirth" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIMaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIMiddleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIPaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIPhoneNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SISocialSecurityNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIState" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIZipCode" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="myScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="primaryInsuranceGroupNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="primaryInsuranceName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="primaryInsurancePolicyNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="relationshipToPrimaryInsuree" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="relationshipToSecondaryInsuree" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondaryInsuranceGroupNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondaryInsuranceName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondaryInsurancePolicyNum" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NewPatientTBViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewPatientTBViewController.h"/>
+        </class>
+        <class className="NewVisitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewVisitViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addConditionButtonPressed:"/>
+                <relationship kind="action" name="addMedicationButtonPressed:"/>
+                <relationship kind="outlet" name="conditionsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="dateField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="diastolicBPField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="heightField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="medicationsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="pulseField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="systolicBPField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="temperatureField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="visitNotes" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="weightField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PatientInfoConditionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientInfoConditionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="conditionNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientInfoTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientInfoTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLine1Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="addressLine2Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dateOfBirthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCAddressLine1Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCAddressLine2Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCEmailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCPhoneNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerAddressLine1Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerAddressLine2Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerEmailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerPhoneNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fullNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="phoneNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="primaryInsuranceNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="primaryInsurancePolicyNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="primaryInsuranceRelationshipToPrimaryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondaryInsuranceNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondaryInsurancePolicyNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondaryInsuranceRelationshipToPrimaryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="socialSecurityLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientPersonalInfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientPersonalInfoViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="city" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="dateOfBirth" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="maternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="middleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="paternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="phoneNumber" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="socialSecurity" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="state" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="zipCode" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PatientSearchResultTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientSearchResultTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientListTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PatientSearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientSearchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="searchButtonPressed:"/>
+                <relationship kind="outlet" name="searchBox" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PatientTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientTableViewCell.h"/>
+            <relationships>
+                <relationship kind="action" name="viewInfoButtonPressed:"/>
+                <relationship kind="action" name="viewRecordButtonPressed:"/>
+                <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="socialSecLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientVisitListViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientVisitListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientPhotoView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="visitListTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PrescriberViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrescriberViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLine1Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="addressLine2Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fullNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phoneNumberLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SORAtechEMRViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SORAtechEMRViewController.h"/>
+        </class>
+        <class className="SearchResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

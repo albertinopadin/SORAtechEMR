@@ -14,6 +14,8 @@
 		CE3160C81701322D00118DC0 /* DoctorInfoInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160C71701322C00118DC0 /* DoctorInfoInputViewController.m */; };
 		CE3160CB1705403D00118DC0 /* NewPatientTBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160CA1705403C00118DC0 /* NewPatientTBViewController.m */; };
 		CE3160CE1705682D00118DC0 /* NPInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160CD1705682C00118DC0 /* NPInsuranceViewController.m */; };
+		CE3160D11705C9FB00118DC0 /* NPEmergencyContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160D01705C9FA00118DC0 /* NPEmergencyContactViewController.m */; };
+		CE3160D41705CB1E00118DC0 /* NPEmployerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160D31705CB1D00118DC0 /* NPEmployerViewController.m */; };
 		CEF221BF16FC477B0025FF94 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221BE16FC477B0025FF94 /* UIKit.framework */; };
 		CEF221C116FC477B0025FF94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221C016FC477B0025FF94 /* Foundation.framework */; };
 		CEF221C316FC477B0025FF94 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221C216FC477B0025FF94 /* CoreGraphics.framework */; };
@@ -87,6 +89,10 @@
 		CE3160CA1705403C00118DC0 /* NewPatientTBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPatientTBViewController.m; sourceTree = "<group>"; };
 		CE3160CC1705682B00118DC0 /* NPInsuranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPInsuranceViewController.h; sourceTree = "<group>"; };
 		CE3160CD1705682C00118DC0 /* NPInsuranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPInsuranceViewController.m; sourceTree = "<group>"; };
+		CE3160CF1705C9FA00118DC0 /* NPEmergencyContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPEmergencyContactViewController.h; sourceTree = "<group>"; };
+		CE3160D01705C9FA00118DC0 /* NPEmergencyContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPEmergencyContactViewController.m; sourceTree = "<group>"; };
+		CE3160D21705CB1C00118DC0 /* NPEmployerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPEmployerViewController.h; sourceTree = "<group>"; };
+		CE3160D31705CB1D00118DC0 /* NPEmployerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPEmployerViewController.m; sourceTree = "<group>"; };
 		CEF221BB16FC477B0025FF94 /* SORAtech EMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SORAtech EMR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF221BE16FC477B0025FF94 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEF221C016FC477B0025FF94 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -228,6 +234,10 @@
 			isa = PBXGroup;
 			children = (
 				CEF2220316FC486A0025FF94 /* MainStoryboard.storyboard */,
+				CE3160D21705CB1C00118DC0 /* NPEmployerViewController.h */,
+				CE3160D31705CB1D00118DC0 /* NPEmployerViewController.m */,
+				CE3160CF1705C9FA00118DC0 /* NPEmergencyContactViewController.h */,
+				CE3160D01705C9FA00118DC0 /* NPEmergencyContactViewController.m */,
 				CE3160CC1705682B00118DC0 /* NPInsuranceViewController.h */,
 				CE3160CD1705682C00118DC0 /* NPInsuranceViewController.m */,
 				CE3160C91705403B00118DC0 /* NewPatientTBViewController.h */,
@@ -486,6 +496,8 @@
 				CE3160C81701322D00118DC0 /* DoctorInfoInputViewController.m in Sources */,
 				CE3160CB1705403D00118DC0 /* NewPatientTBViewController.m in Sources */,
 				CE3160CE1705682D00118DC0 /* NPInsuranceViewController.m in Sources */,
+				CE3160D11705C9FB00118DC0 /* NPEmergencyContactViewController.m in Sources */,
+				CE3160D41705CB1E00118DC0 /* NPEmployerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

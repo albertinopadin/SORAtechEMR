@@ -45,10 +45,10 @@
 	// Do any additional setup after loading the view.
     
     //Create fetch request for the Patient entity table
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Patient"];
+    //NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Patient"];
     
     //Execute the fetch request through the managed object context to get the patient list
-    self.patientList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    //self.patientList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
 }
 
