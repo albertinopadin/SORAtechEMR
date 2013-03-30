@@ -27,6 +27,9 @@
 
 @property (strong, nonatomic) Patient *patient;
 
-//- (IBAction)okPressed:(id)sender;
+// To check if any of the text fields are empty
+@property (strong, nonatomic) NSArray *textFields;
+
+- (BOOL)textFieldEmpty;
 
 @end

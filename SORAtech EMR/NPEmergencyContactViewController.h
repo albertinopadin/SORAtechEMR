@@ -18,4 +18,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *emergencyCPhoneNumber;
 @property (strong, nonatomic) IBOutlet UITextField *emergencyCEmail;
 
+// To check if any of the text fields are empty
+@property (strong, nonatomic) NSArray *textFields;
+
+- (BOOL)textFieldEmpty;
+
 @end

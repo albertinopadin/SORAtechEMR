@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Patient.h"
 
-@interface NewPatientTBViewController : UITabBarController
+@interface NewPatientTBViewController : UITabBarController <UIAlertViewDelegate>
 
 @end

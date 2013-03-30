@@ -234,14 +234,14 @@
 			isa = PBXGroup;
 			children = (
 				CEF2220316FC486A0025FF94 /* MainStoryboard.storyboard */,
+				CE3160C91705403B00118DC0 /* NewPatientTBViewController.h */,
+				CE3160CA1705403C00118DC0 /* NewPatientTBViewController.m */,
 				CE3160D21705CB1C00118DC0 /* NPEmployerViewController.h */,
 				CE3160D31705CB1D00118DC0 /* NPEmployerViewController.m */,
 				CE3160CF1705C9FA00118DC0 /* NPEmergencyContactViewController.h */,
 				CE3160D01705C9FA00118DC0 /* NPEmergencyContactViewController.m */,
 				CE3160CC1705682B00118DC0 /* NPInsuranceViewController.h */,
 				CE3160CD1705682C00118DC0 /* NPInsuranceViewController.m */,
-				CE3160C91705403B00118DC0 /* NewPatientTBViewController.h */,
-				CE3160CA1705403C00118DC0 /* NewPatientTBViewController.m */,
 				CEF2220416FC486A0025FF94 /* PatientPersonalInfoViewController.h */,
 				CEF2220516FC486A0025FF94 /* PatientPersonalInfoViewController.m */,
 				CE3160C61701322C00118DC0 /* DoctorInfoInputViewController.h */,

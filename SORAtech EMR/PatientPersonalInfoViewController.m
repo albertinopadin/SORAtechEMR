@@ -21,7 +21,7 @@
 //Synthesize text fields
 @synthesize firstName, middleName, paternalLastName, maternalLastName, socialSecurity, addressLine1, addressLine2, state, city, zipCode, dateOfBirth, phoneNumber, email;
 
-@synthesize patient;
+@synthesize patient, textFields;
 
 //Getting the Managed Object Context, the window to our internal database
 - (NSManagedObjectContext *)managedObjectContext
@@ -29,6 +29,22 @@
     return [(STAppDelegate *) [[UIApplication sharedApplication] delegate] managedObjectContext];
 }
 
+- (BOOL)textFieldEmpty
+{
+    textFields = [NSArray arrayWithObjects:firstName, middleName, paternalLastName, maternalLastName, socialSecurity, addressLine1, addressLine2, state, city, zipCode, dateOfBirth, phoneNumber, email, nil];
+    
+    BOOL isEmpty = NO;
+    
+    for (UITextField *tf in textFields)
+    {
+        if ([tf.text length] == 0)
+        {
+            isEmpty = YES;
+        }
+    }
+    
+    return isEmpty;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

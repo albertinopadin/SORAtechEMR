@@ -9,7 +9,9 @@
 #import "NewPatientTBViewController.h"
 #import "STAppDelegate.h"
 #import "PatientPersonalInfoViewController.h"
-
+#import "NPEmployerViewController.h"
+#import "NPEmergencyContactViewController.h"
+#import "NPInsuranceViewController.h"
 
 @interface NewPatientTBViewController ()
 
@@ -38,8 +40,49 @@
     return self;
 }
 
+// AlertView delegate method
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        [self performSegueWithIdentifier:@"addPatientDoneSegue" sender:self];
+    }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    //Get each view controller from my array of vc's
+    self.vcArray = [self viewControllers];
+    PatientPersonalInfoViewController *personalVC = [self.vcArray objectAtIndex:0];
+    NPEmployerViewController *employerVC = [self.vcArray objectAtIndex:1];
+    NPEmergencyContactViewController *emergencyContactVC = [self.vcArray objectAtIndex:2];
+    NPInsuranceViewController *insuranceVC = [self.vcArray objectAtIndex:3];
+    
+    if ([personalVC textFieldEmpty] || [employerVC textFieldEmpty] || [emergencyContactVC textFieldEmpty] || [insuranceVC textFieldEmpty])
+    {
+        //Display a message if there are empty text boxes in any of the vc's:
+        UIAlertView *textBoxesAreEmptyAlert = [[UIAlertView alloc] initWithTitle:@"Empty Fields" message:@"There are empty fields in the new patient form. Save patient anyway?" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+        [textBoxesAreEmptyAlert addButtonWithTitle:@"Proceed"];
+        [textBoxesAreEmptyAlert addButtonWithTitle:@"Cancel"];
+        [textBoxesAreEmptyAlert show];
+        
+        return NO;
+    }
+    else
+    {
+        return YES;
+    }
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    //Get each view controller from my array of vc's
+    self.vcArray = [self viewControllers];
+    PatientPersonalInfoViewController *personalVC = [self.vcArray objectAtIndex:0];
+    NPEmployerViewController *employerVC = [self.vcArray objectAtIndex:1];
+    NPEmergencyContactViewController *emergencyContactVC = [self.vcArray objectAtIndex:2];
+    NPInsuranceViewController *insuranceVC = [self.vcArray objectAtIndex:3];
+
     // Get patient list
     //Create fetch request for the Patient entity table
     NSFetchRequest *patientListFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Patient"];
@@ -52,14 +95,7 @@
     
     //Get the patient information
     
-    //Get each view controller from my array of vc's
-    self.vcArray = [self viewControllers];
-    
-    PatientPersonalInfoViewController *personalVC = [self.vcArray objectAtIndex:0];
-    
-    
     // Personal Information from first vc:
-    
     patient.firstName = personalVC.firstName.text;
     patient.middleName = personalVC.middleName.text;
     patient.paternalLastName = personalVC.paternalLastName.text;
@@ -76,6 +112,48 @@
     patient.email = personalVC.email.text;
     
     patient.patientId = [NSNumber numberWithInt:self.patientList.count + 1];
+    
+    
+    // Employer Info from second vc:
+    patient.empName = employerVC.employerName.text;
+    patient.empLine1 = employerVC.employerAddressLine1.text;
+    patient.empLine2 = employerVC.employerAddressLine2.text;
+//    patient.empCity =
+//    patient.empState =
+//    patient.empZip =
+    patient.empPhoneNumber = employerVC.employerPhoneNum.text;
+    patient.empEmail = employerVC.employerEmail.text;
+    
+    
+    // Emergency Contact Info from third vc:
+    patient.emeFirstName = emergencyContactVC.emergencyCFirstName.text;
+    patient.emeMiddleName = emergencyContactVC.emergencyCMiddleName.text;
+    patient.emePaternalLastName = emergencyContactVC.emergencyCPaternalLastName.text;
+    patient.emeMaternalLastName = emergencyContactVC.emergencyCMaternalLastName.text;
+    patient.emeLine1 = emergencyContactVC.emergencyCAddressLine1.text;
+    patient.emeLine2 = emergencyContactVC.emergencyCAddressLine2.text;
+//    patient.emeCity
+//    patient.emeState
+//    patient.emeZip
+    patient.emePhoneNumber = emergencyContactVC.emergencyCPhoneNumber.text;
+    patient.emeEmail = emergencyContactVC.emergencyCEmail.text;
+    
+    
+    
+    // UNFINISHED!
+    // Insurance Info from fourth vc:
+    patient.insuranceName = insuranceVC.primaryInsuranceName.text;
+    patient.policyNumber = insuranceVC.primaryInsurancePolicyNum.text;
+    patient.groupNumber = insuranceVC.primaryInsuranceGroupNum.text;
+    
+    
+    
+    patient.sInsuranceName = insuranceVC.secondaryInsuranceName.text;
+    patient.sPolicyNumber = insuranceVC.secondaryInsurancePolicyNum.text;
+    patient.sGroupNumber = insuranceVC.secondaryInsuranceGroupNum.text;
+    
+    
+    
     
     //Save the information using the context
     NSError *saveError = nil;

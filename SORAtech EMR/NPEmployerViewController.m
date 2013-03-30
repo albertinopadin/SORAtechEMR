@@ -14,6 +14,8 @@
 
 @implementation NPEmployerViewController
 
+@synthesize textFields;
+
 @synthesize employerName, employerAddressLine1, employerAddressLine2, employerPhoneNum, employerEmail;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -23,6 +25,23 @@
         // Custom initialization
     }
     return self;
+}
+
+- (BOOL)textFieldEmpty
+{
+    textFields = [NSArray arrayWithObjects:employerName, employerAddressLine1, employerAddressLine2, employerPhoneNum, employerEmail, nil];
+    
+    BOOL isEmpty = NO;
+    
+    for (UITextField *tf in textFields)
+    {
+        if ([tf.text length] == 0)
+        {
+            isEmpty = YES;
+        }
+    }
+    
+    return isEmpty;
 }
 
 - (void)viewDidLoad

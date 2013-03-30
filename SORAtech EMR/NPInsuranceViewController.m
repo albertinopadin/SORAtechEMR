@@ -14,7 +14,7 @@
 
 @implementation NPInsuranceViewController
 
-@synthesize myScrollView;
+@synthesize myScrollView, textFields;
 
 @synthesize primaryInsuranceName, primaryInsurancePolicyNum, primaryInsuranceGroupNum, relationshipToPrimaryInsuree;
 
@@ -31,6 +31,23 @@
         // Custom initialization
     }
     return self;
+}
+
+- (BOOL)textFieldEmpty
+{
+    textFields = [NSArray arrayWithObjects:primaryInsuranceName, primaryInsurancePolicyNum, primaryInsuranceGroupNum, relationshipToPrimaryInsuree, PIFirstName, PIMiddleName, PIPaternalLastName, PIMaternalLastName, PIDateofBirth, PISocialSecurityNum, PIAddressLine1, PIAddressLine2, PIState, PICity, PIZipCode, PIPhoneNum, PIEmail, secondaryInsuranceName, secondaryInsurancePolicyNum, secondaryInsuranceGroupNum, relationshipToSecondaryInsuree, SIFirstName, SIMiddleName, SIPaternalLastName, SIMaternalLastName, SIDateofBirth, SISocialSecurityNum, SIAddressLine1, SIAddressLine2, SIState, SICity, SIZipCode, SIPhoneNum, SIEmail, nil];
+    
+    BOOL isEmpty = NO;
+    
+    for (UITextField *tf in textFields)
+    {
+        if ([tf.text length] == 0)
+        {
+            isEmpty = YES;
+        }
+    }
+    
+    return isEmpty;
 }
 
 - (void)viewDidLoad

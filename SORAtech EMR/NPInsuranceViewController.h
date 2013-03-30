@@ -54,7 +54,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *SIPhoneNum;
 @property (strong, nonatomic) IBOutlet UITextField *SIEmail;
 
+// To check if any of the text fields are empty
+@property (strong, nonatomic) NSArray *textFields;
 
-
+- (BOOL)textFieldEmpty;
 
 @end

@@ -14,6 +14,8 @@
 
 @implementation NPEmergencyContactViewController
 
+@synthesize textFields;
+
 @synthesize emergencyCFirstName, emergencyCMiddleName, emergencyCPaternalLastName, emergencyCMaternalLastName, emergencyCAddressLine1, emergencyCAddressLine2, emergencyCPhoneNumber, emergencyCEmail;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -23,6 +25,23 @@
         // Custom initialization
     }
     return self;
+}
+
+- (BOOL)textFieldEmpty
+{
+    textFields = [NSArray arrayWithObjects:emergencyCFirstName, emergencyCMiddleName, emergencyCPaternalLastName, emergencyCMaternalLastName, emergencyCAddressLine1, emergencyCAddressLine2, emergencyCPhoneNumber, emergencyCEmail, nil];
+    
+    BOOL isEmpty = NO;
+    
+    for (UITextField *tf in textFields)
+    {
+        if ([tf.text length] == 0)
+        {
+            isEmpty = YES;
+        }
+    }
+    
+    return isEmpty;
 }
 
 - (void)viewDidLoad
