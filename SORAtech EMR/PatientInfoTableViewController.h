@@ -52,11 +52,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *primaryInsuranceNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *primaryInsurancePolicyNumLabel;
 @property (strong, nonatomic) IBOutlet UILabel *primaryInsuranceRelationshipToPrimaryLabel;
+@property (strong, nonatomic) IBOutlet UILabel *primaryInsuranceGroupNumLabel;
 
 
 @property (strong, nonatomic) IBOutlet UILabel *secondaryInsuranceNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *secondaryInsurancePolicyNumLabel;
 @property (strong, nonatomic) IBOutlet UILabel *secondaryInsuranceRelationshipToPrimaryLabel;
+@property (strong, nonatomic) IBOutlet UILabel *secondaryInsuranceGroupNumLabel;
 
 //@property (strong, nonatomic) IBOutlet PatientInfoConditionCell *conditionCell;
 

@@ -95,7 +95,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Umh-L0-24p" kind="push" identifier="NewPatientSegue" id="6JS-Ie-PZG"/>
+                                    <segue destination="Umh-L0-24p" kind="push" identifier="newPatientSegue" id="6JS-Ie-PZG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="geH-mw-aSp">
@@ -650,7 +650,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Jose Martin Rodriguez Feliciano" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kPb-hJ-Nu7">
-                                                    <rect key="frame" x="20" y="2" width="280" height="21"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -686,14 +686,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="15 Calle Embuste" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oc5-xp-d7G">
-                                                    <rect key="frame" x="20" y="2" width="171" height="21"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="San Juan PR 12345" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e15-aX-dYb">
-                                                    <rect key="frame" x="20" y="22" width="191" height="21"/>
+                                                    <rect key="frame" x="20" y="22" width="728" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -729,7 +729,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="787-555-1234" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DaV-yj-Urh">
-                                                    <rect key="frame" x="20" y="2" width="141" height="21"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -765,7 +765,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="jose@mailinator.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a3X-M9-pqC">
-                                                    <rect key="frame" x="20" y="2" width="171" height="21"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -801,7 +801,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="January 1st 2000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VAD-pd-gny">
-                                                    <rect key="frame" x="20" y="2" width="153" height="21"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -837,7 +837,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="000-00-1234" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BF1-H5-uPv">
-                                                    <rect key="frame" x="20" y="2" width="210" height="21"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -877,7 +877,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Matatanes Gardening" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E5S-wh-0eB">
-                                                    <rect key="frame" x="20" y="2" width="280" height="22"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -913,14 +913,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="15 Calle Trolero" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Po-vP-O0b">
-                                                    <rect key="frame" x="20" y="2" width="171" height="22"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="San Juan PR 12345" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Lx-YF-toM">
-                                                    <rect key="frame" x="20" y="22" width="191" height="21"/>
+                                                    <rect key="frame" x="20" y="22" width="728" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -956,7 +956,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="787-555-2345" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6vb-jl-npq">
-                                                    <rect key="frame" x="20" y="2" width="141" height="22"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -992,7 +992,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="matatanesgardening@mailinator.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ySm-T9-Yec">
-                                                    <rect key="frame" x="20" y="2" width="319" height="22"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1032,7 +1032,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Josefa Martina Rodriguez Feliciano" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hD4-t0-txn">
-                                                    <rect key="frame" x="20" y="2" width="280" height="22"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1068,14 +1068,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="15 Calle Embuste" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vyp-gA-6xV">
-                                                    <rect key="frame" x="20" y="2" width="171" height="22"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="San Juan PR 12345" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0fd-qp-CV7">
-                                                    <rect key="frame" x="20" y="22" width="191" height="22"/>
+                                                    <rect key="frame" x="20" y="22" width="728" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1111,7 +1111,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="787-555-1234" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OyC-Ah-eFq">
-                                                    <rect key="frame" x="20" y="2" width="141" height="22"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1147,7 +1147,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="josefa@mailinator.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MM5-Wj-XKe">
-                                                    <rect key="frame" x="20" y="2" width="319" height="22"/>
+                                                    <rect key="frame" x="20" y="2" width="728" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1194,7 +1194,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SSS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nJs-yO-Ucd">
-                                                    <rect key="frame" x="185" y="21" width="41" height="22"/>
+                                                    <rect key="frame" x="177" y="21" width="68" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1208,7 +1208,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1234567890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YIs-Zi-2R2">
-                                                    <rect key="frame" x="401" y="20" width="112" height="22"/>
+                                                    <rect key="frame" x="401" y="20" width="130" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1222,7 +1222,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1234" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MKv-hM-Uyn">
-                                                    <rect key="frame" x="702" y="21" width="46" height="22"/>
+                                                    <rect key="frame" x="682" y="21" width="66" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1251,7 +1251,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="9dW-8Z-dB7" kind="push" id="l2d-4U-MHh"/>
+                                                        <segue destination="9dW-8Z-dB7" kind="push" identifier="PIPInsureeSegue1" id="l2d-4U-MHh"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Relationship to Primary Insuree:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oyh-79-Ikl">
@@ -1262,7 +1262,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Son" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gmq-wy-n67">
-                                                    <rect key="frame" x="301" y="3" width="59" height="22"/>
+                                                    <rect key="frame" x="301" y="3" width="166" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1280,7 +1280,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="9dW-8Z-dB7" kind="push" id="ofJ-PP-1Fc"/>
+                                                        <segue destination="9dW-8Z-dB7" kind="push" identifier="PIPInsureeSegue2" id="ofJ-PP-1Fc"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1320,7 +1320,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="MMM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uVa-jt-A3W">
-                                                    <rect key="frame" x="184" y="21" width="55" height="22"/>
+                                                    <rect key="frame" x="179" y="21" width="66" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1334,7 +1334,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0987654321" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="90h-S5-E9Y">
-                                                    <rect key="frame" x="401" y="20" width="112" height="22"/>
+                                                    <rect key="frame" x="401" y="20" width="130" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1348,7 +1348,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="4321" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gfC-fb-VZ5">
-                                                    <rect key="frame" x="702" y="21" width="46" height="22"/>
+                                                    <rect key="frame" x="683" y="21" width="65" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1377,7 +1377,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="Rq2-jM-tm1" kind="push" id="xfe-BV-UTX"/>
+                                                        <segue destination="Rq2-jM-tm1" kind="push" identifier="SIPInsureeSegue1" id="xfe-BV-UTX"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LdM-xm-rWA">
@@ -1392,7 +1392,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="Rq2-jM-tm1" kind="push" id="UoF-UX-Cz0"/>
+                                                        <segue destination="Rq2-jM-tm1" kind="push" identifier="SIPInsureeSegue2" id="UoF-UX-Cz0"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Relationship to Primary Insuree:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PCI-jc-oQP">
@@ -1403,7 +1403,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Son" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mt4-Jh-g6f">
-                                                    <rect key="frame" x="301" y="3" width="59" height="22"/>
+                                                    <rect key="frame" x="301" y="3" width="166" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1425,7 +1425,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Diabetes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dRk-GD-EVm">
-                                                    <rect key="frame" x="20" y="11" width="135" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="728" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1575,9 +1575,11 @@
                         <outlet property="fullNameLabel" destination="kPb-hJ-Nu7" id="d72-8E-ebB"/>
                         <outlet property="myTableView" destination="5ZG-1T-yp1" id="RF3-Bf-Xkd"/>
                         <outlet property="phoneNumberLabel" destination="DaV-yj-Urh" id="ovs-LX-a96"/>
+                        <outlet property="primaryInsuranceGroupNumLabel" destination="MKv-hM-Uyn" id="Th8-zj-5gl"/>
                         <outlet property="primaryInsuranceNameLabel" destination="nJs-yO-Ucd" id="fTV-0B-gWF"/>
                         <outlet property="primaryInsurancePolicyNumLabel" destination="YIs-Zi-2R2" id="hhM-nf-uaF"/>
                         <outlet property="primaryInsuranceRelationshipToPrimaryLabel" destination="gmq-wy-n67" id="dNc-Pc-pgM"/>
+                        <outlet property="secondaryInsuranceGroupNumLabel" destination="gfC-fb-VZ5" id="Gh4-JD-Mtb"/>
                         <outlet property="secondaryInsuranceNameLabel" destination="uVa-jt-A3W" id="7eb-eK-JKw"/>
                         <outlet property="secondaryInsurancePolicyNumLabel" destination="90h-S5-E9Y" id="J9w-c4-2ad"/>
                         <outlet property="secondaryInsuranceRelationshipToPrimaryLabel" destination="Mt4-Jh-g6f" id="T9p-4Z-k03"/>
@@ -1683,10 +1685,10 @@
             </objects>
             <point key="canvasLocation" x="8714" y="1997"/>
         </scene>
-        <!--View Controller-->
+        <!--Insuree View Controller-->
         <scene sceneID="l6V-Oo-z1O">
             <objects>
-                <viewController id="Rq2-jM-tm1" sceneMemberID="viewController">
+                <viewController id="Rq2-jM-tm1" customClass="SIPInsureeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NMq-e4-ybK">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="908"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1706,14 +1708,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="maidejose@mailinator.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JF8-Nu-YW2">
-                                <rect key="frame" x="38" y="339" width="214" height="22"/>
+                                <rect key="frame" x="38" y="339" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="787-555-1234" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Svo-Nm-prv">
-                                <rect key="frame" x="38" y="264" width="141" height="22"/>
+                                <rect key="frame" x="38" y="264" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1727,14 +1729,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="San Juan PR 12345" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bRJ-rX-hru">
-                                <rect key="frame" x="38" y="189" width="191" height="21"/>
+                                <rect key="frame" x="38" y="189" width="710" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="15 Calle Embuste" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="31x-dA-Otf">
-                                <rect key="frame" x="38" y="168" width="171" height="22"/>
+                                <rect key="frame" x="38" y="168" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1748,7 +1750,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Josefa Martina Rodriguez Feliciano" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7LM-91-cLr">
-                                <rect key="frame" x="38" y="100" width="280" height="22"/>
+                                <rect key="frame" x="38" y="100" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1762,7 +1764,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="000-00-4567" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="INF-Sf-Apm">
-                                <rect key="frame" x="38" y="479" width="171" height="22"/>
+                                <rect key="frame" x="38" y="479" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1776,7 +1778,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="January 1st 1985" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="INx-Sf-XWT">
-                                <rect key="frame" x="38" y="411" width="280" height="22"/>
+                                <rect key="frame" x="38" y="411" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1793,15 +1795,24 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="0BE-Pv-dFb"/>
+                    <connections>
+                        <outlet property="sipAddressLine1" destination="31x-dA-Otf" id="TMM-JV-HTE"/>
+                        <outlet property="sipAddressLine2" destination="bRJ-rX-hru" id="ESy-eb-x5a"/>
+                        <outlet property="sipDateOfBirth" destination="INx-Sf-XWT" id="wgZ-nl-gOK"/>
+                        <outlet property="sipEmail" destination="JF8-Nu-YW2" id="tE9-Mh-n3b"/>
+                        <outlet property="sipFullName" destination="7LM-91-cLr" id="okA-ka-pfg"/>
+                        <outlet property="sipPhoneNum" destination="Svo-Nm-prv" id="8Ca-q9-mqz"/>
+                        <outlet property="sipSocialSecurityNum" destination="INF-Sf-Apm" id="Pmx-Mh-dRD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SwP-lF-446" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8714" y="952"/>
         </scene>
-        <!--View Controller-->
+        <!--Insuree View Controller-->
         <scene sceneID="EdA-sr-m9A">
             <objects>
-                <viewController id="9dW-8Z-dB7" sceneMemberID="viewController">
+                <viewController id="9dW-8Z-dB7" customClass="PIPInsureeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7dD-UD-bjR">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="908"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1821,14 +1832,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="paidejose@mailinator.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HrN-to-q7k">
-                                <rect key="frame" x="38" y="335" width="214" height="22"/>
+                                <rect key="frame" x="38" y="335" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="787-555-1234" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eOk-SR-P0R">
-                                <rect key="frame" x="38" y="260" width="141" height="22"/>
+                                <rect key="frame" x="38" y="260" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1842,14 +1853,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="San Juan PR 12345" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="73i-JQ-uAM">
-                                <rect key="frame" x="38" y="185" width="191" height="21"/>
+                                <rect key="frame" x="38" y="185" width="710" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="15 Calle Embuste" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CiU-kF-zgF">
-                                <rect key="frame" x="38" y="164" width="171" height="22"/>
+                                <rect key="frame" x="38" y="164" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1863,7 +1874,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Jose Martin Rodriguez Pancerro" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1ve-Rg-ByW">
-                                <rect key="frame" x="38" y="96" width="280" height="22"/>
+                                <rect key="frame" x="38" y="96" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1877,7 +1888,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="000-00-0987" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ftm-mN-qjv">
-                                <rect key="frame" x="38" y="475" width="171" height="22"/>
+                                <rect key="frame" x="38" y="475" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1891,7 +1902,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="February 1st 1985" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8US-ep-yee">
-                                <rect key="frame" x="38" y="407" width="280" height="22"/>
+                                <rect key="frame" x="38" y="407" width="710" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1908,6 +1919,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="etG-sc-8Em"/>
+                    <connections>
+                        <outlet property="pipAddressLine1" destination="CiU-kF-zgF" id="5sg-h7-9mh"/>
+                        <outlet property="pipAddressLine2" destination="73i-JQ-uAM" id="8l9-Be-SaE"/>
+                        <outlet property="pipDateOfBirth" destination="8US-ep-yee" id="Ini-vb-a2m"/>
+                        <outlet property="pipEmail" destination="HrN-to-q7k" id="w16-Zx-lSN"/>
+                        <outlet property="pipFullName" destination="1ve-Rg-ByW" id="4VU-zg-I9p"/>
+                        <outlet property="pipPhoneNum" destination="eOk-SR-P0R" id="7Lh-Re-Yc4"/>
+                        <outlet property="pipSocialSecurityNum" destination="ftm-mN-qjv" id="Yat-Sa-cV2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vEp-sN-HQD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3324,6 +3344,254 @@
         <image name="outlook-default-person.png" width="104" height="104"/>
         <image name="search.png" width="52" height="56"/>
     </resources>
+    <classes>
+        <class className="DoctorInfoInputViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DoctorInfoInputViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLine1TB" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addressLine2TB" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="doctorFullNameTB" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emailTB" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="phoneNumberTB" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ExistingVisitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExistingVisitViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bloodPressure" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="height" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="notes" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="pulse" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="temperature" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="weight" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="HomeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logoutButtonPressed:"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButtonPressed:"/>
+                <relationship kind="outlet" name="loginKeyTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NPEmergencyContactViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NPEmergencyContactViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="emergencyCAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCMaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCMiddleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCPaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCPhoneNumber" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NPEmployerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NPEmployerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="employerAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerPhoneNum" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NPInsuranceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NPInsuranceViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="PIAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PICity" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIDateofBirth" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIMaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIMiddleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIPaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIPhoneNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PISocialSecurityNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIState" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIZipCode" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SICity" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIDateofBirth" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIMaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIMiddleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIPaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIPhoneNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SISocialSecurityNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIState" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIZipCode" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="myScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="primaryInsuranceGroupNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="primaryInsuranceName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="primaryInsurancePolicyNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="relationshipToPrimaryInsuree" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="relationshipToSecondaryInsuree" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondaryInsuranceGroupNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondaryInsuranceName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondaryInsurancePolicyNum" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NewPatientTBViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewPatientTBViewController.h"/>
+        </class>
+        <class className="NewVisitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewVisitViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addConditionButtonPressed:"/>
+                <relationship kind="action" name="addMedicationButtonPressed:"/>
+                <relationship kind="outlet" name="conditionsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="dateField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="diastolicBPField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="heightField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="medicationsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="pulseField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="systolicBPField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="temperatureField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="visitNotes" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="weightField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PIPInsureeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PIPInsureeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="pipAddressLine1" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipAddressLine2" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipDateOfBirth" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipEmail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipFullName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipPhoneNum" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipSocialSecurityNum" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientInfoConditionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientInfoConditionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="conditionNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientInfoTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientInfoTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLine1Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="addressLine2Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dateOfBirthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCAddressLine1Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCAddressLine2Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCEmailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCPhoneNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerAddressLine1Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerAddressLine2Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerEmailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerPhoneNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fullNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="phoneNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="primaryInsuranceGroupNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="primaryInsuranceNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="primaryInsurancePolicyNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="primaryInsuranceRelationshipToPrimaryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondaryInsuranceGroupNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondaryInsuranceNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondaryInsurancePolicyNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondaryInsuranceRelationshipToPrimaryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="socialSecurityLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientPersonalInfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientPersonalInfoViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="city" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="dateOfBirth" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="maternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="middleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="paternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="phoneNumber" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="socialSecurity" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="state" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="zipCode" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PatientSearchResultTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientSearchResultTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientListTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PatientSearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientSearchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="searchButtonPressed:"/>
+                <relationship kind="outlet" name="searchBox" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PatientTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientTableViewCell.h"/>
+            <relationships>
+                <relationship kind="action" name="viewInfoButtonPressed:"/>
+                <relationship kind="action" name="viewRecordButtonPressed:"/>
+                <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="socialSecLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientVisitListViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientVisitListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientPhotoView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="visitListTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PrescriberViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrescriberViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLine1Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="addressLine2Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fullNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phoneNumberLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SIPInsureeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SIPInsureeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="sipAddressLine1" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipAddressLine2" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipDateOfBirth" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipEmail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipFullName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipPhoneNum" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipSocialSecurityNum" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SORAtechEMRViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SORAtechEMRViewController.h"/>
+        </class>
+        <class className="SearchResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -3333,7 +3601,7 @@
         <segue reference="yer-wV-nT2"/>
         <segue reference="N6d-9G-wkm"/>
         <segue reference="6QZ-FA-3T2"/>
-        <segue reference="xfe-BV-UTX"/>
         <segue reference="ofJ-PP-1Fc"/>
+        <segue reference="xfe-BV-UTX"/>
     </inferredMetricsTieBreakers>
 </document>

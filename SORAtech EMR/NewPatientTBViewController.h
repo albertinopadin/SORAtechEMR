@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Patient.h"
+#import "Prescriber.h"
 
 @interface NewPatientTBViewController : UITabBarController <UIAlertViewDelegate>
+
+@property (strong, nonatomic) Prescriber *myDoctor;
 
 @end

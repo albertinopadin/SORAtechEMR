@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "DoctorInfoInputViewController.h"
 #import "PatientSearchViewController.h"
+#import "NewPatientTBViewController.h"
 
 @interface HomeViewController ()
 
@@ -52,6 +53,11 @@
         psvc.myDoctor = self.myDoctor;
         
         NSLog(@"Home: Doctor's name is: %@", self.myDoctor.fullName);
+    }
+    else if ([segue.identifier isEqualToString:@"newPatientSegue"])
+    {
+        NewPatientTBViewController *npvc = [segue destinationViewController];
+        npvc.myDoctor = self.myDoctor;
     }
 }
 

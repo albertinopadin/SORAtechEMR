@@ -12,6 +12,7 @@
 #import "NPEmployerViewController.h"
 #import "NPEmergencyContactViewController.h"
 #import "NPInsuranceViewController.h"
+#import "HomeViewController.h"
 
 @interface NewPatientTBViewController ()
 
@@ -23,7 +24,7 @@
 
 @implementation NewPatientTBViewController
 
-@synthesize patient, vcArray, patientList;
+@synthesize patient, vcArray, patientList, myDoctor;
 
 //Getting the Managed Object Context, the window to our internal database
 - (NSManagedObjectContext *)managedObjectContext
@@ -139,20 +140,44 @@
     patient.emeEmail = emergencyContactVC.emergencyCEmail.text;
     
     
-    
-    // UNFINISHED!
     // Insurance Info from fourth vc:
     patient.insuranceName = insuranceVC.primaryInsuranceName.text;
     patient.policyNumber = insuranceVC.primaryInsurancePolicyNum.text;
     patient.groupNumber = insuranceVC.primaryInsuranceGroupNum.text;
     
-    
+    patient.relationshipToPrimaryInsured = insuranceVC.relationshipToPrimaryInsuree.text;
+    patient.piFirstName = insuranceVC.PIFirstName.text;
+    patient.piMiddleName = insuranceVC.PIMiddleName.text;
+    patient.piPaternalLastName = insuranceVC.PIPaternalLastName.text;
+    patient.piMaternalLastName = insuranceVC.PIMaternalLastName.text;
+    patient.piDateOfBirth = insuranceVC.PIDateofBirth.text;
+    patient.piSocialSecurityNumber = insuranceVC.PISocialSecurityNum.text;
+    patient.piLine1 = insuranceVC.PIAddressLine1.text;
+    patient.piLine2 = insuranceVC.PIAddressLine2.text;
+    patient.piState = insuranceVC.PIState.text;
+    patient.piCity = insuranceVC.PICity.text;
+    patient.piZip = insuranceVC.PIZipCode.text;
+    patient.piPhoneNumber = insuranceVC.PIPhoneNum.text;
+    patient.piEmail = insuranceVC.PIEmail.text;
     
     patient.sInsuranceName = insuranceVC.secondaryInsuranceName.text;
     patient.sPolicyNumber = insuranceVC.secondaryInsurancePolicyNum.text;
     patient.sGroupNumber = insuranceVC.secondaryInsuranceGroupNum.text;
     
-    
+    patient.srelationshipToPrimaryInsured = insuranceVC.relationshipToSecondaryInsuree.text;
+    patient.sPiFirstName = insuranceVC.SIFirstName.text;
+    patient.sPiMiddleName = insuranceVC.SIMiddleName.text;
+    patient.sPiPaternalLastName = insuranceVC.SIPaternalLastName.text;
+    patient.sPiMaternalLastName = insuranceVC.SIMaternalLastName.text;
+    patient.sPiDateOfBirth = insuranceVC.SIDateofBirth.text;
+    patient.sPiSocialSecurityNumber = insuranceVC.SISocialSecurityNum.text;
+    patient.sPiLine1 = insuranceVC.SIAddressLine1.text;
+    patient.sPiLine2 = insuranceVC.SIAddressLine2.text;
+    patient.sPiState = insuranceVC.SIState.text;
+    patient.sPiCity = insuranceVC.SICity.text;
+    patient.sPiZip = insuranceVC.SIZipCode.text;
+    patient.sPiPhoneNumber = insuranceVC.SIPhoneNum.text;
+    patient.sPiEmail = insuranceVC.SIEmail.text;
     
     
     //Save the information using the context
@@ -162,13 +187,20 @@
     
     NSLog(@"Added a new Patient!");
     
+    // Return the logged-in doctor
+    HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
+    hvc.myDoctor = self.myDoctor;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
+    
+    self.selectedViewController = [[self viewControllers] objectAtIndex:1];
+    self.selectedViewController = [[self viewControllers] objectAtIndex:2];
+    self.selectedViewController = [[self viewControllers] objectAtIndex:3];
+    self.selectedViewController = [[self viewControllers] objectAtIndex:0];
 }
 
 - (void)didReceiveMemoryWarning

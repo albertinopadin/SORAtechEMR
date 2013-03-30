@@ -11,6 +11,8 @@
 #import "Condition.h"
 #import "Medicine.h"
 #import "PrescriberViewController.h"
+#import "PIPInsureeViewController.h"
+#import "SIPInsureeViewController.h"
 
 @interface PatientInfoTableViewController ()
 
@@ -32,9 +34,9 @@
 
 @synthesize emergencyCNameLabel, emergencyCAddressLine1Label, emergencyCAddressLine2Label, emergencyCPhoneNumberLabel, emergencyCEmailLabel;
 
-@synthesize primaryInsuranceNameLabel, primaryInsurancePolicyNumLabel, primaryInsuranceRelationshipToPrimaryLabel;
+@synthesize primaryInsuranceNameLabel, primaryInsurancePolicyNumLabel, primaryInsuranceGroupNumLabel, primaryInsuranceRelationshipToPrimaryLabel;
 
-@synthesize secondaryInsuranceNameLabel, secondaryInsurancePolicyNumLabel, secondaryInsuranceRelationshipToPrimaryLabel;
+@synthesize secondaryInsuranceNameLabel, secondaryInsurancePolicyNumLabel, secondaryInsuranceGroupNumLabel, secondaryInsuranceRelationshipToPrimaryLabel;
 
 
 //Getting the Managed Object Context, the window to our internal database
@@ -64,6 +66,16 @@
     {
         PrescriberViewController *pvc = segue.destinationViewController;
         pvc.myPrescriber = self.currentDesignatedPrescriber;
+    }
+    else if ([segue.identifier isEqualToString:@"PIPInsureeSegue1"] || [segue.identifier isEqualToString:@"PIPInsureeSegue2"])
+    {
+        PIPInsureeViewController *pipVC = segue.destinationViewController;
+        pipVC.myPatient = self.myPatient;
+    }
+    else if ([segue.identifier isEqualToString:@"SIPInsureeSegue1"] || [segue.identifier isEqualToString:@"SIPInsureeSegue2"])
+    {
+        SIPInsureeViewController *sipVC = segue.destinationViewController;
+        sipVC.myPatient = self.myPatient;
     }
 }
 
@@ -148,13 +160,39 @@
     
     //////////////// ----------- SET LABELS -------------- \\\\\\\\\\\\\\\\\\\\\\\
 
+    // Personal
     self.fullNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@", self.myPatient.firstName, self.myPatient.middleName, self.myPatient.paternalLastName, self.myPatient.maternalLastName];
-    self.addressLine1Label.text = self.myPatient.line1;
-    self.addressLine2Label.text = self.myPatient.line2;
+    self.addressLine1Label.text = [NSString stringWithFormat:@"%@  %@", self.myPatient.line1, self.myPatient.line2];
+    self.addressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@", self.myPatient.city, self.myPatient.state, self.myPatient.zip];
     self.phoneNumberLabel.text = self.myPatient.phoneNumber;
     self.emailLabel.text = self.myPatient.email;
     self.dateOfBirthLabel.text = self.myPatient.dateOfBirth;
     self.socialSecurityLabel.text = self.myPatient.socialSecurityNumber;
+    
+    // Employer
+    self.employerNameLabel.text = self.myPatient.empName;
+    self.employerAddressLine1Label.text = [NSString stringWithFormat:@"%@  %@", self.myPatient.empLine1, self.myPatient.empLine2];
+    self.employerAddressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@", self.myPatient.empCity, self.myPatient.empState, self.myPatient.empZip];
+    self.employerPhoneNumberLabel.text = self.myPatient.empPhoneNumber;
+    self.employerEmailLabel.text = self.myPatient.empEmail;
+    
+    // Emergency Contact
+    self.emergencyCNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@", self.myPatient.emeFirstName, self.myPatient.emeMiddleName, self.myPatient.emePaternalLastName, self.myPatient.emeMaternalLastName];
+    self.emergencyCAddressLine1Label.text = [NSString stringWithFormat:@"%@  %@", self.myPatient.emeLine1, self.myPatient.emeLine2];
+    self.emergencyCAddressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@", self.myPatient.emeCity, self.myPatient.emeState, self.myPatient.emeZip];
+    self.emergencyCPhoneNumberLabel.text = self.myPatient.emePhoneNumber;
+    self.emergencyCEmailLabel.text = self.myPatient.emeEmail;
+
+    // Insurance Info
+    self.primaryInsuranceNameLabel.text = self.myPatient.insuranceName;
+    self.primaryInsurancePolicyNumLabel.text = self.myPatient.policyNumber;
+    self.primaryInsuranceGroupNumLabel.text = self.myPatient.groupNumber;
+    self.primaryInsuranceRelationshipToPrimaryLabel.text = self.myPatient.relationshipToPrimaryInsured;
+    
+    self.secondaryInsuranceNameLabel.text = self.myPatient.sInsuranceName;
+    self.secondaryInsurancePolicyNumLabel.text = self.myPatient.sPolicyNumber;
+    self.secondaryInsuranceGroupNumLabel.text = self.myPatient.sGroupNumber;
+    self.secondaryInsuranceRelationshipToPrimaryLabel.text = self.myPatient.srelationshipToPrimaryInsured;
     
     
     [self.tableView reloadData];
