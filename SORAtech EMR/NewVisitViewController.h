@@ -13,7 +13,7 @@
 #import "MedicationsTableViewController.h"
 #import "Prescriber.h"
 
-@interface NewVisitViewController : UIViewController 
+@interface NewVisitViewController : UIViewController <UITextViewDelegate>
 
 @property (strong, nonatomic) Prescriber *myDoctor;
 @property (strong, nonatomic) Visit *visit;

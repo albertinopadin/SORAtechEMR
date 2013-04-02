@@ -18,6 +18,9 @@
 		CE3160D41705CB1E00118DC0 /* NPEmployerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160D31705CB1D00118DC0 /* NPEmployerViewController.m */; };
 		CE3421EC17074483009C9454 /* PIPInsureeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3421EB17074483009C9454 /* PIPInsureeViewController.m */; };
 		CE3421EF1707472F009C9454 /* SIPInsureeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3421EE1707472F009C9454 /* SIPInsureeViewController.m */; };
+		CEE2BF64170B492000C636EC /* ExistingVisitCondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF63170B492000C636EC /* ExistingVisitCondCell.m */; };
+		CEE2BF67170B493700C636EC /* ExistingVisitMedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF66170B493700C636EC /* ExistingVisitMedCell.m */; };
+		CEE2BF6A170B50B800C636EC /* Condition.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF69170B50B800C636EC /* Condition.m */; };
 		CEF221BF16FC477B0025FF94 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221BE16FC477B0025FF94 /* UIKit.framework */; };
 		CEF221C116FC477B0025FF94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221C016FC477B0025FF94 /* Foundation.framework */; };
 		CEF221C316FC477B0025FF94 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221C216FC477B0025FF94 /* CoreGraphics.framework */; };
@@ -65,7 +68,6 @@
 		CEF2225616FC73E60025FF94 /* MedicationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2225516FC73E60025FF94 /* MedicationsTableViewController.m */; };
 		CEF2225C16FCA8D70025FF94 /* PatientInfoConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2225B16FCA8D60025FF94 /* PatientInfoConditionCell.m */; };
 		CEF2225F16FCA8F30025FF94 /* PatientInfoMedicineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2225E16FCA8F20025FF94 /* PatientInfoMedicineCell.m */; };
-		CEF2226516FCB9B30025FF94 /* Condition.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2226416FCB9B30025FF94 /* Condition.m */; };
 		CEF2226716FDF7240025FF94 /* PatientInfoMedicineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF2226616FDF7240025FF94 /* PatientInfoMedicineCell.xib */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,12 @@
 		CE3421EB17074483009C9454 /* PIPInsureeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIPInsureeViewController.m; sourceTree = "<group>"; };
 		CE3421ED1707472E009C9454 /* SIPInsureeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIPInsureeViewController.h; sourceTree = "<group>"; };
 		CE3421EE1707472F009C9454 /* SIPInsureeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIPInsureeViewController.m; sourceTree = "<group>"; };
+		CEE2BF62170B492000C636EC /* ExistingVisitCondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExistingVisitCondCell.h; sourceTree = "<group>"; };
+		CEE2BF63170B492000C636EC /* ExistingVisitCondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingVisitCondCell.m; sourceTree = "<group>"; };
+		CEE2BF65170B493700C636EC /* ExistingVisitMedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExistingVisitMedCell.h; sourceTree = "<group>"; };
+		CEE2BF66170B493700C636EC /* ExistingVisitMedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingVisitMedCell.m; sourceTree = "<group>"; };
+		CEE2BF68170B50B800C636EC /* Condition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Condition.h; sourceTree = "<group>"; };
+		CEE2BF69170B50B800C636EC /* Condition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Condition.m; sourceTree = "<group>"; };
 		CEF221BB16FC477B0025FF94 /* SORAtech EMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SORAtech EMR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF221BE16FC477B0025FF94 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEF221C016FC477B0025FF94 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -173,8 +181,6 @@
 		CEF2225B16FCA8D60025FF94 /* PatientInfoConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientInfoConditionCell.m; sourceTree = "<group>"; };
 		CEF2225D16FCA8F20025FF94 /* PatientInfoMedicineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientInfoMedicineCell.h; sourceTree = "<group>"; };
 		CEF2225E16FCA8F20025FF94 /* PatientInfoMedicineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientInfoMedicineCell.m; sourceTree = "<group>"; };
-		CEF2226316FCB9B20025FF94 /* Condition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Condition.h; sourceTree = "<group>"; };
-		CEF2226416FCB9B30025FF94 /* Condition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Condition.m; sourceTree = "<group>"; };
 		CEF2226616FDF7240025FF94 /* PatientInfoMedicineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientInfoMedicineCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -240,6 +246,10 @@
 			isa = PBXGroup;
 			children = (
 				CEF2220316FC486A0025FF94 /* MainStoryboard.storyboard */,
+				CEE2BF65170B493700C636EC /* ExistingVisitMedCell.h */,
+				CEE2BF66170B493700C636EC /* ExistingVisitMedCell.m */,
+				CEE2BF62170B492000C636EC /* ExistingVisitCondCell.h */,
+				CEE2BF63170B492000C636EC /* ExistingVisitCondCell.m */,
 				CE3421ED1707472E009C9454 /* SIPInsureeViewController.h */,
 				CE3421EE1707472F009C9454 /* SIPInsureeViewController.m */,
 				CE3421EA17074483009C9454 /* PIPInsureeViewController.h */,
@@ -261,10 +271,10 @@
 				CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */,
 				CEF2226616FDF7240025FF94 /* PatientInfoMedicineCell.xib */,
 				CEF2222D16FC49240025FF94 /* SORAtechEMR.xcdatamodeld */,
+				CEE2BF68170B50B800C636EC /* Condition.h */,
+				CEE2BF69170B50B800C636EC /* Condition.m */,
 				CE3160C316FED89600118DC0 /* Medicine.h */,
 				CE3160C416FED89600118DC0 /* Medicine.m */,
-				CEF2226316FCB9B20025FF94 /* Condition.h */,
-				CEF2226416FCB9B30025FF94 /* Condition.m */,
 				CEF2224516FC59510025FF94 /* PrescriberViewController.h */,
 				CEF2224616FC59510025FF94 /* PrescriberViewController.m */,
 				CEF2224216FC591B0025FF94 /* Person.h */,
@@ -501,7 +511,6 @@
 				CEF2225616FC73E60025FF94 /* MedicationsTableViewController.m in Sources */,
 				CEF2225C16FCA8D70025FF94 /* PatientInfoConditionCell.m in Sources */,
 				CEF2225F16FCA8F30025FF94 /* PatientInfoMedicineCell.m in Sources */,
-				CEF2226516FCB9B30025FF94 /* Condition.m in Sources */,
 				CE3160C516FED89600118DC0 /* Medicine.m in Sources */,
 				CE3160C81701322D00118DC0 /* DoctorInfoInputViewController.m in Sources */,
 				CE3160CB1705403D00118DC0 /* NewPatientTBViewController.m in Sources */,
@@ -510,6 +519,9 @@
 				CE3160D41705CB1E00118DC0 /* NPEmployerViewController.m in Sources */,
 				CE3421EC17074483009C9454 /* PIPInsureeViewController.m in Sources */,
 				CE3421EF1707472F009C9454 /* SIPInsureeViewController.m in Sources */,
+				CEE2BF64170B492000C636EC /* ExistingVisitCondCell.m in Sources */,
+				CEE2BF67170B493700C636EC /* ExistingVisitMedCell.m in Sources */,
+				CEE2BF6A170B50B800C636EC /* Condition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,11 +44,21 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // Set up text field so it responds to enter key:
+    self.loginKeyTextField.delegate = self;
+    
+    
     //Initialize default login key so user can log in
     defaultLoginKey = @"magic";
     
     //Set default doctorId
     self.defaultDoctorId = 0;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self loginButtonPressed:textField];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning

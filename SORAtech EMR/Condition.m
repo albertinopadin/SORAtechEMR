@@ -2,7 +2,7 @@
 //  Condition.m
 //  SORAtech EMR
 //
-//  Created by Albertino Padin on 3/22/13.
+//  Created by Albertino Padin on 4/2/13.
 //  Copyright (c) 2013 Albertino Padin. All rights reserved.
 //
 
@@ -12,8 +12,9 @@
 
 @implementation Condition
 
-@dynamic patientId;
 @dynamic conditionName;
+@dynamic patientId;
+@dynamic visitId;
 @dynamic conditions;
 
 @end

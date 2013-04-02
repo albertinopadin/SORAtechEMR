@@ -46,6 +46,18 @@
     return isEmpty;
 }
 
+- (BOOL)namesPresent
+{
+    BOOL namesPresent = YES;
+    
+    if ([self.firstName.text length] == 0 || [self.paternalLastName.text length] == 0 || [self.maternalLastName.text length] == 0)
+    {
+        namesPresent = NO;
+    }
+    
+    return namesPresent;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

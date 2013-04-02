@@ -74,6 +74,18 @@
     
     //Execute the fetch request through the managed object context to get the patient list
     self.visitList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    // Set textview delegate so when user taps on it the text clears only the first time:
+    self.visitNotes.delegate = self;
+}
+
+// TextView delegate method
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([self.visitNotes.text isEqualToString:@"Enter your notes here."])
+    {
+        self.visitNotes.text = @"";
+    }
 }
 
 // We don't use button methods, we just do this before whatever segue is triggered
@@ -108,49 +120,69 @@
     //for (ConditionCell *condCell in self.conditionsTableVC.conditionCellArray)
     //for (UITextField *condCellTF in self.conditionsTableVC.conditionTextBoxArray)
     {
-        //Insert a new condition in the condition table
-        Condition *cond = [NSEntityDescription insertNewObjectForEntityForName:@"Condition" inManagedObjectContext:self.managedObjectContext];
-        cond.patientId = self.myPatient.patientId;
-        cond.conditionName = condCell.myCondition;
-        [self.managedObjectContext save:&saveError];
-        
-        if (condCell == nil) {
-            NSLog(@"The cond cell is nil");
+        // If text field in cell is empty DO NOT INSERT
+        if ([condCell.condition.text length] == 0)
+        {
+            //Do nothing, we don't want to insert empty condition
         }
-        if (condCell.condition == nil) {
-            NSLog(@"The condition textbox is nil");
+        else
+        {
+            //Insert a new condition in the condition table
+            Condition *cond = [NSEntityDescription insertNewObjectForEntityForName:@"Condition" inManagedObjectContext:self.managedObjectContext];
+            cond.patientId = self.myPatient.patientId;
+            cond.visitId = self.visit.visitId;
+            cond.conditionName = condCell.myCondition;
+            [self.managedObjectContext save:&saveError];
+            
+            // TESTING
+            if (condCell == nil) {
+                NSLog(@"The cond cell is nil");
+            }
+            if (condCell.condition == nil) {
+                NSLog(@"The condition textbox is nil");
+            }
+            if (condCell.condition.text == nil) {
+                NSLog(@"The text in the cond cell is nil");
+            }
+            if (condCell.myCondition == nil) {
+                NSLog(@"condCell.myCondition is nil");
+            }
+            else{
+                NSLog(@"%@", condCell.myCondition);
+            }
+
         }
-        if (condCell.condition.text == nil) {
-            NSLog(@"The text in the cond cell is nil");
-        }
-        if (condCell.myCondition == nil) {
-            NSLog(@"condCell.myCondition is nil");
-        }
-        else{
-            NSLog(@"%@", condCell.myCondition);
-        }
-        
+                
     }
 
     for (MedicationCell *medCell in self.medicationsTableVC.medicationCellArray)
     {
-        //Insert a new medication in the medicine table
-        Medicine *med = [NSEntityDescription insertNewObjectForEntityForName:@"Medicine" inManagedObjectContext:self.managedObjectContext];
-        med.visitId = self.visit.visitId;
-        med.firstName = self.myPatient.firstName;
-        med.middleName = self.myPatient.middleName;
-        med.paternalLastName = self.myPatient.paternalLastName;
-        med.maternalLastName = self.myPatient.maternalLastName;
-        med.city = self.myPatient.city;
-        med.state = self.myPatient.state;
-        med.zip = self.myPatient.zip;
+        // If text field in cell is empty DO NOT INSERT
+        if ([medCell.medication.text length] == 0)
+        {
+            //Do nothing, we don't want to insert empty medication
+        }
+        else
+        {
+            //Insert a new medication in the medicine table
+            Medicine *med = [NSEntityDescription insertNewObjectForEntityForName:@"Medicine" inManagedObjectContext:self.managedObjectContext];
+            med.visitId = self.visit.visitId;
+            med.firstName = self.myPatient.firstName;
+            med.middleName = self.myPatient.middleName;
+            med.paternalLastName = self.myPatient.paternalLastName;
+            med.maternalLastName = self.myPatient.maternalLastName;
+            med.city = self.myPatient.city;
+            med.state = self.myPatient.state;
+            med.zip = self.myPatient.zip;
+            
+            med.name = medCell.medication.text;
+            med.dosage = medCell.dose.text;
+            med.frequency = medCell.frequency.text;
+            med.purpose = medCell.purpose.text;
+            
+            [self.managedObjectContext save:&saveError];
+        }
         
-        med.name = medCell.medication.text;
-        med.dosage = medCell.dose.text;
-        med.frequency = medCell.frequency.text;
-        med.purpose = medCell.purpose.text;
-        
-        [self.managedObjectContext save:&saveError];
     }
     
     UINavigationController *nav = [segue destinationViewController];

@@ -44,7 +44,8 @@
 // AlertView delegate method
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
+    // Check if it's the empty fields alert view. We don't want this method firing for the empty name fields alert view
+    if ([[alertView title] isEqualToString:@"Empty Fields"] && buttonIndex == 0)
     {
         [self performSegueWithIdentifier:@"addPatientDoneSegue" sender:self];
     }
@@ -58,6 +59,15 @@
     NPEmployerViewController *employerVC = [self.vcArray objectAtIndex:1];
     NPEmergencyContactViewController *emergencyContactVC = [self.vcArray objectAtIndex:2];
     NPInsuranceViewController *insuranceVC = [self.vcArray objectAtIndex:3];
+    
+    if (![personalVC namesPresent])
+    {
+        //Display a message if the first name, paternal or maternal last names are empty:
+        UIAlertView *nameTextBoxesAreEmptyAlert = [[UIAlertView alloc] initWithTitle:@"Empty Name Fields" message:@"You must enter at least the first name and paternal and maternal last names to save a patient in the system." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [nameTextBoxesAreEmptyAlert show];
+        
+        return NO;
+    }
     
     if ([personalVC textFieldEmpty] || [employerVC textFieldEmpty] || [emergencyContactVC textFieldEmpty] || [insuranceVC textFieldEmpty])
     {

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Visit.h"
 
-@interface ExistingVisitViewController : UIViewController
+@interface ExistingVisitViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) Visit *myVisit;
 
@@ -20,5 +20,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *height;
 @property (strong, nonatomic) IBOutlet UILabel *weight;
 @property (strong, nonatomic) IBOutlet UITextView *notes;
+
+@property (strong, nonatomic) IBOutlet UITableView *conditionsDiagnosedTableView;
+@property (strong, nonatomic) IBOutlet UITableView *medicationsPrescribedTableView;
 
 @end

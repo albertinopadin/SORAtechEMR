@@ -31,5 +31,6 @@
 @property (strong, nonatomic) NSArray *textFields;
 
 - (BOOL)textFieldEmpty;
+- (BOOL)namesPresent;
 
 @end

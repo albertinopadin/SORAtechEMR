@@ -71,9 +71,12 @@
     [fetchRequest setEntity:entity];
     
     // NSSortDescriptor tells defines how to sort the fetched results
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    // Here it will sort the visit by date and visit id (for when a patient has more than one visit the same day)
+    NSSortDescriptor *dateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    
+    NSSortDescriptor *visitIdSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"visitId" ascending:NO];
 
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:dateSortDescriptor, visitIdSortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
