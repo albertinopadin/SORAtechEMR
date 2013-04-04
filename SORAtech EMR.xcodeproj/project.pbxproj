@@ -21,6 +21,7 @@
 		CEE2BF64170B492000C636EC /* ExistingVisitCondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF63170B492000C636EC /* ExistingVisitCondCell.m */; };
 		CEE2BF67170B493700C636EC /* ExistingVisitMedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF66170B493700C636EC /* ExistingVisitMedCell.m */; };
 		CEE2BF6A170B50B800C636EC /* Condition.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF69170B50B800C636EC /* Condition.m */; };
+		CEE2BF6D170E13F600C636EC /* EditPatientTBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF6C170E13F600C636EC /* EditPatientTBViewController.m */; };
 		CEF221BF16FC477B0025FF94 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221BE16FC477B0025FF94 /* UIKit.framework */; };
 		CEF221C116FC477B0025FF94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221C016FC477B0025FF94 /* Foundation.framework */; };
 		CEF221C316FC477B0025FF94 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF221C216FC477B0025FF94 /* CoreGraphics.framework */; };
@@ -107,6 +108,8 @@
 		CEE2BF66170B493700C636EC /* ExistingVisitMedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingVisitMedCell.m; sourceTree = "<group>"; };
 		CEE2BF68170B50B800C636EC /* Condition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Condition.h; sourceTree = "<group>"; };
 		CEE2BF69170B50B800C636EC /* Condition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Condition.m; sourceTree = "<group>"; };
+		CEE2BF6B170E13F500C636EC /* EditPatientTBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPatientTBViewController.h; sourceTree = "<group>"; };
+		CEE2BF6C170E13F600C636EC /* EditPatientTBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPatientTBViewController.m; sourceTree = "<group>"; };
 		CEF221BB16FC477B0025FF94 /* SORAtech EMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SORAtech EMR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF221BE16FC477B0025FF94 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEF221C016FC477B0025FF94 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -246,6 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				CEF2220316FC486A0025FF94 /* MainStoryboard.storyboard */,
+				CEE2BF6B170E13F500C636EC /* EditPatientTBViewController.h */,
+				CEE2BF6C170E13F600C636EC /* EditPatientTBViewController.m */,
 				CEE2BF65170B493700C636EC /* ExistingVisitMedCell.h */,
 				CEE2BF66170B493700C636EC /* ExistingVisitMedCell.m */,
 				CEE2BF62170B492000C636EC /* ExistingVisitCondCell.h */,
@@ -522,6 +527,7 @@
 				CEE2BF64170B492000C636EC /* ExistingVisitCondCell.m in Sources */,
 				CEE2BF67170B493700C636EC /* ExistingVisitMedCell.m in Sources */,
 				CEE2BF6A170B50B800C636EC /* Condition.m in Sources */,
+				CEE2BF6D170E13F600C636EC /* EditPatientTBViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@
 #import "PrescriberViewController.h"
 #import "PIPInsureeViewController.h"
 #import "SIPInsureeViewController.h"
+#import "EditPatientTBViewController.h"
 
 @interface PatientInfoTableViewController ()
 
@@ -54,6 +55,7 @@
     return self;
 }
 
+// Sets the prescriber for the particular medicine (This is called from within the individual med cell)
 - (void)goToPrescriberViewWithPrescriber:(Prescriber *)thePrescriber
 {
     self.currentDesignatedPrescriber = thePrescriber;
@@ -76,6 +78,12 @@
     {
         SIPInsureeViewController *sipVC = segue.destinationViewController;
         sipVC.myPatient = self.myPatient;
+    }
+    else if ([segue.identifier isEqualToString:@"editPatientInfoSegue"])
+    {
+        EditPatientTBViewController *edVC = segue.destinationViewController;
+        edVC.myDoctor = self.myDoctor;
+        edVC.myPatient = self.myPatient;
     }
 }
 

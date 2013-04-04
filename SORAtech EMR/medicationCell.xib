@@ -46,6 +46,7 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{112, 7}, {146, 30}}</string>
 								<reference key="NSSuperview" ref="65282561"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="49478963"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -64,6 +65,7 @@
 									<int key="IBUIAutocorrectionType">1</int>
 									<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								</object>
+								<int key="IBUIClearButtonMode">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="850701815">
 									<int key="type">1</int>
 									<double key="pointSize">14</double>
@@ -80,6 +82,7 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{20, 10}, {89, 22}}</string>
 								<reference key="NSSuperview" ref="65282561"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="541445416"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -115,6 +118,7 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{112, 45}, {146, 30}}</string>
 								<reference key="NSSuperview" ref="65282561"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="628044311"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -130,6 +134,7 @@
 									<int key="IBUIAutocorrectionType">1</int>
 									<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								</object>
+								<int key="IBUIClearButtonMode">1</int>
 								<reference key="IBUIFontDescription" ref="850701815"/>
 								<reference key="IBUIFont" ref="158349203"/>
 							</object>
@@ -139,6 +144,7 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{20, 48}, {89, 22}}</string>
 								<reference key="NSSuperview" ref="65282561"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="510233754"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -163,6 +169,7 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{112, 83}, {146, 30}}</string>
 								<reference key="NSSuperview" ref="65282561"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="889137520"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -178,6 +185,7 @@
 									<int key="IBUIAutocorrectionType">1</int>
 									<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								</object>
+								<int key="IBUIClearButtonMode">1</int>
 								<reference key="IBUIFontDescription" ref="850701815"/>
 								<reference key="IBUIFont" ref="158349203"/>
 							</object>
@@ -187,6 +195,7 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{20, 86}, {89, 22}}</string>
 								<reference key="NSSuperview" ref="65282561"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="765821027"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -207,6 +216,7 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{112, 121}, {146, 30}}</string>
 								<reference key="NSSuperview" ref="65282561"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -221,6 +231,7 @@
 									<int key="IBUIAutocorrectionType">1</int>
 									<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								</object>
+								<int key="IBUIClearButtonMode">1</int>
 								<reference key="IBUIFontDescription" ref="850701815"/>
 								<reference key="IBUIFont" ref="158349203"/>
 							</object>
@@ -230,6 +241,7 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{20, 124}, {89, 22}}</string>
 								<reference key="NSSuperview" ref="65282561"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="47014247"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -248,6 +260,7 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrameSize">{278, 171}</string>
 						<reference key="NSSuperview" ref="340959521"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="432282300"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -263,6 +276,7 @@
 				<object class="NSPSMatrix" key="NSFrameMatrix"/>
 				<string key="NSFrameSize">{278, 172}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="65282561"/>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 				<int key="IBUISelectionStyle">0</int>
@@ -426,7 +440,42 @@
 			<nil key="sourceID"/>
 			<int key="maxID">42</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">MedicationCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="dose">UITextField</string>
+						<string key="frequency">UITextField</string>
+						<string key="medication">UITextField</string>
+						<string key="purpose">UITextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="dose">
+							<string key="name">dose</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="frequency">
+							<string key="name">frequency</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="medication">
+							<string key="name">medication</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="purpose">
+							<string key="name">purpose</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MedicationCell.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
