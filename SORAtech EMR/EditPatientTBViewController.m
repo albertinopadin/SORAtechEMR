@@ -53,6 +53,12 @@
     if ([[alertView title] isEqualToString:@"Empty Fields"] && buttonIndex == 0)
     {
         [self preparePatientEdit];
+        NSArray *vcs = [self.navigationController viewControllers];
+        NSInteger numVCs = vcs.count;
+        PatientInfoTableViewController *pitvc = [vcs objectAtIndex:numVCs - 2];
+        pitvc.myDoctor = self.myDoctor;
+        pitvc.myPatient = self.myPatient;
+        //[pitvc.myTableView reloadData];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -316,10 +322,10 @@
         // Return the logged-in doctor
         NSArray *vcs = [self.navigationController viewControllers];
         NSInteger numVCs = vcs.count;
-        PatientInfoTableViewController *pitvc = [vcs objectAtIndex:numVCs - 1];
+        PatientInfoTableViewController *pitvc = [vcs objectAtIndex:numVCs - 2];
         pitvc.myDoctor = self.myDoctor;
         pitvc.myPatient = self.myPatient;
-        
+        //[pitvc.myTableView reloadData];
         // Pop to previous vc:
         [self.navigationController popViewControllerAnimated:YES];
     }

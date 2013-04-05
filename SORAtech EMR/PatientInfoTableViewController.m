@@ -87,6 +87,15 @@
     }
 }
 
+
+// When user pops back from editing patient info reload the table's data:
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Have to call viewDidLoad because part of the table view is static and thus will not reload.
+    [self viewDidLoad];
+    [self.tableView reloadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
