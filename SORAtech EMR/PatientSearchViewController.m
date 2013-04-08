@@ -30,6 +30,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.searchBox.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,6 +43,12 @@
 - (IBAction)searchButtonPressed:(id)sender
 {
     //[self performSegueWithIdentifier:<#(NSString *)#> sender:<#(id)#>];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self performSegueWithIdentifier:@"patientNameSearchSegue" sender:self];
+    return YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -35,75 +35,23 @@
     return self;
 }
 
-- (void)viewDidLoad
+// Make the return button available even when the textfield is empty
+- (void)setReturnButton
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-    self.searchBar.delegate = self;
-    self.searchBar.text = self.searchTerm;
-    
-    //Create fetch request for the Patient entity table
-    //NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Patient"];
-    
-    //Execute the fetch request through the managed object context to get the patient list
-    //self.searchResults = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    
-    // NSFetchRequest
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    // fetchRequest needs to know what entity to fetch
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Patient" inManagedObjectContext:self.managedObjectContext];
-   
-    [fetchRequest setEntity:entity];
-
-    // NSSortDescriptor tells defines how to sort the fetched results
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
-    //NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"paternalLastName" ascending:YES];
-    
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    NSPredicate *predicate;
-    
-    
-    // If the search term is an empty string, return all patients in the db
-    if (self.searchTerm.length > 0)
+    UITextField *searchBarTextField = nil;
+    for (UIView *subview in searchBar.subviews)
     {
-        predicate =[NSPredicate predicateWithFormat:@"firstName contains[cd] %@", self.searchTerm];
+        if ([subview isKindOfClass:[UITextField class]])
+        {
+            searchBarTextField = (UITextField *)subview;
+            break;
+        }
     }
-    else
-    {
-        // WTF. This works. It displays all the patients. ALL doesn't. WTF.
-        //predicate =[NSPredicate predicateWithFormat:@"1=1"];
-        predicate =[NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
-    }
-    
-    
-    [fetchRequest setPredicate:predicate];
-    
-    self.searchResults = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    
-    //Test
-    //NSLog(@"Search Results are: %@", self.searchResults);
-    
-    childTVC = [[self childViewControllers] objectAtIndex:0];
-    
-    childTVC.searchResultsArray = self.searchResults;
-    
-    childTVC.myDoctor = self.myDoctor;
-    NSLog(@"Search Results: Doctor's name is: %@", self.myDoctor.fullName);
-    
-    [childTVC.tableView reloadData];
-    
+    searchBarTextField.enablesReturnKeyAutomatically = NO;
 }
 
-
-// Search Bar delegate methods
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+- (void)doSearch:(NSString *)searchString
 {
-    
     // NSFetchRequest needed by the fetchedResultsController
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -113,34 +61,49 @@
     [fetchRequest setEntity:entity];
     
     // NSSortDescriptor tells defines how to sort the fetched results
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
-    //NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"paternalLastName" ascending:YES];
+    NSSortDescriptor *sortDescriptorFirstName = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
+    NSSortDescriptor *sortDescriptorPaternalLastName = [[NSSortDescriptor alloc] initWithKey:@"paternalLastName" ascending:YES];
     
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    // Two sort descriptors - by first name and last name
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptorFirstName, sortDescriptorPaternalLastName, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     NSPredicate *predicate;
-    
-    
+        
     // If the search term is an empty string, return all patients in the db
-    if (self.searchBar.text.length > 0)
+    if (searchString.length > 0)
     {
-        predicate =[NSPredicate predicateWithFormat:@"firstName contains[cd] %@", self.searchBar.text];
+        // If patient ID was submitted, search that
+        if ([searchString intValue] != 0) {
+            predicate =[NSPredicate predicateWithFormat:@"patientId like[cd] %@", searchString];
+        }
+        // String was submitted
+        else
+        {
+            if ([searchString componentsSeparatedByString:@" "].count > 1)
+            {
+                // Separate first and last names
+                NSArray *searchStrings = [searchString componentsSeparatedByString:@" "];
+                
+                // Search both first and last names. We take the last element in searchStrings in case user input mult spaces
+                predicate =[NSPredicate predicateWithFormat:@"(firstName BEGINSWITH[cd] %@) AND (paternalLastName BEGINSWITH[cd] %@)", [searchStrings objectAtIndex:0], [searchStrings objectAtIndex:searchStrings.count - 1]];
+            }
+            else
+            {
+                // Search both first and last names with the one string we are provided
+                predicate =[NSPredicate predicateWithFormat:@"(firstName BEGINSWITH[cd] %@) OR (paternalLastName BEGINSWITH[cd] %@)", searchString, searchString];
+            }
+        }
     }
     else
     {
-        // WTF. This works. It displays all the patients. ALL doesn't. WTF.
-        //predicate =[NSPredicate predicateWithFormat:@"1=1"];
         predicate =[NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
     }
     
     [fetchRequest setPredicate:predicate];
     
     self.searchResults = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    
-    //Test
-    //NSLog(@"Search Results are: %@", self.searchResults);
     
     childTVC = [[self childViewControllers] objectAtIndex:0];
     
@@ -150,6 +113,37 @@
     NSLog(@"Search Results: Doctor's name is: %@", self.myDoctor.fullName);
     
     [childTVC.tableView reloadData];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    
+    self.searchBar.delegate = self;
+    self.searchBar.text = self.searchTerm;
+    
+    [self setReturnButton];
+    
+    // Do the search with the provided search term from the previous view controller
+    [self doSearch:self.searchTerm];
+}
+
+
+// Search Bar delegate methods
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    // This time search using the search bar text field's terms
+    [self doSearch:self.searchBar.text];
+}
+
+// If the user erases search text field, enable return button again
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if (self.searchBar.text.length < 1)
+    {
+        [self setReturnButton];
+    }
 }
 
 - (void)didReceiveMemoryWarning
