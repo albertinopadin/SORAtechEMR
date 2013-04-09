@@ -85,6 +85,47 @@
     }
 }
 
+- (NSNumber *)getMaxId
+{
+    //NSNumber *nextId=[NSNumber numberWithInt:1];
+    
+    NSNumber *nextId;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Patient" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"_pk"];
+    NSExpression *maxIdExpression = [NSExpression expressionForFunction:@"max:"
+                                                              arguments:[NSArray arrayWithObject:keyPathExpression]];
+    
+    
+    NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
+    [expressionDescription setName:@"maxId"];
+    [expressionDescription setExpression:maxIdExpression];
+    //[expressionDescription setExpression:keyPathExpression];
+    [expressionDescription setExpressionResultType:NSInteger64AttributeType];
+    
+    [fetchRequest setPropertiesToFetch:[NSArray arrayWithObject:expressionDescription]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+        
+        NSLog(@"error getting max id");
+        
+    }
+    else
+    {
+        nextId = (NSNumber*)[[fetchedObjects lastObject] objectForKey:@"maxId"];
+        int nxt = [nextId intValue] + 1;
+        nextId = [NSNumber numberWithInt:nxt];
+    }
+    
+    return nextId;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //Get each view controller from my array of vc's
@@ -122,8 +163,8 @@
     patient.phoneNumber = personalVC.phoneNumber.text;
     patient.email = personalVC.email.text;
     
-    patient.patientId = [NSNumber numberWithInt:self.patientList.count + 1];
-    
+    //patient.patientId = [NSNumber numberWithInt:self.patientList.count + 1];
+    patient.patientId = [self getMaxId];
     
     // Employer Info from second vc:
     patient.empName = employerVC.employerName.text;
@@ -195,7 +236,7 @@
     
     [self.managedObjectContext save:&saveError];
     
-    NSLog(@"Added a new Patient!");
+    NSLog(@"Added a new Patient! With id: %@", patient.patientId);
     
     // Return the logged-in doctor
     HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];

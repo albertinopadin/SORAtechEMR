@@ -157,11 +157,11 @@
         <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="visits" inverseEntity="Patient" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Condition" positionX="-261" positionY="-82" width="128" height="103"/>
+        <element name="Condition" positionX="-254" positionY="-82" width="128" height="103"/>
         <element name="Medicine" positionX="99" positionY="71" width="128" height="313"/>
         <element name="Patient" positionX="-396" positionY="-106" width="128" height="1453"/>
         <element name="Person" positionX="43" positionY="-108" width="128" height="163"/>
-        <element name="Prescriber" positionX="-110" positionY="-97" width="128" height="133"/>
+        <element name="Prescriber" positionX="-101" positionY="-108" width="128" height="133"/>
         <element name="Visit" positionX="-153" positionY="74" width="128" height="253"/>
     </elements>
 </model>

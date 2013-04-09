@@ -9,8 +9,12 @@
 #import "PatientSearchResultTVC.h"
 #import "PatientTableViewCell.h"
 #import "Patient.h"
+#import "Visit.h"
+#import "Condition.h"
+#import "Medicine.h"
 #import "PatientVisitListViewController.h"
 #import "PatientInfoTableViewController.h"
+#import "STAppDelegate.h"
 
 @interface PatientSearchResultTVC ()
 
@@ -19,6 +23,12 @@
 @implementation PatientSearchResultTVC
 
 @synthesize patientListTableView, searchResultsArray, myDoctor;
+
+//Getting the Managed Object Context, the window to our internal database
+- (NSManagedObjectContext *)managedObjectContext
+{
+    return [(STAppDelegate *) [[UIApplication sharedApplication] delegate] managedObjectContext];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -119,28 +129,103 @@
     
 }
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        
+        // Delete from Core Data db:
+        Patient *patientToDelete = [self.searchResultsArray objectAtIndex:[indexPath row]];
+        [self deletePatientFromDatabase:patientToDelete];
+        
+        // Delete from our array
+        [self.searchResultsArray removeObjectAtIndex:[indexPath row]];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
+- (void)deletePatientFromDatabase:(Patient *)thePatientToDelete
+{
+    // Get the patient's visits
+    NSFetchRequest *visitFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *visitEntity = [NSEntityDescription entityForName:@"Visit" inManagedObjectContext:self.managedObjectContext];
+    [visitFetchRequest setEntity:visitEntity];
+    NSPredicate *visitPredicate;
+    visitPredicate =[NSPredicate predicateWithFormat:@"patientId == %@", thePatientToDelete.patientId];
+    [visitFetchRequest setPredicate:visitPredicate];
+    
+    NSArray *visitArray = [self.managedObjectContext executeFetchRequest:visitFetchRequest error:nil];
+    
+    
+    // Get the patient's medicines thru their visits
+    NSFetchRequest *medFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *medEntity = [NSEntityDescription entityForName:@"Medicine" inManagedObjectContext:self.managedObjectContext];
+    [medFetchRequest setEntity:medEntity];
+    NSPredicate *medPredicate;
+    
+    NSMutableArray *medArray = [[NSMutableArray alloc] init];
+    NSArray *tempArray;
+    
+    for (Visit *v in visitArray)
+    {
+        medPredicate =[NSPredicate predicateWithFormat:@"visitId == %@", v.visitId];
+        [medFetchRequest setPredicate:medPredicate];
+        tempArray = [self.managedObjectContext executeFetchRequest:medFetchRequest error:nil];
+        [medArray addObjectsFromArray:tempArray];
+    }
+    // Now we have all the patient's medicines
+    
+    //Get the patient's conditions
+    NSFetchRequest *conditionsFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *conditionEntity = [NSEntityDescription entityForName:@"Condition" inManagedObjectContext:self.managedObjectContext];
+    [conditionsFetchRequest setEntity:conditionEntity];
+    NSPredicate *conditionPredicate;
+    conditionPredicate =[NSPredicate predicateWithFormat:@"patientId == %@", thePatientToDelete.patientId];
+    [conditionsFetchRequest setPredicate:conditionPredicate];
+    
+    NSArray *conditionArray = [self.managedObjectContext executeFetchRequest:conditionsFetchRequest error:nil];
+    
+    // Delete the patient's conditions
+    for (Condition *c in conditionArray)
+    {
+        [self.managedObjectContext deleteObject:c];
+    }
+    
+    // Delete the patient's medicines
+    for (Medicine *m in medArray)
+    {
+        [self.managedObjectContext deleteObject:m];
+    }
+    
+    // Delete the patient's visits
+    for (Visit *v in visitArray)
+    {
+        [self.managedObjectContext deleteObject:v];
+    }
+    
+    // Finally, delete the patient object itself:
+    [self.managedObjectContext deleteObject:thePatientToDelete];
+    
+    // Confirm our delete by saving the managed object context
+    NSError *saveError = nil;
+    [self.managedObjectContext save:&saveError];
+}
+
 
 /*
 // Override to support rearranging the table view.
@@ -171,13 +256,4 @@
      */
 }
 
-//- (IBAction)viewRecordButtonPressed:(id)sender
-//{
-//
-//}
-//
-//- (IBAction)viewInfoButtonPressed:(id)sender
-//{
-//
-//}
 @end

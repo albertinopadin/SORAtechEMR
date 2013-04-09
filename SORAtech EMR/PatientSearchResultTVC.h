@@ -13,13 +13,9 @@
 
 @property (strong, nonatomic) Prescriber *myDoctor;
 @property (nonatomic) NSInteger patientIndex;
-@property (strong, nonatomic) NSArray *searchResultsArray;
+@property (strong, nonatomic) NSMutableArray *searchResultsArray;
 @property (strong, nonatomic) IBOutlet UITableView *patientListTableView;
 
 - (void)performSegueFromCellWithIndex:(NSInteger)index andName:(NSString *)segueName;
-
-//- (IBAction)viewRecordButtonPressed:(id)sender;
-//- (IBAction)viewInfoButtonPressed:(id)sender;
-
 
 @end
