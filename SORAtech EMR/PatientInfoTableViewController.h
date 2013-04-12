@@ -60,15 +60,4 @@
 @property (strong, nonatomic) IBOutlet UILabel *secondaryInsuranceRelationshipToPrimaryLabel;
 @property (strong, nonatomic) IBOutlet UILabel *secondaryInsuranceGroupNumLabel;
 
-//@property (strong, nonatomic) IBOutlet PatientInfoConditionCell *conditionCell;
-
-//@property (strong, nonatomic) PatientInfoMedicineCell *medicineCell;
-
-//What to do for Conditions...?
-
-//Medications...? 
-
-- (void)goToPrescriberViewWithPrescriber:(Prescriber *)thePrescriber;
-
-
 @end

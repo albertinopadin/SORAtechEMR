@@ -20,7 +20,7 @@
 
 @synthesize myDoctor, myPatient, visit, visitList, dateField, systolicBPField, diastolicBPField, pulseField, temperatureField, heightField, weightField, visitNotes;
 
-@synthesize conditionsArray, medicationsArray, conditionsTable, medicationsTable, conditionsTableVC, medicationsTableVC;
+@synthesize conditionsArray, medicationsArray, conditionsTableVC, medicationsTableVC;
 
 //Getting the Managed Object Context, the window to our internal database
 - (NSManagedObjectContext *)managedObjectContext
@@ -43,17 +43,17 @@
 	// Do any additional setup after loading the view.
     
     // Initialize table vc's
-    self.medicationsTableVC = [[MedicationsTableViewController alloc] init];
-    self.conditionsTableVC = [[ConditionsTableViewController alloc] init];
-    
-    // Set up the table vc's with their respective table views
-    self.medicationsTableVC.tableView = self.medicationsTable;
-    self.medicationsTable.dataSource = self.medicationsTableVC;
-    self.medicationsTable.delegate = self.medicationsTableVC;
-    
-    self.conditionsTableVC.tableView = self.conditionsTable;
-    self.conditionsTable.dataSource = self.conditionsTableVC;
-    self.conditionsTable.delegate = self.conditionsTableVC;
+//    self.medicationsTableVC = [[MedicationsTableViewController alloc] init];
+//    self.conditionsTableVC = [[ConditionsTableViewController alloc] init];
+//    
+//    // Set up the table vc's with their respective table views
+//    self.medicationsTableVC.tableView = self.medicationsTable;
+//    self.medicationsTable.dataSource = self.medicationsTableVC;
+//    self.medicationsTable.delegate = self.medicationsTableVC;
+//    
+//    self.conditionsTableVC.tableView = self.conditionsTable;
+//    self.conditionsTable.dataSource = self.conditionsTableVC;
+//    self.conditionsTable.delegate = self.conditionsTableVC;
     
     
     // Get the current date and prepopulate the date field
@@ -116,75 +116,76 @@
     
     [self.managedObjectContext save:&saveError];
     
-    for (ConditionCell *condCell in self.conditionsTableVC.conditionCellSet)
-    //for (ConditionCell *condCell in self.conditionsTableVC.conditionCellArray)
-    //for (UITextField *condCellTF in self.conditionsTableVC.conditionTextBoxArray)
-    {
-        // If text field in cell is empty DO NOT INSERT
-        if ([condCell.condition.text length] == 0)
-        {
-            //Do nothing, we don't want to insert empty condition
-        }
-        else
-        {
-            //Insert a new condition in the condition table
-            Condition *cond = [NSEntityDescription insertNewObjectForEntityForName:@"Condition" inManagedObjectContext:self.managedObjectContext];
-            cond.patientId = self.myPatient.patientId;
-            cond.visitId = self.visit.visitId;
-            cond.conditionName = condCell.myCondition;
-            [self.managedObjectContext save:&saveError];
-            
-            // TESTING
-            if (condCell == nil) {
-                NSLog(@"The cond cell is nil");
-            }
-            if (condCell.condition == nil) {
-                NSLog(@"The condition textbox is nil");
-            }
-            if (condCell.condition.text == nil) {
-                NSLog(@"The text in the cond cell is nil");
-            }
-            if (condCell.myCondition == nil) {
-                NSLog(@"condCell.myCondition is nil");
-            }
-            else{
-                NSLog(@"%@", condCell.myCondition);
-            }
-
-        }
-                
-    }
-
-    for (MedicationCell *medCell in self.medicationsTableVC.medicationCellArray)
-    {
-        // If text field in cell is empty DO NOT INSERT
-        if ([medCell.medication.text length] == 0)
-        {
-            //Do nothing, we don't want to insert empty medication
-        }
-        else
-        {
-            //Insert a new medication in the medicine table
-            Medicine *med = [NSEntityDescription insertNewObjectForEntityForName:@"Medicine" inManagedObjectContext:self.managedObjectContext];
-            med.visitId = self.visit.visitId;
-            med.firstName = self.myPatient.firstName;
-            med.middleName = self.myPatient.middleName;
-            med.paternalLastName = self.myPatient.paternalLastName;
-            med.maternalLastName = self.myPatient.maternalLastName;
-            med.city = self.myPatient.city;
-            med.state = self.myPatient.state;
-            med.zip = self.myPatient.zip;
-            
-            med.name = medCell.medication.text;
-            med.dosage = medCell.dose.text;
-            med.frequency = medCell.frequency.text;
-            med.purpose = medCell.purpose.text;
-            
-            [self.managedObjectContext save:&saveError];
-        }
-        
-    }
-    
+//    for (ConditionCell *condCell in self.conditionsTableVC.conditionCellSet)
+//    //for (ConditionCell *condCell in self.conditionsTableVC.conditionCellArray)
+//    //for (UITextField *condCellTF in self.conditionsTableVC.conditionTextBoxArray)
+//    {
+//        // If text field in cell is empty DO NOT INSERT
+//        if ([condCell.condition.text length] == 0)
+//        {
+//            //Do nothing, we don't want to insert empty condition
+//        }
+//        else
+//        {
+//            //Insert a new condition in the condition table
+//            Condition *cond = [NSEntityDescription insertNewObjectForEntityForName:@"Condition" inManagedObjectContext:self.managedObjectContext];
+//            cond.patientId = self.myPatient.patientId;
+//            cond.visitId = self.visit.visitId;
+//            cond.conditionName = condCell.myCondition;
+//            [self.managedObjectContext save:&saveError];
+//            
+//            // TESTING
+//            if (condCell == nil) {
+//                NSLog(@"The cond cell is nil");
+//            }
+//            if (condCell.condition == nil) {
+//                NSLog(@"The condition textbox is nil");
+//            }
+//            if (condCell.condition.text == nil) {
+//                NSLog(@"The text in the cond cell is nil");
+//            }
+//            if (condCell.myCondition == nil) {
+//                NSLog(@"condCell.myCondition is nil");
+//            }
+//            else{
+//                NSLog(@"%@", condCell.myCondition);
+//            }
+//
+//        }
+//                
+//    }
+//
+//    for (MedicationCell *medCell in self.medicationsTableVC.medicationCellArray)
+//    {
+//        // If text field in cell is empty DO NOT INSERT
+//        if ([medCell.medication.text length] == 0)
+//        {
+//            //Do nothing, we don't want to insert empty medication
+//        }
+//        else
+//        {
+//            //Insert a new medication in the medicine table
+//            Medicine *med = [NSEntityDescription insertNewObjectForEntityForName:@"Medicine" inManagedObjectContext:self.managedObjectContext];
+//            med.visitId = self.visit.visitId;
+//            med.patientId = self.myPatient.patientId;
+//            med.firstName = self.myPatient.firstName;
+//            med.middleName = self.myPatient.middleName;
+//            med.paternalLastName = self.myPatient.paternalLastName;
+//            med.maternalLastName = self.myPatient.maternalLastName;
+//            med.city = self.myPatient.city;
+//            med.state = self.myPatient.state;
+//            med.zip = self.myPatient.zip;
+//            
+//            med.name = medCell.medication.text;
+//            med.dosage = medCell.dose.text;
+//            med.frequency = medCell.frequency.text;
+//            med.purpose = medCell.purpose.text;
+//            
+//            [self.managedObjectContext save:&saveError];
+//        }
+//        
+//    }
+//    
     UINavigationController *nav = [segue destinationViewController];
     HomeViewController *hvc = [[nav viewControllers] objectAtIndex:0];
     hvc.myDoctor = self.myDoctor;
@@ -199,15 +200,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)addConditionButtonPressed:(id)sender
-{
-    [self.conditionsTableVC addNewConditionCell];
-}
-
-- (IBAction)addMedicationButtonPressed:(id)sender
-{
-    NSLog(@"In addMedicationButtonPressed method");
-    
-    [self.medicationsTableVC addNewMedicationCell];
-}
+//- (IBAction)addConditionButtonPressed:(id)sender
+//{
+//    [self.conditionsTableVC addNewConditionCell];
+//}
+//
+//- (IBAction)addMedicationButtonPressed:(id)sender
+//{
+//    NSLog(@"In addMedicationButtonPressed method");
+//    
+//    [self.medicationsTableVC addNewMedicationCell];
+//}
 @end

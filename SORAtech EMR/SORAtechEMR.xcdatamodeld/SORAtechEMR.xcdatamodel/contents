@@ -19,6 +19,7 @@
         <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="paternalLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="patientId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="purpose" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
@@ -158,7 +159,7 @@
     </entity>
     <elements>
         <element name="Condition" positionX="-254" positionY="-82" width="128" height="103"/>
-        <element name="Medicine" positionX="99" positionY="71" width="128" height="313"/>
+        <element name="Medicine" positionX="99" positionY="71" width="128" height="328"/>
         <element name="Patient" positionX="-396" positionY="-106" width="128" height="1453"/>
         <element name="Person" positionX="43" positionY="-108" width="128" height="163"/>
         <element name="Prescriber" positionX="-101" positionY="-108" width="128" height="133"/>

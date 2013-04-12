@@ -171,23 +171,31 @@
     
     NSArray *visitArray = [self.managedObjectContext executeFetchRequest:visitFetchRequest error:nil];
     
-    
-    // Get the patient's medicines thru their visits
+
+    // Get the patient's medicines
     NSFetchRequest *medFetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *medEntity = [NSEntityDescription entityForName:@"Medicine" inManagedObjectContext:self.managedObjectContext];
     [medFetchRequest setEntity:medEntity];
     NSPredicate *medPredicate;
     
-    NSMutableArray *medArray = [[NSMutableArray alloc] init];
-    NSArray *tempArray;
+    medPredicate =[NSPredicate predicateWithFormat:@"patientId == %@", thePatientToDelete.patientId];
+    [medFetchRequest setPredicate:medPredicate];
     
-    for (Visit *v in visitArray)
-    {
-        medPredicate =[NSPredicate predicateWithFormat:@"visitId == %@", v.visitId];
-        [medFetchRequest setPredicate:medPredicate];
-        tempArray = [self.managedObjectContext executeFetchRequest:medFetchRequest error:nil];
-        [medArray addObjectsFromArray:tempArray];
-    }
+    NSMutableArray *medArray;
+    NSArray *tempArray = [self.managedObjectContext executeFetchRequest:medFetchRequest error:nil];
+    [medArray addObjectsFromArray:tempArray];
+
+    
+//    NSMutableArray *medArray = [[NSMutableArray alloc] init];
+//    NSArray *tempArray;
+//    
+//    for (Visit *v in visitArray)
+//    {
+//        medPredicate =[NSPredicate predicateWithFormat:@"visitId == %@", v.visitId];
+//        [medFetchRequest setPredicate:medPredicate];
+//        tempArray = [self.managedObjectContext executeFetchRequest:medFetchRequest error:nil];
+//        [medArray addObjectsFromArray:tempArray];
+//    }
     // Now we have all the patient's medicines
     
     //Get the patient's conditions

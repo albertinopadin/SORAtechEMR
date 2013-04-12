@@ -10,7 +10,6 @@
 #import "STAppDelegate.h"
 #import "Condition.h"
 #import "Medicine.h"
-#import "PrescriberViewController.h"
 #import "PIPInsureeViewController.h"
 #import "SIPInsureeViewController.h"
 #import "EditPatientTBViewController.h"
@@ -55,21 +54,9 @@
     return self;
 }
 
-// Sets the prescriber for the particular medicine (This is called from within the individual med cell)
-- (void)goToPrescriberViewWithPrescriber:(Prescriber *)thePrescriber
-{
-    self.currentDesignatedPrescriber = thePrescriber;
-    [self performSegueWithIdentifier:@"toPrescriberSegue" sender:self];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"toPrescriberSegue"])
-    {
-        PrescriberViewController *pvc = segue.destinationViewController;
-        pvc.myPrescriber = self.currentDesignatedPrescriber;
-    }
-    else if ([segue.identifier isEqualToString:@"PIPInsureeSegue1"] || [segue.identifier isEqualToString:@"PIPInsureeSegue2"])
+    if ([segue.identifier isEqualToString:@"PIPInsureeSegue1"] || [segue.identifier isEqualToString:@"PIPInsureeSegue2"])
     {
         PIPInsureeViewController *pipVC = segue.destinationViewController;
         pipVC.myPatient = self.myPatient;
@@ -157,19 +144,13 @@
     [medFetchRequest setEntity:medEntity];
     
     NSPredicate *medPredicate;
+        
+    // Set predicate to search meds with patientId
+    medPredicate =[NSPredicate predicateWithFormat:@"patientId == %@", self.myPatient.patientId];
     
-    // This for gets all the medicines that have been prescribed to the patient on their visits.
-    for (int i = 0; i < [self.visitList count]; i++)
-    {
-        // Set predicate so it searches for the medicines associated with the patient's visits.
-        medPredicate =[NSPredicate predicateWithFormat:@"visitId == %@", [[self.visitList objectAtIndex:i] visitId]];
-        
-        [medFetchRequest setPredicate:medPredicate];
-        
-        NSArray *visitMeds = [self.managedObjectContext executeFetchRequest:medFetchRequest error:nil];
-        
-        self.medicineList = [self.medicineList arrayByAddingObjectsFromArray:visitMeds];
-    }
+    [medFetchRequest setPredicate:medPredicate];
+    
+    self.medicineList = [self.managedObjectContext executeFetchRequest:medFetchRequest error:nil];
     
     // Registering the Classes with the table view
     //[self.tableView registerClass:[PatientInfoConditionCell class] forCellReuseIdentifier:@"infoConditionCell"];
@@ -315,54 +296,54 @@
         
         // Getting the prescriber
         
-        // NSFetchRequest
-        NSFetchRequest *visitFR = [[NSFetchRequest alloc] init];
-        // fetchRequest needs to know what entity to fetch
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Visit" inManagedObjectContext:self.managedObjectContext];
-        [visitFR setEntity:entity];
-        NSPredicate *visitPred;
-        
-        // Set predicate so it searches for our particular patient's visits.
-        visitPred =[NSPredicate predicateWithFormat:@"visitId == %@", med.visitId];
-        [visitFR setPredicate:visitPred];
-        NSArray *singleVisitArray = [self.managedObjectContext executeFetchRequest:visitFR error:nil];
-        
-        Visit *medVisit = [singleVisitArray objectAtIndex:0];
-        
-        NSFetchRequest *prescriberFR = [[NSFetchRequest alloc] init];
-        // fetchRequest needs to know what entity to fetch
-        entity = [NSEntityDescription entityForName:@"Prescriber" inManagedObjectContext:self.managedObjectContext];
-        [prescriberFR setEntity:entity];
-        NSPredicate *prescriberPred;
-        
-        // Set predicate so it searches for our particular patient's visits.
-        prescriberPred =[NSPredicate predicateWithFormat:@"doctorId == %@", medVisit.doctorId];
-        [prescriberFR setPredicate:prescriberPred];
-        NSArray *singlePrescriberArray = [self.managedObjectContext executeFetchRequest:prescriberFR error:nil];
-
-        NSLog(@"The doctorId for this visit is: %@", medVisit.doctorId);
-        
-        Prescriber *thisMedsPrescriber = nil;
-        
-        // Must remove this if-else later
-        if (singlePrescriberArray.count > 0)
-        {
-            thisMedsPrescriber = [singlePrescriberArray objectAtIndex:0];
-        }
-        else
-        {
-            NSLog(@"Patient med has no prescriber");
-//            thisMedsPrescriber = [[Prescriber alloc] init];
-//            thisMedsPrescriber.fullName = [NSString stringWithString:@"I do not exist."];
-//            thisMedsPrescriber.addressLine1 = @"This address does not exist.";
-//            thisMedsPrescriber.addressLine2 = @" ";
-//            thisMedsPrescriber.phoneNumber = @"Phone does not exist.";
-//            thisMedsPrescriber.email = @"This email does not exist";
-        }
-        
-        // Setting the cell with the prescriber
-        cell.prescriber = thisMedsPrescriber;
-        //cell.prescriber = self.myDoctor;
+//        // NSFetchRequest
+//        NSFetchRequest *visitFR = [[NSFetchRequest alloc] init];
+//        // fetchRequest needs to know what entity to fetch
+//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Visit" inManagedObjectContext:self.managedObjectContext];
+//        [visitFR setEntity:entity];
+//        NSPredicate *visitPred;
+//        
+//        // Set predicate so it searches for our particular patient's visits.
+//        visitPred =[NSPredicate predicateWithFormat:@"visitId == %@", med.visitId];
+//        [visitFR setPredicate:visitPred];
+//        NSArray *singleVisitArray = [self.managedObjectContext executeFetchRequest:visitFR error:nil];
+//        
+//        Visit *medVisit = [singleVisitArray objectAtIndex:0];
+//        
+//        NSFetchRequest *prescriberFR = [[NSFetchRequest alloc] init];
+//        // fetchRequest needs to know what entity to fetch
+//        entity = [NSEntityDescription entityForName:@"Prescriber" inManagedObjectContext:self.managedObjectContext];
+//        [prescriberFR setEntity:entity];
+//        NSPredicate *prescriberPred;
+//        
+//        // Set predicate so it searches for our particular patient's visits.
+//        prescriberPred =[NSPredicate predicateWithFormat:@"doctorId == %@", medVisit.doctorId];
+//        [prescriberFR setPredicate:prescriberPred];
+//        NSArray *singlePrescriberArray = [self.managedObjectContext executeFetchRequest:prescriberFR error:nil];
+//
+//        NSLog(@"The doctorId for this visit is: %@", medVisit.doctorId);
+//        
+//        Prescriber *thisMedsPrescriber = nil;
+//        
+//        // Must remove this if-else later
+//        if (singlePrescriberArray.count > 0)
+//        {
+//            thisMedsPrescriber = [singlePrescriberArray objectAtIndex:0];
+//        }
+//        else
+//        {
+//            NSLog(@"Patient med has no prescriber");
+////            thisMedsPrescriber = [[Prescriber alloc] init];
+////            thisMedsPrescriber.fullName = [NSString stringWithString:@"I do not exist."];
+////            thisMedsPrescriber.addressLine1 = @"This address does not exist.";
+////            thisMedsPrescriber.addressLine2 = @" ";
+////            thisMedsPrescriber.phoneNumber = @"Phone does not exist.";
+////            thisMedsPrescriber.email = @"This email does not exist";
+//        }
+//        
+//        // Setting the cell with the prescriber
+//        cell.prescriber = thisMedsPrescriber;
+//        //cell.prescriber = self.myDoctor;
         
         cell.myVC = self;
         //[self.medicineCells addObject:cell];

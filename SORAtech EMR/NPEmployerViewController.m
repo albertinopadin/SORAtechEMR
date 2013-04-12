@@ -16,7 +16,7 @@
 
 @synthesize textFields;
 
-@synthesize employerName, employerAddressLine1, employerAddressLine2, employerPhoneNum, employerEmail;
+@synthesize employerName, employerAddressLine1, employerAddressLine2, employerPhoneNum, employerEmail, employerCity, employerState, employerZipCode;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +29,7 @@
 
 - (BOOL)textFieldEmpty
 {
-    textFields = [NSArray arrayWithObjects:employerName, employerAddressLine1, employerAddressLine2, employerPhoneNum, employerEmail, nil];
+    textFields = [NSArray arrayWithObjects:employerName, employerAddressLine1, employerAddressLine2, employerCity, employerState, employerZipCode, employerPhoneNum, employerEmail, nil];
     
     BOOL isEmpty = NO;
     

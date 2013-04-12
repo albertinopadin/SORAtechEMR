@@ -34,10 +34,10 @@
 @property (strong, nonatomic) IBOutlet UITextField *weightField;
 @property (strong, nonatomic) IBOutlet UITextView *visitNotes;
 
-@property (strong, nonatomic) IBOutlet UITableView *conditionsTable;
-@property (strong, nonatomic) IBOutlet UITableView *medicationsTable;
-
-- (IBAction)addConditionButtonPressed:(id)sender;
-- (IBAction)addMedicationButtonPressed:(id)sender;
+//@property (strong, nonatomic) IBOutlet UITableView *conditionsTable;
+//@property (strong, nonatomic) IBOutlet UITableView *medicationsTable;
+//
+//- (IBAction)addConditionButtonPressed:(id)sender;
+//- (IBAction)addMedicationButtonPressed:(id)sender;
 
 @end

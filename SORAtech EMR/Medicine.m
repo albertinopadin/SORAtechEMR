@@ -2,7 +2,7 @@
 //  Medicine.m
 //  SORAtech EMR
 //
-//  Created by Albertino Padin on 3/24/13.
+//  Created by Albertino Padin on 4/11/13.
 //  Copyright (c) 2013 Albertino Padin. All rights reserved.
 //
 
@@ -16,6 +16,7 @@
 @dynamic dosage;
 @dynamic email;
 @dynamic firstName;
+@dynamic frequency;
 @dynamic line1;
 @dynamic line2;
 @dynamic maternalLastName;
@@ -28,7 +29,7 @@
 @dynamic state;
 @dynamic visitId;
 @dynamic zip;
-@dynamic frequency;
+@dynamic patientId;
 @dynamic visit;
 
 @end

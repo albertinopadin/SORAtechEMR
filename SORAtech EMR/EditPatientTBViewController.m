@@ -9,10 +9,11 @@
 #import "EditPatientTBViewController.h"
 #import "STAppDelegate.h"
 #import "PatientPersonalInfoViewController.h"
-#import "NPEmployerViewController.h"
-#import "NPEmergencyContactViewController.h"
+#import "NPContactsViewController.h"
 #import "NPInsuranceViewController.h"
 #import "PatientInfoTableViewController.h"
+#import "EditConditionsViewController.h"
+#import "EditMedicinesViewController.h"
 
 @interface EditPatientTBViewController ()
 //@property (strong, nonatomic) Patient *patient;
@@ -20,15 +21,16 @@
 @property (strong, nonatomic) NSArray *patientList;
 
 @property (strong, nonatomic) PatientPersonalInfoViewController *personalVC;
-@property (strong, nonatomic) NPEmployerViewController *employerVC;
-@property (strong, nonatomic) NPEmergencyContactViewController *emergencyContactVC;
+@property (strong, nonatomic) NPContactsViewController *contactsVC;
 @property (strong, nonatomic) NPInsuranceViewController *insuranceVC;
+@property (strong, nonatomic) EditConditionsViewController *conditionsVC;
+@property (strong, nonatomic) EditMedicinesViewController *medicinesVC;
 
 @end
 
 @implementation EditPatientTBViewController
 
-@synthesize myDoctor,myPatient, vcArray, patientList, personalVC, employerVC, emergencyContactVC, insuranceVC;
+@synthesize myDoctor,myPatient, vcArray, patientList, personalVC, contactsVC, insuranceVC;
 
 //Getting the Managed Object Context, the window to our internal database
 - (NSManagedObjectContext *)managedObjectContext
@@ -82,7 +84,7 @@
         return NO;
     }
     
-    if ([personalVC textFieldEmpty] || [employerVC textFieldEmpty] || [emergencyContactVC textFieldEmpty] || [insuranceVC textFieldEmpty])
+    if ([personalVC textFieldEmpty] || [contactsVC textFieldEmpty] || [insuranceVC textFieldEmpty])
     {
         //Display a message if there are empty text boxes in any of the vc's:
         UIAlertView *textBoxesAreEmptyAlert = [[UIAlertView alloc] initWithTitle:@"Empty Fields" message:@"There are empty fields in the new patient form. Save patient anyway?" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
@@ -124,31 +126,31 @@
     
     
     // Employer Info from second vc:
-    self.myPatient.empName = employerVC.employerName.text;
-    self.myPatient.empLine1 = employerVC.employerAddressLine1.text;
-    self.myPatient.empLine2 = employerVC.employerAddressLine2.text;
-    //    patient.empCity =
-    //    patient.empState =
-    //    patient.empZip =
-    self.myPatient.empPhoneNumber = employerVC.employerPhoneNum.text;
-    self.myPatient.empEmail = employerVC.employerEmail.text;
+    self.myPatient.empName = contactsVC.employerName.text;
+    self.myPatient.empLine1 = contactsVC.employerAddressLine1.text;
+    self.myPatient.empLine2 = contactsVC.employerAddressLine2.text;
+    self.myPatient.empCity = contactsVC.employerCity.text;
+    self.myPatient.empState = contactsVC.employerState.text;
+    self.myPatient.empZip = contactsVC.employerZipCode.text;
+    self.myPatient.empPhoneNumber = contactsVC.employerPhoneNumber.text;
+    self.myPatient.empEmail = contactsVC.employerEmail.text;
     
     
-    // Emergency Contact Info from third vc:
-    self.myPatient.emeFirstName = emergencyContactVC.emergencyCFirstName.text;
-    self.myPatient.emeMiddleName = emergencyContactVC.emergencyCMiddleName.text;
-    self.myPatient.emePaternalLastName = emergencyContactVC.emergencyCPaternalLastName.text;
-    self.myPatient.emeMaternalLastName = emergencyContactVC.emergencyCMaternalLastName.text;
-    self.myPatient.emeLine1 = emergencyContactVC.emergencyCAddressLine1.text;
-    self.myPatient.emeLine2 = emergencyContactVC.emergencyCAddressLine2.text;
-    //    patient.emeCity
-    //    patient.emeState
-    //    patient.emeZip
-    self.myPatient.emePhoneNumber = emergencyContactVC.emergencyCPhoneNumber.text;
-    self.myPatient.emeEmail = emergencyContactVC.emergencyCEmail.text;
+    // Emergency Contact Info from second vc:
+    self.myPatient.emeFirstName = contactsVC.emergencyCFirstName.text;
+    self.myPatient.emeMiddleName = contactsVC.emergencyCMiddleName.text;
+    self.myPatient.emePaternalLastName = contactsVC.emergencyCPaternalLastName.text;
+    self.myPatient.emeMaternalLastName = contactsVC.emergencyCMaternalLastName.text;
+    self.myPatient.emeLine1 = contactsVC.emergencyCAddressLine1.text;
+    self.myPatient.emeLine2 = contactsVC.emergencyCAddressLine2.text;
+    self.myPatient.emeCity = contactsVC.emergencyCCity.text;
+    self.myPatient.emeState = contactsVC.emergencyCState.text;
+    self.myPatient.emeZip = contactsVC.emergencyCZipCode.text;
+    self.myPatient.emePhoneNumber = contactsVC.emergencyCPhoneNumber.text;
+    self.myPatient.emeEmail = contactsVC.emergencyCEmail.text;
     
     
-    // Insurance Info from fourth vc:
+    // Insurance Info from third vc:
     self.myPatient.insuranceName = insuranceVC.primaryInsuranceName.text;
     self.myPatient.policyNumber = insuranceVC.primaryInsurancePolicyNum.text;
     self.myPatient.groupNumber = insuranceVC.primaryInsuranceGroupNum.text;
@@ -187,6 +189,11 @@
     self.myPatient.sPiPhoneNumber = insuranceVC.SIPhoneNum.text;
     self.myPatient.sPiEmail = insuranceVC.SIEmail.text;
     
+    // Save conditions
+    [self.conditionsVC saveEditedConditionsWithPID:[self.myPatient.patientId integerValue]];
+    
+    // Save medications
+    [self.medicinesVC saveEditedMedicinesWithPID:[self.myPatient.patientId integerValue]];
     
     //Save the information using the context
     NSError *saveError = nil;
@@ -210,12 +217,14 @@
     self.selectedViewController = [[self viewControllers] objectAtIndex:1];
     self.selectedViewController = [[self viewControllers] objectAtIndex:2];
     self.selectedViewController = [[self viewControllers] objectAtIndex:3];
+    self.selectedViewController = [[self viewControllers] objectAtIndex:4];
     self.selectedViewController = [[self viewControllers] objectAtIndex:0];
     
     self.personalVC = [self.vcArray objectAtIndex:0];
-    self.employerVC = [self.vcArray objectAtIndex:1];
-    self.emergencyContactVC = [self.vcArray objectAtIndex:2];
-    self.insuranceVC = [self.vcArray objectAtIndex:3];
+    self.contactsVC = [self.vcArray objectAtIndex:1];
+    self.insuranceVC = [self.vcArray objectAtIndex:2];
+    self.conditionsVC = [self.vcArray objectAtIndex:3];
+    self.medicinesVC = [self.vcArray objectAtIndex:4];
     
     
     // Put already saved info:
@@ -241,28 +250,28 @@
     
     
     // Employer Info in second vc:
-    employerVC.employerName.text = self.myPatient.empName;
-    employerVC.employerAddressLine1.text = self.myPatient.empLine1;
-    employerVC.employerAddressLine2.text = self.myPatient.empLine2;
-    //    patient.empCity =
-    //    patient.empState =
-    //    patient.empZip =
-    employerVC.employerPhoneNum.text = self.myPatient.empPhoneNumber;
-    employerVC.employerEmail.text = self.myPatient.empEmail;
+    contactsVC.employerName.text = self.myPatient.empName;
+    contactsVC.employerAddressLine1.text = self.myPatient.empLine1;
+    contactsVC.employerAddressLine2.text = self.myPatient.empLine2;
+    contactsVC.employerCity.text = self.myPatient.empCity;
+    contactsVC.employerState.text = self.myPatient.empState;
+    contactsVC.employerZipCode.text = self.myPatient.empZip;
+    contactsVC.employerPhoneNumber.text = self.myPatient.empPhoneNumber;
+    contactsVC.employerEmail.text = self.myPatient.empEmail;
     
     
     // Emergency Contact Info in third vc:
-    emergencyContactVC.emergencyCFirstName.text = self.myPatient.emeFirstName;
-    emergencyContactVC.emergencyCMiddleName.text = self.myPatient.emeMiddleName;
-    emergencyContactVC.emergencyCPaternalLastName.text = self.myPatient.emePaternalLastName;
-    emergencyContactVC.emergencyCMaternalLastName.text = self.myPatient.emeMaternalLastName;
-    emergencyContactVC.emergencyCAddressLine1.text = self.myPatient.emeLine1;
-    emergencyContactVC.emergencyCAddressLine2.text = self.myPatient.emeLine2;
-    //    patient.emeCity
-    //    patient.emeState
-    //    patient.emeZip
-    emergencyContactVC.emergencyCPhoneNumber.text = self.myPatient.emePhoneNumber;
-    emergencyContactVC.emergencyCEmail.text = self.myPatient.emeEmail;
+    contactsVC.emergencyCFirstName.text = self.myPatient.emeFirstName;
+    contactsVC.emergencyCMiddleName.text = self.myPatient.emeMiddleName;
+    contactsVC.emergencyCPaternalLastName.text = self.myPatient.emePaternalLastName;
+    contactsVC.emergencyCMaternalLastName.text = self.myPatient.emeMaternalLastName;
+    contactsVC.emergencyCAddressLine1.text = self.myPatient.emeLine1;
+    contactsVC.emergencyCAddressLine2.text = self.myPatient.emeLine2;
+    contactsVC.emergencyCCity.text = self.myPatient.emeCity;
+    contactsVC.emergencyCState.text = self.myPatient.emeState;
+    contactsVC.emergencyCZipCode.text = self.myPatient.emeZip;
+    contactsVC.emergencyCPhoneNumber.text = self.myPatient.emePhoneNumber;
+    contactsVC.emergencyCEmail.text = self.myPatient.emeEmail;
     
     
     // Insurance Info in fourth vc:
@@ -304,6 +313,10 @@
     insuranceVC.SIPhoneNum.text = self.myPatient.sPiPhoneNumber;
     insuranceVC.SIEmail.text = self.myPatient.sPiEmail;
     
+    // Generate conditions and medications on the last two vc's
+    [self.conditionsVC generateConditionsList:[self.myPatient.patientId integerValue]];
+    
+    [self.medicinesVC generateMedicineList:[self.myPatient.patientId integerValue]];
 }
 
 

@@ -14,6 +14,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *employerAddressLine2;
 @property (strong, nonatomic) IBOutlet UITextField *employerPhoneNum;
 @property (strong, nonatomic) IBOutlet UITextField *employerEmail;
+@property (strong, nonatomic) IBOutlet UITextField *employerCity;
+@property (strong, nonatomic) IBOutlet UITextField *employerState;
+@property (strong, nonatomic) IBOutlet UITextField *employerZipCode;
 
 // To check if any of the text fields are empty
 @property (strong, nonatomic) NSArray *textFields;

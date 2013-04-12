@@ -50,6 +50,7 @@
     searchBarTextField.enablesReturnKeyAutomatically = NO;
 }
 
+
 - (void)doSearch:(NSString *)searchString
 {
     // NSFetchRequest needed by the fetchedResultsController
@@ -166,6 +167,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    //self.searchTerm = @"";
+    
     self.searchBar.delegate = self;
     self.searchBar.text = self.searchTerm;
     
@@ -192,12 +195,18 @@
     [self doSearch:self.searchBar.text];
 }
 
-// If the user erases search text field, enable return button again
+// Search Bar delegate method
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    // If the user erases search text field, enable return button again
     if (self.searchBar.text.length < 1)
     {
         [self setReturnButton];
+        [self doSearch:@""];
+    }
+    else
+    {
+        [self doSearch:searchText];
     }
 }
 

@@ -21,7 +21,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *weight;
 @property (strong, nonatomic) IBOutlet UITextView *notes;
 
-@property (strong, nonatomic) IBOutlet UITableView *conditionsDiagnosedTableView;
-@property (strong, nonatomic) IBOutlet UITableView *medicationsPrescribedTableView;
+//@property (strong, nonatomic) IBOutlet UITableView *conditionsDiagnosedTableView;
+//@property (strong, nonatomic) IBOutlet UITableView *medicationsPrescribedTableView;
 
 @end

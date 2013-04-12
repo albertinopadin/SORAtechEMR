@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) Prescriber *myDoctor;
 @property (retain, nonatomic) Patient *myPatient;
-@property (retain, nonatomic) NSArray *visitList, *notesList;
+@property (retain, nonatomic) NSMutableArray *visitList, *notesList;
 @property (strong, nonatomic) UITableViewController *visitListTableViewController;
 
 @property (strong, nonatomic) IBOutlet UITableView *visitListTableView;

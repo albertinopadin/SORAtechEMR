@@ -7,21 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Prescriber.h"
 
 @class PatientInfoTableViewController;
 
 @interface PatientInfoMedicineCell : UITableViewCell
 
-@property (strong, nonatomic) Prescriber *prescriber;
 @property (strong, nonatomic) PatientInfoTableViewController *myVC;
 
 @property (strong, nonatomic) IBOutlet UILabel *medicineNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *dosageLabel;
 @property (strong, nonatomic) IBOutlet UILabel *purposeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *frequencyLabel;
-
-- (IBAction)prescriberTouched:(id)sender;
-
 
 @end

@@ -16,7 +16,7 @@
 
 @synthesize textFields;
 
-@synthesize emergencyCFirstName, emergencyCMiddleName, emergencyCPaternalLastName, emergencyCMaternalLastName, emergencyCAddressLine1, emergencyCAddressLine2, emergencyCPhoneNumber, emergencyCEmail;
+@synthesize emergencyCFirstName, emergencyCMiddleName, emergencyCPaternalLastName, emergencyCMaternalLastName, emergencyCAddressLine1, emergencyCAddressLine2, emergencyCPhoneNumber, emergencyCEmail, emergencyCCity, emergencyCState, emergencyCZipCode;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +29,7 @@
 
 - (BOOL)textFieldEmpty
 {
-    textFields = [NSArray arrayWithObjects:emergencyCFirstName, emergencyCMiddleName, emergencyCPaternalLastName, emergencyCMaternalLastName, emergencyCAddressLine1, emergencyCAddressLine2, emergencyCPhoneNumber, emergencyCEmail, nil];
+    textFields = [NSArray arrayWithObjects:emergencyCFirstName, emergencyCMiddleName, emergencyCPaternalLastName, emergencyCMaternalLastName, emergencyCAddressLine1, emergencyCAddressLine2, emergencyCCity, emergencyCState, emergencyCZipCode, emergencyCPhoneNumber, emergencyCEmail, nil];
     
     BOOL isEmpty = NO;
     

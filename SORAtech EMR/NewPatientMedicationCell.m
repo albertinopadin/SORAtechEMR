@@ -1,24 +1,23 @@
 //
-//  PatientInfoMedicineCell.m
+//  NewPatientMedicationCell.m
 //  SORAtech EMR
 //
-//  Created by Albertino Padin on 3/22/13.
+//  Created by Albertino Padin on 4/11/13.
 //  Copyright (c) 2013 Albertino Padin. All rights reserved.
 //
 
-#import "PatientInfoMedicineCell.h"
-#import "PatientInfoTableViewController.h"
+#import "NewPatientMedicationCell.h"
 
-@implementation PatientInfoMedicineCell
+@implementation NewPatientMedicationCell
 
-@synthesize medicineNameLabel, dosageLabel, frequencyLabel, purposeLabel, myVC;
+@synthesize cellNumLabel, medicationNameTF, dosageTF, frequencyTF, purposeTF;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:@"PatientInfoMedicineCell" owner:self options:nil];
+        NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:@"NewPatientMedicineCell" owner:self options:nil];
         self = [nibArray objectAtIndex:0];
     }
     return self;

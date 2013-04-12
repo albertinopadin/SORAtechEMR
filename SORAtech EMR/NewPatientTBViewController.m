@@ -9,10 +9,13 @@
 #import "NewPatientTBViewController.h"
 #import "STAppDelegate.h"
 #import "PatientPersonalInfoViewController.h"
-#import "NPEmployerViewController.h"
-#import "NPEmergencyContactViewController.h"
+#import "NPContactsViewController.h"
 #import "NPInsuranceViewController.h"
 #import "HomeViewController.h"
+#import "NPConditionsViewController.h"
+#import "Condition.h"
+#import "Medicine.h"
+#import "NPMedicinesViewController.h"
 
 @interface NewPatientTBViewController ()
 
@@ -56,9 +59,8 @@
     //Get each view controller from my array of vc's
     self.vcArray = [self viewControllers];
     PatientPersonalInfoViewController *personalVC = [self.vcArray objectAtIndex:0];
-    NPEmployerViewController *employerVC = [self.vcArray objectAtIndex:1];
-    NPEmergencyContactViewController *emergencyContactVC = [self.vcArray objectAtIndex:2];
-    NPInsuranceViewController *insuranceVC = [self.vcArray objectAtIndex:3];
+    NPContactsViewController *contactsVC = [self.vcArray objectAtIndex:1];
+    NPInsuranceViewController *insuranceVC = [self.vcArray objectAtIndex:2];
     
     if (![personalVC namesPresent])
     {
@@ -69,7 +71,7 @@
         return NO;
     }
     
-    if ([personalVC textFieldEmpty] || [employerVC textFieldEmpty] || [emergencyContactVC textFieldEmpty] || [insuranceVC textFieldEmpty])
+    if ([personalVC textFieldEmpty] || [contactsVC textFieldEmpty] || [insuranceVC textFieldEmpty])
     {
         //Display a message if there are empty text boxes in any of the vc's:
         UIAlertView *textBoxesAreEmptyAlert = [[UIAlertView alloc] initWithTitle:@"Empty Fields" message:@"There are empty fields in the new patient form. Save patient anyway?" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
@@ -93,6 +95,7 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Patient" inManagedObjectContext:self.managedObjectContext];
+    //NSEntityDescription *entity = [NSEntityDescription entityForName:@"PRIMARYKEY" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     [fetchRequest setResultType:NSDictionaryResultType];
     
@@ -131,9 +134,10 @@
     //Get each view controller from my array of vc's
     self.vcArray = [self viewControllers];
     PatientPersonalInfoViewController *personalVC = [self.vcArray objectAtIndex:0];
-    NPEmployerViewController *employerVC = [self.vcArray objectAtIndex:1];
-    NPEmergencyContactViewController *emergencyContactVC = [self.vcArray objectAtIndex:2];
-    NPInsuranceViewController *insuranceVC = [self.vcArray objectAtIndex:3];
+    NPContactsViewController *contactsVC = [self.vcArray objectAtIndex:1];
+    NPInsuranceViewController *insuranceVC = [self.vcArray objectAtIndex:2];
+    NPConditionsViewController *conditionsVC = [self.vcArray objectAtIndex:3];
+    NPMedicinesViewController *medicinesVC = [self.vcArray objectAtIndex:4];
 
     // Get patient list
     //Create fetch request for the Patient entity table
@@ -167,31 +171,31 @@
     patient.patientId = [self getMaxId];
     
     // Employer Info from second vc:
-    patient.empName = employerVC.employerName.text;
-    patient.empLine1 = employerVC.employerAddressLine1.text;
-    patient.empLine2 = employerVC.employerAddressLine2.text;
-//    patient.empCity =
-//    patient.empState =
-//    patient.empZip =
-    patient.empPhoneNumber = employerVC.employerPhoneNum.text;
-    patient.empEmail = employerVC.employerEmail.text;
+    patient.empName = contactsVC.employerName.text;
+    patient.empLine1 = contactsVC.employerAddressLine1.text;
+    patient.empLine2 = contactsVC.employerAddressLine2.text;
+    patient.empCity = contactsVC.employerCity.text;
+    patient.empState = contactsVC.employerState.text;
+    patient.empZip = contactsVC.employerZipCode.text;
+    patient.empPhoneNumber = contactsVC.employerPhoneNumber.text;
+    patient.empEmail = contactsVC.employerEmail.text;
     
     
-    // Emergency Contact Info from third vc:
-    patient.emeFirstName = emergencyContactVC.emergencyCFirstName.text;
-    patient.emeMiddleName = emergencyContactVC.emergencyCMiddleName.text;
-    patient.emePaternalLastName = emergencyContactVC.emergencyCPaternalLastName.text;
-    patient.emeMaternalLastName = emergencyContactVC.emergencyCMaternalLastName.text;
-    patient.emeLine1 = emergencyContactVC.emergencyCAddressLine1.text;
-    patient.emeLine2 = emergencyContactVC.emergencyCAddressLine2.text;
-//    patient.emeCity
-//    patient.emeState
-//    patient.emeZip
-    patient.emePhoneNumber = emergencyContactVC.emergencyCPhoneNumber.text;
-    patient.emeEmail = emergencyContactVC.emergencyCEmail.text;
+    // Emergency Contact Info from second vc:
+    patient.emeFirstName = contactsVC.emergencyCFirstName.text;
+    patient.emeMiddleName = contactsVC.emergencyCMiddleName.text;
+    patient.emePaternalLastName = contactsVC.emergencyCPaternalLastName.text;
+    patient.emeMaternalLastName = contactsVC.emergencyCMaternalLastName.text;
+    patient.emeLine1 = contactsVC.emergencyCAddressLine1.text;
+    patient.emeLine2 = contactsVC.emergencyCAddressLine2.text;
+    patient.emeCity = contactsVC.emergencyCCity.text;
+    patient.emeState = contactsVC.emergencyCState.text;
+    patient.emeZip = contactsVC.emergencyCZipCode.text;
+    patient.emePhoneNumber = contactsVC.emergencyCPhoneNumber.text;
+    patient.emeEmail = contactsVC.emergencyCEmail.text;
     
     
-    // Insurance Info from fourth vc:
+    // Insurance Info from third vc:
     patient.insuranceName = insuranceVC.primaryInsuranceName.text;
     patient.policyNumber = insuranceVC.primaryInsurancePolicyNum.text;
     patient.groupNumber = insuranceVC.primaryInsuranceGroupNum.text;
@@ -231,12 +235,33 @@
     patient.sPiEmail = insuranceVC.SIEmail.text;
     
     
-    //Save the information using the context
+    //Save the patient information using the context
     NSError *saveError = nil;
     
     [self.managedObjectContext save:&saveError];
     
     NSLog(@"Added a new Patient! With id: %@", patient.patientId);
+    
+    // Conditions from fourth vc:
+    NSArray *conditions = [conditionsVC textConditionsList];
+    
+    for (NSString *s in conditions)
+    {
+        if (s.length > 0)
+        {
+            // Insert new condition
+            Condition *c = [NSEntityDescription insertNewObjectForEntityForName:@"Condition" inManagedObjectContext:self.managedObjectContext];
+            c.patientId = patient.patientId;
+            c.conditionName = s;
+            
+            [self.managedObjectContext save:&saveError];
+        }
+        
+    }
+    
+    // Medications from fifth vc:
+    [medicinesVC saveMedications:patient.patientId];
+    
     
     // Return the logged-in doctor
     HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
@@ -251,6 +276,7 @@
     self.selectedViewController = [[self viewControllers] objectAtIndex:1];
     self.selectedViewController = [[self viewControllers] objectAtIndex:2];
     self.selectedViewController = [[self viewControllers] objectAtIndex:3];
+    self.selectedViewController = [[self viewControllers] objectAtIndex:4];
     self.selectedViewController = [[self viewControllers] objectAtIndex:0];
 }
 

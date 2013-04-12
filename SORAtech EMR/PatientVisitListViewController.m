@@ -47,6 +47,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // To allow visits to be deleted
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.myPatient.firstName, self.myPatient.paternalLastName];
     
     //We initialize and set these things in the viewDidLoad
@@ -87,8 +90,8 @@
     
     [fetchRequest setPredicate:predicate];
     
-    self.visitList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-   
+    NSArray *vList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    self.visitList = [NSMutableArray arrayWithArray:vList];
     
     self.visitListTableView.delegate = self;
     self.visitListTableView.dataSource = self;
@@ -97,6 +100,13 @@
     [self.visitListTableViewController setTableView:visitListTableView];
     [self.visitListTableView reloadData];
     
+}
+
+// To allow editing of the visits table
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    [self.visitListTableViewController setEditing:editing animated:animated];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -136,10 +146,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (visitList.count > 0){
+    if (visitList.count > 0)
+    {
         return visitList.count;
     }
-    else{
+    else
+    {
         return 1;
     }
 }
@@ -207,6 +219,57 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    if (visitList.count > 0)
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        
+        // Delete from Core Data db:
+        Visit *visitToDelete = [self.visitList objectAtIndex:[indexPath row]];
+        [self.managedObjectContext deleteObject:visitToDelete];
+        
+        // Confirm our delete by saving the managed object context
+        NSError *saveError = nil;
+        [self.managedObjectContext save:&saveError];
+        
+        
+        //If visit list is about to be empty, simply remove the element from the array
+        if (visitList.count == 1)
+        {
+            // Delete from our array
+            [self.visitList removeObjectAtIndex:[indexPath row]];
+            
+            // Reload the table view to display the correct cell (No visits for this patient)
+            [self.visitListTableView reloadData];
+        }
+        else
+        {
+            // Delete from our array
+            [self.visitList removeObjectAtIndex:[indexPath row]];
+            
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
 }
 
 
