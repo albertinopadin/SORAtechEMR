@@ -189,6 +189,7 @@
     UINavigationController *nav = [segue destinationViewController];
     HomeViewController *hvc = [[nav viewControllers] objectAtIndex:0];
     hvc.myDoctor = self.myDoctor;
+    [hvc incomingSegue:@"fromNewVisitPage"];
     
     NSLog(@"Added a new Visit!");
 }

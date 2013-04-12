@@ -29,6 +29,14 @@
     return self;
 }
 
+- (void)incomingSegue:(NSString *)segueIdentifier
+{
+    if ([segueIdentifier isEqualToString:@"fromNewVisitPage"] || [segueIdentifier isEqualToString:@"fromNewPatientPage"])
+    {
+        [self performSegueWithIdentifier:@"toSearchPatientSegue" sender:self];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

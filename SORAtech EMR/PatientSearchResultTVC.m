@@ -87,9 +87,11 @@
     Patient *currPatient = [searchResultsArray objectAtIndex:[indexPath row]];
     
     // Configure the cell...
-    cell.patientNameLabel.text =  [NSString stringWithFormat:@"%@ %@",currPatient.firstName, currPatient.paternalLastName];
+    cell.patientNameLabel.text =  [NSString stringWithFormat:@"%@ %@ %@ %@",currPatient.firstName, currPatient.middleName, currPatient.paternalLastName, currPatient.maternalLastName];
     
-    cell.socialSecLabel.text = currPatient.socialSecurityNumber;
+    //cell.socialSecLabel.text = currPatient.socialSecurityNumber;
+    
+    cell.patientIDLabel.text = [NSString stringWithFormat:@"%@", currPatient.patientId];
     
     cell.parentVC = self;
     cell.index = [indexPath row];
@@ -181,13 +183,11 @@
     medPredicate =[NSPredicate predicateWithFormat:@"patientId == %@", thePatientToDelete.patientId];
     [medFetchRequest setPredicate:medPredicate];
     
-    NSMutableArray *medArray;
+    //NSMutableArray *medArray = [[NSMutableArray alloc] init];
     NSArray *tempArray = [self.managedObjectContext executeFetchRequest:medFetchRequest error:nil];
-    [medArray addObjectsFromArray:tempArray];
-
+    //[medArray addObjectsFromArray:tempArray];
+    NSMutableArray *medArray = [[NSMutableArray alloc] initWithArray:tempArray];
     
-//    NSMutableArray *medArray = [[NSMutableArray alloc] init];
-//    NSArray *tempArray;
 //    
 //    for (Visit *v in visitArray)
 //    {

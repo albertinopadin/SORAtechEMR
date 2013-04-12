@@ -15,7 +15,8 @@
 @property (atomic) NSInteger index;
 
 @property (strong, nonatomic) IBOutlet UILabel *patientNameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *socialSecLabel;
+//@property (strong, nonatomic) IBOutlet UILabel *socialSecLabel;
+@property (strong, nonatomic) IBOutlet UILabel *patientIDLabel;
 
 - (IBAction)viewRecordButtonPressed:(id)sender;
 - (IBAction)viewInfoButtonPressed:(id)sender;

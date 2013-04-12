@@ -266,6 +266,7 @@
     // Return the logged-in doctor
     HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
     hvc.myDoctor = self.myDoctor;
+    [hvc incomingSegue:@"fromNewPatientPage"];
 }
 
 - (void)viewDidLoad

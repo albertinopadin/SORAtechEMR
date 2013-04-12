@@ -76,7 +76,7 @@
     for (int i = 0; i < self.medicineList.count; i++)
     {
         NewPatientMedicationCell *nCell = [[NewPatientMedicationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newPatientMedicineCell"];
-        nCell.cellNumLabel.text = [NSString stringWithFormat:@"%i:", i+1];
+        nCell.cellNumLabel.text = [NSString stringWithFormat:@"%i:", self.medicineList.count-i];
         Medicine *m = [self.medicineList objectAtIndex:i];
         
         nCell.medicationNameTF.text = m.name;

@@ -50,7 +50,7 @@
     // To allow visits to be deleted
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.myPatient.firstName, self.myPatient.paternalLastName];
+    self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@", self.myPatient.firstName, self.myPatient.paternalLastName, self.myPatient.maternalLastName];
     
     //We initialize and set these things in the viewDidLoad
     //Hardcode

@@ -79,7 +79,7 @@
     for (int i = 0; i < self.conditionsList.count; i++)
     {
         NewPatientConditionCell *nCell = [[NewPatientConditionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newPatientConditionCell"];
-        nCell.cellNumLabel.text = [NSString stringWithFormat:@"%i:", i+1];
+        nCell.cellNumLabel.text = [NSString stringWithFormat:@"%i:", self.conditionsList.count-i];
         Condition *c = [self.conditionsList objectAtIndex:i];
         nCell.conditionTextField.text = c.conditionName;
 

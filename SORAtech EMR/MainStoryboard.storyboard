@@ -80,7 +80,7 @@
             <objects>
                 <viewController id="2Hk-L9-mnK" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="piW-25-bYR">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fmr-qT-1kD">
@@ -155,15 +155,15 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k2D-G0-Na7">
-                                        <rect key="frame" x="333" y="11" width="46" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Patient ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k2D-G0-Na7">
+                                        <rect key="frame" x="303" y="11" width="110" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Social Security Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b3V-DW-2rp">
-                                        <rect key="frame" x="530" y="11" width="218" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b3V-DW-2rp">
+                                        <rect key="frame" x="463" y="11" width="285" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -223,7 +223,7 @@
             <objects>
                 <tableViewController id="POA-LW-Z8N" customClass="PatientSearchResultTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Mvh-HU-1vF">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="908"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="908"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -265,14 +265,14 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Jose Rodriguez" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Di-qZ-3n8">
-                                            <rect key="frame" x="333" y="10" width="167" height="21"/>
+                                            <rect key="frame" x="465" y="10" width="283" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="xxx-xx-1234" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fMv-DC-CzF">
-                                            <rect key="frame" x="530" y="10" width="146" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="PatientID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fMv-DC-CzF">
+                                            <rect key="frame" x="332" y="11" width="125" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -282,8 +282,8 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
+                                    <outlet property="patientIDLabel" destination="fMv-DC-CzF" id="wkc-dc-PUu"/>
                                     <outlet property="patientNameLabel" destination="1Di-qZ-3n8" id="Gti-HR-Glz"/>
-                                    <outlet property="socialSecLabel" destination="fMv-DC-CzF" id="W2I-kk-he0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -303,21 +303,21 @@
             </objects>
             <point key="canvasLocation" x="5106" y="415"/>
         </scene>
-        <!--Patient Visit List View Controller-->
+        <!--Patient Visit List View Controller - Patient Record-->
         <scene sceneID="9Nq-Z5-uXh">
             <objects>
                 <viewController id="Vsp-mk-qmE" customClass="PatientVisitListViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5p8-6l-hvj">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="908"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="outlook-default-person.png" highlightedImage="Default.png" id="ZeM-DI-Imj">
-                                <rect key="frame" x="20" y="20" width="240" height="240"/>
+                                <rect key="frame" x="20" y="20" width="240" height="254"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lnL-ax-YcO">
-                                <rect key="frame" x="20" y="291" width="728" height="596"/>
+                                <rect key="frame" x="20" y="291" width="728" height="648"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <prototypes>
@@ -411,7 +411,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ea6-5z-K3Z"/>
+                    <navigationItem key="navigationItem" title="Patient Record" id="ea6-5z-K3Z"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="patientNameLabel" destination="iqa-SV-TpC" id="1MZ-KI-Clo"/>
                         <outlet property="patientPhotoView" destination="ZeM-DI-Imj" id="mAv-z7-0O2"/>
@@ -428,7 +429,7 @@
             <objects>
                 <viewController id="p3w-4d-BWi" customClass="ExistingVisitViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aS3-i8-YCQ">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dXS-9Z-8o1">
@@ -560,7 +561,7 @@
             <objects>
                 <tableViewController id="mJf-2J-m8m" customClass="PatientInfoTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5ZG-1T-yp1">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -1544,7 +1545,7 @@
             <objects>
                 <viewController id="Rq2-jM-tm1" customClass="SIPInsureeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NMq-e4-ybK">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Full Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="345-Sh-Yvd">
@@ -1638,7 +1639,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Secondary Insurance - Primary Insuree" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jyo-Un-CDS">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Secondary Insurance - Primary Insured" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jyo-Un-CDS">
                                 <rect key="frame" x="38" y="20" width="437" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="22"/>
@@ -1668,7 +1669,7 @@
             <objects>
                 <viewController id="9dW-8Z-dB7" customClass="PIPInsureeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7dD-UD-bjR">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Full Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="70t-GX-0CB">
@@ -1762,7 +1763,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Primary Insurance - Primary Insuree" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gmd-Sf-qHR">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Primary Insurance - Primary Insured" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gmd-Sf-qHR">
                                 <rect key="frame" x="38" y="20" width="437" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="22"/>
@@ -1792,7 +1793,7 @@
             <objects>
                 <viewController id="SjX-dl-eeM" customClass="NewVisitViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VN3-yN-68O">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U0l-Lo-iaU">
@@ -2271,7 +2272,7 @@
                                 <rect key="frame" x="386" y="198" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Employer Email" minimumFontSize="17" id="17E-fI-dBt">
                                 <rect key="frame" x="386" y="236" width="171" height="30"/>
@@ -2283,7 +2284,7 @@
                                 <rect key="frame" x="386" y="236" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Zip:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sbg-Bs-Vo6">
                                 <rect key="frame" x="212" y="283" width="166" height="22"/>
@@ -2426,7 +2427,7 @@
                                 <rect key="frame" x="407" y="726" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Employer Email" minimumFontSize="17" id="Ycz-HQ-RpR">
                                 <rect key="frame" x="407" y="764" width="171" height="30"/>
@@ -2438,7 +2439,7 @@
                                 <rect key="frame" x="407" y="764" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Zip:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9oY-Q1-KiX">
                                 <rect key="frame" x="190" y="811" width="209" height="22"/>
@@ -2498,7 +2499,7 @@
             <objects>
                 <viewController id="xxK-c6-gF4" customClass="NPInsuranceViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="qHw-Aj-DKy">
-                        <rect key="frame" x="0.0" y="64" width="768" height="1669"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1669"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Insurance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SM7-oG-y7N">
@@ -2515,7 +2516,7 @@
                                 <color key="textColor" red="0.1063541638" green="0.16325580479999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Primary Insuree of Primary Insurance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tzx-NG-xrZ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Primary Insured of Primary Insurance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tzx-NG-xrZ">
                                 <rect key="frame" x="95" y="253" width="395" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="22"/>
@@ -2716,7 +2717,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Relationship to Primary Insuree" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5ZY-8E-M24">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Relationship to Primary Insured" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5ZY-8E-M24">
                                 <rect key="frame" x="398" y="183" width="275" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
@@ -2743,7 +2744,7 @@
                                 <color key="textColor" red="0.1063541638" green="0.16325580479999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Primary Insuree of Secondary Insurance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qgr-Lo-dop">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Primary Insured of Secondary Insurance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qgr-Lo-dop">
                                 <rect key="frame" x="95" y="921" width="430" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="22"/>
@@ -2782,7 +2783,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Relationship to Primary Insuree" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NN3-le-Wof">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Relationship to Primary Insured" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NN3-le-Wof">
                                 <rect key="frame" x="398" y="851" width="275" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
@@ -3557,7 +3558,7 @@
                                 <rect key="frame" x="386" y="198" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Employer Email" minimumFontSize="17" id="GXU-i4-8XT">
                                 <rect key="frame" x="386" y="236" width="171" height="30"/>
@@ -3569,7 +3570,7 @@
                                 <rect key="frame" x="386" y="236" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Zip:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TyE-Hf-sMU">
                                 <rect key="frame" x="212" y="283" width="166" height="22"/>
@@ -3712,7 +3713,7 @@
                                 <rect key="frame" x="407" y="726" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Employer Email" minimumFontSize="17" id="Yk6-o5-cVs">
                                 <rect key="frame" x="407" y="764" width="171" height="30"/>
@@ -3724,7 +3725,7 @@
                                 <rect key="frame" x="407" y="764" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Zip:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qyW-UE-zl3">
                                 <rect key="frame" x="190" y="811" width="209" height="22"/>
@@ -3801,7 +3802,7 @@
                                 <color key="textColor" red="0.1063541638" green="0.16325580479999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Primary Insuree of Primary Insurance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0jk-YO-uzZ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Primary Insured of Primary Insurance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0jk-YO-uzZ">
                                 <rect key="frame" x="95" y="253" width="395" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="22"/>
@@ -4002,7 +4003,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Relationship to Primary Insuree" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z9Z-Jg-fI4">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Relationship to Primary Insured" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z9Z-Jg-fI4">
                                 <rect key="frame" x="398" y="183" width="275" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
@@ -4029,7 +4030,7 @@
                                 <color key="textColor" red="0.1063541638" green="0.16325580479999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Primary Insuree of Secondary Insurance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GT3-3e-YeR">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Primary Insured of Secondary Insurance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GT3-3e-YeR">
                                 <rect key="frame" x="95" y="921" width="430" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="22"/>
@@ -4068,7 +4069,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Relationship to Primary Insuree" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NZU-NH-BzU">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Relationship to Primary Insured" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NZU-NH-BzU">
                                 <rect key="frame" x="398" y="851" width="275" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
@@ -4533,16 +4534,288 @@
         <image name="information.png" width="32" height="32"/>
         <image name="outlook-default-person.png" width="104" height="104"/>
     </resources>
+    <classes>
+        <class className="EditConditionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditConditionsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addConditionCell:"/>
+                <relationship kind="action" name="enableDelete:"/>
+                <relationship kind="outlet" name="editConditionsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="EditMedicinesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditMedicinesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addMedicineCell:"/>
+                <relationship kind="action" name="enableDelete:"/>
+                <relationship kind="outlet" name="editMedicinesTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="EditPatientTBViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditPatientTBViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneEditingPatient:"/>
+            </relationships>
+        </class>
+        <class className="ExistingVisitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExistingVisitViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bloodPressure" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="height" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="notes" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="pulse" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="temperature" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="weight" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="HomeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logoutButtonPressed:"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButtonPressed:"/>
+                <relationship kind="outlet" name="loginKeyTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NPConditionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NPConditionsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addCondition:"/>
+                <relationship kind="outlet" name="npConditionsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NPContactsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NPContactsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="emergencyCAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCCity" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCMaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCMiddleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCPaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCPhoneNumber" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCState" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emergencyCZipCode" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerCity" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerPhoneNumber" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerState" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="employerZipCode" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="myScrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="NPInsuranceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NPInsuranceViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="PIAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PICity" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIDateofBirth" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIMaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIMiddleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIPaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIPhoneNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PISocialSecurityNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIState" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PIZipCode" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIAddressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIAddressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SICity" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIDateofBirth" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIMaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIMiddleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIPaternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIPhoneNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SISocialSecurityNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIState" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SIZipCode" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="myScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="primaryInsuranceGroupNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="primaryInsuranceName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="primaryInsurancePolicyNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="relationshipToPrimaryInsuree" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="relationshipToSecondaryInsuree" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondaryInsuranceGroupNum" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondaryInsuranceName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="secondaryInsurancePolicyNum" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NPMedicinesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NPMedicinesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addNewMedication:"/>
+                <relationship kind="outlet" name="npMedicationsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NewPatientConditionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewPatientConditionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cellNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="conditionTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NewPatientMedicationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewPatientMedicationCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cellNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dosageTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="frequencyTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="medicationNameTF" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="purposeTF" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NewPatientTBViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewPatientTBViewController.h"/>
+        </class>
+        <class className="NewVisitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewVisitViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dateField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="diastolicBPField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="heightField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="pulseField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="systolicBPField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="temperatureField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="visitNotes" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="weightField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PIPInsureeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PIPInsureeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="pipAddressLine1" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipAddressLine2" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipDateOfBirth" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipEmail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipFullName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipPhoneNum" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pipSocialSecurityNum" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientInfoConditionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientInfoConditionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="conditionNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientInfoTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientInfoTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLine1Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="addressLine2Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dateOfBirthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCAddressLine1Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCAddressLine2Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCEmailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emergencyCPhoneNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerAddressLine1Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerAddressLine2Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerEmailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="employerPhoneNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fullNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="phoneNumberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="primaryInsuranceGroupNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="primaryInsuranceNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="primaryInsurancePolicyNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="primaryInsuranceRelationshipToPrimaryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondaryInsuranceGroupNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondaryInsuranceNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondaryInsurancePolicyNumLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="secondaryInsuranceRelationshipToPrimaryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="socialSecurityLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientPersonalInfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientPersonalInfoViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLine1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addressLine2" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="city" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="dateOfBirth" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="maternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="middleName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="paternalLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="phoneNumber" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="socialSecurity" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="state" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="zipCode" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PatientSearchResultTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientSearchResultTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientListTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PatientTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientTableViewCell.h"/>
+            <relationships>
+                <relationship kind="action" name="viewInfoButtonPressed:"/>
+                <relationship kind="action" name="viewRecordButtonPressed:"/>
+                <relationship kind="outlet" name="patientIDLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PatientVisitListViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PatientVisitListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patientPhotoView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="visitListTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SIPInsureeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SIPInsureeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="sipAddressLine1" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipAddressLine2" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipDateOfBirth" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipEmail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipFullName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipPhoneNum" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sipSocialSecurityNum" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SORAtechEMRViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SORAtechEMRViewController.h"/>
+        </class>
+        <class className="SearchResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="xN2-up-FG4"/>
         <segue reference="6QZ-FA-3T2"/>
-        <segue reference="ofJ-PP-1Fc"/>
-        <segue reference="xfe-BV-UTX"/>
+        <segue reference="xN2-up-FG4"/>
         <segue reference="N6d-9G-wkm"/>
+        <segue reference="xfe-BV-UTX"/>
+        <segue reference="ofJ-PP-1Fc"/>
     </inferredMetricsTieBreakers>
 </document>
