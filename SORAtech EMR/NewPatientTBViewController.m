@@ -369,7 +369,7 @@
         [requestFailedAlert show];
     }
     
-    //Test
+    //Testing
         
     //Save the patient information using the context
 //    NSError *saveError = nil;
