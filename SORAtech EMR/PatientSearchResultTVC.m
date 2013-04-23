@@ -84,14 +84,29 @@
     static NSString *CellIdentifier = @"patientListCell";
     PatientTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    Patient *currPatient = [searchResultsArray objectAtIndex:[indexPath row]];
+    // Object in searchResultsArray is no longer a Patient object
+    //Patient *currPatient = [searchResultsArray objectAtIndex:[indexPath row]];
+    
+    NSDictionary *currPatient = [searchResultsArray objectAtIndex:[indexPath row]];
+    
+    NSString *firstName, *middleName, *paternalLastName, *maternalLastName, *patientId;
+    
+    firstName = [currPatient valueForKey:@"firstName"];
+    middleName = [currPatient valueForKey:@"middleName"];
+    paternalLastName = [currPatient valueForKey:@"paternalLastName"];
+    maternalLastName = [currPatient valueForKey:@"maternalLastName"];
+    patientId = [currPatient valueForKey:@"patientId"];
+    
     
     // Configure the cell...
-    cell.patientNameLabel.text =  [NSString stringWithFormat:@"%@ %@ %@ %@",currPatient.firstName, currPatient.middleName, currPatient.paternalLastName, currPatient.maternalLastName];
+    //cell.patientNameLabel.text =  [NSString stringWithFormat:@"%@ %@ %@ %@",currPatient.firstName, currPatient.middleName, currPatient.paternalLastName, currPatient.maternalLastName];
+    
+    cell.patientNameLabel.text =  [NSString stringWithFormat:@"%@ %@ %@ %@",firstName, middleName, paternalLastName, maternalLastName];
     
     //cell.socialSecLabel.text = currPatient.socialSecurityNumber;
     
-    cell.patientIDLabel.text = [NSString stringWithFormat:@"%@", currPatient.patientId];
+    //cell.patientIDLabel.text = [NSString stringWithFormat:@"%@", currPatient.patientId];
+    cell.patientIDLabel.text = [NSString stringWithFormat:@"%@", patientId];
     
     cell.parentVC = self;
     cell.index = [indexPath row];

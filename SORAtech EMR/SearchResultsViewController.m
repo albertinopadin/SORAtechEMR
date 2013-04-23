@@ -50,25 +50,55 @@
     searchBarTextField.enablesReturnKeyAutomatically = NO;
 }
 
+// Queries the server for this particular doctor's patients. Must always be done in the viewDidLoad
+- (void)searchServer:(NSString *)searchString
+{
+    NSError *error, *e, *e2 = nil;
+    NSURLResponse *response = nil;
+    
+    NSURLRequest *patientSearchRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.services.soratech.cardona150.com/emr/patients/?key=e8342f8b-c73c-44c9-bd19-327b54c9ed65"]];
+    
+    NSData *patientSearchData = [NSURLConnection sendSynchronousRequest:patientSearchRequest returningResponse:&response error:&e2];
+    
+    if (!patientSearchData) {
+        NSLog(@"patientSearchData is nil");
+        NSLog(@"Error: %@", e);
+    }
+    
+    //Creates the array of dictionary objects, ordered alphabetically
+    // Each element in this array is a patient object, whose properties can be accessed as a dictionary
+    NSArray *patients = [NSJSONSerialization JSONObjectWithData:patientSearchData options:0 error:&error];
+    
+    self.searchResults = patients;
+    
+    childTVC = [[self childViewControllers] objectAtIndex:0];
+    
+    childTVC.searchResultsArray = [self.searchResults mutableCopy];
+    
+    childTVC.myDoctor = self.myDoctor;
+    //NSLog(@"Search Results: Doctor's name is: %@", self.myDoctor.fullName);
+    
+    [childTVC.tableView reloadData];
+}
 
 - (void)doSearch:(NSString *)searchString
 {
     // NSFetchRequest needed by the fetchedResultsController
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    // fetchRequest needs to know what entity to fetch
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Patient" inManagedObjectContext:self.managedObjectContext];
-    
-    [fetchRequest setEntity:entity];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    
+//    // fetchRequest needs to know what entity to fetch
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Patient" inManagedObjectContext:self.managedObjectContext];
+//    
+//    [fetchRequest setEntity:entity];
     
     // NSSortDescriptor tells defines how to sort the fetched results
-    NSSortDescriptor *sortDescriptorFirstName = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
-    NSSortDescriptor *sortDescriptorPaternalLastName = [[NSSortDescriptor alloc] initWithKey:@"paternalLastName" ascending:YES];
+//    NSSortDescriptor *sortDescriptorFirstName = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
+//    NSSortDescriptor *sortDescriptorPaternalLastName = [[NSSortDescriptor alloc] initWithKey:@"paternalLastName" ascending:YES];
+//    
+//    // Two sort descriptors - by first name and last name
+//    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptorFirstName, sortDescriptorPaternalLastName, nil];
     
-    // Two sort descriptors - by first name and last name
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptorFirstName, sortDescriptorPaternalLastName, nil];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    //[fetchRequest setSortDescriptors:sortDescriptors];
     
     NSPredicate *predicate;
         
@@ -148,13 +178,18 @@
         predicate =[NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
     }
     
-    [fetchRequest setPredicate:predicate];
+//    [fetchRequest setPredicate:predicate];
+//    
+//    self.searchResults = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
-    self.searchResults = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    // Filtered Results
+    NSArray *filteredArray = [self.searchResults filteredArrayUsingPredicate:predicate];
     
     childTVC = [[self childViewControllers] objectAtIndex:0];
     
-    childTVC.searchResultsArray = [self.searchResults mutableCopy];
+//    childTVC.searchResultsArray = [self.searchResults mutableCopy];
+
+    childTVC.searchResultsArray = [filteredArray mutableCopy];
     
     childTVC.myDoctor = self.myDoctor;
     NSLog(@"Search Results: Doctor's name is: %@", self.myDoctor.fullName);
@@ -178,7 +213,8 @@
     [self setReturnButton];
     
     // Do the search with the provided search term from the previous view controller
-    [self doSearch:self.searchTerm];
+    //[self doSearch:self.searchTerm];
+    [self searchServer:self.searchTerm];
 }
 
 // Set the table view controller (which is a child vc of this vc) to editing mode when the edit button is pressed
@@ -193,6 +229,7 @@
 {
     // This time search using the search bar text field's terms
     [self doSearch:self.searchBar.text];
+    //[self searchServer:self.searchBar.text];
 }
 
 // Search Bar delegate method
@@ -203,10 +240,14 @@
     {
         [self setReturnButton];
         [self doSearch:@""];
+        //[self searchServer:@""];
+        //We already have full patient list, so we just filter based on the searchText
+        
     }
     else
     {
         [self doSearch:searchText];
+        //[self searchServer:searchText];
     }
 }
 

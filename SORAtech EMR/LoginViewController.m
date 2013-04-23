@@ -114,9 +114,40 @@
 
     // Now we segue
     if ([defaultLoginKey isEqualToString:loginKeyTextField.text]) {
-        //Proceed with segue
-        [self performSegueWithIdentifier:@"SuccessfulLoginSegue" sender:self];
-        //NSLog(@"User input correct key");
+        
+        NSError *error, *e, *e2 = nil;
+        NSURLResponse *response = nil;
+        
+        NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.services.soratech.cardona150.com/emr/doctors/?key=e8342f8b-c73c-44c9-bd19-327b54c9ed65"]];
+        
+        NSData *loginData = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&e2];
+        
+        if (!loginData) {
+            NSLog(@"loginData is nil");
+            NSLog(@"Error: %@", e);
+        }
+        
+        //Creates the array of dictionary objects, ordered alphabetically
+        NSArray *dataFromJSON = [NSJSONSerialization JSONObjectWithData:loginData options:0 error:&error];
+        
+        if (!dataFromJSON) {
+            NSLog(@"Error parsing JSON: %@", error);
+        }
+        else
+        {
+            if ([dataFromJSON count] > 0)
+            {
+                NSLog(@"Succesful Login");
+                //Proceed with segue
+                [self performSegueWithIdentifier:@"SuccessfulLoginSegue" sender:self];
+            }
+            else
+            {
+                UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"There was a problem with the server" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [loginError show];
+            }
+        }
+
     }
     else
     {
