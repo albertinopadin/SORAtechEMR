@@ -368,6 +368,8 @@
         UIAlertView *requestFailedAlert = [[UIAlertView alloc] initWithTitle:@"RequestFailed" message:@"The server could not add the new patient." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [requestFailedAlert show];
     }
+    
+    //Test
         
     //Save the patient information using the context
 //    NSError *saveError = nil;
