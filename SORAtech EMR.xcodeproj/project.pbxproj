@@ -17,6 +17,8 @@
 		CE3160D41705CB1E00118DC0 /* NPEmployerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160D31705CB1D00118DC0 /* NPEmployerViewController.m */; };
 		CE3421EC17074483009C9454 /* PIPInsureeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3421EB17074483009C9454 /* PIPInsureeViewController.m */; };
 		CE3421EF1707472F009C9454 /* SIPInsureeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3421EE1707472F009C9454 /* SIPInsureeViewController.m */; };
+		CE9D56651728FE6000F8651A /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D56641728FE6000F8651A /* KeychainItemWrapper.m */; };
+		CE9D56671728FF2700F8651A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D56661728FF2700F8651A /* Security.framework */; };
 		CEE2BF64170B492000C636EC /* ExistingVisitCondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF63170B492000C636EC /* ExistingVisitCondCell.m */; };
 		CEE2BF67170B493700C636EC /* ExistingVisitMedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF66170B493700C636EC /* ExistingVisitMedCell.m */; };
 		CEE2BF6A170B50B800C636EC /* Condition.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF69170B50B800C636EC /* Condition.m */; };
@@ -118,6 +120,9 @@
 		CE3421EB17074483009C9454 /* PIPInsureeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIPInsureeViewController.m; sourceTree = "<group>"; };
 		CE3421ED1707472E009C9454 /* SIPInsureeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIPInsureeViewController.h; sourceTree = "<group>"; };
 		CE3421EE1707472F009C9454 /* SIPInsureeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIPInsureeViewController.m; sourceTree = "<group>"; };
+		CE9D56631728FE6000F8651A /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		CE9D56641728FE6000F8651A /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		CE9D56661728FF2700F8651A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CEE2BF62170B492000C636EC /* ExistingVisitCondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExistingVisitCondCell.h; sourceTree = "<group>"; };
 		CEE2BF63170B492000C636EC /* ExistingVisitCondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingVisitCondCell.m; sourceTree = "<group>"; };
 		CEE2BF65170B493700C636EC /* ExistingVisitMedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExistingVisitMedCell.h; sourceTree = "<group>"; };
@@ -239,6 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9D56671728FF2700F8651A /* Security.framework in Frameworks */,
 				CEF221BF16FC477B0025FF94 /* UIKit.framework in Frameworks */,
 				CEF221C116FC477B0025FF94 /* Foundation.framework in Frameworks */,
 				CEF221C316FC477B0025FF94 /* CoreGraphics.framework in Frameworks */,
@@ -263,6 +269,9 @@
 		CEF221B216FC477B0025FF94 = {
 			isa = PBXGroup;
 			children = (
+				CE9D56661728FF2700F8651A /* Security.framework */,
+				CE9D56631728FE6000F8651A /* KeychainItemWrapper.h */,
+				CE9D56641728FE6000F8651A /* KeychainItemWrapper.m */,
 				CEF2222B16FC48A90025FF94 /* SORAtechIcon.png */,
 				CEF221C616FC477B0025FF94 /* SORAtech EMR */,
 				CEF221E816FC477B0025FF94 /* SORAtech EMRTests */,
@@ -622,6 +631,7 @@
 				CEE2C0261717207000C636EC /* EditMedicinesViewController.m in Sources */,
 				CEE2C0291717209F00C636EC /* EditConditionsTableController.m in Sources */,
 				CEE2C02C171720BB00C636EC /* EditMedicinesTableController.m in Sources */,
+				CE9D56651728FE6000F8651A /* KeychainItemWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

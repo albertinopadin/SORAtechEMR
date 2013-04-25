@@ -16,6 +16,7 @@
 #import "Condition.h"
 #import "Medicine.h"
 #import "NPMedicinesViewController.h"
+#import "KeychainItemWrapper.h"
 
 @interface NewPatientTBViewController ()
 
@@ -340,8 +341,14 @@
     
     NSData *newPatientJSONData = [NSJSONSerialization dataWithJSONObject:newPatient options:NSJSONWritingPrettyPrinted error:&error];
     
+    // Get the user's key from the keychain
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
+    
+    //NSLog(@"Adding new patient; user's key is: %@", key);
     // Send the new patient in json to server
-    NSURL *url = [NSURL URLWithString:@"http://services.soratech.cardona150.com/emr/patients/?key=e8342f8b-c73c-44c9-bd19-327b54c9ed65"];
+    //NSURL *url = [NSURL URLWithString:@"http://services.soratech.cardona150.com/emr/patients/?key=e8342f8b-c73c-44c9-bd19-327b54c9ed65"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/?key=%@", key]];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     [request setHTTPMethod:@"PUT"];

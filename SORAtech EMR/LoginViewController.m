@@ -10,6 +10,7 @@
 #import "STAppDelegate.h"
 #import "Prescriber.h"
 #import "HomeViewController.h"
+#import "KeychainItemWrapper.h"
 
 @interface LoginViewController ()
 
@@ -138,6 +139,11 @@
             if ([dataFromJSON count] > 0)
             {
                 NSLog(@"Succesful Login");
+                
+                // Storing the key in the keychain for persistent secure storage
+                KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+                [keychainStore setObject:@"e8342f8b-c73c-44c9-bd19-327b54c9ed65" forKey:CFBridgingRelease(kSecValueData)];
+                
                 //Proceed with segue
                 [self performSegueWithIdentifier:@"SuccessfulLoginSegue" sender:self];
             }
