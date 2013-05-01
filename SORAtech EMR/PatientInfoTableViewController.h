@@ -20,6 +20,8 @@
 
 @property (strong, nonatomic) Prescriber *myDoctor;
 @property (strong, nonatomic) Patient *myPatient;
+@property (strong, nonatomic) NSDictionary *myPatientJSON;
+
 @property (strong, nonatomic) NSArray *visitList;
 @property (strong, nonatomic) NSArray *medicineList;
 @property (strong, nonatomic) NSArray *conditionList;

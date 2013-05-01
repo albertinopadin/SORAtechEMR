@@ -91,10 +91,16 @@
     
     NSString *firstName, *middleName, *paternalLastName, *maternalLastName, *patientId;
     
-    firstName = [currPatient valueForKey:@"firstName"];
-    middleName = [currPatient valueForKey:@"middleName"];
-    paternalLastName = [currPatient valueForKey:@"paternalLastName"];
-    maternalLastName = [currPatient valueForKey:@"maternalLastName"];
+    // Check for nulls
+    
+    firstName = [[currPatient valueForKey:@"firstName"] isEqual:[NSNull null]] ? @"" :
+                    [currPatient valueForKey:@"firstName"];
+    middleName = [[currPatient valueForKey:@"middleName"] isEqual:[NSNull null]] ? @"" :
+                    [currPatient valueForKey:@"middleName"];
+    paternalLastName = [[currPatient valueForKey:@"paternalLastName"] isEqual:[NSNull null]] ? @"" :
+                    [currPatient valueForKey:@"paternalLastName"];
+    maternalLastName = [[currPatient valueForKey:@"maternalLastName"] isEqual:[NSNull null]] ? @"" :
+                    [currPatient valueForKey:@"maternalLastName"];
     patientId = [currPatient valueForKey:@"patientId"];
     
     
@@ -138,7 +144,12 @@
     else if ([segue.identifier isEqualToString:@"viewPatientInfoSegue"])
     {
         PatientInfoTableViewController *destVC = segue.destinationViewController;
-        destVC.myPatient = [searchResultsArray objectAtIndex:self.patientIndex];
+        //destVC.myPatient = [searchResultsArray objectAtIndex:self.patientIndex];
+        
+        // Send information of that particular patient from the json to the vc:
+        // patientIndex is set by the table view cell itself to mark which cell was selected
+        destVC.myPatientJSON = [searchResultsArray objectAtIndex:self.patientIndex];
+        
         // Can't do this, because might have multiple prescribers
 //        destVC.myDoctor = self.myDoctor;
 //        NSLog(@"Search Results TVC: Doctor's name is: %@", self.myDoctor.fullName);

@@ -359,10 +359,15 @@
     [request setHTTPBody:newPatientJSONData];
     
     // Response
-    NSURLResponse *response = nil;
+    //NSURLResponse *response = nil;
+    NSHTTPURLResponse *response = nil;
     NSError *responseError = nil;
     
-    NSData *responseResult = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
+    //NSData *responseResult = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
+    
+    NSLog(@"Response satus code: %i", [response statusCode]);
+    
     if (responseError == nil)
     {
         HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
@@ -376,8 +381,49 @@
         [requestFailedAlert show];
     }
     
-    //Testing
+    
+    // Conditions from fourth vc:
+    NSArray *conditions = [conditionsVC textConditionsList];
+    
+    // Create the json object
+    NSError *cError, *pError = nil;
+    
+    // Have to get the patient id back from the new patient insert response
+    NSURL *cUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/conditions/?key=%@", nPatientId, key]];
+    
+    NSMutableURLRequest *cRequest = [NSMutableURLRequest requestWithURL:cUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+    [cRequest setHTTPMethod:@"PUT"];
+    [cRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [cRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         
+    // Response
+    NSHTTPURLResponse *cResponse = nil;
+    NSError *cResponseError = nil;
+    
+    for (NSString *s in conditions)
+    {
+        if (s.length > 0)
+        {
+            // Insert new condition
+            // Patient id, and doctor id too?
+            //NSDictionary *condition = [NSDictionary alloc] initWithObjectsAndKeys:s, @"condition", nil
+            
+            NSData *conditionJSONData = [NSJSONSerialization dataWithJSONObject:condition options:NSJSONWritingPrettyPrinted error:&error];
+            [cRequest setValue:[NSString stringWithFormat:@"%d", conditionJSONData.length] forHTTPHeaderField:@"Content-Length"];
+            [cRequest setHTTPBody:conditionJSONData];
+            
+            [NSURLConnection sendSynchronousRequest:cRequest returningResponse:&cResponse error:&cResponseError];
+            NSLog(@"Response satus code: %i", [cResponse statusCode]);
+        }
+        
+    }
+
+    
+    
+    // Medicines from fifth vc:
+    [medicinesVC saveMedications:patient.patientId];
+    
+    
     //Save the patient information using the context
 //    NSError *saveError = nil;
 //    
@@ -401,15 +447,15 @@
 //        }
 //        
 //    }
-//    
+//
 //    // Medications from fifth vc:
 //    [medicinesVC saveMedications:patient.patientId];
 //    
     
     // Return the logged-in doctor
-//    HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
+    HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
 //    hvc.myDoctor = self.myDoctor;
-//    [hvc incomingSegue:@"fromNewPatientPage"];
+    [hvc incomingSegue:@"fromNewPatientPage"];
 }
 
 - (void)viewDidLoad

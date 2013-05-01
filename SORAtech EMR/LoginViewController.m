@@ -114,12 +114,17 @@
     }
 
     // Now we segue
-    if ([defaultLoginKey isEqualToString:loginKeyTextField.text]) {
+    //if ([defaultLoginKey isEqualToString:loginKeyTextField.text]) {
         
-        NSError *error, *e, *e2 = nil;
-        NSURLResponse *response = nil;
+        //NSError *error, *e, *e2 = nil;
+        NSError *e, *e2 = nil;
+        NSHTTPURLResponse *response = nil;
         
-        NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.services.soratech.cardona150.com/emr/doctors/?key=e8342f8b-c73c-44c9-bd19-327b54c9ed65"]];
+//        NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.services.soratech.cardona150.com/emr/doctors/?key=e8342f8b-c73c-44c9-bd19-327b54c9ed65"]];
+
+        //NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/doctors/?key=%@", loginKeyTextField.text]]];
+    
+        NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/?key=%@", loginKeyTextField.text]]];
         
         NSData *loginData = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&e2];
         
@@ -129,39 +134,44 @@
         }
         
         //Creates the array of dictionary objects, ordered alphabetically
-        NSArray *dataFromJSON = [NSJSONSerialization JSONObjectWithData:loginData options:0 error:&error];
-        
-        if (!dataFromJSON) {
-            NSLog(@"Error parsing JSON: %@", error);
-        }
-        else
-        {
-            if ([dataFromJSON count] > 0)
+//        NSArray *dataFromJSON = [NSJSONSerialization JSONObjectWithData:loginData options:0 error:&error];
+//        
+//        if (!dataFromJSON) {
+//            NSLog(@"Error parsing JSON: %@", error);
+//        }
+//        else
+//        {
+            if ([response statusCode] == 200)
             {
                 NSLog(@"Succesful Login");
                 
                 // Storing the key in the keychain for persistent secure storage
                 KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
-                [keychainStore setObject:@"e8342f8b-c73c-44c9-bd19-327b54c9ed65" forKey:CFBridgingRelease(kSecValueData)];
+                //[keychainStore setObject:@"e8342f8b-c73c-44c9-bd19-327b54c9ed65" forKey:CFBridgingRelease(kSecValueData)];
+                [keychainStore setObject:loginKeyTextField.text forKey:CFBridgingRelease(kSecValueData)];
                 
                 //Proceed with segue
                 [self performSegueWithIdentifier:@"SuccessfulLoginSegue" sender:self];
             }
             else
             {
-                UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"There was a problem with the server" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                // check for status code 403
+//                UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"There was a problem with the server" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//                [loginError show];
+                
+                UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"You have typed an incorrect login key" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [loginError show];
             }
-        }
+        //}
 
-    }
-    else
-    {
+   // }
+    //else
+    //{
         //Display Login Error message
         //NSLog(@"User input incorrect key");
-        UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"You have typed an incorrect login key" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [loginError show];
-    }
+//        UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"You have typed an incorrect login key" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [loginError show];
+    //}
     
 }
 

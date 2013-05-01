@@ -22,6 +22,8 @@
 
 @implementation PatientInfoTableViewController
 
+@synthesize myPatientJSON;
+
 @synthesize currentDesignatedPrescriber;
 
 @synthesize myTableView, medicineCells;
@@ -70,7 +72,8 @@
     {
         EditPatientTBViewController *edVC = segue.destinationViewController;
         edVC.myDoctor = self.myDoctor;
-        edVC.myPatient = self.myPatient;
+        //edVC.myPatient = self.myPatient;
+        edVC.myPatientJSON = self.myPatientJSON;
     }
 }
 
@@ -90,6 +93,8 @@
     self.myTableView.dataSource = self;
     self.myTableView.delegate = self;
     
+    /*
+     
     // NSFetchRequest
     NSFetchRequest *condFetchRequest = [[NSFetchRequest alloc] init];
     
@@ -152,10 +157,8 @@
     
     self.medicineList = [self.managedObjectContext executeFetchRequest:medFetchRequest error:nil];
     
-    // Registering the Classes with the table view
-    //[self.tableView registerClass:[PatientInfoConditionCell class] forCellReuseIdentifier:@"infoConditionCell"];
-    //[self.myTableView registerClass:[PatientInfoMedicineCell class] forCellReuseIdentifier:@"infoMedicationCell"];
     
+        
     //////////////// ----------- SET LABELS -------------- \\\\\\\\\\\\\\\\\\\\\\\
 
     // Personal
@@ -192,6 +195,132 @@
     self.secondaryInsuranceGroupNumLabel.text = self.myPatient.sGroupNumber;
     self.secondaryInsuranceRelationshipToPrimaryLabel.text = self.myPatient.srelationshipToPrimaryInsured;
     
+     */
+    
+    NSLog(@"myPatientJSON: %@", self.myPatientJSON);
+    
+    //////////////// ----------- SET LABELS -------------- \\\\\\\\\\\\\\\\\\\\\\\
+    
+//    // Personal
+//    self.fullNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
+//                               [self verifyForNull:[self.myPatientJSON objectForKey:@"firstName"]],
+//                               [self verifyForNull:[self.myPatientJSON objectForKey:@"middleName"]],
+//                               [self verifyForNull:[self.myPatientJSON objectForKey:@"paternalLastName"]],
+//                               [self verifyForNull:[self.myPatientJSON objectForKey:@"maternalLastName"]]];
+//    self.addressLine1Label.text = [NSString stringWithFormat:@"%@  %@",
+//                                   [self verifyForNull:[self.myPatientJSON objectForKey:@"addressLine1"]],
+//                                   [self verifyForNull:[self.myPatientJSON objectForKey:@"addressLine2"]]];
+//    self.addressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@",
+//                                   [self verifyForNull:[self.myPatientJSON objectForKey:@"addressCity"]],
+//                                   [self verifyForNull:[self.myPatientJSON objectForKey:@"addressState"]],
+//                                   [self verifyForNull:[self.myPatientJSON objectForKey:@"addressZip"]]];
+//    self.phoneNumberLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"phoneNumber"]];
+//    self.emailLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"email"]];
+//    self.dateOfBirthLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"dateOfBirth"]];
+//    self.socialSecurityLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"socialSecurityNumber"]];
+//    
+//    // Employer
+//    self.employerNameLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"employerName"]];
+//    self.employerAddressLine1Label.text = [NSString stringWithFormat:@"%@  %@",
+//                                           [self verifyForNull:[self.myPatientJSON objectForKey:@"employerAddressLine1"]],
+//                                           [self verifyForNull:[self.myPatientJSON objectForKey:@"employerAddressLine2"]]];
+//    self.employerAddressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@",
+//                                           [self verifyForNull:[self.myPatientJSON objectForKey:@"employerAddressCity"]],
+//                                           [self verifyForNull:[self.myPatientJSON objectForKey:@"employerAddressState"]],
+//                                           [self verifyForNull:[self.myPatientJSON objectForKey:@"employerAddressZip"]]];
+//    self.employerPhoneNumberLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"employerPhoneNumber"]];
+//    self.employerEmailLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"employerEmail"]];
+//    
+//    // Emergency Contact
+//    self.emergencyCNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
+//                                     [self verifyForNull:[self.myPatientJSON objectForKey:@"emergencyContactFirstName"]],
+//                                     [self verifyForNull:[self.myPatientJSON objectForKey:@"emergencyContactMiddleName"]],
+//                                     [self verifyForNull:[self.myPatientJSON objectForKey:@"emergencyContactPaternalLastName"]],
+//                                     [self verifyForNull:[self.myPatientJSON objectForKey:@"emergencyContactMaternalLastName"]]];
+//    self.emergencyCAddressLine1Label.text = [NSString stringWithFormat:@"%@  %@",
+//                                             [self verifyForNull:[self.myPatientJSON objectForKey:@"emergencyContactAddressLine1"]],
+//                                             [self verifyForNull:[self.myPatientJSON objectForKey:@"emergencyContactAddressLine2"]]];
+//    self.emergencyCAddressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@",
+//                                             [self verifyForNull:[self.myPatientJSON objectForKey:@"emergencyContactAddressCity"]],
+//                                             [self verifyForNull:[self.myPatientJSON objectForKey:@"emergencyContactAddressState"]],
+//                                             [self verifyForNull:[self.myPatientJSON objectForKey:@"emergencyContactAddressZip"]]];
+//    self.emergencyCPhoneNumberLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"emergencyContactPhoneNumber"]];
+//    self.emergencyCEmailLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"emergencyContactEmail"]];
+//    
+//    
+//    // Insurance Info
+//    self.primaryInsuranceNameLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"primaryInsuranceName"]];
+//    self.primaryInsurancePolicyNumLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"primaryInsurancePolicyNumber"]];
+//    self.primaryInsuranceGroupNumLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"primaryInsuranceGroupNumber"]];
+//    self.primaryInsuranceRelationshipToPrimaryLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"primaryInsuranceRelationshipToPrimaryInsured"]];
+//    
+//    self.secondaryInsuranceNameLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"secondaryInsuranceName"]];
+//    self.secondaryInsurancePolicyNumLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"secondaryInsurancePolicyNumber"]];
+//    self.secondaryInsuranceGroupNumLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"secondaryInsuranceGroupNumber"]];
+//    self.secondaryInsuranceRelationshipToPrimaryLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"secondaryInsuranceRelationshipToPrimaryInsured"]];
+//    
+
+    //////////////// ----------- SET LABELS -------------- \\\\\\\\\\\\\\\\\\\\\\\
+    
+    // Personal
+    self.fullNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
+                               [self verifyForNull:[self.myPatientJSON valueForKey:@"firstName"]],
+                               [self verifyForNull:[self.myPatientJSON valueForKey:@"middleName"]],
+                               [self verifyForNull:[self.myPatientJSON valueForKey:@"paternalLastName"]],
+                               [self verifyForNull:[self.myPatientJSON valueForKey:@"maternalLastName"]]];
+    self.addressLine1Label.text = [NSString stringWithFormat:@"%@  %@",
+                                   [self verifyForNull:[self.myPatientJSON valueForKey:@"addressLine1"]],
+                                   [self verifyForNull:[self.myPatientJSON valueForKey:@"addressLine2"]]];
+    self.addressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@",
+                                   [self verifyForNull:[self.myPatientJSON valueForKey:@"addressCity"]],
+                                   [self verifyForNull:[self.myPatientJSON valueForKey:@"addressState"]],
+                                   [self verifyForNull:[self.myPatientJSON valueForKey:@"addressZip"]]];
+    self.phoneNumberLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"phoneNumber"]];
+    self.emailLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"email"]];
+    self.dateOfBirthLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"dateOfBirth"]];
+    self.socialSecurityLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"socialSecurityNumber"]];
+    
+    // Employer
+    self.employerNameLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerName"]];
+    self.employerAddressLine1Label.text = [NSString stringWithFormat:@"%@  %@",
+                                           [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressLine1"]],
+                                           [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressLine2"]]];
+    self.employerAddressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@",
+                                           [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressCity"]],
+                                           [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressState"]],
+                                           [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressZip"]]];
+    self.employerPhoneNumberLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerPhoneNumber"]];
+    self.employerEmailLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerEmail"]];
+    
+    // Emergency Contact
+    self.emergencyCNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
+                                     [self verifyForNull:[self.myPatientJSON valueForKey:@"emergencyContactFirstName"]],
+                                     [self verifyForNull:[self.myPatientJSON valueForKey:@"emergencyContactMiddleName"]],
+                                     [self verifyForNull:[self.myPatientJSON valueForKey:@"emergencyContactPaternalLastName"]],
+                                     [self verifyForNull:[self.myPatientJSON valueForKey:@"emergencyContactMaternalLastName"]]];
+    self.emergencyCAddressLine1Label.text = [NSString stringWithFormat:@"%@  %@",
+                                             [self verifyForNull:[self.myPatientJSON valueForKey:@"emergencyContactAddressLine1"]],
+                                             [self verifyForNull:[self.myPatientJSON valueForKey:@"emergencyContactAddressLine2"]]];
+    self.emergencyCAddressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@",
+                                             [self verifyForNull:[self.myPatientJSON valueForKey:@"emergencyContactAddressCity"]],
+                                             [self verifyForNull:[self.myPatientJSON valueForKey:@"emergencyContactAddressState"]],
+                                             [self verifyForNull:[self.myPatientJSON valueForKey:@"emergencyContactAddressZip"]]];
+    self.emergencyCPhoneNumberLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"emergencyContactPhoneNumber"]];
+    self.emergencyCEmailLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"emergencyContactEmail"]];
+    
+    
+    // Insurance Info
+    self.primaryInsuranceNameLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"primaryInsuranceName"]];
+    self.primaryInsurancePolicyNumLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"primaryInsurancePolicyNumber"]];
+    self.primaryInsuranceGroupNumLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"primaryInsuranceGroupNumber"]];
+    self.primaryInsuranceRelationshipToPrimaryLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"primaryInsuranceRelationshipToPrimaryInsured"]];
+    
+    self.secondaryInsuranceNameLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"secondaryInsuranceName"]];
+    self.secondaryInsurancePolicyNumLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"secondaryInsurancePolicyNumber"]];
+    self.secondaryInsuranceGroupNumLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"secondaryInsuranceGroupNumber"]];
+    self.secondaryInsuranceRelationshipToPrimaryLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"secondaryInsuranceRelationshipToPrimaryInsured"]];
+    
+
     
     [self.tableView reloadData];
     // Uncomment the following line to preserve selection between presentations.
@@ -199,6 +328,12 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (NSString *)verifyForNull:(id)theString
+{
+    NSString *returnString = [theString isEqual:[NSNull null]] ? @"" : theString;
+    return returnString;
 }
 
 - (void)didReceiveMemoryWarning

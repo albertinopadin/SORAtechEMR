@@ -7,6 +7,7 @@
 //
 
 #import "SORAtechEMRViewController.h"
+#import "KeychainItemWrapper.h"
 
 @interface SORAtechEMRViewController ()
 
@@ -18,13 +19,70 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self performSelector:@selector(doSegue) withObject:nil afterDelay:2.00];
+    
+    // See if the user has already logged in (keychain exists and valid)
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
+    
+    //NSLog(@"key at splashscreen is: %@", key);
+    
+    if ([key isEqualToString:@""] || key == nil)
+    {
+        [self performSelector:@selector(doSegue) withObject:nil afterDelay:2.00];
+    }
+    else
+    {
+        //NSError *error, *e, *e2 = nil;
+        NSError *e, *e2 = nil;
+        NSHTTPURLResponse *response = nil;
+        
+        //NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/doctors/?key=%@", key]]];
+        NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/?key=%@", key]]];
+        
+        NSData *loginData = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&e2];
+        
+        if (!loginData) {
+            NSLog(@"loginData is nil");
+            NSLog(@"Error: %@", e);
+        }
+        
+        //Creates the array of dictionary objects, ordered alphabetically
+//        NSArray *dataFromJSON = [NSJSONSerialization JSONObjectWithData:loginData options:0 error:&error];
+//        
+//        if (!dataFromJSON) {
+//            NSLog(@"Error parsing JSON: %@", error);
+//        }
+//        else
+        //{
+            if ([response statusCode] == 200)
+            {
+                NSLog(@"Succesful Login");
+                
+                //Proceed past login screen, as the user is already logged in
+                [self performSelector:@selector(doSegueAlreadyLoggedIn) withObject:nil afterDelay:1.00];
+            }
+            else
+            {
+                // Wrong key, so go to login screen
+                [self performSelector:@selector(doSegue) withObject:nil afterDelay:2.00];
+            }
+        //}
+
+    }
+
+    
 }
 
 - (void)doSegue
 {
     [self performSegueWithIdentifier:@"AfterIntroSegue" sender:self];
 }
+
+- (void)doSegueAlreadyLoggedIn
+{
+    [self performSegueWithIdentifier:@"AfterSplashKCExistsSegue" sender:self];
+}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

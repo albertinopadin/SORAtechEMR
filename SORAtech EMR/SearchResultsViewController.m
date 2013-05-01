@@ -8,6 +8,7 @@
 
 #import "SearchResultsViewController.h"
 #import "STAppDelegate.h"
+#import "KeychainItemWrapper.h"
 
 @interface SearchResultsViewController ()
 
@@ -53,12 +54,19 @@
 // Queries the server for this particular doctor's patients. Must always be done in the viewDidLoad
 - (void)searchServer:(NSString *)searchString
 {
-    NSError *error, *e, *e2 = nil;
-    NSURLResponse *response = nil;
+    // Get doctor's key from keychain
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
-    NSURLRequest *patientSearchRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.services.soratech.cardona150.com/emr/patients/?key=e8342f8b-c73c-44c9-bd19-327b54c9ed65"]];
+    NSError *error, *e, *e2 = nil;
+    //NSURLResponse *response = nil;
+    NSHTTPURLResponse *response = nil;
+    
+    NSURLRequest *patientSearchRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/?key=%@", key]]];
     
     NSData *patientSearchData = [NSURLConnection sendSynchronousRequest:patientSearchRequest returningResponse:&response error:&e2];
+    
+    NSLog(@"Response for patients get is: %i", [response statusCode]);
     
     if (!patientSearchData) {
         NSLog(@"patientSearchData is nil");

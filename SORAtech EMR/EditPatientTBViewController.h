@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) Prescriber *myDoctor;
 @property (strong, nonatomic) Patient *myPatient;
+@property (strong, nonatomic) NSDictionary *myPatientJSON;
 
 - (IBAction)doneEditingPatient:(id)sender;
 

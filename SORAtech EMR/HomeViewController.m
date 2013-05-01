@@ -11,6 +11,7 @@
 #import "PatientSearchViewController.h"
 #import "SearchResultsViewController.h"
 #import "NewPatientTBViewController.h"
+#import "KeychainItemWrapper.h"
 
 @interface HomeViewController ()
 
@@ -80,6 +81,13 @@
 
 - (IBAction)logoutButtonPressed:(id)sender
 {
+    // Resetting the keychain
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    [keychainStore resetKeychainItem];
+    
+    //NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
+    //NSLog(@"Key at logout is: %@", key);
+    
     [self performSegueWithIdentifier:@"logoutSegue" sender:self];
 }
 @end
