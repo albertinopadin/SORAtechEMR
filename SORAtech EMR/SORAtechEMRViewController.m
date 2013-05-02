@@ -37,7 +37,7 @@
         NSHTTPURLResponse *response = nil;
         
         //NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/doctors/?key=%@", key]]];
-        NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/?key=%@", key]]];
+        NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/isValidKey/?key=%@", key]]];
         
         NSData *loginData = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&e2];
         
@@ -46,31 +46,23 @@
             NSLog(@"Error: %@", e);
         }
         
-        //Creates the array of dictionary objects, ordered alphabetically
-//        NSArray *dataFromJSON = [NSJSONSerialization JSONObjectWithData:loginData options:0 error:&error];
-//        
-//        if (!dataFromJSON) {
-//            NSLog(@"Error parsing JSON: %@", error);
-//        }
-//        else
-        //{
-            if ([response statusCode] == 200)
-            {
-                NSLog(@"Succesful Login");
-                
-                //Proceed past login screen, as the user is already logged in
-                [self performSelector:@selector(doSegueAlreadyLoggedIn) withObject:nil afterDelay:1.00];
-            }
-            else
-            {
-                // Wrong key, so go to login screen
-                [self performSelector:@selector(doSegue) withObject:nil afterDelay:2.00];
-            }
-        //}
-
+        NSString *validLogin = [[NSString alloc] initWithData:loginData encoding:NSUTF8StringEncoding];
+        
+        if ([validLogin isEqualToString:@"true"])
+        {
+            NSLog(@"Succesful Login");
+            
+            //Proceed past login screen, as the user is already logged in
+            [self performSelector:@selector(doSegueAlreadyLoggedIn) withObject:nil afterDelay:1.00];
+        }
+        else
+        {
+            // Wrong key, so go to login screen
+            [self performSelector:@selector(doSegue) withObject:nil afterDelay:2.00];
+        }
+        
     }
 
-    
 }
 
 - (void)doSegue
@@ -86,8 +78,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //UINavigationController *navCon = segue.destinationViewController;
-    //AddPatientViewController *addPatientVC =
+    
 }
 
 - (void)didReceiveMemoryWarning

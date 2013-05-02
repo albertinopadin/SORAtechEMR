@@ -8,21 +8,15 @@
 
 #import "LoginViewController.h"
 #import "STAppDelegate.h"
-#import "Prescriber.h"
-#import "HomeViewController.h"
 #import "KeychainItemWrapper.h"
 
 @interface LoginViewController ()
-
-@property (strong, nonatomic) NSString *defaultLoginKey;
-@property (nonatomic) NSInteger defaultDoctorId;
-@property (strong, nonatomic) Prescriber *myDoctor;
 
 @end
 
 @implementation LoginViewController
 
-@synthesize defaultLoginKey, defaultDoctorId, myDoctor, loginKeyTextField;
+@synthesize loginKeyTextField;
 
 //Getting the Managed Object Context, the window to our internal database
 - (NSManagedObjectContext *)managedObjectContext
@@ -47,13 +41,7 @@
     
     // Set up text field so it responds to enter key:
     self.loginKeyTextField.delegate = self;
-    
-    
-    //Initialize default login key so user can log in
-    defaultLoginKey = @"magic";
-    
-    //Set default doctorId
-    self.defaultDoctorId = 0;
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -70,116 +58,43 @@
 
 - (IBAction)loginButtonPressed:(id)sender
 {
-    // Searching for the doctor in the db
-    NSFetchRequest *prescriberFR = [[NSFetchRequest alloc] init];
-    // fetchRequest needs to know what entity to fetch
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Prescriber" inManagedObjectContext:self.managedObjectContext];
-    [prescriberFR setEntity:entity];
-    NSPredicate *prescriberPred;
+    NSError *e, *e2 = nil;
+    NSHTTPURLResponse *response = nil;
     
-    // Set predicate so it searches for our particular patient's visits.
-    prescriberPred =[NSPredicate predicateWithFormat:@"doctorId == %i", self.defaultDoctorId];
-    [prescriberFR setPredicate:prescriberPred];
-    NSArray *singlePrescriberArray = [self.managedObjectContext executeFetchRequest:prescriberFR error:nil];
+    NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/isValidKey/?key=%@", loginKeyTextField.text]]];
     
-    NSLog(@"singlePrescriberArray is: %@", singlePrescriberArray);
+    NSData *loginData = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&e2];
     
-    //self.myDoctor = nil;
+    if (!loginData) {
+        NSLog(@"loginData is nil");
+        NSLog(@"Error: %@", e);
+    }
     
-    // Must remove this if-else later
-    if (singlePrescriberArray.count > 0)
+    
+    // Check if valid login
+    NSString *validLogin = [[NSString alloc] initWithData:loginData encoding:NSUTF8StringEncoding];
+    
+    if ([validLogin isEqualToString:@"true"])
     {
-        self.myDoctor = [singlePrescriberArray objectAtIndex:0];
-        NSLog(@"Detected existing doctor: %@", self.myDoctor);
+        NSLog(@"Succesful Login");
+        
+        // Storing the key in the keychain for persistent secure storage
+        KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+        [keychainStore setObject:loginKeyTextField.text forKey:CFBridgingRelease(kSecValueData)];
+        
+        //Proceed with segue
+        [self performSegueWithIdentifier:@"SuccessfulLoginSegue" sender:self];
     }
     else
     {
-        //Insert a new doctor in the prescriber table
-        self.myDoctor = [NSEntityDescription insertNewObjectForEntityForName:@"Prescriber" inManagedObjectContext:self.managedObjectContext];
+        // check for status code 403
+        //                UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"There was a problem with the server" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        //                [loginError show];
         
-        self.myDoctor.doctorId = [NSNumber numberWithInt:self.defaultDoctorId];
-        self.myDoctor.fullName = @"Default Full Name";
-        self.myDoctor.addressLine1 = @"Default addressLine1";
-        self.myDoctor.addressLine2 = @"Default addressLine2";
-        self.myDoctor.phoneNumber = @"***-***-****";
-        self.myDoctor.email = @"Default email";
-        
-        //Save the information using the context
-        NSError *saveError = nil;
-        
-        [self.managedObjectContext save:&saveError];
-        
-        NSLog(@"Added a new Doctor!");
-        
+        UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"You have typed an incorrect login key" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [loginError show];
     }
-
-    // Now we segue
-    //if ([defaultLoginKey isEqualToString:loginKeyTextField.text]) {
-        
-        //NSError *error, *e, *e2 = nil;
-        NSError *e, *e2 = nil;
-        NSHTTPURLResponse *response = nil;
-        
-//        NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.services.soratech.cardona150.com/emr/doctors/?key=e8342f8b-c73c-44c9-bd19-327b54c9ed65"]];
-
-        //NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/doctors/?key=%@", loginKeyTextField.text]]];
     
-        NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/?key=%@", loginKeyTextField.text]]];
-        
-        NSData *loginData = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&e2];
-        
-        if (!loginData) {
-            NSLog(@"loginData is nil");
-            NSLog(@"Error: %@", e);
-        }
-        
-        //Creates the array of dictionary objects, ordered alphabetically
-//        NSArray *dataFromJSON = [NSJSONSerialization JSONObjectWithData:loginData options:0 error:&error];
-//        
-//        if (!dataFromJSON) {
-//            NSLog(@"Error parsing JSON: %@", error);
-//        }
-//        else
-//        {
-            if ([response statusCode] == 200)
-            {
-                NSLog(@"Succesful Login");
-                
-                // Storing the key in the keychain for persistent secure storage
-                KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
-                //[keychainStore setObject:@"e8342f8b-c73c-44c9-bd19-327b54c9ed65" forKey:CFBridgingRelease(kSecValueData)];
-                [keychainStore setObject:loginKeyTextField.text forKey:CFBridgingRelease(kSecValueData)];
-                
-                //Proceed with segue
-                [self performSegueWithIdentifier:@"SuccessfulLoginSegue" sender:self];
-            }
-            else
-            {
-                // check for status code 403
-//                UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"There was a problem with the server" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//                [loginError show];
-                
-                UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"You have typed an incorrect login key" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [loginError show];
-            }
-        //}
-
-   // }
-    //else
-    //{
-        //Display Login Error message
-        //NSLog(@"User input incorrect key");
-//        UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"You have typed an incorrect login key" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [loginError show];
-    //}
-    
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    UINavigationController *nav = [segue destinationViewController];
-    HomeViewController *hvc = [[nav viewControllers] objectAtIndex:0];
-    hvc.myDoctor = self.myDoctor;
 }
 
 @end

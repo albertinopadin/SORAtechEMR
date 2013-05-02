@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Prescriber.h"
 
 @interface HomeViewController : UIViewController
-
-@property (strong, nonatomic) Prescriber *myDoctor;
 
 - (IBAction)logoutButtonPressed:(id)sender;
 - (void)incomingSegue:(NSString *)segueIdentifier;

@@ -28,7 +28,7 @@
 
 @implementation NewPatientTBViewController
 
-@synthesize patient, vcArray, patientList, myDoctor;
+@synthesize patient, vcArray, patientList;
 
 //Getting the Managed Object Context, the window to our internal database
 - (NSManagedObjectContext *)managedObjectContext
@@ -88,48 +88,6 @@
     }
 }
 
-- (NSNumber *)getMaxId
-{
-    //NSNumber *nextId=[NSNumber numberWithInt:1];
-    
-    NSNumber *nextId;
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Patient" inManagedObjectContext:self.managedObjectContext];
-    //NSEntityDescription *entity = [NSEntityDescription entityForName:@"PRIMARYKEY" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    [fetchRequest setResultType:NSDictionaryResultType];
-    
-    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"_pk"];
-    NSExpression *maxIdExpression = [NSExpression expressionForFunction:@"max:"
-                                                              arguments:[NSArray arrayWithObject:keyPathExpression]];
-    
-    
-    NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
-    [expressionDescription setName:@"maxId"];
-    [expressionDescription setExpression:maxIdExpression];
-    //[expressionDescription setExpression:keyPathExpression];
-    [expressionDescription setExpressionResultType:NSInteger64AttributeType];
-    
-    [fetchRequest setPropertiesToFetch:[NSArray arrayWithObject:expressionDescription]];
-    
-    NSError *error = nil;
-    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (fetchedObjects == nil) {
-        
-        NSLog(@"error getting max id");
-        
-    }
-    else
-    {
-        nextId = (NSNumber*)[[fetchedObjects lastObject] objectForKey:@"maxId"];
-        int nxt = [nextId intValue] + 1;
-        nextId = [NSNumber numberWithInt:nxt];
-    }
-    
-    return nextId;
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //Get each view controller from my array of vc's
@@ -140,102 +98,8 @@
     NPConditionsViewController *conditionsVC = [self.vcArray objectAtIndex:3];
     NPMedicinesViewController *medicinesVC = [self.vcArray objectAtIndex:4];
 
-    // Get patient list
-    //Create fetch request for the Patient entity table
-//    NSFetchRequest *patientListFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Patient"];
-//    
-//    //Execute the fetch request through the managed object context to get the patient list
-//    self.patientList = [self.managedObjectContext executeFetchRequest:patientListFetchRequest error:nil];
-//    
-//    //Insert a new patient in the patient table
-//    patient = [NSEntityDescription insertNewObjectForEntityForName:@"Patient" inManagedObjectContext:self.managedObjectContext];
-    
-    // Personal Information from first vc:
-//    patient.firstName = personalVC.firstName.text;
-//    patient.middleName = personalVC.middleName.text;
-//    patient.paternalLastName = personalVC.paternalLastName.text;
-//    patient.maternalLastName = personalVC.maternalLastName.text;
-//    patient.socialSecurityNumber = personalVC.socialSecurity.text;
-//    patient.line1 = personalVC.addressLine1.text;
-//    patient.line2 = personalVC.addressLine2.text;
-//    patient.state = personalVC.state.text;
-//    patient.city = personalVC.city.text;
-//    patient.zip = personalVC.zipCode.text;
-//    
-//    patient.dateOfBirth = personalVC.dateOfBirth.text;
-//    patient.phoneNumber = personalVC.phoneNumber.text;
-//    patient.email = personalVC.email.text;
-//    
-//    //patient.patientId = [NSNumber numberWithInt:self.patientList.count + 1];
-//    //patient.patientId = [self getMaxId];
-
-    // Employer Info from second vc:
-//    patient.empName = contactsVC.employerName.text;
-//    patient.empLine1 = contactsVC.employerAddressLine1.text;
-//    patient.empLine2 = contactsVC.employerAddressLine2.text;
-//    patient.empCity = contactsVC.employerCity.text;
-//    patient.empState = contactsVC.employerState.text;
-//    patient.empZip = contactsVC.employerZipCode.text;
-//    patient.empPhoneNumber = contactsVC.employerPhoneNumber.text;
-//    patient.empEmail = contactsVC.employerEmail.text;
-//    
-//    
-//    // Emergency Contact Info from second vc:
-//    patient.emeFirstName = contactsVC.emergencyCFirstName.text;
-//    patient.emeMiddleName = contactsVC.emergencyCMiddleName.text;
-//    patient.emePaternalLastName = contactsVC.emergencyCPaternalLastName.text;
-//    patient.emeMaternalLastName = contactsVC.emergencyCMaternalLastName.text;
-//    patient.emeLine1 = contactsVC.emergencyCAddressLine1.text;
-//    patient.emeLine2 = contactsVC.emergencyCAddressLine2.text;
-//    patient.emeCity = contactsVC.emergencyCCity.text;
-//    patient.emeState = contactsVC.emergencyCState.text;
-//    patient.emeZip = contactsVC.emergencyCZipCode.text;
-//    patient.emePhoneNumber = contactsVC.emergencyCPhoneNumber.text;
-//    patient.emeEmail = contactsVC.emergencyCEmail.text;
-
-    // Insurance Info from third vc:
-//    patient.insuranceName = insuranceVC.primaryInsuranceName.text;
-//    patient.policyNumber = insuranceVC.primaryInsurancePolicyNum.text;
-//    patient.groupNumber = insuranceVC.primaryInsuranceGroupNum.text;
-//    
-//    patient.relationshipToPrimaryInsured = insuranceVC.relationshipToPrimaryInsuree.text;
-//    patient.piFirstName = insuranceVC.PIFirstName.text;
-//    patient.piMiddleName = insuranceVC.PIMiddleName.text;
-//    patient.piPaternalLastName = insuranceVC.PIPaternalLastName.text;
-//    patient.piMaternalLastName = insuranceVC.PIMaternalLastName.text;
-//    patient.piDateOfBirth = insuranceVC.PIDateofBirth.text;
-//    patient.piSocialSecurityNumber = insuranceVC.PISocialSecurityNum.text;
-//    patient.piLine1 = insuranceVC.PIAddressLine1.text;
-//    patient.piLine2 = insuranceVC.PIAddressLine2.text;
-//    patient.piState = insuranceVC.PIState.text;
-//    patient.piCity = insuranceVC.PICity.text;
-//    patient.piZip = insuranceVC.PIZipCode.text;
-//    patient.piPhoneNumber = insuranceVC.PIPhoneNum.text;
-//    patient.piEmail = insuranceVC.PIEmail.text;
-//    
-//    patient.sInsuranceName = insuranceVC.secondaryInsuranceName.text;
-//    patient.sPolicyNumber = insuranceVC.secondaryInsurancePolicyNum.text;
-//    patient.sGroupNumber = insuranceVC.secondaryInsuranceGroupNum.text;
-//    
-//    patient.srelationshipToPrimaryInsured = insuranceVC.relationshipToSecondaryInsuree.text;
-//    patient.sPiFirstName = insuranceVC.SIFirstName.text;
-//    patient.sPiMiddleName = insuranceVC.SIMiddleName.text;
-//    patient.sPiPaternalLastName = insuranceVC.SIPaternalLastName.text;
-//    patient.sPiMaternalLastName = insuranceVC.SIMaternalLastName.text;
-//    patient.sPiDateOfBirth = insuranceVC.SIDateofBirth.text;
-//    patient.sPiSocialSecurityNumber = insuranceVC.SISocialSecurityNum.text;
-//    patient.sPiLine1 = insuranceVC.SIAddressLine1.text;
-//    patient.sPiLine2 = insuranceVC.SIAddressLine2.text;
-//    patient.sPiState = insuranceVC.SIState.text;
-//    patient.sPiCity = insuranceVC.SICity.text;
-//    patient.sPiZip = insuranceVC.SIZipCode.text;
-//    patient.sPiPhoneNumber = insuranceVC.SIPhoneNum.text;
-//    patient.sPiEmail = insuranceVC.SIEmail.text;
-    
-
     
     //Get the patient information
-    
     NSDictionary *newPatient = [[NSDictionary alloc] initWithObjectsAndKeys:
                                 
                                 // Personal Information from first vc:
@@ -347,7 +211,6 @@
     
     //NSLog(@"Adding new patient; user's key is: %@", key);
     // Send the new patient in json to server
-    //NSURL *url = [NSURL URLWithString:@"http://services.soratech.cardona150.com/emr/patients/?key=e8342f8b-c73c-44c9-bd19-327b54c9ed65"];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/?key=%@", key]];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
@@ -371,7 +234,6 @@
     if (responseError == nil)
     {
         HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
-        hvc.myDoctor = self.myDoctor;
         [hvc incomingSegue:@"fromNewPatientPage"];
     }
     else
@@ -387,7 +249,7 @@
     
     // Create the json object
     NSError *cError, *pError = nil;
-    
+    /*
     // Have to get the patient id back from the new patient insert response
     NSURL *cUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/conditions/?key=%@", nPatientId, key]];
     
@@ -451,10 +313,9 @@
 //    // Medications from fifth vc:
 //    [medicinesVC saveMedications:patient.patientId];
 //    
+     */
     
-    // Return the logged-in doctor
     HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
-//    hvc.myDoctor = self.myDoctor;
     [hvc incomingSegue:@"fromNewPatientPage"];
 }
 

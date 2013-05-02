@@ -7,10 +7,8 @@
 //
 
 #import "HomeViewController.h"
-#import "DoctorInfoInputViewController.h"
 #import "PatientSearchViewController.h"
 #import "SearchResultsViewController.h"
-#import "NewPatientTBViewController.h"
 #import "KeychainItemWrapper.h"
 
 @interface HomeViewController ()
@@ -18,8 +16,6 @@
 @end
 
 @implementation HomeViewController
-
-@synthesize myDoctor;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,30 +48,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    if ([segue.identifier isEqualToString:@"toDoctorFillInfoSegue"])
-//    {
-//        DoctorInfoInputViewController *divc = [segue destinationViewController];
-//        divc.myDoctor = self.myDoctor;
-//    }
-//    if ([segue.identifier isEqualToString:@"toSearchPatientSegue"])
-//    {
-//        PatientSearchViewController *psvc = [segue destinationViewController];
-//        psvc.myDoctor = self.myDoctor;
-//        
-//        NSLog(@"Home: Doctor's name is: %@", self.myDoctor.fullName);
-//    }
     if ([segue.identifier isEqualToString:@"toSearchPatientSegue"])
     {
         SearchResultsViewController *srvc = [segue destinationViewController];
-        srvc.myDoctor = self.myDoctor;
         srvc.searchTerm = @"";
-        
-        NSLog(@"Home: Doctor's name is: %@", self.myDoctor.fullName);
-    }
-    else if ([segue.identifier isEqualToString:@"newPatientSegue"])
-    {
-        NewPatientTBViewController *npvc = [segue destinationViewController];
-        npvc.myDoctor = self.myDoctor;
     }
 }
 
@@ -84,9 +60,6 @@
     // Resetting the keychain
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     [keychainStore resetKeychainItem];
-    
-    //NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
-    //NSLog(@"Key at logout is: %@", key);
     
     [self performSegueWithIdentifier:@"logoutSegue" sender:self];
 }
