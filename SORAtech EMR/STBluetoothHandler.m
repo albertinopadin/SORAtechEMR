@@ -46,7 +46,165 @@
 // Convert the patient JSON dictionary to a format suitable for the smart card --> String
 - (void)writePatientInformationToCard:(NSDictionary *)patientJSON
 {
+    NSMutableString *formattedPatientInfoForCard = [[NSMutableString alloc] init];
     
+    // Set format flag at the beginning
+    [formattedPatientInfoForCard appendString:@"ST_EMR|"];
+    
+    // Personal
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"firstName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"middleName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"paternalLastName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"maternalLastName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"addressLine1"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"addressLine2"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"addressCity"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"addressState"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"addressZip"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"phoneNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"email"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"dateOfBirth"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"socialSecurityNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+
+    
+    // Employer
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"employerName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"employerAddressLine1"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"employerAddressLine2"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"employerAddressCity"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"employerAddressState"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"employerAddressZip"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"employerPhoneNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"employerEmail"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    
+    // Emergency Contact
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"emergencyContactFirstName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"emergencyContactMiddleName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"emergencyContactPaternalLastName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"emergencyContactMaternalLastName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"emergencyContactAddressLine1"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"emergencyContactAddressLine2"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"emergencyContactAddressCity"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"emergencyContactAddressState"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"emergencyContactAddressZip"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"emergencyContactPhoneNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"emergencyContactEmail"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    
+    // Primary Insurance
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsuranceName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePolicyNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsuranceGroupNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredFirstName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredMiddleName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredPaternalLastName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredMaternalLastName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressLine1"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressLine2"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressCity"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressState"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressZip"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredPhoneNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredEmail"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredDateOfBirth"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsurancePrimaryInsuredSocialSecurityNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"primaryInsuranceRelationshipToPrimaryInsured"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    
+    
+    // Secondary Insurance
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsuranceName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePolicyNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsuranceGroupNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredFirstName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredMiddleName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredPaternalLastName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredMaternalLastName"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressLine1"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressLine2"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressCity"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressState"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressZip"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredPhoneNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredEmail"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredDateOfBirth"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsurancePrimaryInsuredSocialSecurityNumber"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:@"|"];
+    [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsuranceRelationshipToPrimaryInsured"]];
+    [formattedPatientInfoForCard appendString:@"|"];
+
+    
+    // Write the formatted string to the card
+    [self writeToCard:formattedPatientInfoForCard];
 }
 
 // Convert the info stored in the smart card to an NSDictionary suitable for JSON
