@@ -43,7 +43,7 @@
     return patientHeight;
 }
 
-// Convert the patient JSON dictionary to a format suitable for the smart card
+// Convert the patient JSON dictionary to a format suitable for the smart card --> String
 - (void)writePatientInformationToCard:(NSDictionary *)patientJSON
 {
     
@@ -52,9 +52,131 @@
 // Convert the info stored in the smart card to an NSDictionary suitable for JSON
 - (NSDictionary *)retrievePatientInformationFromCard
 {
-    
+    NSString *stringFromCard = [self readFromCard];
+    if ([stringFromCard isEqualToString:@"Bluetooth is not connected"])
+    {
+        return nil;    // No bluetooth was connected; return nil and handle it in the destination
+    }
+    else
+    {
+        // Place each element, which has been separated by a | in the corresponding place in a JSON array
+        NSArray *separatedStringFromCard =  [stringFromCard componentsSeparatedByString:@"|"];
+        
+        // Verify that card has been formatted correctly
+        if ([[separatedStringFromCard objectAtIndex:0] isEqualToString:@"ST_EMR"])
+        {
+            NSDictionary *newPatientFromCardInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                        
+                                        // Personal Information from first vc:
+                                        [separatedStringFromCard objectAtIndex:1], @"firstName",
+                                        [separatedStringFromCard objectAtIndex:2], @"middleName",
+                                        [separatedStringFromCard objectAtIndex:3], @"paternalLastName",
+                                        [separatedStringFromCard objectAtIndex:4], @"maternalLastName",
+                                        [separatedStringFromCard objectAtIndex:5], @"addressLine1",
+                                        [separatedStringFromCard objectAtIndex:6], @"addressLine2",
+                                        [separatedStringFromCard objectAtIndex:7], @"addressCity",
+                                        [separatedStringFromCard objectAtIndex:8], @"addressState",
+                                        [separatedStringFromCard objectAtIndex:9], @"addressZip",
+                                        [separatedStringFromCard objectAtIndex:10], @"phoneNumber",
+                                        [separatedStringFromCard objectAtIndex:11], @"email",
+                                        [separatedStringFromCard objectAtIndex:12], @"dateOfBirth",
+                                        [separatedStringFromCard objectAtIndex:13], @"socialSecurityNumber",
+                                        
+                                        // Employer Info from second vc:
+                                        [separatedStringFromCard objectAtIndex:14], @"employerName",
+                                        [separatedStringFromCard objectAtIndex:15], @"employerAddressLine1",
+                                        [separatedStringFromCard objectAtIndex:16], @"employerAddressLine2",
+                                        [separatedStringFromCard objectAtIndex:17], @"employerAddressCity",
+                                        [separatedStringFromCard objectAtIndex:18], @"employerAddressState",
+                                        [separatedStringFromCard objectAtIndex:19], @"employerAddressZip",
+                                        [separatedStringFromCard objectAtIndex:20], @"employerPhoneNumber",
+                                        [separatedStringFromCard objectAtIndex:21], @"employerEmail",
+                                        
+                                        // Emergency Contact Info from second vc:
+                                        [separatedStringFromCard objectAtIndex:22], @"emergencyContactFirstName",
+                                        [separatedStringFromCard objectAtIndex:23], @"emergencyContactMiddleName",
+                                        [separatedStringFromCard objectAtIndex:24], @"emergencyContactPaternalLastName",
+                                        [separatedStringFromCard objectAtIndex:25], @"emergencyContactMaternalLastName",
+                                        [separatedStringFromCard objectAtIndex:26], @"emergencyContactAddressLine1",
+                                        [separatedStringFromCard objectAtIndex:27], @"emergencyContactAddressLine2",
+                                        [separatedStringFromCard objectAtIndex:28], @"emergencyContactAddressCity",
+                                        [separatedStringFromCard objectAtIndex:29], @"emergencyContactAddressState",
+                                        [separatedStringFromCard objectAtIndex:30], @"emergencyContactAddressZip",
+                                        [separatedStringFromCard objectAtIndex:31], @"emergencyContactPhoneNumber",
+                                        [separatedStringFromCard objectAtIndex:32], @"emergencyContactEmail",
+                                        
+                                        // Insurance Info from third vc:
+                                        [separatedStringFromCard objectAtIndex:33], @"primaryInsuranceName",
+                                        [separatedStringFromCard objectAtIndex:34], @"primaryInsurancePolicyNumber",
+                                        [separatedStringFromCard objectAtIndex:35], @"primaryInsuranceGroupNumber",
+                                        [separatedStringFromCard objectAtIndex:36], @"primaryInsurancePrimaryInsuredFirstName",
+                                        [separatedStringFromCard objectAtIndex:37], @"primaryInsurancePrimaryInsuredMiddleName",
+                                        [separatedStringFromCard objectAtIndex:38], @"primaryInsurancePrimaryInsuredPaternalLastName",
+                                        [separatedStringFromCard objectAtIndex:39], @"primaryInsurancePrimaryInsuredMaternalLastName",
+                                        [separatedStringFromCard objectAtIndex:40], @"primaryInsurancePrimaryInsuredAddressLine1",
+                                        [separatedStringFromCard objectAtIndex:41], @"primaryInsurancePrimaryInsuredAddressLine2",
+                                        [separatedStringFromCard objectAtIndex:42], @"primaryInsurancePrimaryInsuredAddressCity",
+                                        [separatedStringFromCard objectAtIndex:43], @"primaryInsurancePrimaryInsuredAddressState",
+                                        [separatedStringFromCard objectAtIndex:44], @"primaryInsurancePrimaryInsuredAddressZip",
+                                        [separatedStringFromCard objectAtIndex:45], @"primaryInsurancePrimaryInsuredPhoneNumber",
+                                        [separatedStringFromCard objectAtIndex:46], @"primaryInsurancePrimaryInsuredEmail",
+                                        [separatedStringFromCard objectAtIndex:47], @"primaryInsurancePrimaryInsuredDateOfBirth",
+                                        [separatedStringFromCard objectAtIndex:48], @"primaryInsurancePrimaryInsuredSocialSecurityNumber",
+                                        
+                                        //                                insuranceVC.PIEmployerName.text, @"primaryInsurancePrimaryInsuredEmployerName",
+                                        //                                insuranceVC.PIEmployerAddressLine1.text, @"primaryInsurancePrimaryInsuredEmployerAddressLine1",
+                                        //                                insuranceVC.PIEmployerAddressLine2.text, @"primaryInsurancePrimaryInsuredEmployerAddressLine2",
+                                        //                                insuranceVC.PIEmployerCity.text, @"primaryInsurancePrimaryInsuredEmployerAddressCity",
+                                        //                                insuranceVC.PIEmployerState.text, @"primaryInsurancePrimaryInsuredEmployerAddressState",
+                                        //                                insuranceVC.PIEmployerZip.text, @"primaryInsurancePrimaryInsuredEmployerAddressZip",
+                                        //                                insuranceVC.PIEmployerPhoneNumber.text, @"primaryInsurancePrimaryInsuredEmployerPhoneNumber",
+                                        //                                insuranceVC.PIEmployerEmail.text, @"primaryInsurancePrimaryInsuredEmployerEmail",
+                                        
+                                        [separatedStringFromCard objectAtIndex:49], @"primaryInsuranceRelationshipToPrimaryInsured",
+                                        
+                                        
+                                        [separatedStringFromCard objectAtIndex:50], @"secondaryInsuranceName",
+                                        [separatedStringFromCard objectAtIndex:51], @"secondaryInsurancePolicyNumber",
+                                        [separatedStringFromCard objectAtIndex:52], @"secondaryInsuranceGroupNumber",
+                                        [separatedStringFromCard objectAtIndex:53], @"secondaryInsurancePrimaryInsuredFirstName",
+                                        [separatedStringFromCard objectAtIndex:54], @"secondaryInsurancePrimaryInsuredMiddleName",
+                                        [separatedStringFromCard objectAtIndex:55], @"secondaryInsurancePrimaryInsuredPaternalLastName",
+                                        [separatedStringFromCard objectAtIndex:56], @"secondaryInsurancePrimaryInsuredMaternalLastName",
+                                        [separatedStringFromCard objectAtIndex:57], @"secondaryInsurancePrimaryInsuredAddressLine1",
+                                        [separatedStringFromCard objectAtIndex:58], @"secondaryInsurancePrimaryInsuredAddressLine2",
+                                        [separatedStringFromCard objectAtIndex:59], @"secondaryInsurancePrimaryInsuredAddressCity",
+                                        [separatedStringFromCard objectAtIndex:60], @"secondaryInsurancePrimaryInsuredAddressState",
+                                        [separatedStringFromCard objectAtIndex:61], @"secondaryInsurancePrimaryInsuredAddressZip",
+                                        [separatedStringFromCard objectAtIndex:62], @"secondaryInsurancePrimaryInsuredPhoneNumber",
+                                        [separatedStringFromCard objectAtIndex:63], @"secondaryInsurancePrimaryInsuredEmail",
+                                        [separatedStringFromCard objectAtIndex:64], @"secondaryInsurancePrimaryInsuredDateOfBirth",
+                                        [separatedStringFromCard objectAtIndex:65], @"secondaryInsurancePrimaryInsuredSocialSecurityNumber",
+                                        
+                                        //                                insuranceVC.SIEmployerName.text, @"secondaryInsurancePrimaryInsuredEmployerName",
+                                        //                                insuranceVC.SIEmployerAddressLine1.text, @"secondaryInsurancePrimaryInsuredEmployerAddressLine1",
+                                        //                                insuranceVC.SIEmployerAddressLine2.text, @"secondaryInsurancePrimaryInsuredEmployerAddressLine2",
+                                        //                                insuranceVC.SIEmployerCity.text, @"secondaryInsurancePrimaryInsuredEmployerAddressCity",
+                                        //                                insuranceVC.SIEmployerState.text, @"secondaryInsurancePrimaryInsuredEmployerAddressState",
+                                        //                                insuranceVC.SIEmployerZip.text, @"secondaryInsurancePrimaryInsuredEmployerAddressZip",
+                                        //                                insuranceVC.SIEmployerPhoneNumber.text, @"secondaryInsurancePrimaryInsuredEmployerPhoneNumber",
+                                        //                                insuranceVC.SIEmployerEmail.text, @"secondaryInsurancePrimaryInsuredEmployerEmail",
+                                        
+                                        [separatedStringFromCard objectAtIndex:66], @"secondaryInsuranceRelationshipToPrimaryInsured",
+                                        
+                                        nil];
+            
+            return newPatientFromCardInfo;
+        }
+        else
+        {
+            return nil;     // Handle error at destination
+        }
+        
+    }
 }
 
+
+// OTHER METHODS //
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -136,6 +258,31 @@
     return distance;
 }
 
+- (void)selectSecondHalfOfBlock
+{
+    [[EMConnectionManager sharedManager] writeValue:@"Second_Half" toResource:@"blockHalf" onSuccess:^{
+        // Write on card
+        NSLog(@"In second half of block");
+        
+    } onFail:^(NSError *error) {
+        EMLog(@"Failed to write secondBlock");
+        NSLog(@"Failed to write secondBlock");
+    }];
+}
+
+- (void)selectBlockNumber:(int)num
+{
+    NSNumber *blockNum = [NSNumber numberWithUnsignedShort:num];
+    
+    [[EMConnectionManager sharedManager] writeValue:blockNum toResource:@"currentBlock" onSuccess:^{
+        // Write on card
+        NSLog(@"blockNum: %@", blockNum);
+        
+    } onFail:^(NSError *error) {
+        EMLog(@"Failed to write currentBlock");
+        NSLog(@"Did not write block number");
+    }];
+}
 
 - (void)writeToCard:(NSString *)patientJSONString
 {
@@ -147,39 +294,44 @@
     
     // Divide the string into blocks of 256 bytes
     NSMutableArray *blockArray = [[NSMutableArray alloc] init];
-    //    if ([cardReadTextView.text length] < 127 * 16)
-    //    {
-    //        for (int i = [cardWriteTextView.text length]; i < 127 * 16; i++)
-    //        {
-    //            cardWriteTextView.text = [cardWriteTextView.text stringByAppendingString:@" "];
-    //        }
-    //    }
-    //    for (int i = 0; i < 16; i++)
-    
+        
     NSRange blockRange;
     
-    if ([cardWriteTextView.text length] <= 127)
+    if ([patientJSONString length] <= 127)
     {
-        //blockRange = NSMakeRange(0, [cardWriteTextView.text length]);
-        [blockArray addObject:cardWriteTextView.text];
+        [blockArray addObject:patientJSONString];
         [self writeToCardBlocks:blockArray UsingIndex:0];
     }
     
-    else if ([cardWriteTextView.text length] > 127)
+    else if ([patientJSONString length] > 127)
     {
-        int limit = ([cardWriteTextView.text length]/127) + 1;
+        int limit = ([patientJSONString length]/127) + 1;
+        
         for (int i = 0; i < limit; i++)
         {
-            if (i == limit - 1)
+            if (i == limit - 1)     // Last substring
             {
-                blockRange = NSMakeRange(127*i, [cardWriteTextView.text length] % 128);
-                [blockArray addObject:[cardWriteTextView.text substringWithRange:blockRange]];
+                blockRange = NSMakeRange(127*i, [patientJSONString length] % 127);
+                [blockArray addObject:[patientJSONString substringWithRange:blockRange]];
             }
             else
             {
                 blockRange = NSMakeRange(127*i, 127);
-                [blockArray addObject:[cardWriteTextView.text substringWithRange:blockRange]];
+                [blockArray addObject:[patientJSONString substringWithRange:blockRange]];
             }
+            
+            // Write to specific card block
+            int blockToWrite = i / 2;
+            int remainder = i % 2;
+            
+            [self selectBlockNumber:blockToWrite];  // First: select which card block to write --> 0-7
+            
+            if (remainder == 1)
+            {
+                [self selectSecondHalfOfBlock];     // If remainder == 1, select the second half of the current block
+                // Must be done in order, so first select block, then now add 127
+            }
+            
             // Write to specific card block
             [self writeToCardBlocks:blockArray UsingIndex:i];
         }
@@ -187,22 +339,10 @@
     }
     
     NSLog(@"blockArray: %@", blockArray);
-    
 }
 
 - (void)writeToCardBlocks:(NSArray *)blocks UsingIndex:(int)index
 {
-    NSNumber *blockNum = [NSNumber numberWithUnsignedShort:index];
-    
-    [[EMConnectionManager sharedManager] writeValue:blockNum toResource:@"currentBlock" onSuccess:^{
-        // Write on card
-        NSLog(@"blockNum: %@", blockNum);
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to write currentBlock");
-        NSLog(@"Did not write block number");
-    }];
-    
     [[EMConnectionManager sharedManager] writeValue:[blocks objectAtIndex:index] toResource:@"cardContents" onSuccess:^{
         // Write on card
         
@@ -212,222 +352,46 @@
     
 }
 
-- (IBAction)readFromCard:(id)sender
+- (void)readCardBlockToArray:(NSMutableArray *)blockArray
+{
+    [[EMConnectionManager sharedManager] readResource:@"cardContents" onSuccess:^(id readValue) {
+        [blockArray addObject:[NSString stringWithFormat:@"%@", readValue]];
+        NSLog(@"Read from card: %@", readValue);
+        //cardReadTextView.text = [blockArray componentsJoinedByString:@""];
+        
+    } onFail:^(NSError *error) {
+        EMLog(@"Failed to read cardContents");
+        //cardReadTextView.text = @"Failed to read cardContents";
+    }];
+}
+
+- (NSString *)readFromCard
 {
     if ([[EMConnectionManager sharedManager] connectionState] != EMConnectionStateConnected) {
-        return;
+        return @"Bluetooth is not connected";
     }
     
     NSMutableArray *blockArray = [[NSMutableArray alloc] init];
     
-    //////////// 1  ///////////////////
-    NSNumber *blockNum = [NSNumber numberWithUnsignedShort:0];
-    
-    //int blockNum = 0;
-    
-    [[EMConnectionManager sharedManager] writeValue:blockNum toResource:@"currentBlock" onSuccess:^{
-        // Write on card
-        NSLog(@"blockNum: %@", blockNum);
+    for (int i = 0; i < 16; i++)
+    {
+        int blockToRead = i / 2;
+        int remainder = i % 2;
         
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to write currentBlock");
-        NSLog(@"Did not write block number");
-    }];
-    
-    
-    [[EMConnectionManager sharedManager] readResource:@"cardContents" onSuccess:^(id readValue) {
-        [blockArray addObject:[NSString stringWithFormat:@"%@", readValue]];
-        NSLog(@"Read from card: %@", readValue);
-        cardReadTextView.text = [blockArray componentsJoinedByString:@" "];
+        [self selectBlockNumber:blockToRead];
         
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to read cardContents");
-        cardReadTextView.text = @"Failed to read cardContents";
-    }];
-    
-    //////////////////////////////////////
-    
-    
-    //////////// 2  ///////////////////
-    blockNum = [NSNumber numberWithUnsignedShort:1];
-    
-    [[EMConnectionManager sharedManager] writeValue:blockNum toResource:@"currentBlock" onSuccess:^{
-        // Write on card
-        NSLog(@"blockNum: %@", blockNum);
+        if (remainder == 1)
+        {
+            [self selectSecondHalfOfBlock];
+        }
         
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to write currentBlock");
-        NSLog(@"Did not write block number");
-    }];
+        // Read, block half by block half, into the array
+        [self readCardBlockToArray:blockArray];
+    }
     
+    NSString *stringFromCard = [blockArray componentsJoinedByString:@""];
     
-    [[EMConnectionManager sharedManager] readResource:@"cardContents" onSuccess:^(id readValue) {
-        [blockArray addObject:[NSString stringWithFormat:@"%@", readValue]];
-        NSLog(@"Read from card: %@", readValue);
-        cardReadTextView.text = [blockArray componentsJoinedByString:@" "];
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to read cardContents");
-        cardReadTextView.text = @"Failed to read cardContents";
-    }];
-    
-    //////////////////////////////////////
-    
-    //////////// 3  ///////////////////
-    blockNum = [NSNumber numberWithUnsignedShort:2];
-    
-    [[EMConnectionManager sharedManager] writeValue:blockNum toResource:@"currentBlock" onSuccess:^{
-        // Write on card
-        NSLog(@"blockNum: %@", blockNum);
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to write currentBlock");
-        NSLog(@"Did not write block number");
-    }];
-    
-    
-    [[EMConnectionManager sharedManager] readResource:@"cardContents" onSuccess:^(id readValue) {
-        [blockArray addObject:[NSString stringWithFormat:@"%@", readValue]];
-        NSLog(@"Read from card: %@", readValue);
-        cardReadTextView.text = [blockArray componentsJoinedByString:@" "];
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to read cardContents");
-        cardReadTextView.text = @"Failed to read cardContents";
-    }];
-    
-    //////////////////////////////////////
-    
-    
-    //////////// 4  ///////////////////
-    blockNum = [NSNumber numberWithUnsignedShort:3];
-    
-    [[EMConnectionManager sharedManager] writeValue:blockNum toResource:@"currentBlock" onSuccess:^{
-        // Write on card
-        NSLog(@"blockNum: %@", blockNum);
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to write currentBlock");
-        NSLog(@"Did not write block number");
-    }];
-    
-    
-    [[EMConnectionManager sharedManager] readResource:@"cardContents" onSuccess:^(id readValue) {
-        [blockArray addObject:[NSString stringWithFormat:@"%@", readValue]];
-        NSLog(@"Read from card: %@", readValue);
-        cardReadTextView.text = [blockArray componentsJoinedByString:@" "];
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to read cardContents");
-        cardReadTextView.text = @"Failed to read cardContents";
-    }];
-    
-    //////////////////////////////////////
-    
-    
-    //////////// 5  ///////////////////
-    blockNum = [NSNumber numberWithUnsignedShort:4];
-    
-    [[EMConnectionManager sharedManager] writeValue:blockNum toResource:@"currentBlock" onSuccess:^{
-        // Write on card
-        NSLog(@"blockNum: %@", blockNum);
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to write currentBlock");
-        NSLog(@"Did not write block number");
-    }];
-    
-    
-    [[EMConnectionManager sharedManager] readResource:@"cardContents" onSuccess:^(id readValue) {
-        [blockArray addObject:[NSString stringWithFormat:@"%@", readValue]];
-        NSLog(@"Read from card: %@", readValue);
-        cardReadTextView.text = [blockArray componentsJoinedByString:@" "];
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to read cardContents");
-        cardReadTextView.text = @"Failed to read cardContents";
-    }];
-    
-    //////////////////////////////////////
-    
-    
-    //////////// 6  ///////////////////
-    blockNum = [NSNumber numberWithUnsignedShort:5];
-    
-    [[EMConnectionManager sharedManager] writeValue:blockNum toResource:@"currentBlock" onSuccess:^{
-        // Write on card
-        NSLog(@"blockNum: %@", blockNum);
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to write currentBlock");
-        NSLog(@"Did not write block number");
-    }];
-    
-    
-    [[EMConnectionManager sharedManager] readResource:@"cardContents" onSuccess:^(id readValue) {
-        [blockArray addObject:[NSString stringWithFormat:@"%@", readValue]];
-        NSLog(@"Read from card: %@", readValue);
-        cardReadTextView.text = [blockArray componentsJoinedByString:@" "];
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to read cardContents");
-        cardReadTextView.text = @"Failed to read cardContents";
-    }];
-    
-    //////////////////////////////////////
-    
-    
-    //////////// 7  ///////////////////
-    blockNum = [NSNumber numberWithUnsignedShort:6];
-    
-    [[EMConnectionManager sharedManager] writeValue:blockNum toResource:@"currentBlock" onSuccess:^{
-        // Write on card
-        NSLog(@"blockNum: %@", blockNum);
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to write currentBlock");
-        NSLog(@"Did not write block number");
-    }];
-    
-    
-    [[EMConnectionManager sharedManager] readResource:@"cardContents" onSuccess:^(id readValue) {
-        [blockArray addObject:[NSString stringWithFormat:@"%@", readValue]];
-        NSLog(@"Read from card: %@", readValue);
-        cardReadTextView.text = [blockArray componentsJoinedByString:@" "];
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to read cardContents");
-        cardReadTextView.text = @"Failed to read cardContents";
-    }];
-    
-    //////////////////////////////////////
-    
-    
-    //////////// 8  ///////////////////
-    blockNum = [NSNumber numberWithUnsignedShort:7];
-    
-    [[EMConnectionManager sharedManager] writeValue:blockNum toResource:@"currentBlock" onSuccess:^{
-        // Write on card
-        NSLog(@"blockNum: %@", blockNum);
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to write currentBlock");
-        NSLog(@"Did not write block number");
-    }];
-    
-    
-    [[EMConnectionManager sharedManager] readResource:@"cardContents" onSuccess:^(id readValue) {
-        [blockArray addObject:[NSString stringWithFormat:@"%@", readValue]];
-        NSLog(@"Read from card: %@", readValue);
-        cardReadTextView.text = [blockArray componentsJoinedByString:@" "];
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to read cardContents");
-        cardReadTextView.text = @"Failed to read cardContents";
-    }];
-    
-    //////////////////////////////////////
-    
+    return stringFromCard;
 }
 
 @end
