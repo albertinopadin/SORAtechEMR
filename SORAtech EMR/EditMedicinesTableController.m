@@ -8,8 +8,8 @@
 
 #import "EditMedicinesTableController.h"
 #import "STAppDelegate.h"
-#import "Medicine.h"
 #import "NewPatientMedicationCell.h"
+#import "KeychainItemWrapper.h"
 
 @interface EditMedicinesTableController ()
 
@@ -46,8 +46,6 @@
     [self.tableView beginUpdates];
     
     self.numCells = self.editMedicineCellArray.count + 1;
-    Medicine *m = [NSEntityDescription insertNewObjectForEntityForName:@"Medicine" inManagedObjectContext:self.managedObjectContext];
-    [self.medicineList insertObject:m atIndex:0];
     NewPatientMedicationCell *nCell = [[NewPatientMedicationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newPatientMedicineCell"];
     nCell.cellNumLabel.text = [NSString stringWithFormat:@"%i:", self.numCells];
     [self.editMedicineCellArray insertObject:nCell atIndex:0];
@@ -63,51 +61,136 @@
 - (void)generateMedicinesFromPID:(NSInteger)pID
 {
     // Get the patient's conditions
-    NSFetchRequest *medicineFetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *medicineEntity = [NSEntityDescription entityForName:@"Medicine" inManagedObjectContext:self.managedObjectContext];
-    [medicineFetchRequest setEntity:medicineEntity];
-    NSPredicate *medicinePredicate;
-    medicinePredicate =[NSPredicate predicateWithFormat:@"patientId == %i", pID];
-    [medicineFetchRequest setPredicate:medicinePredicate];
     
-    self.medicineList = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:medicineFetchRequest error:nil]];
+    // Get doctor's key from keychain
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
+    
+    NSError *error, *e = nil;
+    NSHTTPURLResponse *response = nil;
+    
+    NSURLRequest *medicationsGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/%i/medications/?key=%@", pID, key]]];
+    
+    NSLog(@"Url medications get is: %@", [medicationsGetRequest URL]);
+    
+    NSData *medicationsGetData = [NSURLConnection sendSynchronousRequest:medicationsGetRequest returningResponse:&response error:&e];
+    
+    NSLog(@"Response for patient conditions get is: %i", [response statusCode]);
+    
+    if (!medicationsGetData) {
+        NSLog(@"medicationsGetData is nil");
+        NSLog(@"Error: %@", e);
+    }
+    
+    //Creates the array of dictionary objects, ordered alphabetically
+    // Each element in this array is a condition object, whose properties can be accessed as a dictionary
+    self.medicineList = [[NSJSONSerialization JSONObjectWithData:medicationsGetData options:0 error:&error] mutableCopy];
     
     // Add corresponding cells to array
     for (int i = 0; i < self.medicineList.count; i++)
     {
         NewPatientMedicationCell *nCell = [[NewPatientMedicationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newPatientMedicineCell"];
         nCell.cellNumLabel.text = [NSString stringWithFormat:@"%i:", self.medicineList.count-i];
-        Medicine *m = [self.medicineList objectAtIndex:i];
+        NSDictionary *medicationDict = [self.medicineList objectAtIndex:i];
         
-        nCell.medicationNameTF.text = m.name;
-        nCell.dosageTF.text = m.dosage;
-        nCell.frequencyTF.text = m.frequency;
-        nCell.purposeTF.text = m.purpose;
+        nCell.medicationNameTF.text = [medicationDict valueForKey:@"name"];
+        nCell.dosageTF.text = [medicationDict valueForKey:@"dosage"];
+        nCell.frequencyTF.text = @"";
+        nCell.purposeTF.text = @"";
         
         [self.editMedicineCellArray insertObject:nCell atIndex:i];
     }
-    
+
     [self.tableView reloadData];
 }
 
 - (void)saveEditedMedicinesWithPID:(NSInteger)patientID
 {
-    NSError *saveError = nil;
-    for (int i = 0; i < self.editMedicineCellArray.count; i++)
+    NSError *putError, *postError = nil;
+    
+    // Get the user's key from the keychain
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
+    
+    // Must do 2 things: PUT new medications, and POST edited medications
+    
+    // PUT new medications
+    for (int i = 0; i < self.editMedicineCellArray.count - self.medicineList.count; i++)
     {
         NewPatientMedicationCell *cell = [self.editMedicineCellArray objectAtIndex:i];
         if (cell.medicationNameTF.text.length > 0)
         {
-            Medicine *m = [self.medicineList objectAtIndex:i];
-            m.name = cell.medicationNameTF.text;
-            m.dosage = cell.dosageTF.text;
-            m.frequency = cell.frequencyTF.text;
-            m.purpose = cell.purposeTF.text;
-            m.patientId = [NSNumber numberWithInteger:patientID];
+            // Make new dictionary for the medication json object
+            NSDictionary *editedMedication_New = [[NSDictionary alloc] initWithObjectsAndKeys:@"", @"medicationId",
+                                                 @"", @"patientId",
+                                                 cell.medicationNameTF.text, @"name",
+                                                 cell.dosageTF.text, @"dosage",
+                                                 nil];
+            
+            NSData *editedMedicationsJSONData_New = [NSJSONSerialization dataWithJSONObject:editedMedication_New options:NSJSONWritingPrettyPrinted error:&putError];
+            
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%i/medications/?key=%@", patientID, key]];
+            
+            // Check url
+            NSLog(@"Put URL = %@", url);
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+            // HTTP METHOD: PUT (INSERT NEW)
+            [request setHTTPMethod:@"PUT"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            [request setValue:[NSString stringWithFormat:@"%d", editedMedicationsJSONData_New.length] forHTTPHeaderField:@"Content-Length"];
+            
+            [request setHTTPBody:editedMedicationsJSONData_New];
+            
+            // Response
+            NSHTTPURLResponse *response = nil;
+            NSError *responseError = nil;
+            
+            [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
+            
+            NSLog(@"Response satus code: %i", [response statusCode]);
         }
     }
-    // Save each condition
-    [self.managedObjectContext save:&saveError];
+    
+    // POST edited medications
+    for (int i = self.editMedicineCellArray.count - self.medicineList.count; i < self.editMedicineCellArray.count; i++)
+    {
+        NewPatientMedicationCell *cell = [self.editMedicineCellArray objectAtIndex:i];
+        if (cell.medicationNameTF.text.length > 0)
+        {
+            // Make sure to start at the correct index
+            NSMutableDictionary *editedMedication = [[self.medicineList objectAtIndex:i -
+                                                     (self.editMedicineCellArray.count - self.medicineList.count)] mutableCopy];
+            
+            [editedMedication setValue:cell.medicationNameTF.text forKey:@"name"];
+            [editedMedication setValue:cell.dosageTF.text forKey:@"dosage"];
+            
+            NSData *editedMedicationsJSONData = [NSJSONSerialization dataWithJSONObject:editedMedication options:NSJSONWritingPrettyPrinted error:&postError];
+            
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%i/medications/%@/?key=%@", patientID, [editedMedication valueForKey:@"medicationId"], key]];
+            
+            // Check url
+            NSLog(@"Post URL = %@", url);
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+            // HTTP METHOD: POST (EDIT)
+            [request setHTTPMethod:@"POST"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            [request setValue:[NSString stringWithFormat:@"%d", editedMedicationsJSONData.length] forHTTPHeaderField:@"Content-Length"];
+            
+            [request setHTTPBody:editedMedicationsJSONData];
+            
+            // Response
+            NSHTTPURLResponse *response = nil;
+            NSError *responseError = nil;
+            
+            [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
+            
+            NSLog(@"Response satus code: %i", [response statusCode]);
+        }
+    }
 }
 
 
@@ -149,7 +232,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.medicineList.count;
+    //return self.medicineList.count;
+    return self.editMedicineCellArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -173,11 +257,17 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        Medicine *medicineToDelete = [self.medicineList objectAtIndex:[indexPath row]];
-        [self deleteMedicineFromDatabase:medicineToDelete];
         
-        // Delete from our array
-        [self.medicineList removeObjectAtIndex:[indexPath row]];
+        // If condition is an existing condition (it's in the db) delete it from the db
+        if ([indexPath row] >= (self.editMedicineCellArray.count - self.medicineList.count))
+        {
+            NSDictionary *medicineToDelete = [self.medicineList objectAtIndex:[indexPath row]];
+            [self deleteMedicineFromDatabase:medicineToDelete];
+            
+            // Delete from our array
+            [self.medicineList removeObjectAtIndex:[indexPath row]];
+        }
+
         // Remove from cell array as well
         [self.editMedicineCellArray removeObjectAtIndex:[indexPath row]];
         
@@ -188,13 +278,28 @@
     }   
 }
 
-- (void)deleteMedicineFromDatabase:(Medicine *)medicineToBeDeleted
+- (void)deleteMedicineFromDatabase:(NSDictionary *)medicineToBeDeleted
 {
-    [self.managedObjectContext deleteObject:medicineToBeDeleted];
+    // Get the user's key from the keychain
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
-    // Confirm our delete by saving the managed object context
-    NSError *saveError = nil;
-    [self.managedObjectContext save:&saveError];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/medications/%@/?key=%@", [medicineToBeDeleted valueForKey:@"patientId"], [medicineToBeDeleted valueForKey:@"medicationId"], key]];
+    
+    // Check url
+    NSLog(@"Medication Delete URL = %@", url);
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+    // HTTP METHOD: DELETE
+    [request setHTTPMethod:@"DELETE"];
+    
+    // Response
+    NSHTTPURLResponse *response = nil;
+    NSError *responseError = nil;
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
+    
+    NSLog(@"Response satus code: %i", [response statusCode]);
 }
 
 

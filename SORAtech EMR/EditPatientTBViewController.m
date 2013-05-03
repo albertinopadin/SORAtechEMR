@@ -70,13 +70,6 @@
 // Checks if there are empty text fields
 - (BOOL)shouldPerformPop
 {
-    //Get each view controller from my array of vc's
-    //self.vcArray = [self viewControllers];
-//    PatientPersonalInfoViewController *personalVC = [self.vcArray objectAtIndex:0];
-//    NPEmployerViewController *employerVC = [self.vcArray objectAtIndex:1];
-//    NPEmergencyContactViewController *emergencyContactVC = [self.vcArray objectAtIndex:2];
-//    NPInsuranceViewController *insuranceVC = [self.vcArray objectAtIndex:3];
-    
     if (![personalVC namesPresent])
     {
         //Display a message if the first name, paternal or maternal last names are empty:
@@ -334,8 +327,6 @@
     
     //NSLog(@"Adding new patient; user's key is: %@", key);
     // Send the new patient in json to server
-    //NSURL *url = [NSURL URLWithString:@"http://services.soratech.cardona150.com/emr/patients/?key=e8342f8b-c73c-44c9-bd19-327b54c9ed65"];
-    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/?key=%@", [self.myPatientJSON valueForKey:@"patientId"], key]];
     
     // Check url
@@ -351,7 +342,6 @@
     [request setHTTPBody:editedPatientJSONData];
     
     // Response
-    //NSURLResponse *response = nil;
     NSHTTPURLResponse *response = nil;
     NSError *responseError = nil;
     
@@ -364,7 +354,7 @@
     [self.conditionsVC saveEditedConditionsWithPID:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
     
     // Save medications
-    //[self.medicinesVC saveEditedMedicinesWithPID:[self.myPatient.patientId integerValue]];
+    [self.medicinesVC saveEditedMedicinesWithPID:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
     
     
     
@@ -396,7 +386,7 @@
     self.myPatientJSON = [editedArr objectAtIndex:0];
 //    self.myPatientJSON = [[NSJSONSerialization JSONObjectWithData:patientGetData options:0 error:&getError] objectAtIndex:0];
     
-    NSLog(@"editedArr count: %i", [editedArr count]);
+    //NSLog(@"editedArr count: %i", [editedArr count]);
     NSLog(@"Edited Patient!");
     
 }
@@ -508,7 +498,7 @@
     // Generate conditions and medications on the last two vc's
     [self.conditionsVC generateConditionsList:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
     
-    //[self.medicinesVC generateMedicineList:[self.myPatient.patientId integerValue]];
+    [self.medicinesVC generateMedicineList:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
 }
 
 - (NSString *)verifyForNull:(id)theString

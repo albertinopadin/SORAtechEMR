@@ -303,7 +303,6 @@
     [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
     
     NSLog(@"Response satus code: %i", [response statusCode]);
-
 }
 
 

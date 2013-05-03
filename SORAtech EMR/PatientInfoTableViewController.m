@@ -93,111 +93,8 @@
     self.myTableView.dataSource = self;
     self.myTableView.delegate = self;
     
-    /*
-     
-    // NSFetchRequest
-    NSFetchRequest *condFetchRequest = [[NSFetchRequest alloc] init];
-    
-    // fetchRequest needs to know what entity to fetch
-    NSEntityDescription *condEntity = [NSEntityDescription entityForName:@"Condition" inManagedObjectContext:self.managedObjectContext];
-    
-    [condFetchRequest setEntity:condEntity];
-    
-    NSPredicate *condPredicate;
-    
-    // Set predicate so it searches for our particular patient's visits.
-    condPredicate =[NSPredicate predicateWithFormat:@"patientId == %@", self.myPatient.patientId];
-    
-    [condFetchRequest setPredicate:condPredicate];
-    
-    self.conditionList = [self.managedObjectContext executeFetchRequest:condFetchRequest error:nil];
-    /////////////////////////////////////
-    
-    // NSFetchRequest
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    // fetchRequest needs to know what entity to fetch
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Visit" inManagedObjectContext:self.managedObjectContext];
-    
-    [fetchRequest setEntity:entity];
-    
-    // NSSortDescriptor tells defines how to sort the fetched results
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-    
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    NSPredicate *predicate;
-    
-    // Set predicate so it searches for our particular patient's visits.
-    predicate =[NSPredicate predicateWithFormat:@"patientId == %@", self.myPatient.patientId];
-    
-    [fetchRequest setPredicate:predicate];
-    
-    self.visitList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    ////////////////////////////////////////
-    
-    self.medicineList = [[NSArray alloc] init];
-    
-    // NSFetchRequest
-    NSFetchRequest *medFetchRequest = [[NSFetchRequest alloc] init];
-    
-    // fetchRequest needs to know what entity to fetch
-    NSEntityDescription *medEntity = [NSEntityDescription entityForName:@"Medicine" inManagedObjectContext:self.managedObjectContext];
-    
-    [medFetchRequest setEntity:medEntity];
-    
-    NSPredicate *medPredicate;
-        
-    // Set predicate to search meds with patientId
-    medPredicate =[NSPredicate predicateWithFormat:@"patientId == %@", self.myPatient.patientId];
-    
-    [medFetchRequest setPredicate:medPredicate];
-    
-    self.medicineList = [self.managedObjectContext executeFetchRequest:medFetchRequest error:nil];
-    
-    
-        
-    //////////////// ----------- SET LABELS -------------- \\\\\\\\\\\\\\\\\\\\\\\
-
-    // Personal
-    self.fullNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@", self.myPatient.firstName, self.myPatient.middleName, self.myPatient.paternalLastName, self.myPatient.maternalLastName];
-    self.addressLine1Label.text = [NSString stringWithFormat:@"%@  %@", self.myPatient.line1, self.myPatient.line2];
-    self.addressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@", self.myPatient.city, self.myPatient.state, self.myPatient.zip];
-    self.phoneNumberLabel.text = self.myPatient.phoneNumber;
-    self.emailLabel.text = self.myPatient.email;
-    self.dateOfBirthLabel.text = self.myPatient.dateOfBirth;
-    self.socialSecurityLabel.text = self.myPatient.socialSecurityNumber;
-    
-    // Employer
-    self.employerNameLabel.text = self.myPatient.empName;
-    self.employerAddressLine1Label.text = [NSString stringWithFormat:@"%@  %@", self.myPatient.empLine1, self.myPatient.empLine2];
-    self.employerAddressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@", self.myPatient.empCity, self.myPatient.empState, self.myPatient.empZip];
-    self.employerPhoneNumberLabel.text = self.myPatient.empPhoneNumber;
-    self.employerEmailLabel.text = self.myPatient.empEmail;
-    
-    // Emergency Contact
-    self.emergencyCNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@", self.myPatient.emeFirstName, self.myPatient.emeMiddleName, self.myPatient.emePaternalLastName, self.myPatient.emeMaternalLastName];
-    self.emergencyCAddressLine1Label.text = [NSString stringWithFormat:@"%@  %@", self.myPatient.emeLine1, self.myPatient.emeLine2];
-    self.emergencyCAddressLine2Label.text = [NSString stringWithFormat:@"%@  %@  %@", self.myPatient.emeCity, self.myPatient.emeState, self.myPatient.emeZip];
-    self.emergencyCPhoneNumberLabel.text = self.myPatient.emePhoneNumber;
-    self.emergencyCEmailLabel.text = self.myPatient.emeEmail;
-
-    // Insurance Info
-    self.primaryInsuranceNameLabel.text = self.myPatient.insuranceName;
-    self.primaryInsurancePolicyNumLabel.text = self.myPatient.policyNumber;
-    self.primaryInsuranceGroupNumLabel.text = self.myPatient.groupNumber;
-    self.primaryInsuranceRelationshipToPrimaryLabel.text = self.myPatient.relationshipToPrimaryInsured;
-    
-    self.secondaryInsuranceNameLabel.text = self.myPatient.sInsuranceName;
-    self.secondaryInsurancePolicyNumLabel.text = self.myPatient.sPolicyNumber;
-    self.secondaryInsuranceGroupNumLabel.text = self.myPatient.sGroupNumber;
-    self.secondaryInsuranceRelationshipToPrimaryLabel.text = self.myPatient.srelationshipToPrimaryInsured;
-    
-     */
-    
-    NSLog(@"myPatientJSON: %@", self.myPatientJSON);
+       
+    //NSLog(@"myPatientJSON: %@", self.myPatientJSON);
     
     //////////////// ----------- SET LABELS -------------- \\\\\\\\\\\\\\\\\\\\\\\
     
@@ -266,6 +163,7 @@
     
     // Get medications
     [self fetchMedicationsForPatientId:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
+    
     
     //////////////// ----------- SET LABELS -------------- \\\\\\\\\\\\\\\\\\\\\\\
     
@@ -458,17 +356,8 @@
     {
         static NSString *CellIdentifier = @"infoMedicationCell";
         
-        //NSIndexPath *iPath = [NSIndexPath indexPathForRow:0 inSection:5];
-        
         //PatientInfoMedicineCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         PatientInfoMedicineCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        //PatientInfoMedicineCell *oCell = (PatientInfoMedicineCell *)[super tableView:tableView cellForRowAtIndexPath:iPath];
-        
-//        PatientInfoMedicineCell *oCell = self.medicineCell;
-//        
-//        NSData *buffer = [NSKeyedArchiver archivedDataWithRootObject:oCell];
-//        PatientInfoMedicineCell *cell = [NSKeyedUnarchiver unarchiveObjectWithData:buffer];
         
         //This seems to be important!
         if (cell == nil){
@@ -484,56 +373,6 @@
         cell.purposeLabel.text = @"";
         
         
-        // Getting the prescriber
-        
-//        // NSFetchRequest
-//        NSFetchRequest *visitFR = [[NSFetchRequest alloc] init];
-//        // fetchRequest needs to know what entity to fetch
-//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Visit" inManagedObjectContext:self.managedObjectContext];
-//        [visitFR setEntity:entity];
-//        NSPredicate *visitPred;
-//        
-//        // Set predicate so it searches for our particular patient's visits.
-//        visitPred =[NSPredicate predicateWithFormat:@"visitId == %@", med.visitId];
-//        [visitFR setPredicate:visitPred];
-//        NSArray *singleVisitArray = [self.managedObjectContext executeFetchRequest:visitFR error:nil];
-//        
-//        Visit *medVisit = [singleVisitArray objectAtIndex:0];
-//        
-//        NSFetchRequest *prescriberFR = [[NSFetchRequest alloc] init];
-//        // fetchRequest needs to know what entity to fetch
-//        entity = [NSEntityDescription entityForName:@"Prescriber" inManagedObjectContext:self.managedObjectContext];
-//        [prescriberFR setEntity:entity];
-//        NSPredicate *prescriberPred;
-//        
-//        // Set predicate so it searches for our particular patient's visits.
-//        prescriberPred =[NSPredicate predicateWithFormat:@"doctorId == %@", medVisit.doctorId];
-//        [prescriberFR setPredicate:prescriberPred];
-//        NSArray *singlePrescriberArray = [self.managedObjectContext executeFetchRequest:prescriberFR error:nil];
-//
-//        NSLog(@"The doctorId for this visit is: %@", medVisit.doctorId);
-//        
-//        Prescriber *thisMedsPrescriber = nil;
-//        
-//        // Must remove this if-else later
-//        if (singlePrescriberArray.count > 0)
-//        {
-//            thisMedsPrescriber = [singlePrescriberArray objectAtIndex:0];
-//        }
-//        else
-//        {
-//            NSLog(@"Patient med has no prescriber");
-////            thisMedsPrescriber = [[Prescriber alloc] init];
-////            thisMedsPrescriber.fullName = [NSString stringWithString:@"I do not exist."];
-////            thisMedsPrescriber.addressLine1 = @"This address does not exist.";
-////            thisMedsPrescriber.addressLine2 = @" ";
-////            thisMedsPrescriber.phoneNumber = @"Phone does not exist.";
-////            thisMedsPrescriber.email = @"This email does not exist";
-//        }
-//        
-//        // Setting the cell with the prescriber
-//        cell.prescriber = thisMedsPrescriber;
-//        //cell.prescriber = self.myDoctor;
         
         cell.myVC = self;
         //[self.medicineCells addObject:cell];
