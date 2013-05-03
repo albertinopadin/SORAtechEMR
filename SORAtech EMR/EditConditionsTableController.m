@@ -69,14 +69,14 @@
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
-    NSError *error, *e, *e2 = nil;
+    NSError *error, *e = nil;
     NSHTTPURLResponse *response = nil;
     
     NSURLRequest *conditionsGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/%i/conditions/?key=%@", pID, key]]];
     
     NSLog(@"Url conditions get is: %@", [conditionsGetRequest URL]);
     
-    NSData *conditionsGetData = [NSURLConnection sendSynchronousRequest:conditionsGetRequest returningResponse:&response error:&e2];
+    NSData *conditionsGetData = [NSURLConnection sendSynchronousRequest:conditionsGetRequest returningResponse:&response error:&e];
     
     NSLog(@"Response for patient conditions get is: %i", [response statusCode]);
     
@@ -87,7 +87,7 @@
     
     //Creates the array of dictionary objects, ordered alphabetically
     // Each element in this array is a condition object, whose properties can be accessed as a dictionary
-    self.conditionsList = [NSJSONSerialization JSONObjectWithData:conditionsGetData options:0 error:&error];
+    self.conditionsList = [[NSJSONSerialization JSONObjectWithData:conditionsGetData options:0 error:&error] mutableCopy];
     
     
     
@@ -97,7 +97,7 @@
         NewPatientConditionCell *nCell = [[NewPatientConditionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newPatientConditionCell"];
         nCell.cellNumLabel.text = [NSString stringWithFormat:@"%i:", self.conditionsList.count-i];
         NSDictionary *conditionDict = [self.conditionsList objectAtIndex:i];
-        nCell.conditionTextField.text = [conditionDict valueForKey:@"conditionName"];
+        nCell.conditionTextField.text = [conditionDict valueForKey:@"condition"];
         
         [self.editConditionCellArray insertObject:nCell atIndex:i];
     }
@@ -123,12 +123,12 @@
         {
             // Make new dictionary for the condition json object
             NSDictionary *editedCondition_New = [[NSDictionary alloc] initWithObjectsAndKeys:@"", @"conditionId",
-                                                                                        @"", @"conditionName",
-                                                                                        @"", @"patientId",
-                                                                                        @"", @"doctorId",
-                                                                                        nil];
+                                                                        @"", @"patientId",
+                                                                        cell.conditionTextField.text, @"condition",
+                                                                        nil];
             
-            [editedCondition_New setValue:cell.conditionTextField.text forKey:@"conditionName"];
+            //[editedCondition_New setValue:cell.conditionTextField.text forKey:@"condition"];
+            
             
             NSData *editedConditionsJSONData_New = [NSJSONSerialization dataWithJSONObject:editedCondition_New options:NSJSONWritingPrettyPrinted error:&putError];
             
@@ -163,10 +163,10 @@
         if (cell.conditionTextField.text.length > 0)
         {
             // Make sure to start at the correct index
-            NSDictionary *editedCondition = [self.conditionsList objectAtIndex:i -
-                                             (self.editConditionCellArray.count - self.conditionsList.count)];
+            NSMutableDictionary *editedCondition = [[self.conditionsList objectAtIndex:i -
+                                             (self.editConditionCellArray.count - self.conditionsList.count)] mutableCopy];
             
-            [editedCondition setValue:cell.conditionTextField.text forKey:@"conditionName"];
+            [editedCondition setValue:cell.conditionTextField.text forKey:@"condition"];
             
             NSData *editedConditionsJSONData = [NSJSONSerialization dataWithJSONObject:editedCondition options:NSJSONWritingPrettyPrinted error:&postError];
             
@@ -266,11 +266,11 @@
         {
             NSDictionary *conditionToDelete = [self.conditionsList objectAtIndex:[indexPath row]];
             [self deleteConditionFromDatabase:conditionToDelete];
+            
+            // Delete from our array
+            [self.conditionsList removeObjectAtIndex:[indexPath row]];
         }
         
-        
-        // Delete from our array
-        [self.conditionsList removeObjectAtIndex:[indexPath row]];
         // Remove from cell array as well
         [self.editConditionCellArray removeObjectAtIndex:[indexPath row]];
         
@@ -287,7 +287,7 @@
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/conditions/%@/?key=%@", [conditionToBeDeleted valueForKey:@"patientID"], [conditionToBeDeleted valueForKey:@"conditionId"], key]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/conditions/%@/?key=%@", [conditionToBeDeleted valueForKey:@"patientId"], [conditionToBeDeleted valueForKey:@"conditionId"], key]];
     
     // Check url
     NSLog(@"Condition Delete URL = %@", url);

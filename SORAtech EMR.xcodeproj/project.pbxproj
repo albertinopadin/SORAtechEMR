@@ -10,7 +10,6 @@
 		CE3160BE16FEAEF500118DC0 /* PatientInfoConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */; };
 		CE3160C016FED38300118DC0 /* conditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160BF16FED38300118DC0 /* conditionCell.xib */; };
 		CE3160C216FED52E00118DC0 /* medicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160C116FED52E00118DC0 /* medicationCell.xib */; };
-		CE3160C81701322D00118DC0 /* DoctorInfoInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160C71701322C00118DC0 /* DoctorInfoInputViewController.m */; };
 		CE3160CB1705403D00118DC0 /* NewPatientTBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160CA1705403C00118DC0 /* NewPatientTBViewController.m */; };
 		CE3160CE1705682D00118DC0 /* NPInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160CD1705682C00118DC0 /* NPInsuranceViewController.m */; };
 		CE3160D11705C9FB00118DC0 /* NPEmergencyContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3160D01705C9FA00118DC0 /* NPEmergencyContactViewController.m */; };
@@ -136,8 +135,6 @@
 		CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientInfoConditionCell.xib; sourceTree = "<group>"; };
 		CE3160BF16FED38300118DC0 /* conditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = conditionCell.xib; sourceTree = "<group>"; };
 		CE3160C116FED52E00118DC0 /* medicationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = medicationCell.xib; sourceTree = "<group>"; };
-		CE3160C61701322C00118DC0 /* DoctorInfoInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorInfoInputViewController.h; sourceTree = "<group>"; };
-		CE3160C71701322C00118DC0 /* DoctorInfoInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorInfoInputViewController.m; sourceTree = "<group>"; };
 		CE3160C91705403B00118DC0 /* NewPatientTBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPatientTBViewController.h; sourceTree = "<group>"; };
 		CE3160CA1705403C00118DC0 /* NewPatientTBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPatientTBViewController.m; sourceTree = "<group>"; };
 		CE3160CC1705682B00118DC0 /* NPInsuranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPInsuranceViewController.h; sourceTree = "<group>"; };
@@ -506,8 +503,6 @@
 				CE3160CD1705682C00118DC0 /* NPInsuranceViewController.m */,
 				CEF2220416FC486A0025FF94 /* PatientPersonalInfoViewController.h */,
 				CEF2220516FC486A0025FF94 /* PatientPersonalInfoViewController.m */,
-				CE3160C61701322C00118DC0 /* DoctorInfoInputViewController.h */,
-				CE3160C71701322C00118DC0 /* DoctorInfoInputViewController.m */,
 				CE3160BF16FED38300118DC0 /* conditionCell.xib */,
 				CE3160C116FED52E00118DC0 /* medicationCell.xib */,
 				CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */,
@@ -784,7 +779,6 @@
 				CEF2225616FC73E60025FF94 /* MedicationsTableViewController.m in Sources */,
 				CEF2225C16FCA8D70025FF94 /* PatientInfoConditionCell.m in Sources */,
 				CEF2225F16FCA8F30025FF94 /* PatientInfoMedicineCell.m in Sources */,
-				CE3160C81701322D00118DC0 /* DoctorInfoInputViewController.m in Sources */,
 				CE3160CB1705403D00118DC0 /* NewPatientTBViewController.m in Sources */,
 				CE3160CE1705682D00118DC0 /* NPInsuranceViewController.m in Sources */,
 				CE3160D11705C9FB00118DC0 /* NPEmergencyContactViewController.m in Sources */,

@@ -361,7 +361,7 @@
     NSLog(@"Response satus code: %i", [response statusCode]);
     
     // Save conditions
-    //[self.conditionsVC saveEditedConditionsWithPID:[self.myPatient.patientId integerValue]];
+    [self.conditionsVC saveEditedConditionsWithPID:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
     
     // Save medications
     //[self.medicinesVC saveEditedMedicinesWithPID:[self.myPatient.patientId integerValue]];
@@ -506,7 +506,7 @@
     
     
     // Generate conditions and medications on the last two vc's
-    //[self.conditionsVC generateConditionsList:[self.myPatient.patientId integerValue]];
+    [self.conditionsVC generateConditionsList:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
     
     //[self.medicinesVC generateMedicineList:[self.myPatient.patientId integerValue]];
 }

@@ -8,12 +8,13 @@
 
 #import "PatientInfoTableViewController.h"
 #import "STAppDelegate.h"
-#import "Condition.h"
+
 #import "Medicine.h"
 #import "PIPInsureeViewController.h"
 #import "SIPInsureeViewController.h"
 #import "EditPatientTBViewController.h"
 #import "BTCopyToSMViewController.h"
+#import "KeychainItemWrapper.h"
 
 @interface PatientInfoTableViewController ()
 
@@ -260,6 +261,10 @@
 //    self.secondaryInsuranceRelationshipToPrimaryLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"secondaryInsuranceRelationshipToPrimaryInsured"]];
 //    
 
+    
+    // Get conditions
+    [self fetchConditionsForPatientId:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
+    
     //////////////// ----------- SET LABELS -------------- \\\\\\\\\\\\\\\\\\\\\\\
     
     // Personal
@@ -330,6 +335,30 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)fetchConditionsForPatientId:(NSInteger)pid
+{
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
+    
+    NSError *error, *e = nil;
+    NSHTTPURLResponse *response = nil;
+    
+    NSURLRequest *conditionsGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/%i/conditions/?key=%@", pid, key]]];
+    
+    NSData *conditionsGetData = [NSURLConnection sendSynchronousRequest:conditionsGetRequest returningResponse:&response error:&e];
+    
+    NSLog(@"Response for conditions get is: %i", [response statusCode]);
+    
+    if (!conditionsGetData) {
+        NSLog(@"conditionsGetData is nil");
+        NSLog(@"Error: %@", e);
+    }
+    
+    //Creates the array of dictionary objects, ordered alphabetically
+    // Each element in this array is a condition object, whose properties can be accessed as a dictionary
+    self.conditionList = [NSJSONSerialization JSONObjectWithData:conditionsGetData options:0 error:&error];
+}
+
 - (NSString *)verifyForNull:(id)theString
 {
     NSString *returnString = [theString isEqual:[NSNull null]] ? @"" : theString;
@@ -392,10 +421,9 @@
             cell = [[PatientInfoConditionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         
-        Condition *cond = (Condition *)[self.conditionList objectAtIndex:[indexPath row]];
+        NSDictionary *cond = [self.conditionList objectAtIndex:[indexPath row]];
         
-        //cell.textLabel.text = cond.conditionName;
-        cell.conditionNameLabel.text = cond.conditionName;
+        cell.conditionNameLabel.text = [cond valueForKey:@"condition"];
         
         return cell;
     }

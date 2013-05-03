@@ -62,11 +62,8 @@
 {
     // Have to do this here to have unique cells' reference
     
-    
     [self.tableView beginUpdates];
     
-    //self.numCells = self.conditionCellArray.count + 1;
-//    self.numCells = self.npConditionCellSet.count + 1;
     self.numCells = self.npConditionCellArray.count + 1;
     
     NewPatientConditionCell *nCell = [[NewPatientConditionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newPatientConditionCell"];
@@ -75,10 +72,8 @@
     
     [self.npConditionCellArray insertObject:nCell atIndex:0];
     
-    //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.numCells-1 inSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationTop];
-    //[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
     
     [self.tableView endUpdates];
     [self.tableView reloadData];
@@ -126,8 +121,6 @@
     NewPatientConditionCell *cell = [self.npConditionCellArray objectAtIndex:[indexPath row]];
     
     // Configure the cell...
-    
-    //[self.npConditionCellSet addObject:cell];
     
     return cell;
 }

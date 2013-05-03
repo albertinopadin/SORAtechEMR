@@ -95,7 +95,7 @@
     PatientPersonalInfoViewController *personalVC = [self.vcArray objectAtIndex:0];
     NPContactsViewController *contactsVC = [self.vcArray objectAtIndex:1];
     NPInsuranceViewController *insuranceVC = [self.vcArray objectAtIndex:2];
-    //NPConditionsViewController *conditionsVC = [self.vcArray objectAtIndex:3];
+    NPConditionsViewController *conditionsVC = [self.vcArray objectAtIndex:3];
     //NPMedicinesViewController *medicinesVC = [self.vcArray objectAtIndex:4];
 
     
@@ -254,6 +254,7 @@
     NSLog(@"responseData is: %@", responseData);
     NSLog(@"Response satus code: %i", [response statusCode]);
     
+    /*
     if (responseError == nil)
     {
         HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
@@ -265,16 +266,42 @@
         UIAlertView *requestFailedAlert = [[UIAlertView alloc] initWithTitle:@"RequestFailed" message:@"The server could not add the new patient." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [requestFailedAlert show];
     }
+    */
     
+    ////////////////////////////////////////////////////////////////////////
+    // GET ALL PATIENTS AND DETERMINE MAX ID -> THIS IS THE PATIENT YOU JUST ADDED
+    
+    NSError *getError, *ge = nil;
+    NSHTTPURLResponse *getResponse = nil;
+    
+    NSURLRequest *patientGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/?key=%@", key]]];
+    
+    NSData *patientGetData = [NSURLConnection sendSynchronousRequest:patientGetRequest returningResponse:&getResponse error:&ge];
+    
+    NSLog(@"Response for patients get is: %i", [getResponse statusCode]);
+    
+    if (!patientGetData) {
+        NSLog(@"patientGetData is nil");
+        NSLog(@"Error: %@", ge);
+    }
+    
+    //Creates the array of dictionary objects, ordered alphabetically
+    // Each element in this array is a patient object, whose properties can be accessed as a dictionary
+    NSArray *patients = [NSJSONSerialization JSONObjectWithData:patientGetData options:0 error:&getError];
+    
+    // Last patient in the array should be max id
+    NSDictionary *lastPatient = [patients objectAtIndex:patients.count-1];
     
     // Conditions from fourth vc:
-    //NSArray *conditions = [conditionsVC textConditionsList];
+    NSArray *conditions = [conditionsVC textConditionsList];
     
     // Create the json object
-    //NSError *cError, *pError = nil;
-    /*
+    NSError *cError = nil;
+    
     // Have to get the patient id back from the new patient insert response
-    NSURL *cUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/conditions/?key=%@", nPatientId, key]];
+    NSURL *cUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/conditions/?key=%@", [lastPatient valueForKey:@"patientId"], key]];
+    
+    NSLog(@"cUrl: %@", cUrl);
     
     NSMutableURLRequest *cRequest = [NSMutableURLRequest requestWithURL:cUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     [cRequest setHTTPMethod:@"PUT"];
@@ -291,19 +318,30 @@
         {
             // Insert new condition
             // Patient id, and doctor id too?
-            //NSDictionary *condition = [NSDictionary alloc] initWithObjectsAndKeys:s, @"condition", nil
+            NSDictionary *condition = [[NSDictionary alloc] initWithObjectsAndKeys:s, @"condition", nil];
             
-            NSData *conditionJSONData = [NSJSONSerialization dataWithJSONObject:condition options:NSJSONWritingPrettyPrinted error:&error];
+            NSData *conditionJSONData = [NSJSONSerialization dataWithJSONObject:condition options:NSJSONWritingPrettyPrinted error:&cError];
             [cRequest setValue:[NSString stringWithFormat:@"%d", conditionJSONData.length] forHTTPHeaderField:@"Content-Length"];
             [cRequest setHTTPBody:conditionJSONData];
             
             [NSURLConnection sendSynchronousRequest:cRequest returningResponse:&cResponse error:&cResponseError];
             NSLog(@"Response satus code: %i", [cResponse statusCode]);
         }
-        
+    }
+    
+    if (responseError == nil && cResponseError == nil)
+    {
+        HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
+        [hvc incomingSegue:@"fromNewPatientPage"];
+    }
+    else
+    {
+        //Display a message if the request failed:
+        UIAlertView *requestFailedAlert = [[UIAlertView alloc] initWithTitle:@"RequestFailed" message:@"The server could not add the new patient." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [requestFailedAlert show];
     }
 
-    
+    /*
     
     // Medicines from fifth vc:
     [medicinesVC saveMedications:patient.patientId];
