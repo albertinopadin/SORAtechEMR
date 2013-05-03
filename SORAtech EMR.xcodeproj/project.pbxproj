@@ -45,6 +45,8 @@
 		CE5FAAD71730FF6D00AB8AB6 /* red-light.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAAC01730FF6D00AB8AB6 /* red-light.png */; };
 		CE5FAAD81730FF6D00AB8AB6 /* red-light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAAC11730FF6D00AB8AB6 /* red-light@2x.png */; };
 		CE5FAAD91730FF6D00AB8AB6 /* system.json in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAAC21730FF6D00AB8AB6 /* system.json */; };
+		CE5FAADE17327FFC00AB8AB6 /* BTCopyToSMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAADD17327FFB00AB8AB6 /* BTCopyToSMViewController.m */; };
+		CE5FAAE01732887200AB8AB6 /* heightsensorbt_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAADF1732887200AB8AB6 /* heightsensorbt_v1.json */; };
 		CE9D56651728FE6000F8651A /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D56641728FE6000F8651A /* KeychainItemWrapper.m */; };
 		CE9D56671728FF2700F8651A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D56661728FF2700F8651A /* Security.framework */; };
 		CEE2BF64170B492000C636EC /* ExistingVisitCondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF63170B492000C636EC /* ExistingVisitCondCell.m */; };
@@ -196,6 +198,9 @@
 		CE5FAAC01730FF6D00AB8AB6 /* red-light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-light.png"; sourceTree = "<group>"; };
 		CE5FAAC11730FF6D00AB8AB6 /* red-light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-light@2x.png"; sourceTree = "<group>"; };
 		CE5FAAC21730FF6D00AB8AB6 /* system.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = system.json; sourceTree = "<group>"; };
+		CE5FAADC17327FFB00AB8AB6 /* BTCopyToSMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCopyToSMViewController.h; sourceTree = "<group>"; };
+		CE5FAADD17327FFB00AB8AB6 /* BTCopyToSMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCopyToSMViewController.m; sourceTree = "<group>"; };
+		CE5FAADF1732887200AB8AB6 /* heightsensorbt_v1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heightsensorbt_v1.json; sourceTree = "<group>"; };
 		CE9D56631728FE6000F8651A /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		CE9D56641728FE6000F8651A /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		CE9D56661728FF2700F8651A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -405,13 +410,14 @@
 		CEF221B216FC477B0025FF94 = {
 			isa = PBXGroup;
 			children = (
+				CE5FAADF1732887200AB8AB6 /* heightsensorbt_v1.json */,
 				CE5FAAAB1730FF6D00AB8AB6 /* Assets */,
 				CE5FAA971730FF1C00AB8AB6 /* Headers */,
-				CE5FAA951730FEB000AB8AB6 /* libEMFramework.a */,
-				CE5FAA911730FE7500AB8AB6 /* libz.dylib */,
 				CE5FAA931730FE9A00AB8AB6 /* QuartzCore.framework */,
 				CE5FAA8F1730FE5700AB8AB6 /* CoreBluetooth.framework */,
 				CE9D56661728FF2700F8651A /* Security.framework */,
+				CE5FAA951730FEB000AB8AB6 /* libEMFramework.a */,
+				CE5FAA911730FE7500AB8AB6 /* libz.dylib */,
 				CE9D56631728FE6000F8651A /* KeychainItemWrapper.h */,
 				CE9D56641728FE6000F8651A /* KeychainItemWrapper.m */,
 				CEF2222B16FC48A90025FF94 /* SORAtechIcon.png */,
@@ -447,6 +453,8 @@
 			isa = PBXGroup;
 			children = (
 				CEF2220316FC486A0025FF94 /* MainStoryboard.storyboard */,
+				CE5FAADC17327FFB00AB8AB6 /* BTCopyToSMViewController.h */,
+				CE5FAADD17327FFB00AB8AB6 /* BTCopyToSMViewController.m */,
 				CE5FAA8C1730FD3B00AB8AB6 /* STBluetoothHandler.h */,
 				CE5FAA8D1730FD3B00AB8AB6 /* STBluetoothHandler.m */,
 				CEE2C02A171720B800C636EC /* EditMedicinesTableController.h */,
@@ -715,6 +723,7 @@
 				CE5FAAD71730FF6D00AB8AB6 /* red-light.png in Resources */,
 				CE5FAAD81730FF6D00AB8AB6 /* red-light@2x.png in Resources */,
 				CE5FAAD91730FF6D00AB8AB6 /* system.json in Resources */,
+				CE5FAAE01732887200AB8AB6 /* heightsensorbt_v1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +809,7 @@
 				CEE2C02C171720BB00C636EC /* EditMedicinesTableController.m in Sources */,
 				CE9D56651728FE6000F8651A /* KeychainItemWrapper.m in Sources */,
 				CE5FAA8E1730FD3B00AB8AB6 /* STBluetoothHandler.m in Sources */,
+				CE5FAADE17327FFC00AB8AB6 /* BTCopyToSMViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

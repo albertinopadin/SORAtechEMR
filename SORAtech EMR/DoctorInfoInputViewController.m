@@ -63,7 +63,7 @@
     
     UINavigationController *nav = [segue destinationViewController];
     HomeViewController *hvc = [[nav viewControllers] objectAtIndex:0];
-    hvc.myDoctor = self.myDoctor;
+    //hvc.myDoctor = self.myDoctor;
 }
 
 - (void)didReceiveMemoryWarning

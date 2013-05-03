@@ -16,7 +16,7 @@
 
 @implementation SearchResultsViewController
 
-@synthesize childTVC, searchBar, searchTerm, searchResults, myDoctor;
+@synthesize childTVC, searchBar, searchTerm, searchResults;
 
 //This class will contain the code to get the patient list (of matching names to the search term)
 
@@ -82,9 +82,6 @@
     childTVC = [[self childViewControllers] objectAtIndex:0];
     
     childTVC.searchResultsArray = [self.searchResults mutableCopy];
-    
-    childTVC.myDoctor = self.myDoctor;
-    //NSLog(@"Search Results: Doctor's name is: %@", self.myDoctor.fullName);
     
     [childTVC.tableView reloadData];
 }
@@ -186,9 +183,6 @@
         predicate =[NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
     }
     
-//    [fetchRequest setPredicate:predicate];
-//    
-//    self.searchResults = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
     // Filtered Results
     NSArray *filteredArray = [self.searchResults filteredArrayUsingPredicate:predicate];
@@ -199,8 +193,6 @@
 
     childTVC.searchResultsArray = [filteredArray mutableCopy];
     
-    childTVC.myDoctor = self.myDoctor;
-    NSLog(@"Search Results: Doctor's name is: %@", self.myDoctor.fullName);
     
     [childTVC.tableView reloadData];
 }

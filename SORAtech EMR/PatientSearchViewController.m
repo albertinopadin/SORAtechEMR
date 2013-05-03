@@ -15,7 +15,7 @@
 
 @implementation PatientSearchViewController
 
-@synthesize searchBox, myDoctor;
+@synthesize searchBox;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,8 +57,6 @@
     {
         SearchResultsViewController *srvc = segue.destinationViewController;
         srvc.searchTerm = searchBox.text;
-        srvc.myDoctor = self.myDoctor;
-        NSLog(@"PatientSearchView: Doctor's name is: %@", self.myDoctor.fullName);
     }
 }
 

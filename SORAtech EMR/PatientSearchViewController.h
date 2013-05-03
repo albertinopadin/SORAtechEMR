@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Prescriber.h"
 
 @interface PatientSearchViewController : UIViewController <UITextFieldDelegate>
 
-@property (strong, nonatomic) Prescriber *myDoctor;
 @property (strong, nonatomic) IBOutlet UITextField *searchBox;
 
 - (IBAction)searchButtonPressed:(id)sender;

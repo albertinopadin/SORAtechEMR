@@ -22,7 +22,7 @@
 
 @implementation PatientSearchResultTVC
 
-@synthesize patientListTableView, searchResultsArray, myDoctor;
+@synthesize patientListTableView, searchResultsArray;
 
 //Getting the Managed Object Context, the window to our internal database
 - (NSManagedObjectContext *)managedObjectContext
@@ -42,20 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"patientListCell"];
-    
-    //self.headerView.hidden = YES;
-    
-    //[self setHeaderView:self.headerView];
-    
-    //self.headerView.hidden = NO;
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,7 +55,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    // Might be one per patient...?
     return 1;
 }
 
@@ -138,21 +123,15 @@
     {
         PatientVisitListViewController *destVC = segue.destinationViewController;
         destVC.myPatient = [searchResultsArray objectAtIndex:self.patientIndex];
-        destVC.myDoctor = self.myDoctor;
-        NSLog(@"Search Results TVC: Doctor's name is: %@", self.myDoctor.fullName);
     }
     else if ([segue.identifier isEqualToString:@"viewPatientInfoSegue"])
     {
         PatientInfoTableViewController *destVC = segue.destinationViewController;
-        //destVC.myPatient = [searchResultsArray objectAtIndex:self.patientIndex];
         
         // Send information of that particular patient from the json to the vc:
         // patientIndex is set by the table view cell itself to mark which cell was selected
         destVC.myPatientJSON = [searchResultsArray objectAtIndex:self.patientIndex];
         
-        // Can't do this, because might have multiple prescribers
-//        destVC.myDoctor = self.myDoctor;
-//        NSLog(@"Search Results TVC: Doctor's name is: %@", self.myDoctor.fullName);
     }
     
 }

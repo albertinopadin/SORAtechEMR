@@ -33,7 +33,7 @@
 
 @synthesize myPatientJSON;
 
-@synthesize myDoctor,myPatient, vcArray, patientList, personalVC, contactsVC, insuranceVC;
+@synthesize vcArray, patientList, personalVC, contactsVC, insuranceVC;
 
 //Getting the Managed Object Context, the window to our internal database
 - (NSManagedObjectContext *)managedObjectContext
@@ -61,8 +61,6 @@
         NSArray *vcs = [self.navigationController viewControllers];
         NSInteger numVCs = vcs.count;
         PatientInfoTableViewController *pitvc = [vcs objectAtIndex:numVCs - 2];
-        pitvc.myDoctor = self.myDoctor;
-        //pitvc.myPatient = self.myPatient;
         pitvc.myPatientJSON = self.myPatientJSON;
         //[pitvc.myTableView reloadData];
         [self.navigationController popViewControllerAnimated:YES];
@@ -201,6 +199,9 @@
     
     NSDictionary *editedPatient = [[NSDictionary alloc] initWithObjectsAndKeys:
                                 
+                                // Set the patient id
+                                [self.myPatientJSON valueForKey:@"patientId"], @"patientId",
+                                   
                                 // Personal Information from first vc:
                                 personalVC.firstName.text, @"firstName",
                                 personalVC.middleName.text, @"middleName",
@@ -266,6 +267,16 @@
                                 //                                insuranceVC.PIEmployerPhoneNumber.text, @"primaryInsurancePrimaryInsuredEmployerPhoneNumber",
                                 //                                insuranceVC.PIEmployerEmail.text, @"primaryInsurancePrimaryInsuredEmployerEmail",
                                 
+                                   @"", @"primaryInsurancePrimaryInsuredEmployerName",
+                                   @"", @"primaryInsurancePrimaryInsuredEmployerAddressLine1",
+                                   @"", @"primaryInsurancePrimaryInsuredEmployerAddressLine2",
+                                   @"", @"primaryInsurancePrimaryInsuredEmployerAddressCity",
+                                   @"", @"primaryInsurancePrimaryInsuredEmployerAddressState",
+                                   @"", @"primaryInsurancePrimaryInsuredEmployerAddressZip",
+                                   @"", @"primaryInsurancePrimaryInsuredEmployerPhoneNumber",
+                                   @"", @"primaryInsurancePrimaryInsuredEmployerEmail",
+                                   
+                                   
                                 insuranceVC.relationshipToPrimaryInsuree.text, @"primaryInsuranceRelationshipToPrimaryInsured",
                                 
                                 
@@ -295,9 +306,22 @@
                                 //                                insuranceVC.SIEmployerPhoneNumber.text, @"secondaryInsurancePrimaryInsuredEmployerPhoneNumber",
                                 //                                insuranceVC.SIEmployerEmail.text, @"secondaryInsurancePrimaryInsuredEmployerEmail",
                                 
+                                   @"", @"secondaryInsurancePrimaryInsuredEmployerName",
+                                   @"", @"secondaryInsurancePrimaryInsuredEmployerAddressLine1",
+                                   @"", @"secondaryInsurancePrimaryInsuredEmployerAddressLine2",
+                                   @"", @"secondaryInsurancePrimaryInsuredEmployerAddressCity",
+                                   @"", @"secondaryInsurancePrimaryInsuredEmployerAddressState",
+                                   @"", @"secondaryInsurancePrimaryInsuredEmployerAddressZip",
+                                   @"", @"secondaryInsurancePrimaryInsuredEmployerPhoneNumber",
+                                   @"", @"secondaryInsurancePrimaryInsuredEmployerEmail",
+
+                                   
                                 insuranceVC.relationshipToSecondaryInsuree.text, @"secondaryInsuranceRelationshipToPrimaryInsured",
                                 
                                 nil];
+    // Testing json to be sent:
+    NSLog(@"editedPatient JSON: %@", editedPatient);
+    
     
     // Create the json object
     NSError *error = nil;
@@ -311,7 +335,11 @@
     //NSLog(@"Adding new patient; user's key is: %@", key);
     // Send the new patient in json to server
     //NSURL *url = [NSURL URLWithString:@"http://services.soratech.cardona150.com/emr/patients/?key=e8342f8b-c73c-44c9-bd19-327b54c9ed65"];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/?key=%@", [self.myPatientJSON valueForKey:@"patiendId"], key]];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/?key=%@", [self.myPatientJSON valueForKey:@"patientId"], key]];
+    
+    // Check url
+    NSLog(@"Post URL = %@", url);
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     // HTTP METHOD: POST (EDIT)
@@ -338,6 +366,14 @@
     // Save medications
     //[self.medicinesVC saveEditedMedicinesWithPID:[self.myPatient.patientId integerValue]];
     
+    
+    
+    
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    // GET THE EDITED PATIENT FROM THE DB, TO MAKE SURE WE HAVE UPDATED THE INFO IN THE DB
+    
+    
     NSError *getError, *getError2, *getError3 = nil;
     //NSURLResponse *response = nil;
     NSHTTPURLResponse *getResponse = nil;
@@ -347,22 +383,22 @@
     
     NSData *patientGetData = [NSURLConnection sendSynchronousRequest:patientGetRequest returningResponse:&getResponse error:&getError2];
     
-    NSLog(@"Response for patients get is: %i", [getResponse statusCode]);
+    NSLog(@"Response for edited patients get is: %i", [getResponse statusCode]);
     
     if (!patientGetData) {
-        NSLog(@"patientSearchData is nil");
+        NSLog(@"patientGetData is nil");
         NSLog(@"Error: %@", getError3);
     }
     
-    //Creates the array of dictionary objects, ordered alphabetically
-    // Each element in this array is a patient object, whose properties can be accessed as a dictionary
-    self.myPatientJSON = [[NSJSONSerialization JSONObjectWithData:patientGetData options:0 error:&getError] objectAtIndex:0];
+    // Should have only one element in the json array, which is the edited patient's dictionary
+    NSArray *editedArr = [NSJSONSerialization JSONObjectWithData:patientGetData options:0 error:&getError];
     
+    self.myPatientJSON = [editedArr objectAtIndex:0];
+//    self.myPatientJSON = [[NSJSONSerialization JSONObjectWithData:patientGetData options:0 error:&getError] objectAtIndex:0];
+    
+    NSLog(@"editedArr count: %i", [editedArr count]);
     NSLog(@"Edited Patient!");
     
-    // Return the logged-in doctor
-    //HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
-    //hvc.myDoctor = self.myDoctor;
 }
 
 - (void)viewDidLoad
@@ -492,13 +528,11 @@
 {
     if ([self shouldPerformPop])
     {
+        // First we send the request to edit the patient to the db and get the edited patient's info back
         [self preparePatientEdit];
-        // Return the logged-in doctor
         NSArray *vcs = [self.navigationController viewControllers];
         NSInteger numVCs = vcs.count;
         PatientInfoTableViewController *pitvc = [vcs objectAtIndex:numVCs - 2];
-        pitvc.myDoctor = self.myDoctor;
-        //pitvc.myPatient = self.myPatient;
         pitvc.myPatientJSON = self.myPatientJSON;
         //[pitvc.myTableView reloadData];
         // Pop to previous vc:

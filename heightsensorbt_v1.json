@@ -1,0 +1,240 @@
+{
+    "resources": {
+        "$eapProtocolLevel": {
+            "id": -3,
+            "align": 2,
+            "attributes": {"readonly": true},
+            "type": "u2",
+            "access": "r",
+            "size": 2
+        },
+        "$mcmDisconnect": {
+            "id": -9,
+            "align": 1,
+            "attributes": {"writeonly": true},
+            "type": "u1",
+            "access": "w",
+            "size": 1
+        },
+        "$eapBuildDate": {
+            "id": -4,
+            "align": 1,
+            "attributes": {"readonly": true},
+            "type": "A8:u1",
+            "access": "r",
+            "size": 8
+        },
+        "cardContents": {
+            "id": 3,
+            "align": 1,
+            "attributes": {"readwrite": true},
+            "type": "C:128",
+            "access": "rw",
+            "size": 128
+        },
+        "$resourceCount": {
+            "id": -7,
+            "align": 1,
+            "attributes": {"readonly": true},
+            "type": "S:system@emmoco.com.System/ResourceCount",
+            "access": "r",
+            "size": 2
+        },
+        "$schemaHash": {
+            "id": -6,
+            "align": 1,
+            "attributes": {"readonly": true},
+            "type": "A20:u1",
+            "access": "r",
+            "size": 20
+        },
+        "distance": {
+            "id": 1,
+            "align": 1,
+            "attributes": {"readonly": true},
+            "type": "u1",
+            "access": "r",
+            "size": 1
+        },
+        "blockHalf": {
+            "id": 5,
+            "align": 1,
+            "attributes": {"writeonly": true},
+            "type": "E:@emmoco.com.HeightSensorBT_v1/BlockHalf",
+            "access": "w",
+            "size": 1
+        },
+        "$mcmProtocolLevel": {
+            "id": -2,
+            "align": 2,
+            "attributes": {"readonly": true},
+            "type": "u2",
+            "access": "r",
+            "size": 2
+        },
+        "$mobileRssi": {
+            "id": -8,
+            "align": 1,
+            "attributes": {"readonly": true},
+            "type": "i1",
+            "access": "r",
+            "size": 1
+        },
+        "led2": {
+            "id": 2,
+            "align": 1,
+            "attributes": {"writeonly": true},
+            "type": "E:@emmoco.com.HeightSensorBT_v1/LED2",
+            "access": "w",
+            "size": 1
+        },
+        "currentBlock": {
+            "id": 4,
+            "align": 1,
+            "attributes": {"writeonly": true},
+            "type": "u1",
+            "access": "w",
+            "size": 1
+        },
+        "$fileIndexReset": {
+            "id": -5,
+            "align": 2,
+            "attributes": {"writeonly": true},
+            "type": "i2",
+            "access": "w",
+            "size": 2
+        }
+    },
+    "resourceNamesSys": [
+        "$eapBuildDate",
+        "$eapProtocolLevel",
+        "$fileIndexReset",
+        "$mcmDisconnect",
+        "$mcmProtocolLevel",
+        "$mobileRssi",
+        "$resourceCount",
+        "$schemaHash"
+    ],
+    "manifest": {
+        "protocolLevel": 12,
+        "hash": [
+            153,
+            160,
+            5,
+            156,
+            16,
+            32,
+            184,
+            103,
+            68,
+            3,
+            136,
+            0,
+            148,
+            135,
+            190,
+            67
+        ],
+        "toolVersion": "12.0.0.201211010336",
+        "name": "HeightSensorBT_v1",
+        "$$md5": "da0d8b5ed12d222c2ca0e896127aeb4e",
+        "build": [
+            214,
+            177,
+            97,
+            99,
+            62,
+            1,
+            0,
+            0
+        ],
+        "date": "2013-05-01T23:55:47-04:00",
+        "maxAlign": 2,
+        "maxSize": 128,
+        "version": "1.0.0"
+    },
+    "resourceNames": [
+        "distance",
+        "led2",
+        "cardContents",
+        "currentBlock",
+        "blockHalf",
+        "$mcmProtocolLevel",
+        "$eapProtocolLevel",
+        "$eapBuildDate",
+        "$fileIndexReset",
+        "$schemaHash",
+        "$resourceCount",
+        "$mobileRssi",
+        "$mcmDisconnect"
+    ],
+    "attributes": {
+        "description": "Height Sensor and Card Reader",
+        "version": "1.0.0"
+    },
+    "types": {
+        "system@emmoco.com.System/ResourceCount": {
+            "align": 1,
+            "type": "S:system@emmoco.com.System/ResourceCount",
+            "size": 2,
+            "fields": [
+                {
+                    "pad": 0,
+                    "align": 1,
+                    "name": "app",
+                    "type": "u1",
+                    "size": 1
+                },
+                {
+                    "pad": 0,
+                    "align": 1,
+                    "name": "sys",
+                    "type": "u1",
+                    "size": 1
+                }
+            ]
+        },
+        "std:i2": {
+            "align": 2,
+            "size": 2
+        },
+        "std:i1": {
+            "align": 1,
+            "size": 1
+        },
+        "std:u1": {
+            "align": 1,
+            "size": 1
+        },
+        "@emmoco.com.HeightSensorBT_v1/LED2": {
+            "values": [
+                "LED2_ON",
+                "LED2_OFF"
+            ],
+            "align": 1,
+            "type": "E:@emmoco.com.HeightSensorBT_v1/LED2",
+            "size": 1
+        },
+        "std:u2": {
+            "align": 2,
+            "size": 2
+        },
+        "@emmoco.com.HeightSensorBT_v1/BlockHalf": {
+            "values": [
+                "First_Half",
+                "Second_Half"
+            ],
+            "align": 1,
+            "type": "E:@emmoco.com.HeightSensorBT_v1/BlockHalf",
+            "size": 1
+        }
+    },
+    "resourceNamesApp": [
+        "blockHalf",
+        "cardContents",
+        "currentBlock",
+        "distance",
+        "led2"
+    ],
+    "imports": {"@emmoco.com.HeightSensorBT_v1": true}
+}

@@ -13,10 +13,9 @@
 #import "PIPInsureeViewController.h"
 #import "SIPInsureeViewController.h"
 #import "EditPatientTBViewController.h"
+#import "BTCopyToSMViewController.h"
 
 @interface PatientInfoTableViewController ()
-
-@property (strong, nonatomic) Prescriber *currentDesignatedPrescriber;
 
 @end
 
@@ -24,11 +23,9 @@
 
 @synthesize myPatientJSON;
 
-@synthesize currentDesignatedPrescriber;
-
 @synthesize myTableView, medicineCells;
 
-@synthesize myPatient, myDoctor, visitList, medicineList, conditionList;
+@synthesize visitList, medicineList, conditionList;
 
 @synthesize fullNameLabel, addressLine1Label, addressLine2Label, phoneNumberLabel, emailLabel, dateOfBirthLabel, socialSecurityLabel;
 
@@ -61,19 +58,22 @@
     if ([segue.identifier isEqualToString:@"PIPInsureeSegue1"] || [segue.identifier isEqualToString:@"PIPInsureeSegue2"])
     {
         PIPInsureeViewController *pipVC = segue.destinationViewController;
-        pipVC.myPatient = self.myPatient;
+        //pipVC.myPatient = self.myPatient;
     }
     else if ([segue.identifier isEqualToString:@"SIPInsureeSegue1"] || [segue.identifier isEqualToString:@"SIPInsureeSegue2"])
     {
         SIPInsureeViewController *sipVC = segue.destinationViewController;
-        sipVC.myPatient = self.myPatient;
+        //sipVC.myPatient = self.myPatient;
     }
     else if ([segue.identifier isEqualToString:@"editPatientInfoSegue"])
     {
         EditPatientTBViewController *edVC = segue.destinationViewController;
-        edVC.myDoctor = self.myDoctor;
-        //edVC.myPatient = self.myPatient;
         edVC.myPatientJSON = self.myPatientJSON;
+    }
+    else if ([[segue identifier] isEqualToString:@"BluetoothCopyPatientInfoSegue"])
+    {
+        BTCopyToSMViewController *btVC = segue.destinationViewController;
+        btVC.myPatientJSON = self.myPatientJSON;
     }
 }
 

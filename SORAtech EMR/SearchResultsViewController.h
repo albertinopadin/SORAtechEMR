@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PatientSearchResultTVC.h"
-#import "Prescriber.h"
 
 @interface SearchResultsViewController : UIViewController <UISearchBarDelegate>
 
-@property (strong, nonatomic) Prescriber *myDoctor;
 @property (strong, nonatomic) NSArray *searchResults;
 @property (strong, nonatomic) NSString *searchTerm;
 @property (strong, nonatomic) PatientSearchResultTVC *childTVC;

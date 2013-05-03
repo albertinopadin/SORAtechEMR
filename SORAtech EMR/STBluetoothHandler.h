@@ -12,6 +12,8 @@
 
 @interface STBluetoothHandler : NSObject
 
+@property (strong, nonatomic) NSString *connectionStatus;
+
 // Call this in the app delegate to listen for BT devices
 - (void)appDelegateSetupProcedure;
 
@@ -20,6 +22,8 @@
 
 - (int)getPatientHeight;
 - (void)writePatientInformationToCard:(NSDictionary *)patientJSON;
+- (BOOL)writeFinished;
+//- (int)writePatientInformationToCard:(NSDictionary *)patientJSON;
 - (NSDictionary *)retrievePatientInformationFromCard;
 
 @end

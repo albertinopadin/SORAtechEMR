@@ -8,7 +8,21 @@
 
 #import "STBluetoothHandler.h"
 
+@interface STBluetoothHandler()
+
+@property (nonatomic) BOOL writeIsFinished;
+
+@end
+
 @implementation STBluetoothHandler
+
+@synthesize connectionStatus;
+@synthesize writeIsFinished;
+
+- (BOOL)writeFinished
+{
+    return writeIsFinished;
+}
 
 - (void)appDelegateSetupProcedure
 {
@@ -44,6 +58,7 @@
 }
 
 // Convert the patient JSON dictionary to a format suitable for the smart card --> String
+//- (void)writePatientInformationToCard:(NSDictionary *)patientJSON
 - (void)writePatientInformationToCard:(NSDictionary *)patientJSON
 {
     NSMutableString *formattedPatientInfoForCard = [[NSMutableString alloc] init];
@@ -202,9 +217,16 @@
     [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"secondaryInsuranceRelationshipToPrimaryInsured"]];
     [formattedPatientInfoForCard appendString:@"|"];
 
+    self.writeIsFinished = NO;
     
     // Write the formatted string to the card
-    [self writeToCard:formattedPatientInfoForCard];
+    //[self writeToCard:formattedPatientInfoForCard];
+    [self performSelectorOnMainThread:@selector(writeToCard:) withObject:formattedPatientInfoForCard waitUntilDone:YES];
+    
+    //while (!self.writeIsFinished);
+    
+    return;
+    //return 1;
 }
 
 // Convert the info stored in the smart card to an NSDictionary suitable for JSON
@@ -345,7 +367,7 @@
         // Handle a new set of devices coming available.
         if ([[EMConnectionListManager sharedManager] devices].count > 0  &&  [[EMConnectionManager sharedManager] connectionState] != EMConnectionStateConnected)
         {
-            //connectionLabel.text = [NSString stringWithFormat:@"Detected a device named: %@", [[[[EMConnectionListManager sharedManager] devices] objectAtIndex:0] name]];
+            self.connectionStatus = [NSString stringWithFormat:@"Detected a device named: %@", [[[[EMConnectionListManager sharedManager] devices] objectAtIndex:0] name]];
         }
         
     }
@@ -356,43 +378,43 @@
             case EMConnectionStatePending:
                 EMLog(@"Connecting to device");
                 // the connection has started.  This is a good time to update you UI to reflect a pending connection
-                //connectionLabel.text = @"Connecting to device";
+                self.connectionStatus = @"Connecting to device";
                 break;
                 
             case EMConnectionStateDisconnected:
                 EMLog(@"Successful disconnect");
                 // Handle a successfully terminated connection
-                //connectionLabel.text = @"Successful disconnect";
+                self.connectionStatus = @"Successful disconnect";
                 break;
                 
             case EMConnectionStateConnected:
                 EMLog(@"Successful connection");
                 // Handle a successful connection
-                //connectionLabel.text = @"Successful connection";
+                self.connectionStatus = @"Successful connection";
                 break;
                 
             case EMConnectionStateDisrupted:
                 EMLog(@"Connection interrupted");
                 // Handle a disrupted connection
-                //connectionLabel.text = @"Connection interrupted";
+                self.connectionStatus = @"Connection interrupted";
                 break;
                 
             case EMConnectionStateInvalidSchemaHash:
                 EMLog(@"Invalid Schema Hash");
                 // The schema could not be read
-                //connectionLabel.text = @"Invalid Schema Hash";
+                self.connectionStatus = @"Invalid Schema Hash";
                 break;
                 
             case EMConnectionStateSchemaNotFound:
                 EMLog(@"No schema found");
                 // You have not included the schema for this connection in your application bundle.
-                //connectionLabel.text = @"No schema found";
+                self.connectionStatus = @"No schema found";
                 break;
                 
             case EMConnectionStateTimeout:
                 EMLog(@"Connection timeout");
                 // The connection timed out
-                //connectionLabel.text = @"Connection timeout";
+                self.connectionStatus = @"Connection timeout";
                 break;
                 
             default:
@@ -450,6 +472,11 @@
     
     NSLog(@"In writeToCard");
     
+    NSLock *lock = [[NSLock alloc] init];
+    
+    // Lock the thread to ensure it finished before returning
+    [lock lock];
+    
     // Divide the string into blocks of 256 bytes
     NSMutableArray *blockArray = [[NSMutableArray alloc] init];
         
@@ -459,6 +486,8 @@
     {
         [blockArray addObject:patientJSONString];
         [self writeToCardBlocks:blockArray UsingIndex:0];
+        
+        self.writeIsFinished = YES;
     }
     
     else if ([patientJSONString length] > 127)
@@ -493,10 +522,14 @@
             // Write to specific card block
             [self writeToCardBlocks:blockArray UsingIndex:i];
         }
-        
+        self.writeIsFinished = YES;
     }
     
+    //self.writeIsFinished = YES;
     NSLog(@"blockArray: %@", blockArray);
+    
+    // Unlock the thread and return
+    [lock unlock];
 }
 
 - (void)writeToCardBlocks:(NSArray *)blocks UsingIndex:(int)index
@@ -515,7 +548,6 @@
     [[EMConnectionManager sharedManager] readResource:@"cardContents" onSuccess:^(id readValue) {
         [blockArray addObject:[NSString stringWithFormat:@"%@", readValue]];
         NSLog(@"Read from card: %@", readValue);
-        //cardReadTextView.text = [blockArray componentsJoinedByString:@""];
         
     } onFail:^(NSError *error) {
         EMLog(@"Failed to read cardContents");

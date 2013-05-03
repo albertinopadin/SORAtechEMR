@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Prescriber.h"
 
 @interface PatientSearchResultTVC : UITableViewController
 
-@property (strong, nonatomic) Prescriber *myDoctor;
 @property (nonatomic) NSInteger patientIndex;
 @property (strong, nonatomic) NSMutableArray *searchResultsArray;
 @property (strong, nonatomic) IBOutlet UITableView *patientListTableView;

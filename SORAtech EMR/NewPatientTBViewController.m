@@ -95,8 +95,8 @@
     PatientPersonalInfoViewController *personalVC = [self.vcArray objectAtIndex:0];
     NPContactsViewController *contactsVC = [self.vcArray objectAtIndex:1];
     NPInsuranceViewController *insuranceVC = [self.vcArray objectAtIndex:2];
-    NPConditionsViewController *conditionsVC = [self.vcArray objectAtIndex:3];
-    NPMedicinesViewController *medicinesVC = [self.vcArray objectAtIndex:4];
+    //NPConditionsViewController *conditionsVC = [self.vcArray objectAtIndex:3];
+    //NPMedicinesViewController *medicinesVC = [self.vcArray objectAtIndex:4];
 
     
     //Get the patient information
@@ -167,6 +167,16 @@
 //                                insuranceVC.PIEmployerPhoneNumber.text, @"primaryInsurancePrimaryInsuredEmployerPhoneNumber",
 //                                insuranceVC.PIEmployerEmail.text, @"primaryInsurancePrimaryInsuredEmployerEmail",
                                 
+                                @"", @"primaryInsurancePrimaryInsuredEmployerName",
+                                @"", @"primaryInsurancePrimaryInsuredEmployerAddressLine1",
+                                @"", @"primaryInsurancePrimaryInsuredEmployerAddressLine2",
+                                @"", @"primaryInsurancePrimaryInsuredEmployerAddressCity",
+                                @"", @"primaryInsurancePrimaryInsuredEmployerAddressState",
+                                @"", @"primaryInsurancePrimaryInsuredEmployerAddressZip",
+                                @"", @"primaryInsurancePrimaryInsuredEmployerPhoneNumber",
+                                @"", @"primaryInsurancePrimaryInsuredEmployerEmail",
+                                
+                                
                                 insuranceVC.relationshipToPrimaryInsuree.text, @"primaryInsuranceRelationshipToPrimaryInsured",
                                 
                                 
@@ -195,6 +205,16 @@
                                 //                                insuranceVC.SIEmployerZip.text, @"secondaryInsurancePrimaryInsuredEmployerAddressZip",
                                 //                                insuranceVC.SIEmployerPhoneNumber.text, @"secondaryInsurancePrimaryInsuredEmployerPhoneNumber",
                                 //                                insuranceVC.SIEmployerEmail.text, @"secondaryInsurancePrimaryInsuredEmployerEmail",
+                                
+                                @"", @"secondaryInsurancePrimaryInsuredEmployerName",
+                                @"", @"secondaryInsurancePrimaryInsuredEmployerAddressLine1",
+                                @"", @"secondaryInsurancePrimaryInsuredEmployerAddressLine2",
+                                @"", @"secondaryInsurancePrimaryInsuredEmployerAddressCity",
+                                @"", @"secondaryInsurancePrimaryInsuredEmployerAddressState",
+                                @"", @"secondaryInsurancePrimaryInsuredEmployerAddressZip",
+                                @"", @"secondaryInsurancePrimaryInsuredEmployerPhoneNumber",
+                                @"", @"secondaryInsurancePrimaryInsuredEmployerEmail",
+                            
                                 
                                 insuranceVC.relationshipToSecondaryInsuree.text, @"secondaryInsuranceRelationshipToPrimaryInsured",
                                 
@@ -226,9 +246,12 @@
     NSHTTPURLResponse *response = nil;
     NSError *responseError = nil;
     
-    //NSData *responseResult = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
+    NSData *responseResult = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
+    //[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
     
+    NSString *responseData = [[NSString alloc] initWithData:responseResult encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"responseData is: %@", responseData);
     NSLog(@"Response satus code: %i", [response statusCode]);
     
     if (responseError == nil)
@@ -245,10 +268,10 @@
     
     
     // Conditions from fourth vc:
-    NSArray *conditions = [conditionsVC textConditionsList];
+    //NSArray *conditions = [conditionsVC textConditionsList];
     
     // Create the json object
-    NSError *cError, *pError = nil;
+    //NSError *cError, *pError = nil;
     /*
     // Have to get the patient id back from the new patient insert response
     NSURL *cUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/conditions/?key=%@", nPatientId, key]];
@@ -314,9 +337,6 @@
 //    [medicinesVC saveMedications:patient.patientId];
 //    
      */
-    
-    HomeViewController *hvc = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
-    [hvc incomingSegue:@"fromNewPatientPage"];
 }
 
 - (void)viewDidLoad

@@ -114,13 +114,12 @@
     if ([segue.identifier isEqualToString:@"patientInfoSegue2"])
     {
         PatientInfoTableViewController *destVC = segue.destinationViewController;
-        destVC.myPatient = self.myPatient;
+        //destVC.myPatient = self.myPatient;
     }
     else if ([segue.identifier isEqualToString:@"newVisitSegue"])
     {
         NewVisitViewController *destVC = segue.destinationViewController;
-        destVC.myPatient = self.myPatient;
-        destVC.myDoctor = self.myDoctor;
+        //destVC.myPatient = self.myPatient;
     }
     
     else if ([segue.identifier isEqualToString:@"toExistingVisitSegue"])
