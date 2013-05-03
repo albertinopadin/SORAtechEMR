@@ -16,7 +16,7 @@
 
 @synthesize npMedicinesTVC, npMedicationsTableView, myPatientId;
 
-- (void)saveMedications:(NSNumber *)patientID
+- (void)saveMedications:(NSInteger)patientID
 {
     // Pass message to save medications to our table view controller
     [self.npMedicinesTVC saveMedications:patientID];

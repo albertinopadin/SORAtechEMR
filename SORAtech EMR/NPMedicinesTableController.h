@@ -14,6 +14,6 @@
 @property (strong, nonatomic) NSMutableArray *medicinesList;
 
 - (void)addNewMedicineCell;
-- (void)saveMedications:(NSNumber *)patientID;
+- (void)saveMedications:(NSInteger)patientID;
 
 @end

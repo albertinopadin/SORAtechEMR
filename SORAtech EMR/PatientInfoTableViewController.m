@@ -9,7 +9,6 @@
 #import "PatientInfoTableViewController.h"
 #import "STAppDelegate.h"
 
-#import "Medicine.h"
 #import "PIPInsureeViewController.h"
 #import "SIPInsureeViewController.h"
 #import "EditPatientTBViewController.h"
@@ -265,6 +264,9 @@
     // Get conditions
     [self fetchConditionsForPatientId:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
     
+    // Get medications
+    [self fetchMedicationsForPatientId:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
+    
     //////////////// ----------- SET LABELS -------------- \\\\\\\\\\\\\\\\\\\\\\\
     
     // Personal
@@ -359,6 +361,31 @@
     self.conditionList = [NSJSONSerialization JSONObjectWithData:conditionsGetData options:0 error:&error];
 }
 
+- (void)fetchMedicationsForPatientId:(NSInteger)pid
+{
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
+    
+    NSError *error, *e = nil;
+    NSHTTPURLResponse *response = nil;
+    
+    NSURLRequest *medicationsGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/%i/medications/?key=%@", pid, key]]];
+    
+    NSData *medicationsGetData = [NSURLConnection sendSynchronousRequest:medicationsGetRequest returningResponse:&response error:&e];
+    
+    NSLog(@"Response for medications get is: %i", [response statusCode]);
+    
+    if (!medicationsGetData) {
+        NSLog(@"medicationsGetData is nil");
+        NSLog(@"Error: %@", e);
+    }
+    
+    //Creates the array of dictionary objects, ordered alphabetically
+    // Each element in this array is a condition object, whose properties can be accessed as a dictionary
+    self.medicineList = [NSJSONSerialization JSONObjectWithData:medicationsGetData options:0 error:&error];
+}
+
+
 - (NSString *)verifyForNull:(id)theString
 {
     NSString *returnString = [theString isEqual:[NSNull null]] ? @"" : theString;
@@ -450,11 +477,11 @@
             //cell = [[PatientInfoMedicineCell alloc] init];
         }
         
-        Medicine *med = (Medicine *)[self.medicineList objectAtIndex:[indexPath row]];
-        cell.medicineNameLabel.text = med.name;
-        cell.dosageLabel.text = med.dosage;
-        cell.frequencyLabel.text = med.frequency;
-        cell.purposeLabel.text = med.purpose;
+        NSDictionary *med = [self.medicineList objectAtIndex:[indexPath row]];
+        cell.medicineNameLabel.text = [med valueForKey:@"name"];
+        cell.dosageLabel.text = [med valueForKey:@"dosage"];
+        cell.frequencyLabel.text = @"";
+        cell.purposeLabel.text = @"";
         
         
         // Getting the prescriber
@@ -511,8 +538,6 @@
         cell.myVC = self;
         //[self.medicineCells addObject:cell];
          
-        NSLog(@"Med name is: %@, label is %@", med.name, cell.medicineNameLabel.text);
-        NSLog(@"Cell is: %@  and is kindOfClass: %@", cell, [cell class]);
         NSLog(@"Number of meds: %d", self.medicineList.count);
         
         return cell;

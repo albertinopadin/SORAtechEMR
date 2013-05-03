@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Visit.h"
-#import "Medicine.h"
 #import "PatientInfoConditionCell.h"
 #import "PatientInfoMedicineCell.h"
 

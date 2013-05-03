@@ -13,14 +13,11 @@
 #import "NPInsuranceViewController.h"
 #import "HomeViewController.h"
 #import "NPConditionsViewController.h"
-#import "Condition.h"
-#import "Medicine.h"
 #import "NPMedicinesViewController.h"
 #import "KeychainItemWrapper.h"
 
 @interface NewPatientTBViewController ()
 
-@property (strong, nonatomic) Patient *patient;
 @property (strong, nonatomic) NSArray *vcArray;
 @property (strong, nonatomic) NSArray *patientList;
 
@@ -28,7 +25,7 @@
 
 @implementation NewPatientTBViewController
 
-@synthesize patient, vcArray, patientList;
+@synthesize vcArray, patientList;
 
 //Getting the Managed Object Context, the window to our internal database
 - (NSManagedObjectContext *)managedObjectContext
@@ -96,7 +93,7 @@
     NPContactsViewController *contactsVC = [self.vcArray objectAtIndex:1];
     NPInsuranceViewController *insuranceVC = [self.vcArray objectAtIndex:2];
     NPConditionsViewController *conditionsVC = [self.vcArray objectAtIndex:3];
-    //NPMedicinesViewController *medicinesVC = [self.vcArray objectAtIndex:4];
+    NPMedicinesViewController *medicinesVC = [self.vcArray objectAtIndex:4];
 
     
     //Get the patient information
@@ -317,7 +314,6 @@
         if (s.length > 0)
         {
             // Insert new condition
-            // Patient id, and doctor id too?
             NSDictionary *condition = [[NSDictionary alloc] initWithObjectsAndKeys:s, @"condition", nil];
             
             NSData *conditionJSONData = [NSJSONSerialization dataWithJSONObject:condition options:NSJSONWritingPrettyPrinted error:&cError];
@@ -328,6 +324,12 @@
             NSLog(@"Response satus code: %i", [cResponse statusCode]);
         }
     }
+    
+
+    // Medicines from fifth vc:
+    [medicinesVC saveMedications:[[lastPatient valueForKey:@"patientId"] integerValue]];
+    
+    NSLog(@"New patient pid: %i", [[lastPatient valueForKey:@"patientId"] integerValue]);
     
     if (responseError == nil && cResponseError == nil)
     {
@@ -340,12 +342,10 @@
         UIAlertView *requestFailedAlert = [[UIAlertView alloc] initWithTitle:@"RequestFailed" message:@"The server could not add the new patient." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [requestFailedAlert show];
     }
-
+    
+    
+    
     /*
-    
-    // Medicines from fifth vc:
-    [medicinesVC saveMedications:patient.patientId];
-    
     
     //Save the patient information using the context
 //    NSError *saveError = nil;

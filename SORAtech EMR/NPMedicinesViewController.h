@@ -16,6 +16,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *npMedicationsTableView;
 
 - (IBAction)addNewMedication:(id)sender;
-- (void)saveMedications:(NSNumber *)patientID;
+- (void)saveMedications:(NSInteger)patientID;
 
 @end
