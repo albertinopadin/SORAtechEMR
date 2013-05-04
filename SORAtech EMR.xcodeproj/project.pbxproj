@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE1C5B4C1734FC3C004403B1 /* EditVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1C5B4B1734FC3B004403B1 /* EditVisitViewController.m */; };
+		CE1C5B5A173516AA004403B1 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1C5B59173516A9004403B1 /* new.png */; };
 		CE3160BE16FEAEF500118DC0 /* PatientInfoConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */; };
 		CE3160C016FED38300118DC0 /* conditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160BF16FED38300118DC0 /* conditionCell.xib */; };
 		CE3160C216FED52E00118DC0 /* medicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160C116FED52E00118DC0 /* medicationCell.xib */; };
@@ -47,6 +48,7 @@
 		CE5FAAD91730FF6D00AB8AB6 /* system.json in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAAC21730FF6D00AB8AB6 /* system.json */; };
 		CE5FAADE17327FFC00AB8AB6 /* BTCopyToSMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAADD17327FFB00AB8AB6 /* BTCopyToSMViewController.m */; };
 		CE5FAAE01732887200AB8AB6 /* heightsensorbt_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = CE5FAADF1732887200AB8AB6 /* heightsensorbt_v1.json */; };
+		CE75E9181735214300334D83 /* BTRetrieveFromSMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE75E9171735214300334D83 /* BTRetrieveFromSMViewController.m */; };
 		CE9D56651728FE6000F8651A /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D56641728FE6000F8651A /* KeychainItemWrapper.m */; };
 		CE9D56671728FF2700F8651A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D56661728FF2700F8651A /* Security.framework */; };
 		CEE2BF64170B492000C636EC /* ExistingVisitCondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE2BF63170B492000C636EC /* ExistingVisitCondCell.m */; };
@@ -135,6 +137,7 @@
 /* Begin PBXFileReference section */
 		CE1C5B4A1734FC3B004403B1 /* EditVisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditVisitViewController.h; sourceTree = "<group>"; };
 		CE1C5B4B1734FC3B004403B1 /* EditVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditVisitViewController.m; sourceTree = "<group>"; };
+		CE1C5B59173516A9004403B1 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientInfoConditionCell.xib; sourceTree = "<group>"; };
 		CE3160BF16FED38300118DC0 /* conditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = conditionCell.xib; sourceTree = "<group>"; };
 		CE3160C116FED52E00118DC0 /* medicationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = medicationCell.xib; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 		CE5FAADC17327FFB00AB8AB6 /* BTCopyToSMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCopyToSMViewController.h; sourceTree = "<group>"; };
 		CE5FAADD17327FFB00AB8AB6 /* BTCopyToSMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCopyToSMViewController.m; sourceTree = "<group>"; };
 		CE5FAADF1732887200AB8AB6 /* heightsensorbt_v1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heightsensorbt_v1.json; sourceTree = "<group>"; };
+		CE75E9161735214300334D83 /* BTRetrieveFromSMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRetrieveFromSMViewController.h; sourceTree = "<group>"; };
+		CE75E9171735214300334D83 /* BTRetrieveFromSMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRetrieveFromSMViewController.m; sourceTree = "<group>"; };
 		CE9D56631728FE6000F8651A /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		CE9D56641728FE6000F8651A /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		CE9D56661728FF2700F8651A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -453,8 +458,11 @@
 			isa = PBXGroup;
 			children = (
 				CEF2220316FC486A0025FF94 /* MainStoryboard.storyboard */,
+				CE1C5B59173516A9004403B1 /* new.png */,
 				CE1C5B4A1734FC3B004403B1 /* EditVisitViewController.h */,
 				CE1C5B4B1734FC3B004403B1 /* EditVisitViewController.m */,
+				CE75E9161735214300334D83 /* BTRetrieveFromSMViewController.h */,
+				CE75E9171735214300334D83 /* BTRetrieveFromSMViewController.m */,
 				CE5FAADC17327FFB00AB8AB6 /* BTCopyToSMViewController.h */,
 				CE5FAADD17327FFB00AB8AB6 /* BTCopyToSMViewController.m */,
 				CE5FAA8C1730FD3B00AB8AB6 /* STBluetoothHandler.h */,
@@ -724,6 +732,7 @@
 				CE5FAAD81730FF6D00AB8AB6 /* red-light@2x.png in Resources */,
 				CE5FAAD91730FF6D00AB8AB6 /* system.json in Resources */,
 				CE5FAAE01732887200AB8AB6 /* heightsensorbt_v1.json in Resources */,
+				CE1C5B5A173516AA004403B1 /* new.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,6 +819,7 @@
 				CE5FAA8E1730FD3B00AB8AB6 /* STBluetoothHandler.m in Sources */,
 				CE5FAADE17327FFC00AB8AB6 /* BTCopyToSMViewController.m in Sources */,
 				CE1C5B4C1734FC3C004403B1 /* EditVisitViewController.m in Sources */,
+				CE75E9181735214300334D83 /* BTRetrieveFromSMViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

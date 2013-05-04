@@ -81,7 +81,7 @@
             <objects>
                 <viewController id="2Hk-L9-mnK" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="piW-25-bYR">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fmr-qT-1kD">
@@ -226,7 +226,7 @@
             <objects>
                 <tableViewController id="POA-LW-Z8N" customClass="PatientSearchResultTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Mvh-HU-1vF">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="908"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="908"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -311,7 +311,7 @@
             <objects>
                 <viewController id="Vsp-mk-qmE" customClass="PatientVisitListViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5p8-6l-hvj">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="outlook-default-person.png" highlightedImage="Default.png" id="ZeM-DI-Imj">
@@ -432,7 +432,7 @@
             <objects>
                 <viewController id="p3w-4d-BWi" customClass="ExistingVisitViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aS3-i8-YCQ">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dXS-9Z-8o1">
@@ -585,7 +585,7 @@
             <objects>
                 <viewController id="oS6-fU-Q5p" customClass="BTCopyToSMViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XHa-jK-nHK">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Bjl-yN-PAr" customClass="EMConnectionIndicator">
@@ -657,7 +657,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kpa-gP-YwG">
-                                <rect key="frame" x="215" y="174" width="75" height="41"/>
+                                <rect key="frame" x="215" y="184" width="75" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Yes">
@@ -698,7 +698,7 @@
             <objects>
                 <tableViewController id="mJf-2J-m8m" customClass="PatientInfoTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5ZG-1T-yp1">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -1646,7 +1646,7 @@
                                         <rect key="frame" x="0.0" y="-5" width="170" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <items>
-                                            <barButtonItem title="Copy to Card" id="Gn0-7X-Cab">
+                                            <barButtonItem title="Copy to Card" width="106" id="Gn0-7X-Cab">
                                                 <connections>
                                                     <segue destination="oS6-fU-Q5p" kind="push" identifier="BluetoothCopyPatientInfoSegue" id="Ydd-lB-dOs"/>
                                                 </connections>
@@ -1702,7 +1702,7 @@
             <objects>
                 <viewController id="Rq2-jM-tm1" customClass="SIPInsureeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NMq-e4-ybK">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Full Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="345-Sh-Yvd">
@@ -1994,7 +1994,7 @@
             <objects>
                 <viewController id="9dW-8Z-dB7" customClass="PIPInsureeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7dD-UD-bjR">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Full Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="70t-GX-0CB">
@@ -2118,7 +2118,7 @@
             <objects>
                 <viewController id="SjX-dl-eeM" customClass="NewVisitViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VN3-yN-68O">
-                        <rect key="frame" x="0.0" y="44" width="768" height="864"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="864"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U0l-Lo-iaU">
@@ -2305,6 +2305,7 @@
                         <segue destination="xxK-c6-gF4" kind="relationship" relationship="viewControllers" id="LFr-lq-sD2"/>
                         <segue destination="EvZ-43-yUG" kind="relationship" relationship="viewControllers" id="zxc-nr-XuT"/>
                         <segue destination="jiV-y7-SVM" kind="relationship" relationship="viewControllers" id="gsE-LH-tou"/>
+                        <segue destination="feU-w7-5Ui" kind="relationship" relationship="viewControllers" id="ygU-XR-tmx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RgW-Y9-Usi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2839,7 +2840,7 @@
             <objects>
                 <viewController id="xxK-c6-gF4" customClass="NPInsuranceViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="qHw-Aj-DKy">
-                        <rect key="frame" x="0.0" y="64" width="768" height="1669"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1669"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Insurance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SM7-oG-y7N">
@@ -3351,7 +3352,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JhC-VE-aZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3122" y="4309"/>
+            <point key="canvasLocation" x="3130" y="4205"/>
         </scene>
         <!--Conditions View Controller - Conditions-->
         <scene sceneID="dub-Rj-xDt">
@@ -3426,7 +3427,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UFV-mE-xhc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3130" y="6168"/>
+            <point key="canvasLocation" x="3139" y="6096"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I1S-mg-hCR">
@@ -3565,7 +3566,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIk-1y-c5n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3130" y="7336"/>
+            <point key="canvasLocation" x="3139" y="7216"/>
         </scene>
         <!--Edit PatientTB View Controller - Edit Patient-->
         <scene sceneID="JOm-fs-OGZ">
@@ -3602,7 +3603,7 @@
             <objects>
                 <viewController id="TE7-Mj-ur7" customClass="PatientPersonalInfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rlW-UM-FX1">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="859"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="859"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Patient's First Name" minimumFontSize="17" clearButtonMode="whileEditing" id="Ydw-U0-gSg">
@@ -3806,7 +3807,7 @@
             <objects>
                 <viewController id="sF6-bN-EAt" customClass="NPContactsViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Awy-wV-JrW">
-                        <rect key="frame" x="0.0" y="44" width="768" height="1300"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Employer Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MrS-9G-bYG">
@@ -4644,7 +4645,7 @@
             <objects>
                 <viewController id="oVD-nZ-0Qz" customClass="EditConditionsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KTA-eJ-PU8">
-                        <rect key="frame" x="0.0" y="44" width="768" height="815"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="815"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Conditions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rMN-Y8-7nO">
@@ -4734,7 +4735,7 @@
             <objects>
                 <viewController id="1mq-E4-dIx" customClass="EditMedicinesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YdB-xM-mfG">
-                        <rect key="frame" x="0.0" y="44" width="768" height="815"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="815"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Medications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mqw-an-DoE">
@@ -4866,12 +4867,121 @@
             </objects>
             <point key="canvasLocation" x="8705" y="7768"/>
         </scene>
+        <!--Retrieve FromSM View Controller - Read Patient Info from Smart Card-->
+        <scene sceneID="RbP-5X-zrc">
+            <objects>
+                <viewController id="feU-w7-5Ui" customClass="BTRetrieveFromSMViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J9y-7S-MzY">
+                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="KsJ-Mq-BBe" customClass="EMConnectionIndicator">
+                                <rect key="frame" x="250" y="6" width="62" height="62"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connect to Bluetooth:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CmO-sF-jss">
+                                <rect key="frame" x="20" y="20" width="235" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connection Status:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IZb-df-sHq">
+                                <rect key="frame" x="374" y="20" width="165" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Not Connected" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="YXm-s5-0cq">
+                                <rect key="frame" x="547" y="20" width="165" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Read from Smart Card?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3zo-h0-qMF">
+                                <rect key="frame" x="20" y="172" width="203" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Copy Status:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sch-aN-ZdB">
+                                <rect key="frame" x="20" y="201" width="187" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Contents of Smart Card:  " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8yW-jZ-3F8">
+                                <rect key="frame" x="20" y="280" width="207" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7fS-mj-u4g">
+                                <rect key="frame" x="237" y="163" width="75" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Yes">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="retrieveFromSmartCard:" destination="feU-w7-5Ui" eventType="touchUpInside" id="xzB-Ka-uD7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Waiting for user confirmation." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="66s-Sf-Z3J">
+                                <rect key="frame" x="20" y="230" width="728" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" id="Pip-T2-GsM">
+                                <rect key="frame" x="20" y="309" width="728" height="400"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="Contents of the smart card will be displayed here. If there is an error while reading, it will also be displayed here." id="X15-ic-Beb">
+                                        <rect key="frame" x="7" y="6" width="715" height="388"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Smart Card" image="new.png" id="uX5-fB-Yg6"/>
+                    <navigationItem key="navigationItem" title="Read Patient Info from Smart Card" id="Bo1-MZ-csW"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="btConnectionStatus" destination="YXm-s5-0cq" id="azI-Na-Fsj"/>
+                        <outlet property="contentsOfSmartCard" destination="X15-ic-Beb" id="pK8-YP-VUs"/>
+                        <outlet property="retrieveStatusLabel" destination="66s-Sf-Z3J" id="3nb-yJ-emV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ex-lf-rlE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1723" y="4158"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Default.png" width="320" height="480"/>
         <image name="SORAtechLogo.jpg" width="880" height="216"/>
         <image name="folder.png" width="32" height="32"/>
         <image name="information.png" width="32" height="32"/>
+        <image name="new.png" width="16" height="16"/>
         <image name="outlook-default-person.png" width="104" height="104"/>
     </resources>
     <classes>
@@ -4880,8 +4990,18 @@
             <relationships>
                 <relationship kind="action" name="copyToSmartCard:"/>
                 <relationship kind="outlet" name="btConnectionStatus" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cpyStatusLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="patientIdLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="BTRetrieveFromSMViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BTRetrieveFromSMViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="retrieveFromSmartCard:"/>
+                <relationship kind="outlet" name="btConnectionStatus" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="contentsOfSmartCard" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="retrieveStatusLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="EMConnectionIndicator" superclassName="UIControl">
@@ -5182,7 +5302,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="6QZ-FA-3T2"/>
-        <segue reference="xN2-up-FG4"/>
+        <segue reference="yer-wV-nT2"/>
         <segue reference="AcE-FA-D0b"/>
         <segue reference="xfe-BV-UTX"/>
         <segue reference="ofJ-PP-1Fc"/>

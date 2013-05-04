@@ -17,6 +17,8 @@
 @property (strong, nonatomic) volatile IBOutlet UILabel *cpyStatusLabel;
 @property (strong, nonatomic) IBOutlet UILabel *btConnectionStatus;
 
+- (void)writeFinished;
+
 - (IBAction)copyToSmartCard:(id)sender;
 
 @end

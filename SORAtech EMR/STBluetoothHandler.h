@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "EMFramework.h"
 #import "EMConnectionIndicator.h"
+#import "BTCopyToSMViewController.h"
+#import "BTRetrieveFromSMViewController.h"
 
 @interface STBluetoothHandler : NSObject
 
 @property (strong, nonatomic) NSString *connectionStatus;
+@property (strong, nonatomic) BTCopyToSMViewController *myWriteVC;
+@property (strong, nonatomic) BTRetrieveFromSMViewController *myReadVC;
 
 // Call this in the app delegate to listen for BT devices
 - (void)appDelegateSetupProcedure;
@@ -22,8 +26,11 @@
 
 - (int)getPatientHeight;
 - (void)writePatientInformationToCard:(NSDictionary *)patientJSON;
-- (BOOL)writeFinished;
+//- (BOOL)writeFinished;
 //- (int)writePatientInformationToCard:(NSDictionary *)patientJSON;
+
+- (void)startRead;
+- (void)finishedRead;
 - (NSDictionary *)retrievePatientInformationFromCard;
 
 @end

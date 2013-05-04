@@ -386,6 +386,7 @@
     self.selectedViewController = [[self viewControllers] objectAtIndex:2];
     self.selectedViewController = [[self viewControllers] objectAtIndex:3];
     self.selectedViewController = [[self viewControllers] objectAtIndex:4];
+    self.selectedViewController = [[self viewControllers] objectAtIndex:5];
     self.selectedViewController = [[self viewControllers] objectAtIndex:0];
 }
 

@@ -11,6 +11,10 @@
 @interface STBluetoothHandler()
 
 @property (nonatomic) BOOL writeIsFinished;
+@property (nonatomic) int numBlocksToWrite;
+@property (nonatomic) int numBlocksToRead;
+@property (strong, nonatomic) NSMutableArray *readBlockArray;
+@property (strong, nonatomic) NSString *stringFromCard;
 
 @end
 
@@ -18,11 +22,13 @@
 
 @synthesize connectionStatus;
 @synthesize writeIsFinished;
+@synthesize myWriteVC, myReadVC;
+@synthesize readBlockArray, stringFromCard;
 
-- (BOOL)writeFinished
-{
-    return writeIsFinished;
-}
+//- (BOOL)writeFinished
+//{
+//    return writeIsFinished;
+//}
 
 - (void)appDelegateSetupProcedure
 {
@@ -65,6 +71,7 @@
     
     // Set format flag at the beginning
     [formattedPatientInfoForCard appendString:@"ST_EMR|"];
+    //[formattedPatientInfoForCard insertString:@"ST_EMR|" atIndex:0];
     
     // Personal
     [formattedPatientInfoForCard appendString:[patientJSON valueForKey:@"firstName"]];
@@ -219,9 +226,11 @@
 
     self.writeIsFinished = NO;
     
+    //NSLog(@"formattedPatientInfoForCard: %@")
+    
     // Write the formatted string to the card
-    //[self writeToCard:formattedPatientInfoForCard];
-    [self performSelectorOnMainThread:@selector(writeToCard:) withObject:formattedPatientInfoForCard waitUntilDone:YES];
+    [self writeToCard:formattedPatientInfoForCard];
+    //[self performSelectorOnMainThread:@selector(writeToCard:) withObject:formattedPatientInfoForCard waitUntilDone:YES];
     
     //while (!self.writeIsFinished);
     
@@ -229,10 +238,26 @@
     //return 1;
 }
 
+
+- (void)startRead
+{
+    [self readFromCard];
+}
+
+- (void)finishedRead
+{
+    self.stringFromCard = [self.readBlockArray componentsJoinedByString:@""];
+}
+
+
 // Convert the info stored in the smart card to an NSDictionary suitable for JSON
 - (NSDictionary *)retrievePatientInformationFromCard
 {
-    NSString *stringFromCard = [self readFromCard];
+    //NSString *stringFromCard = [self readFromCard];
+    
+    
+    NSLog(@"raw stringFromCard: %@", stringFromCard);
+    
     if ([stringFromCard isEqualToString:@"Bluetooth is not connected"])
     {
         return nil;    // No bluetooth was connected; return nil and handle it in the destination
@@ -241,6 +266,9 @@
     {
         // Place each element, which has been separated by a | in the corresponding place in a JSON array
         NSArray *separatedStringFromCard =  [stringFromCard componentsSeparatedByString:@"|"];
+        
+        NSLog(@"separatedStringFromCard: %@", separatedStringFromCard);
+        NSLog(@"Check for compatibility on read: %@", [separatedStringFromCard objectAtIndex:0]);
         
         // Verify that card has been formatted correctly
         if ([[separatedStringFromCard objectAtIndex:0] isEqualToString:@"ST_EMR"])
@@ -349,7 +377,7 @@
         }
         else
         {
-            return nil;     // Handle error at destination
+            return [[NSDictionary alloc] initWithObjectsAndKeys:@"Smart card not formatted correctly / incompatible with app", @"Error", nil];     // Handle error at destination
         }
         
     }
@@ -422,6 +450,8 @@
                 break;
         }
     }
+    self.myWriteVC.btConnectionStatus.text = self.connectionStatus;
+    self.myReadVC.btConnectionStatus.text = self.connectionStatus;
 }
 
 - (int)readDistance
@@ -472,11 +502,6 @@
     
     NSLog(@"In writeToCard");
     
-    NSLock *lock = [[NSLock alloc] init];
-    
-    // Lock the thread to ensure it finished before returning
-    [lock lock];
-    
     // Divide the string into blocks of 256 bytes
     NSMutableArray *blockArray = [[NSMutableArray alloc] init];
         
@@ -484,15 +509,16 @@
     
     if ([patientJSONString length] <= 127)
     {
+        self.numBlocksToWrite = 1;
         [blockArray addObject:patientJSONString];
         [self writeToCardBlocks:blockArray UsingIndex:0];
-        
-        self.writeIsFinished = YES;
     }
     
     else if ([patientJSONString length] > 127)
     {
         int limit = ([patientJSONString length]/127) + 1;
+        
+        self.numBlocksToWrite = limit;
         
         for (int i = 0; i < limit; i++)
         {
@@ -522,21 +548,22 @@
             // Write to specific card block
             [self writeToCardBlocks:blockArray UsingIndex:i];
         }
-        self.writeIsFinished = YES;
     }
     
-    //self.writeIsFinished = YES;
     NSLog(@"blockArray: %@", blockArray);
     
-    // Unlock the thread and return
-    [lock unlock];
 }
 
 - (void)writeToCardBlocks:(NSArray *)blocks UsingIndex:(int)index
 {
+    __block STBluetoothHandler *blockSafeSelf = self;
+    
     [[EMConnectionManager sharedManager] writeValue:[blocks objectAtIndex:index] toResource:@"cardContents" onSuccess:^{
         // Write on card
-        
+        if (blockSafeSelf.numBlocksToWrite == (index + 1))
+        {
+            [blockSafeSelf.myWriteVC writeFinished];
+        }
     } onFail:^(NSError *error) {
         EMLog(@"Failed to write cardContents");
     }];
@@ -545,9 +572,17 @@
 
 - (void)readCardBlockToArray:(NSMutableArray *)blockArray
 {
+    __block STBluetoothHandler *blockSafeSelf = self;
+    
     [[EMConnectionManager sharedManager] readResource:@"cardContents" onSuccess:^(id readValue) {
         [blockArray addObject:[NSString stringWithFormat:@"%@", readValue]];
         NSLog(@"Read from card: %@", readValue);
+        
+        if (blockSafeSelf.numBlocksToRead == [blockArray count])
+        {
+            [blockSafeSelf finishedRead];
+            [blockSafeSelf.myReadVC readFinished];
+        }
         
     } onFail:^(NSError *error) {
         EMLog(@"Failed to read cardContents");
@@ -555,18 +590,24 @@
     }];
 }
 
-- (NSString *)readFromCard
+- (void)readFromCard
 {
     if ([[EMConnectionManager sharedManager] connectionState] != EMConnectionStateConnected) {
-        return @"Bluetooth is not connected";
+        //return @"Bluetooth is not connected";
+        return;
     }
     
-    NSMutableArray *blockArray = [[NSMutableArray alloc] init];
+    //NSMutableArray *blockArray = [[NSMutableArray alloc] init];
+    self.readBlockArray = [[NSMutableArray alloc] init];
+    
+    self.numBlocksToRead = 16;
     
     for (int i = 0; i < 16; i++)
     {
         int blockToRead = i / 2;
         int remainder = i % 2;
+        
+        //self.currReadNum = i;   // Aids in coordination -> readCardBlockToArray
         
         [self selectBlockNumber:blockToRead];
         
@@ -576,12 +617,12 @@
         }
         
         // Read, block half by block half, into the array
-        [self readCardBlockToArray:blockArray];
+        [self readCardBlockToArray:self.readBlockArray];
     }
     
-    NSString *stringFromCard = [blockArray componentsJoinedByString:@""];
+    //NSString *stringFromCard = [blockArray componentsJoinedByString:@""];
     
-    return stringFromCard;
+    //return stringFromCard;
 }
 
 @end

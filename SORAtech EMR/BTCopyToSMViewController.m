@@ -36,6 +36,7 @@
     
     self.btHandler = [[STBluetoothHandler alloc] init];
     [self.btHandler bluetoothHandlerInit];
+    self.btHandler.myWriteVC = self;
     
     self.patientIdLabel.text = [NSString stringWithFormat:@"%i", [[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
     self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
@@ -44,7 +45,7 @@
                                   [self.myPatientJSON valueForKey:@"paternalLastName"],
                                   [self.myPatientJSON valueForKey:@"maternalLastName"]];
     self.cpyStatusLabel.text = @"Waiting for user confirmation.";
-    self.btConnectionStatus.text = self.btHandler.connectionStatus;
+    //self.btConnectionStatus.text = self.btHandler.connectionStatus;
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,22 +54,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)writeFinished
+{
+    self.cpyStatusLabel.text = @"Finished copying patient information to card!";
+}
+
 - (IBAction)copyToSmartCard:(id)sender
 {
     self.cpyStatusLabel.text = @"Copying patient information to card...";
     
-    NSLock *lock = [[NSLock alloc] init];
-    [lock lock];
+    //NSLock *lock = [[NSLock alloc] init];
+    //[lock lock];
     
-    [self.btHandler performSelectorOnMainThread:@selector(writePatientInformationToCard:) withObject:self.myPatientJSON waitUntilDone:YES];
-    //[self.btHandler writePatientInformationToCard:self.myPatientJSON];
+    //[self.btHandler performSelectorOnMainThread:@selector(writePatientInformationToCard:) withObject:self.myPatientJSON waitUntilDone:YES];
     
-    [lock unlock];
+    [self.btHandler writePatientInformationToCard:self.myPatientJSON];
+    
+    //[lock unlock];
     
     //while (![self.btHandler writeFinished]);
     
     //self.cpyStatusLabel.text = @"Finished copying patient information to card!";
     
-    [self.cpyStatusLabel performSelector:@selector(setText:) withObject:@"Finished copying patient information to card!" afterDelay:3.0];
+    //[self.cpyStatusLabel performSelector:@selector(setText:) withObject:@"Finished copying patient information to card!" afterDelay:3.0];
 }
 @end
