@@ -82,7 +82,7 @@
     //self.visitList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
     // Set textview delegate so when user taps on it the text clears only the first time:
-    self.visitNotes.delegate = self;
+    self.visitNotes.delegate = self; 
 }
 
 // TextView delegate method

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1C5B4C1734FC3C004403B1 /* EditVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1C5B4B1734FC3B004403B1 /* EditVisitViewController.m */; };
 		CE3160BE16FEAEF500118DC0 /* PatientInfoConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */; };
 		CE3160C016FED38300118DC0 /* conditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160BF16FED38300118DC0 /* conditionCell.xib */; };
 		CE3160C216FED52E00118DC0 /* medicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160C116FED52E00118DC0 /* medicationCell.xib */; };
@@ -132,6 +133,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE1C5B4A1734FC3B004403B1 /* EditVisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditVisitViewController.h; sourceTree = "<group>"; };
+		CE1C5B4B1734FC3B004403B1 /* EditVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditVisitViewController.m; sourceTree = "<group>"; };
 		CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientInfoConditionCell.xib; sourceTree = "<group>"; };
 		CE3160BF16FED38300118DC0 /* conditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = conditionCell.xib; sourceTree = "<group>"; };
 		CE3160C116FED52E00118DC0 /* medicationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = medicationCell.xib; sourceTree = "<group>"; };
@@ -450,6 +453,8 @@
 			isa = PBXGroup;
 			children = (
 				CEF2220316FC486A0025FF94 /* MainStoryboard.storyboard */,
+				CE1C5B4A1734FC3B004403B1 /* EditVisitViewController.h */,
+				CE1C5B4B1734FC3B004403B1 /* EditVisitViewController.m */,
 				CE5FAADC17327FFB00AB8AB6 /* BTCopyToSMViewController.h */,
 				CE5FAADD17327FFB00AB8AB6 /* BTCopyToSMViewController.m */,
 				CE5FAA8C1730FD3B00AB8AB6 /* STBluetoothHandler.h */,
@@ -804,6 +809,7 @@
 				CE9D56651728FE6000F8651A /* KeychainItemWrapper.m in Sources */,
 				CE5FAA8E1730FD3B00AB8AB6 /* STBluetoothHandler.m in Sources */,
 				CE5FAADE17327FFC00AB8AB6 /* BTCopyToSMViewController.m in Sources */,
+				CE1C5B4C1734FC3C004403B1 /* EditVisitViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

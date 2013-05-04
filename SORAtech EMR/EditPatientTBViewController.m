@@ -516,7 +516,7 @@
 // Pop the edit vc and go back to patient info view
 - (IBAction)doneEditingPatient:(id)sender
 {
-    if ([self shouldPerformPop])
+    if ([self shouldPerformPop]) 
     {
         // First we send the request to edit the patient to the db and get the edited patient's info back
         [self preparePatientEdit];

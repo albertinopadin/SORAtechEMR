@@ -10,6 +10,7 @@
 #import "STAppDelegate.h"
 #import "ExistingVisitCondCell.h"
 #import "ExistingVisitMedCell.h"
+#import "EditVisitViewController.h"
 
 @interface ExistingVisitViewController ()
 
@@ -36,6 +37,35 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toEditVisitSegue"])
+    {
+        EditVisitViewController *evVC = [segue destinationViewController];
+        evVC.myPatientJSON = self.myPatientJSON;
+        evVC.editVisit = self.myVisitJSON;
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
+                                  [self.myPatientJSON valueForKey:@"firstName"],
+                                  [self.myPatientJSON valueForKey:@"middleName"],
+                                  [self.myPatientJSON valueForKey:@"paternalLastName"],
+                                  [self.myPatientJSON valueForKey:@"maternalLastName"]];
+    
+    self.date.text = [self.myVisitJSON valueForKey:@"date"];
+    self.bloodPressure.text = [NSString stringWithFormat:@"%@ / %@",
+                               [self.myVisitJSON valueForKey:@"systolicBloodPressure"],
+                               [self.myVisitJSON valueForKey:@"diastolicBloodPressure"]];
+    self.pulse.text = [self.myVisitJSON valueForKey:@"pulse"];
+    self.temperature.text = [self.myVisitJSON valueForKey:@"temperature"];
+    self.height.text = [self.myVisitJSON valueForKey:@"height"];
+    self.weight.text = [self.myVisitJSON valueForKey:@"weight"];
+    self.notes.text = [self.myVisitJSON valueForKey:@"notes"];
 }
 
 - (void)viewDidLoad
