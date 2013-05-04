@@ -9,19 +9,19 @@
 #import "PatientVisitListViewController.h"
 #import "PatientInfoTableViewController.h"
 #import "STAppDelegate.h"
-#import "Visit.h"
 #import "NewVisitViewController.h"
 #import "ExistingVisitViewController.h"
+#import "KeychainItemWrapper.h"
 
 @interface PatientVisitListViewController ()
 
-@property (strong, nonatomic) Visit *selectedVisit;
+@property (strong, nonatomic) NSDictionary *selectedVisit;
 
 @end
 
 @implementation PatientVisitListViewController
 
-@synthesize myDoctor, selectedVisit, visitList, notesList, visitListTableViewController, visitListTableView, myPatient, patientNameLabel, patientPhotoView;
+@synthesize selectedVisit, visitList, notesList, visitListTableViewController, visitListTableView, myPatientJSON, patientNameLabel, patientPhotoView;
 
 
 //Getting the Managed Object Context, the window to our internal database
@@ -50,47 +50,38 @@
     // To allow visits to be deleted
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@", self.myPatient.firstName, self.myPatient.paternalLastName, self.myPatient.maternalLastName];
+    self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@",
+                                  [self.myPatientJSON valueForKey:@"firstName"],
+                                  [self.myPatientJSON valueForKey:@"paternalLastName"],
+                                  [self.myPatientJSON valueForKey:@"maternalLastName"]];
     
-    //We initialize and set these things in the viewDidLoad
-    //Hardcode
-//    visitList = [NSMutableArray arrayWithObjects:@"March 15th 2013", @"April 15th 2013", @"May 15th 2013", @"June 15th 2013", nil];
-//    
-//    notesList = [NSMutableArray arrayWithObjects:@"Patient complained of depression, anxiety and ADHD. Prescription was provided.",
-//                 @"Follow up on last visit, no negative effetcs present. Prescription was provided.",
-//                 @"Follow up on last visit, no negative effetcs present. Prescription was provided.",
-//                 @"Follow up on last visit, no negative effetcs present. Prescription was provided.",
-//                 nil];
+    // Get patient's visits from db
     
-    //self.visitListTableView = [[UITableView alloc] init];
+    // Get doctor's key from keychain
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
     
-    // NSFetchRequest
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSError *error, *e = nil;
+    NSHTTPURLResponse *response = nil;
     
-    // fetchRequest needs to know what entity to fetch
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Visit" inManagedObjectContext:self.managedObjectContext];
+    NSURLRequest *visitsGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/%@/visits/?key=%@", [self.myPatientJSON valueForKey:@"patientId"], key]]];
     
-    [fetchRequest setEntity:entity];
+    NSLog(@"Visits get URL: %@", [visitsGetRequest URL]);
     
-    // NSSortDescriptor tells defines how to sort the fetched results
-    // Here it will sort the visit by date and visit id (for when a patient has more than one visit the same day)
-    NSSortDescriptor *dateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    NSData *visitsGetData = [NSURLConnection sendSynchronousRequest:visitsGetRequest returningResponse:&response error:&e];
     
-    NSSortDescriptor *visitIdSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"visitId" ascending:NO];
-
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:dateSortDescriptor, visitIdSortDescriptor, nil];
+    NSLog(@"Response for visits get is: %i", [response statusCode]);
     
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    if (!visitsGetData) {
+        NSLog(@"visitsGetData is nil");
+        NSLog(@"Error: %@", e);
+    }
     
-    NSPredicate *predicate;
+    //Creates the array of dictionary objects, ordered alphabetically
+    // Each element in this array is a patient object, whose properties can be accessed as a dictionary
+    NSArray *vList = [NSJSONSerialization JSONObjectWithData:visitsGetData options:0 error:&error];
     
-    // Set predicate so it searches for our particular patient's visits.
-    predicate =[NSPredicate predicateWithFormat:@"patientId == %@", self.myPatient.patientId];
-    
-    [fetchRequest setPredicate:predicate];
-    
-    NSArray *vList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     self.visitList = [NSMutableArray arrayWithArray:vList];
     
     self.visitListTableView.delegate = self;
@@ -114,18 +105,19 @@
     if ([segue.identifier isEqualToString:@"patientInfoSegue2"])
     {
         PatientInfoTableViewController *destVC = segue.destinationViewController;
-        //destVC.myPatient = self.myPatient;
+        destVC.myPatientJSON = self.myPatientJSON;
     }
     else if ([segue.identifier isEqualToString:@"newVisitSegue"])
     {
         NewVisitViewController *destVC = segue.destinationViewController;
-        //destVC.myPatient = self.myPatient;
+        destVC.myPatientJSON = self.myPatientJSON;
     }
     
     else if ([segue.identifier isEqualToString:@"toExistingVisitSegue"])
     {
         ExistingVisitViewController *destVC = segue.destinationViewController;
-        destVC.myVisit = self.selectedVisit;
+        destVC.myVisitJSON = self.selectedVisit;
+        destVC.myPatientJSON = self.myPatientJSON;
         
         if (!self.selectedVisit) {
             NSLog(@"selectedVisit is null at time of prepareForSegue");
@@ -170,12 +162,12 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         
-        Visit *visit = [visitList objectAtIndex:[indexPath row]];
+        NSDictionary *visit = [visitList objectAtIndex:[indexPath row]];
         
         //Title Part
-        cell.textLabel.text = visit.date;
+        cell.textLabel.text = [visit valueForKey:@"date"];
         //Notes Part
-        cell.detailTextLabel.text = visit.notes;
+        cell.detailTextLabel.text = [visit valueForKey:@"notes"];
         
         return cell;
     }
@@ -205,10 +197,9 @@
     {
         // First we set the visit so we can send it to the next view controller
         self.selectedVisit = [self.visitList objectAtIndex:[indexPath row]];
-        
+
         // Only then do we call the segue
         [self performSegueWithIdentifier:@"toExistingVisitSegue" sender:self];
-
     }
     
     // Navigation logic may go here. Create and push another view controller.
@@ -239,13 +230,9 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         
-        // Delete from Core Data db:
-        Visit *visitToDelete = [self.visitList objectAtIndex:[indexPath row]];
-        [self.managedObjectContext deleteObject:visitToDelete];
-        
-        // Confirm our delete by saving the managed object context
-        NSError *saveError = nil;
-        [self.managedObjectContext save:&saveError];
+        // Delete from cloud db:
+        NSDictionary *visitToDelete = [self.visitList objectAtIndex:[indexPath row]];
+        [self deleteVisitFromDatabase:visitToDelete];
         
         
         //If visit list is about to be empty, simply remove the element from the array
@@ -269,6 +256,31 @@
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
+}
+
+
+- (void)deleteVisitFromDatabase:(NSDictionary *)visitToBeDeleted
+{
+    // Get the user's key from the keychain
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/visits/%@/?key=%@", [visitToBeDeleted valueForKey:@"patientId"], [visitToBeDeleted valueForKey:@"visitId"], key]];
+    
+    // Check url
+    NSLog(@"Visit Delete URL = %@", url);
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+    // HTTP METHOD: DELETE
+    [request setHTTPMethod:@"DELETE"];
+    
+    // Response
+    NSHTTPURLResponse *response = nil;
+    NSError *responseError = nil;
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
+    
+    NSLog(@"Response satus code: %i", [response statusCode]);
 }
 
 

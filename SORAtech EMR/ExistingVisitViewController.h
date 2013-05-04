@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Visit.h"
 
 @interface ExistingVisitViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) Visit *myVisit;
+@property (strong, nonatomic) NSDictionary *myPatientJSON;
+@property (strong, nonatomic) NSDictionary *myVisitJSON;
 
+@property (strong, nonatomic) IBOutlet UILabel *patientNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *date;
 @property (strong, nonatomic) IBOutlet UILabel *bloodPressure;
 @property (strong, nonatomic) IBOutlet UILabel *pulse;

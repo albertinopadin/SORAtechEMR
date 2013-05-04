@@ -122,7 +122,7 @@
     if ([segue.identifier isEqualToString:@"toPatientVisitListSegue"])
     {
         PatientVisitListViewController *destVC = segue.destinationViewController;
-        destVC.myPatient = [searchResultsArray objectAtIndex:self.patientIndex];
+        destVC.myPatientJSON = [searchResultsArray objectAtIndex:self.patientIndex];
     }
     else if ([segue.identifier isEqualToString:@"viewPatientInfoSegue"])
     {

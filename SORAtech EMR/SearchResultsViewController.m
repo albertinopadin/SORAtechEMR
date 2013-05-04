@@ -58,13 +58,12 @@
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
-    NSError *error, *e, *e2 = nil;
-    //NSURLResponse *response = nil;
+    NSError *error, *e = nil;
     NSHTTPURLResponse *response = nil;
     
     NSURLRequest *patientSearchRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/?key=%@", key]]];
     
-    NSData *patientSearchData = [NSURLConnection sendSynchronousRequest:patientSearchRequest returningResponse:&response error:&e2];
+    NSData *patientSearchData = [NSURLConnection sendSynchronousRequest:patientSearchRequest returningResponse:&response error:&e];
     
     NSLog(@"Response for patients get is: %i", [response statusCode]);
     

@@ -7,24 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Visit.h"
-#import "Patient.h"
 #import "ConditionsTableViewController.h"
 #import "MedicationsTableViewController.h"
-#import "Prescriber.h"
 
 @interface NewVisitViewController : UIViewController <UITextViewDelegate>
 
-@property (strong, nonatomic) Prescriber *myDoctor;
-@property (strong, nonatomic) Visit *visit;
+@property (strong, nonatomic) NSDictionary *nVisit;
 @property (strong, nonatomic) NSArray *visitList;
-@property (strong, nonatomic) Patient *myPatient;
+@property (strong, nonatomic) NSDictionary *myPatientJSON;
 @property (strong, nonatomic) NSArray *conditionsArray;
 @property (strong, nonatomic) NSArray *medicationsArray;
 @property (strong, nonatomic) ConditionsTableViewController *conditionsTableVC;
 @property (strong, nonatomic) MedicationsTableViewController *medicationsTableVC;
 
 
+@property (strong, nonatomic) IBOutlet UILabel *patientNameLabel;
 @property (strong, nonatomic) IBOutlet UITextField *dateField;
 @property (strong, nonatomic) IBOutlet UITextField *systolicBPField;
 @property (strong, nonatomic) IBOutlet UITextField *diastolicBPField;

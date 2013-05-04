@@ -8,8 +8,6 @@
 
 #import "ExistingVisitViewController.h"
 #import "STAppDelegate.h"
-#import "Medicine.h"
-#import "Condition.h"
 #import "ExistingVisitCondCell.h"
 #import "ExistingVisitMedCell.h"
 
@@ -22,7 +20,7 @@
 
 @implementation ExistingVisitViewController
 
-@synthesize myVisit, date, bloodPressure, pulse, temperature, height, weight, notes;
+@synthesize myVisitJSON, myPatientJSON, patientNameLabel, date, bloodPressure, pulse, temperature, height, weight, notes;
 //@synthesize medicationsPrescribedTableView, conditionsDiagnosedTableView, conditionList, medicationList;
 
 //Getting the Managed Object Context, the window to our internal database
@@ -45,13 +43,21 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.date.text = self.myVisit.date;
-    self.bloodPressure.text = [NSString stringWithFormat:@"%@ / %@", self.myVisit.systolicBloodPressure, self.myVisit.diastolicBloodPressure];
-    self.pulse.text = self.myVisit.pulse;
-    self.temperature.text = self.myVisit.temperature;
-    self.height.text = self.myVisit.height;
-    self.weight.text = self.myVisit.weight;
-    self.notes.text = self.myVisit.notes;
+    self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
+                                  [self.myPatientJSON valueForKey:@"firstName"],
+                                  [self.myPatientJSON valueForKey:@"middleName"],
+                                  [self.myPatientJSON valueForKey:@"paternalLastName"],
+                                  [self.myPatientJSON valueForKey:@"maternalLastName"]];
+    
+    self.date.text = [self.myVisitJSON valueForKey:@"date"];
+    self.bloodPressure.text = [NSString stringWithFormat:@"%@ / %@",
+                               [self.myVisitJSON valueForKey:@"systolicBloodPressure"],
+                               [self.myVisitJSON valueForKey:@"diastolicBloodPressure"]];
+    self.pulse.text = [self.myVisitJSON valueForKey:@"pulse"];
+    self.temperature.text = [self.myVisitJSON valueForKey:@"temperature"];
+    self.height.text = [self.myVisitJSON valueForKey:@"height"];
+    self.weight.text = [self.myVisitJSON valueForKey:@"weight"];
+    self.notes.text = [self.myVisitJSON valueForKey:@"notes"];
     
     // Setting up the conditions and medications lists:
     

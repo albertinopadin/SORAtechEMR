@@ -7,13 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Patient.h"
-#import "Prescriber.h"
 
 @interface PatientVisitListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) Prescriber *myDoctor;
-@property (retain, nonatomic) Patient *myPatient;
+@property (retain, nonatomic) NSDictionary *myPatientJSON;
 @property (retain, nonatomic) NSMutableArray *visitList, *notesList;
 @property (strong, nonatomic) UITableViewController *visitListTableViewController;
 
