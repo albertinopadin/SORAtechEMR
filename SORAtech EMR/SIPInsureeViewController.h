@@ -11,7 +11,7 @@
 
 @interface SIPInsureeViewController : UIViewController
 
-@property (strong, nonatomic) Patient *myPatient;
+@property (strong, nonatomic) NSDictionary *myPatientJSON;
 @property (strong, nonatomic) IBOutlet UILabel *sipFullName;
 @property (strong, nonatomic) IBOutlet UILabel *sipAddressLine1;
 @property (strong, nonatomic) IBOutlet UILabel *sipAddressLine2;

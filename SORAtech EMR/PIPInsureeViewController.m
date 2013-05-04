@@ -14,7 +14,7 @@
 
 @implementation PIPInsureeViewController
 
-@synthesize myPatient;
+@synthesize myPatientJSON;
 @synthesize pipFullName, pipAddressLine1, pipAddressLine2, pipPhoneNum, pipDateOfBirth, pipEmail, pipSocialSecurityNum;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -31,13 +31,24 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.pipFullName.text = [NSString stringWithFormat:@"%@ %@ %@ %@", self.myPatient.piFirstName, self.myPatient.piMiddleName, self.myPatient.piPaternalLastName, self.myPatient.piMaternalLastName];
-    self.pipAddressLine1.text = [NSString stringWithFormat:@"%@ %@", self.myPatient.piLine1, self.myPatient.piLine2];
-    self.pipAddressLine2.text = [NSString stringWithFormat:@"%@ %@ %@", self.myPatient.piCity, self.myPatient.piState, self.myPatient.piZip];
-    self.pipPhoneNum.text = self.myPatient.piPhoneNumber;
-    self.pipDateOfBirth.text = self.myPatient.piDateOfBirth;
-    self.pipEmail.text = self.myPatient.piEmail;
-    self.pipSocialSecurityNum.text = self.myPatient.piSocialSecurityNumber;
+    NSLog(@"myPatientJSON: %@", self.myPatientJSON);
+    
+    self.pipFullName.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
+                             [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredFirstName"],
+                             [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredMiddleName"],
+                             [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredPaternalLastName"],
+                             [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredMaternalLastName"]];
+    self.pipAddressLine1.text = [NSString stringWithFormat:@"%@ %@",
+                                 [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressLine1"],
+                                 [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressLine2"]];
+    self.pipAddressLine2.text = [NSString stringWithFormat:@"%@ %@ %@",
+                                 [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressCity"],
+                                 [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressState"],
+                                 [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressZip"]];
+    self.pipPhoneNum.text = [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredPhoneNumber"];
+    self.pipDateOfBirth.text = [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredDateOfBirth"];
+    self.pipEmail.text = [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredEmail"];
+    self.pipSocialSecurityNum.text = [self.myPatientJSON valueForKey:@"primaryInsurancePrimaryInsuredSocialSecurityNumber"];
     
 }
 

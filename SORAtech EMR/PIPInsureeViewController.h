@@ -11,7 +11,7 @@
 
 @interface PIPInsureeViewController : UIViewController
 
-@property (strong, nonatomic) Patient *myPatient;
+@property (strong, nonatomic) NSDictionary *myPatientJSON;
 @property (strong, nonatomic) IBOutlet UILabel *pipFullName;
 @property (strong, nonatomic) IBOutlet UILabel *pipAddressLine1;
 @property (strong, nonatomic) IBOutlet UILabel *pipAddressLine2;

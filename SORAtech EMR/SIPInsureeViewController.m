@@ -14,7 +14,7 @@
 
 @implementation SIPInsureeViewController
 
-@synthesize myPatient;
+@synthesize myPatientJSON;
 @synthesize sipFullName, sipAddressLine1, sipAddressLine2, sipPhoneNum, sipEmail, sipDateOfBirth, sipSocialSecurityNum;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -31,13 +31,22 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.sipFullName.text = [NSString stringWithFormat:@"%@ %@ %@ %@", self.myPatient.sPiFirstName, self.myPatient.sPiMiddleName, self.myPatient.sPiPaternalLastName, self.myPatient.sPiMaternalLastName];
-    self.sipAddressLine1.text = [NSString stringWithFormat:@"%@ %@", self.myPatient.sPiLine1, self.myPatient.sPiLine2];
-    self.sipAddressLine2.text = [NSString stringWithFormat:@"%@ %@ %@", self.myPatient.sPiCity, self.myPatient.sPiState, self.myPatient.sPiZip];
-    self.sipPhoneNum.text = self.myPatient.sPiPhoneNumber;
-    self.sipDateOfBirth.text = self.myPatient.sPiDateOfBirth;
-    self.sipEmail.text = self.myPatient.sPiEmail;
-    self.sipSocialSecurityNum.text = self.myPatient.sPiSocialSecurityNumber;
+    self.sipFullName.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
+                             [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredFirstName"],
+                             [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredMiddleName"],
+                             [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredPaternalLastName"],
+                             [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredMaternalLastName"]];
+    self.sipAddressLine1.text = [NSString stringWithFormat:@"%@ %@",
+                                 [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressLine1"],
+                                 [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressLine2"]];
+    self.sipAddressLine2.text = [NSString stringWithFormat:@"%@ %@ %@",
+                                 [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressCity"],
+                                 [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressState"],
+                                 [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressZip"]];
+    self.sipPhoneNum.text = [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredPhoneNumber"];
+    self.sipDateOfBirth.text = [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredDateOfBirth"];
+    self.sipEmail.text = [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredEmail"];
+    self.sipSocialSecurityNum.text = [self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredSocialSecurityNumber"];
     
 }
 

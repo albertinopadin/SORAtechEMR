@@ -8,13 +8,10 @@
 
 #import "PatientSearchResultTVC.h"
 #import "PatientTableViewCell.h"
-#import "Patient.h"
-#import "Visit.h"
-#import "Condition.h"
-#import "Medicine.h"
 #import "PatientVisitListViewController.h"
 #import "PatientInfoTableViewController.h"
 #import "STAppDelegate.h"
+#import "KeychainItemWrapper.h"
 
 @interface PatientSearchResultTVC ()
 
@@ -153,7 +150,7 @@
         // Delete the row from the data source
         
         // Delete from Core Data db:
-        Patient *patientToDelete = [self.searchResultsArray objectAtIndex:[indexPath row]];
+        NSDictionary *patientToDelete = [self.searchResultsArray objectAtIndex:[indexPath row]];
         [self deletePatientFromDatabase:patientToDelete];
         
         // Delete from our array
@@ -166,77 +163,28 @@
     }   
 }
 
-- (void)deletePatientFromDatabase:(Patient *)thePatientToDelete
+- (void)deletePatientFromDatabase:(NSDictionary *)thePatientToDelete
 {
-    // Get the patient's visits
-    NSFetchRequest *visitFetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *visitEntity = [NSEntityDescription entityForName:@"Visit" inManagedObjectContext:self.managedObjectContext];
-    [visitFetchRequest setEntity:visitEntity];
-    NSPredicate *visitPredicate;
-    visitPredicate =[NSPredicate predicateWithFormat:@"patientId == %@", thePatientToDelete.patientId];
-    [visitFetchRequest setPredicate:visitPredicate];
+    // Get the user's key from the keychain
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
-    NSArray *visitArray = [self.managedObjectContext executeFetchRequest:visitFetchRequest error:nil];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://services.soratech.cardona150.com/emr/patients/%@/?key=%@", [thePatientToDelete valueForKey:@"patientId"], key]];
     
-
-    // Get the patient's medicines
-    NSFetchRequest *medFetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *medEntity = [NSEntityDescription entityForName:@"Medicine" inManagedObjectContext:self.managedObjectContext];
-    [medFetchRequest setEntity:medEntity];
-    NSPredicate *medPredicate;
+    // Check url
+    NSLog(@"Patient Delete URL = %@", url);
     
-    medPredicate =[NSPredicate predicateWithFormat:@"patientId == %@", thePatientToDelete.patientId];
-    [medFetchRequest setPredicate:medPredicate];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+    // HTTP METHOD: DELETE
+    [request setHTTPMethod:@"DELETE"];
     
-    //NSMutableArray *medArray = [[NSMutableArray alloc] init];
-    NSArray *tempArray = [self.managedObjectContext executeFetchRequest:medFetchRequest error:nil];
-    //[medArray addObjectsFromArray:tempArray];
-    NSMutableArray *medArray = [[NSMutableArray alloc] initWithArray:tempArray];
+    // Response
+    NSHTTPURLResponse *response = nil;
+    NSError *responseError = nil;
     
-//    
-//    for (Visit *v in visitArray)
-//    {
-//        medPredicate =[NSPredicate predicateWithFormat:@"visitId == %@", v.visitId];
-//        [medFetchRequest setPredicate:medPredicate];
-//        tempArray = [self.managedObjectContext executeFetchRequest:medFetchRequest error:nil];
-//        [medArray addObjectsFromArray:tempArray];
-//    }
-    // Now we have all the patient's medicines
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
     
-    //Get the patient's conditions
-    NSFetchRequest *conditionsFetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *conditionEntity = [NSEntityDescription entityForName:@"Condition" inManagedObjectContext:self.managedObjectContext];
-    [conditionsFetchRequest setEntity:conditionEntity];
-    NSPredicate *conditionPredicate;
-    conditionPredicate =[NSPredicate predicateWithFormat:@"patientId == %@", thePatientToDelete.patientId];
-    [conditionsFetchRequest setPredicate:conditionPredicate];
-    
-    NSArray *conditionArray = [self.managedObjectContext executeFetchRequest:conditionsFetchRequest error:nil];
-    
-    // Delete the patient's conditions
-    for (Condition *c in conditionArray)
-    {
-        [self.managedObjectContext deleteObject:c];
-    }
-    
-    // Delete the patient's medicines
-    for (Medicine *m in medArray)
-    {
-        [self.managedObjectContext deleteObject:m];
-    }
-    
-    // Delete the patient's visits
-    for (Visit *v in visitArray)
-    {
-        [self.managedObjectContext deleteObject:v];
-    }
-    
-    // Finally, delete the patient object itself:
-    [self.managedObjectContext deleteObject:thePatientToDelete];
-    
-    // Confirm our delete by saving the managed object context
-    NSError *saveError = nil;
-    [self.managedObjectContext save:&saveError];
+    NSLog(@"Response satus code: %i", [response statusCode]);
 }
 
 

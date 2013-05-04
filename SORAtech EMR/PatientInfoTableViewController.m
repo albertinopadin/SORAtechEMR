@@ -58,12 +58,12 @@
     if ([segue.identifier isEqualToString:@"PIPInsureeSegue1"] || [segue.identifier isEqualToString:@"PIPInsureeSegue2"])
     {
         PIPInsureeViewController *pipVC = segue.destinationViewController;
-        //pipVC.myPatient = self.myPatient;
+        pipVC.myPatientJSON = self.myPatientJSON;
     }
     else if ([segue.identifier isEqualToString:@"SIPInsureeSegue1"] || [segue.identifier isEqualToString:@"SIPInsureeSegue2"])
     {
         SIPInsureeViewController *sipVC = segue.destinationViewController;
-        //sipVC.myPatient = self.myPatient;
+        sipVC.myPatientJSON = self.myPatientJSON;
     }
     else if ([segue.identifier isEqualToString:@"editPatientInfoSegue"])
     {
