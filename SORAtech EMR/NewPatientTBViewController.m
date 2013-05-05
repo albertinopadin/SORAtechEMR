@@ -20,12 +20,13 @@
 
 @property (strong, nonatomic) NSArray *vcArray;
 @property (strong, nonatomic) NSArray *patientList;
+@property (strong, nonatomic) NSDictionary *cardJSON;
 
 @end
 
 @implementation NewPatientTBViewController
 
-@synthesize vcArray, patientList;
+@synthesize vcArray, patientList, cardJSON;
 
 //Getting the Managed Object Context, the window to our internal database
 - (NSManagedObjectContext *)managedObjectContext
@@ -388,6 +389,105 @@
     self.selectedViewController = [[self viewControllers] objectAtIndex:4];
     self.selectedViewController = [[self viewControllers] objectAtIndex:5];
     self.selectedViewController = [[self viewControllers] objectAtIndex:0];
+}
+
+- (void)prepopulateFieldsWithCardInfo:(NSDictionary *)cardJSONInfo
+{
+    self.cardJSON = cardJSONInfo;
+    
+    PatientPersonalInfoViewController *personalVC = [[self viewControllers] objectAtIndex:0];
+    NPContactsViewController *contactsVC = [[self viewControllers] objectAtIndex:1];
+    NPInsuranceViewController *insuranceVC = [[self viewControllers] objectAtIndex:2];
+    
+    //NSLog(@"cardJSON: %@", cardJSON);
+    //NSLog(@"Personal vc: %@", personalVC);
+    
+    //personalVC.JSON_from_Card = [[NSDictionary alloc] initWithDictionary:self.cardJSON];
+    //[personalVC setJSON_from_Card:self.cardJSON];
+    
+    // Put card info:
+    
+    // Personal Information in first vc:
+    personalVC.firstName.text = [cardJSON valueForKey:@"firstName"];
+    personalVC.middleName.text = [cardJSON valueForKey:@"middleName"];
+    personalVC.paternalLastName.text = [cardJSON valueForKey:@"paternalLastName"];
+    personalVC.maternalLastName.text = [cardJSON valueForKey:@"maternalLastName"];
+    personalVC.socialSecurity.text = [cardJSON valueForKey:@"socialSecurityNumber"];
+    personalVC.addressLine1.text = [cardJSON valueForKey:@"addressLine1"];
+    personalVC.addressLine2.text = [cardJSON valueForKey:@"addressLine2"];
+    personalVC.state.text = [cardJSON valueForKey:@"addressState"];
+    personalVC.city.text = [cardJSON valueForKey:@"addressCity"];
+    personalVC.zipCode.text = [cardJSON valueForKey:@"addressZip"];
+    
+    personalVC.dateOfBirth.text = [cardJSON valueForKey:@"dateOfBirth"];
+    personalVC.phoneNumber.text = [cardJSON valueForKey:@"phoneNumber"];
+    personalVC.email.text = [cardJSON valueForKey:@"email"];
+    
+    
+    // Employer Info in second vc:
+    contactsVC.employerName.text = [cardJSON valueForKey:@"employerName"];
+    contactsVC.employerAddressLine1.text = [cardJSON valueForKey:@"employerAddressLine1"];
+    contactsVC.employerAddressLine2.text = [cardJSON valueForKey:@"employerAddressLine2"];
+    contactsVC.employerCity.text = [cardJSON valueForKey:@"employerAddressCity"];
+    contactsVC.employerState.text = [cardJSON valueForKey:@"employerAddressState"];
+    contactsVC.employerZipCode.text = [cardJSON valueForKey:@"employerAddressZip"];
+    contactsVC.employerPhoneNumber.text = [cardJSON valueForKey:@"employerPhoneNumber"];
+    contactsVC.employerEmail.text = [cardJSON valueForKey:@"employerEmail"];
+    
+    
+    // Emergency Contact Info in third vc:
+    contactsVC.emergencyCFirstName.text = [cardJSON valueForKey:@"emergencyContactFirstName"];
+    contactsVC.emergencyCMiddleName.text = [cardJSON valueForKey:@"emergencyContactMiddleName"];
+    contactsVC.emergencyCPaternalLastName.text = [cardJSON valueForKey:@"emergencyContactPaternalLastName"];
+    contactsVC.emergencyCMaternalLastName.text = [cardJSON valueForKey:@"emergencyContactMaternalLastName"];
+    contactsVC.emergencyCAddressLine1.text = [cardJSON valueForKey:@"emergencyContactAddressLine1"];
+    contactsVC.emergencyCAddressLine2.text = [cardJSON valueForKey:@"emergencyContactAddressLine2"];
+    contactsVC.emergencyCCity.text = [cardJSON valueForKey:@"emergencyContactAddressCity"];
+    contactsVC.emergencyCState.text = [cardJSON valueForKey:@"emergencyContactAddressState"];
+    contactsVC.emergencyCZipCode.text = [cardJSON valueForKey:@"emergencyContactAddressZip"];
+    contactsVC.emergencyCPhoneNumber.text = [cardJSON valueForKey:@"emergencyContactPhoneNumber"];
+    contactsVC.emergencyCEmail.text = [cardJSON valueForKey:@"emergencyContactEmail"];
+    
+    
+    // Insurance Info in fourth vc:
+    insuranceVC.primaryInsuranceName.text = [cardJSON valueForKey:@"primaryInsuranceName"];
+    insuranceVC.primaryInsurancePolicyNum.text = [cardJSON valueForKey:@"primaryInsurancePolicyNumber"];
+    insuranceVC.primaryInsuranceGroupNum.text = [cardJSON valueForKey:@"primaryInsuranceGroupNumber"];
+    
+    insuranceVC.relationshipToPrimaryInsuree.text = [cardJSON valueForKey:@"primaryInsuranceRelationshipToPrimaryInsured"];
+    insuranceVC.PIFirstName.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredFirstName"];
+    insuranceVC.PIMiddleName.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredMiddleName"];
+    insuranceVC.PIPaternalLastName.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredPaternalLastName"];
+    insuranceVC.PIMaternalLastName.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredMaternalLastName"];
+    insuranceVC.PIDateofBirth.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredDateOfBirth"];
+    insuranceVC.PISocialSecurityNum.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredSocialSecurityNumber"];
+    insuranceVC.PIAddressLine1.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressLine1"];
+    insuranceVC.PIAddressLine2.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressLine2"];
+    insuranceVC.PIState.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressState"];
+    insuranceVC.PICity.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressCity"];
+    insuranceVC.PIZipCode.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredAddressZip"];
+    insuranceVC.PIPhoneNum.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredPhoneNumber"];
+    insuranceVC.PIEmail.text = [cardJSON valueForKey:@"primaryInsurancePrimaryInsuredEmail"];
+    
+    insuranceVC.secondaryInsuranceName.text = [cardJSON valueForKey:@"secondaryInsuranceName"];
+    insuranceVC.secondaryInsurancePolicyNum.text = [cardJSON valueForKey:@"secondaryInsurancePolicyNumber"];
+    insuranceVC.secondaryInsuranceGroupNum.text = [cardJSON valueForKey:@"secondaryInsuranceGroupNumber"];
+    
+    insuranceVC.relationshipToSecondaryInsuree.text = [cardJSON valueForKey:@"secondaryInsuranceRelationshipToPrimaryInsured"];
+    insuranceVC.SIFirstName.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredFirstName"];
+    insuranceVC.SIMiddleName.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredMiddleName"];
+    insuranceVC.SIPaternalLastName.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredPaternalLastName"];
+    insuranceVC.SIMaternalLastName.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredMaternalLastName"];
+    insuranceVC.SIDateofBirth.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredDateOfBirth"];
+    insuranceVC.SISocialSecurityNum.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredSocialSecurityNumber"];
+    insuranceVC.SIAddressLine1.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressLine1"];
+    insuranceVC.SIAddressLine2.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressLine2"];
+    insuranceVC.SIState.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressState"];
+    insuranceVC.SICity.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressCity"];
+    insuranceVC.SIZipCode.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredAddressZip"];
+    insuranceVC.SIPhoneNum.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredPhoneNumber"];
+    insuranceVC.SIEmail.text = [cardJSON valueForKey:@"secondaryInsurancePrimaryInsuredEmail"];
+    
 }
 
 - (void)didReceiveMemoryWarning

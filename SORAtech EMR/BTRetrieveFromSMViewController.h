@@ -19,5 +19,6 @@
 - (void)readFinished;
 
 - (IBAction)retrieveFromSmartCard:(id)sender;
+- (IBAction)prepopulateFieldsWithSCInfo:(id)sender;
 
 @end

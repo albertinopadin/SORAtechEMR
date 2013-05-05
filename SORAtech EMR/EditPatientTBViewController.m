@@ -432,13 +432,13 @@
     
     // Employer Info in second vc:
     contactsVC.employerName.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerName"]];
-    contactsVC.employerAddressLine1.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressLine1"]];;
-    contactsVC.employerAddressLine2.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressLine2"]];;
-    contactsVC.employerCity.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressCity"]];;
-    contactsVC.employerState.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressState"]];;
-    contactsVC.employerZipCode.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressZip"]];;
-    contactsVC.employerPhoneNumber.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerPhoneNumber"]];;
-    contactsVC.employerEmail.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerEmail"]];;
+    contactsVC.employerAddressLine1.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressLine1"]];
+    contactsVC.employerAddressLine2.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressLine2"]];
+    contactsVC.employerCity.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressCity"]];
+    contactsVC.employerState.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressState"]];
+    contactsVC.employerZipCode.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerAddressZip"]];
+    contactsVC.employerPhoneNumber.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerPhoneNumber"]];
+    contactsVC.employerEmail.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"employerEmail"]];
     
     
     // Emergency Contact Info in third vc:

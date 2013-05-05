@@ -8,6 +8,7 @@
 
 #import "BTRetrieveFromSMViewController.h"
 #import "STBluetoothHandler.h"
+#import "NewPatientTBViewController.h"
 
 @interface BTRetrieveFromSMViewController ()
 
@@ -55,6 +56,20 @@
     
     //self.retrievedPatientJSON = [self.btHandler retrievePatientInformationFromCard];
     [self.btHandler startRead];
+}
+
+- (IBAction)prepopulateFieldsWithSCInfo:(id)sender
+{
+    if (self.retrievedPatientJSON == nil || [self.retrievedPatientJSON count] < 10)
+    {
+        return;
+    }
+    else
+    {
+        NewPatientTBViewController *nptbc = (NewPatientTBViewController *)self.tabBarController;
+        [nptbc prepopulateFieldsWithCardInfo:self.retrievedPatientJSON];
+        NSLog(@"In prepop fields");
+    }
 }
 
 - (void)didReceiveMemoryWarning

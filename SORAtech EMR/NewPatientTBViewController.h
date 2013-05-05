@@ -10,4 +10,6 @@
 
 @interface NewPatientTBViewController : UITabBarController <UIAlertViewDelegate>
 
+- (void)prepopulateFieldsWithCardInfo:(NSDictionary *)cardJSONInfo;
+
 @end
