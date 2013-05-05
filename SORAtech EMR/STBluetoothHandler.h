@@ -11,12 +11,14 @@
 #import "EMConnectionIndicator.h"
 #import "BTCopyToSMViewController.h"
 #import "BTRetrieveFromSMViewController.h"
+#import "NewVisitViewController.h"
 
 @interface STBluetoothHandler : NSObject
 
 @property (strong, nonatomic) NSString *connectionStatus;
 @property (strong, nonatomic) BTCopyToSMViewController *myWriteVC;
 @property (strong, nonatomic) BTRetrieveFromSMViewController *myReadVC;
+@property (strong, nonatomic) NewVisitViewController *myNewVisitVC;
 
 // Call this in the app delegate to listen for BT devices
 - (void)appDelegateSetupProcedure;
@@ -24,7 +26,15 @@
 // Set up for BT connections --> Call on viewWillAppear, not viewDidLoad
 - (void)bluetoothHandlerInit;
 
+- (void)startHeightRead;
 - (int)getPatientHeight;
+
+- (void)startWeightRead;
+- (int)getPatientWeight;
+
+- (void)startTempRead;
+- (int)getPatientTemperature;
+
 - (void)writePatientInformationToCard:(NSDictionary *)patientJSON;
 //- (BOOL)writeFinished;
 //- (int)writePatientInformationToCard:(NSDictionary *)patientJSON;

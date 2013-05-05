@@ -16,9 +16,15 @@
 @property (strong, nonatomic) NSMutableArray *readBlockArray;
 @property (strong, nonatomic) NSString *stringFromCard;
 
+@property (nonatomic) int distance;
+@property (nonatomic) int temperature;
+@property (nonatomic) int weight;
+
 @end
 
 @implementation STBluetoothHandler
+
+@synthesize distance, weight, temperature;
 
 @synthesize connectionStatus;
 @synthesize writeIsFinished;
@@ -47,8 +53,36 @@
     [[EMConnectionManager sharedManager] addObserver:self forKeyPath:@"connectionState" options:NSKeyValueObservingOptionInitial context:NULL];
 }
 
+
+- (void)startHeightRead
+{
+    if ([[EMConnectionManager sharedManager] connectionState] != EMConnectionStateConnected) {
+        // Return -1 to show the BT is not connected --> Must check on other end
+        return;
+    }
+    
+    [self readDistance];
+
+}
+
+- (void)readDistance
+{
+    //__block int self.distance = 0;
+    [[EMConnectionManager sharedManager] readResource:@"distance" onSuccess:^(id readValue) {
+        
+        self.distance = [readValue intValue];
+        [self.myNewVisitVC readHeightFinished];
+        
+    } onFail:^(NSError *error) {
+        EMLog(@"Failed to read distance");
+    }];
+    
+    //return distance;
+}
+
 - (int)getPatientHeight
 {
+    /*
     if ([[EMConnectionManager sharedManager] connectionState] != EMConnectionStateConnected) {
         // Return -1 to show the BT is not connected --> Must check on other end
         return -1;
@@ -56,11 +90,74 @@
     
     int distanceToPatient = [self readDistance];
     
+     */
+    
+    int distanceToPatient = self.distance;
+    
     int MAX_DISTANCE = 120;     // The max distance the ultrasonic sensor can read
     
     int patientHeight = MAX_DISTANCE - distanceToPatient;
     
     return patientHeight;
+}
+
+
+- (void)startWeightRead
+{
+    if ([[EMConnectionManager sharedManager] connectionState] != EMConnectionStateConnected) {
+        // Return -1 to show the BT is not connected --> Must check on other end
+        return;
+    }
+    
+    [self readWeight];
+}
+
+- (void)readWeight
+{
+    [[EMConnectionManager sharedManager] readResource:@"weight" onSuccess:^(id readValue) {
+        
+        self.weight = [readValue intValue];
+        [self.myNewVisitVC readWeightFinished];
+        
+    } onFail:^(NSError *error) {
+        EMLog(@"Failed to read weight");
+    }];
+
+}
+
+- (int)getPatientWeight
+{
+    return self.weight;
+}
+
+
+- (void)startTempRead
+{
+    if ([[EMConnectionManager sharedManager] connectionState] != EMConnectionStateConnected) {
+        // Return -1 to show the BT is not connected --> Must check on other end
+        return;
+    }
+    
+    [self readTemperature];
+
+}
+
+- (void)readTemperature
+{
+    [[EMConnectionManager sharedManager] readResource:@"temperature" onSuccess:^(id readValue) {
+        
+        self.temperature = [readValue intValue];
+        [self.myNewVisitVC readTemperatureFinished];
+        
+    } onFail:^(NSError *error) {
+        EMLog(@"Failed to read temperatur");
+    }];
+
+}
+
+- (int)getPatientTemperature
+{
+    return self.temperature;
 }
 
 // Convert the patient JSON dictionary to a format suitable for the smart card --> String
@@ -454,19 +551,20 @@
     self.myReadVC.btConnectionStatus.text = self.connectionStatus;
 }
 
-- (int)readDistance
-{
-    __block int distance = 0;
-    [[EMConnectionManager sharedManager] readResource:@"distance" onSuccess:^(id readValue) {
-        
-        distance = [readValue intValue];
-        
-    } onFail:^(NSError *error) {
-        EMLog(@"Failed to read distance");
-    }];
-    
-    return distance;
-}
+//- (int)readDistance
+//{
+//    __block int distance = 0;
+//    [[EMConnectionManager sharedManager] readResource:@"distance" onSuccess:^(id readValue) {
+//        
+//        distance = [readValue intValue];
+//        
+//    } onFail:^(NSError *error) {
+//        EMLog(@"Failed to read distance");
+//    }];
+//    
+//    return distance;
+//}
+
 
 - (void)selectSecondHalfOfBlock
 {

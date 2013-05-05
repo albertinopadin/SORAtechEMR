@@ -37,4 +37,8 @@
 //- (IBAction)addConditionButtonPressed:(id)sender;
 //- (IBAction)addMedicationButtonPressed:(id)sender;
 
+- (void)readHeightFinished;
+- (void)readWeightFinished;
+- (void)readTemperatureFinished;
+
 @end
