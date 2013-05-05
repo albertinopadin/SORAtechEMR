@@ -42,16 +42,43 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)refreshPatientJSON
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Get doctor's key from keychain
+    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
-    // To allow visits to be deleted
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@",
+    NSError *error, *e = nil;
+    NSHTTPURLResponse *response = nil;
+    
+    NSURLRequest *singlePatientGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/%@/?key=%@", [self.myPatientJSON valueForKey:@"patientId"], key]]];
+    
+    NSLog(@"Single Patient get URL: %@", [singlePatientGetRequest URL]);
+    
+    NSData *singlePatientGetData = [NSURLConnection sendSynchronousRequest:singlePatientGetRequest returningResponse:&response error:&e];
+    
+    NSLog(@"Response for single patient get is: %i", [response statusCode]);
+    
+    if (!singlePatientGetData) {
+        NSLog(@"singlePatientGetData is nil");
+        NSLog(@"Error: %@", e);
+    }
+    
+    //Creates the array of dictionary objects, ordered alphabetically
+    // Each element in this array is a patient object, whose properties can be accessed as a dictionary
+    NSArray *singlePatientGetJSON = [NSJSONSerialization JSONObjectWithData:singlePatientGetData options:0 error:&error];
+    self.myPatientJSON = [singlePatientGetJSON objectAtIndex:0];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Refresh Patient
+    [self refreshPatientJSON];
+    
+    self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
                                   [self.myPatientJSON valueForKey:@"firstName"],
+                                  [self.myPatientJSON valueForKey:@"middleName"],
                                   [self.myPatientJSON valueForKey:@"paternalLastName"],
                                   [self.myPatientJSON valueForKey:@"maternalLastName"]];
     
@@ -79,7 +106,7 @@
     }
     
     //Creates the array of dictionary objects, ordered alphabetically
-    // Each element in this array is a patient object, whose properties can be accessed as a dictionary
+    // Each element in this array is a visit object, whose properties can be accessed as a dictionary
     NSArray *vList = [NSJSONSerialization JSONObjectWithData:visitsGetData options:0 error:&error];
     
     self.visitList = [NSMutableArray arrayWithArray:vList];
@@ -90,6 +117,56 @@
     self.visitListTableViewController = [[UITableViewController alloc] init];
     [self.visitListTableViewController setTableView:visitListTableView];
     [self.visitListTableView reloadData];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    
+    // To allow visits to be deleted
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+//    self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@",
+//                                  [self.myPatientJSON valueForKey:@"firstName"],
+//                                  [self.myPatientJSON valueForKey:@"paternalLastName"],
+//                                  [self.myPatientJSON valueForKey:@"maternalLastName"]];
+//    
+//    // Get patient's visits from db
+//    
+//    // Get doctor's key from keychain
+//    KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
+//    NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
+//    
+//    
+//    NSError *error, *e = nil;
+//    NSHTTPURLResponse *response = nil;
+//    
+//    NSURLRequest *visitsGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/%@/visits/?key=%@", [self.myPatientJSON valueForKey:@"patientId"], key]]];
+//    
+//    NSLog(@"Visits get URL: %@", [visitsGetRequest URL]);
+//    
+//    NSData *visitsGetData = [NSURLConnection sendSynchronousRequest:visitsGetRequest returningResponse:&response error:&e];
+//    
+//    NSLog(@"Response for visits get is: %i", [response statusCode]);
+//    
+//    if (!visitsGetData) {
+//        NSLog(@"visitsGetData is nil");
+//        NSLog(@"Error: %@", e);
+//    }
+//    
+//    //Creates the array of dictionary objects, ordered alphabetically
+//    // Each element in this array is a patient object, whose properties can be accessed as a dictionary
+//    NSArray *vList = [NSJSONSerialization JSONObjectWithData:visitsGetData options:0 error:&error];
+//    
+//    self.visitList = [NSMutableArray arrayWithArray:vList];
+//    
+//    self.visitListTableView.delegate = self;
+//    self.visitListTableView.dataSource = self;
+//    
+//    self.visitListTableViewController = [[UITableViewController alloc] init];
+//    [self.visitListTableViewController setTableView:visitListTableView];
+//    [self.visitListTableView reloadData];
     
 }
 

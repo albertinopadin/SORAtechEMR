@@ -196,6 +196,15 @@
     [childTVC.tableView reloadData];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    //self.searchBar.text = self.searchTerm;
+    // Only get patients once on view appear
+    [self searchServer:self.searchBar.text];
+    // Appear with previous searches as they were
+    [self doSearch:self.searchBar.text];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -211,9 +220,10 @@
     
     [self setReturnButton];
     
+    NSLog(@"In vdL");
     // Do the search with the provided search term from the previous view controller
     //[self doSearch:self.searchTerm];
-    [self searchServer:self.searchTerm];
+    //[self searchServer:self.searchTerm];
 }
 
 // Set the table view controller (which is a child vc of this vc) to editing mode when the edit button is pressed
