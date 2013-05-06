@@ -26,6 +26,8 @@
 // Set up for BT connections --> Call on viewWillAppear, not viewDidLoad
 - (void)bluetoothHandlerInit;
 
+- (void)disconnect;
+
 - (void)startHeightRead;
 - (int)getPatientHeight;
 

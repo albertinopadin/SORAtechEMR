@@ -46,6 +46,11 @@
     self.prepopulateFieldsButton.alpha = 1.0;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.btHandler disconnect];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

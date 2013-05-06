@@ -53,6 +53,14 @@
     [[EMConnectionManager sharedManager] addObserver:self forKeyPath:@"connectionState" options:NSKeyValueObservingOptionInitial context:NULL];
 }
 
+- (void)disconnect
+{
+    [[EMConnectionManager sharedManager] disconnectWithSuccess:^(void) {
+        NSLog(@"Succesfully disconnected from bluetooth.");
+    }onFail:^(NSError *error) {
+        NSLog(@"Disconnect error.");
+    }];
+}
 
 - (void)startHeightRead
 {

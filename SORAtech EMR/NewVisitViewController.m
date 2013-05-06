@@ -40,6 +40,11 @@
     return self;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.btHandler disconnect];
+}
+
 - (void)disableBTButtons
 {
     self.tempGetButton.userInteractionEnabled = NO;
