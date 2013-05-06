@@ -85,7 +85,13 @@
 - (void)readHeightFinished
 {
     NSLog(@"From new visit vc, btHandler getPatientHeight: %i", [self.btHandler getPatientHeight]);
-    self.heightField.text = [NSString stringWithFormat:@"%i", [self.btHandler getPatientHeight]];
+    //self.heightField.text = [NSString stringWithFormat:@"%i", [self.btHandler getPatientHeight]];
+    
+    int heightInInches = [self.btHandler getPatientHeight];
+    int feet = heightInInches / 12;
+    int inches = heightInInches % 12;
+    
+    self.heightField.text = [NSString stringWithFormat:@"%i'%i\"", feet, inches];
 }
 
 - (void)readWeightFinished
