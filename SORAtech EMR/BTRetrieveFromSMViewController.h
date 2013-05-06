@@ -21,4 +21,9 @@
 - (IBAction)retrieveFromSmartCard:(id)sender;
 - (IBAction)prepopulateFieldsWithSCInfo:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIButton *readFromSmartCardButton;
+@property (strong, nonatomic) IBOutlet UIButton *prepopulateFieldsButton;
+- (void)disableBTButtons;
+- (void)enableBTButtons;
+
 @end

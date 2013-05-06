@@ -67,12 +67,19 @@
     
     //Creates the array of dictionary objects, ordered alphabetically
     // Each element in this array is a patient object, whose properties can be accessed as a dictionary
-    NSArray *singlePatientGetJSON = [NSJSONSerialization JSONObjectWithData:singlePatientGetData options:0 error:&error];
-    self.myPatientJSON = [singlePatientGetJSON objectAtIndex:0];
+    //NSArray *singlePatientGetJSON = [NSJSONSerialization JSONObjectWithData:singlePatientGetData options:0 error:&error];
+    //self.myPatientJSON = [singlePatientGetJSON objectAtIndex:0];
+    
+    // Corrected web service returns only the single array/dictionary
+    self.myPatientJSON = [NSJSONSerialization JSONObjectWithData:singlePatientGetData options:0 error:&error];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     // Refresh Patient
     [self refreshPatientJSON];
     
@@ -108,6 +115,9 @@
     //Creates the array of dictionary objects, ordered alphabetically
     // Each element in this array is a visit object, whose properties can be accessed as a dictionary
     NSArray *vList = [NSJSONSerialization JSONObjectWithData:visitsGetData options:0 error:&error];
+    
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     self.visitList = [NSMutableArray arrayWithArray:vList];
     
@@ -338,6 +348,9 @@
 
 - (void)deleteVisitFromDatabase:(NSDictionary *)visitToBeDeleted
 {
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     // Get the user's key from the keychain
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
@@ -358,6 +371,9 @@
     [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
     
     NSLog(@"Response satus code: %i", [response statusCode]);
+    
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 

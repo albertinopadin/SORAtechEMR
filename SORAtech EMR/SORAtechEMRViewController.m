@@ -20,6 +20,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     // See if the user has already logged in (keychain exists and valid)
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
@@ -67,11 +70,15 @@
 
 - (void)doSegue
 {
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self performSegueWithIdentifier:@"AfterIntroSegue" sender:self];
 }
 
 - (void)doSegueAlreadyLoggedIn
 {
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self performSegueWithIdentifier:@"AfterSplashKCExistsSegue" sender:self];
 }
 

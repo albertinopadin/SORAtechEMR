@@ -17,7 +17,7 @@
 
 @implementation BTCopyToSMViewController
 
-@synthesize myPatientJSON, btHandler;
+@synthesize myPatientJSON, btHandler, cpyToSmartCardButton;
 @synthesize patientNameLabel, patientIdLabel, cpyStatusLabel, btConnectionStatus;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,10 +29,25 @@
     return self;
 }
 
+- (void)disableBTButtons
+{
+    self.cpyToSmartCardButton.userInteractionEnabled = NO;
+    self.cpyToSmartCardButton.alpha = 0.4;
+}
+
+- (void)enableBTButtons
+{
+    self.cpyToSmartCardButton.userInteractionEnabled = YES;
+    self.cpyToSmartCardButton.alpha = 1.0;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // Disable the buttons that depend on the bluetooth
+    [self disableBTButtons];
     
     self.btHandler = [[STBluetoothHandler alloc] init];
     [self.btHandler bluetoothHandlerInit];

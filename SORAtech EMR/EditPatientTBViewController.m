@@ -190,6 +190,9 @@
     // Have to see if better do this with the existing patient json (self.myPatientJSON)
     //[myPatientJSON setValue:<#(id)#> forKey:<#(NSString *)#>]
     
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     NSDictionary *editedPatient = [[NSDictionary alloc] initWithObjectsAndKeys:
                                 
                                 // Set the patient id
@@ -381,14 +384,17 @@
     }
     
     // Should have only one element in the json array, which is the edited patient's dictionary
-    NSArray *editedArr = [NSJSONSerialization JSONObjectWithData:patientGetData options:0 error:&getError];
-    
-    self.myPatientJSON = [editedArr objectAtIndex:0];
-//    self.myPatientJSON = [[NSJSONSerialization JSONObjectWithData:patientGetData options:0 error:&getError] objectAtIndex:0];
+    //NSArray *editedArr = [NSJSONSerialization JSONObjectWithData:patientGetData options:0 error:&getError];
+    //self.myPatientJSON = [editedArr objectAtIndex:0];
+
+    // Corrected web service only returns single array/dictionary
+    self.myPatientJSON = [NSJSONSerialization JSONObjectWithData:patientGetData options:0 error:&getError];
     
     //NSLog(@"editedArr count: %i", [editedArr count]);
     NSLog(@"Edited Patient!");
     
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void)viewDidLoad
@@ -494,11 +500,16 @@
     insuranceVC.SIPhoneNum.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredPhoneNumber"]];
     insuranceVC.SIEmail.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"secondaryInsurancePrimaryInsuredEmail"]];
     
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // Generate conditions and medications on the last two vc's
     [self.conditionsVC generateConditionsList:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
     
     [self.medicinesVC generateMedicineList:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
+    
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (NSString *)verifyForNull:(id)theString

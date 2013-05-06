@@ -95,8 +95,8 @@
         
         nCell.medicationNameTF.text = [medicationDict valueForKey:@"name"];
         nCell.dosageTF.text = [medicationDict valueForKey:@"dosage"];
-        nCell.frequencyTF.text = @"";
-        nCell.purposeTF.text = @"";
+        //nCell.frequencyTF.text = @"";
+        //nCell.purposeTF.text = @"";
         
         [self.editMedicineCellArray insertObject:nCell atIndex:i];
     }

@@ -18,6 +18,7 @@
 
 @implementation BTRetrieveFromSMViewController
 
+@synthesize readFromSmartCardButton, prepopulateFieldsButton;
 @synthesize btHandler, retrievedPatientJSON, retrieveStatusLabel, btConnectionStatus, contentsOfSmartCard;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,10 +30,29 @@
     return self;
 }
 
+- (void)disableBTButtons
+{
+    self.readFromSmartCardButton.userInteractionEnabled = NO;
+    self.readFromSmartCardButton.alpha = 0.4;
+    self.prepopulateFieldsButton.userInteractionEnabled = NO;
+    self.prepopulateFieldsButton.alpha = 0.4;
+}
+
+- (void)enableBTButtons
+{
+    self.readFromSmartCardButton.userInteractionEnabled = YES;
+    self.readFromSmartCardButton.alpha = 1.0;
+    self.prepopulateFieldsButton.userInteractionEnabled = YES;
+    self.prepopulateFieldsButton.alpha = 1.0;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // Disable the buttons that depend on the bluetooth
+    [self disableBTButtons];
     
     self.btHandler = [[STBluetoothHandler alloc] init];
     [self.btHandler bluetoothHandlerInit];

@@ -88,6 +88,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    
     //Get each view controller from my array of vc's
     self.vcArray = [self viewControllers];
     PatientPersonalInfoViewController *personalVC = [self.vcArray objectAtIndex:0];
@@ -344,7 +348,8 @@
         [requestFailedAlert show];
     }
     
-    
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     /*
     

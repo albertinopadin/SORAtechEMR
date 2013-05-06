@@ -10,7 +10,7 @@
 
 @implementation NewPatientMedicationCell
 
-@synthesize cellNumLabel, medicationNameTF, dosageTF, frequencyTF, purposeTF;
+@synthesize cellNumLabel, medicationNameTF, dosageTF;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

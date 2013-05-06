@@ -13,7 +13,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *cellNumLabel;
 @property (strong, nonatomic) IBOutlet UITextField *medicationNameTF;
 @property (strong, nonatomic) IBOutlet UITextField *dosageTF;
-@property (strong, nonatomic) IBOutlet UITextField *frequencyTF;
-@property (strong, nonatomic) IBOutlet UITextField *purposeTF;
+//@property (strong, nonatomic) IBOutlet UITextField *frequencyTF;
+//@property (strong, nonatomic) IBOutlet UITextField *purposeTF;
 
 @end

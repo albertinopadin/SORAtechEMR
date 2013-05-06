@@ -20,7 +20,7 @@
 
 @implementation NewVisitViewController
 
-@synthesize btHandler; 
+@synthesize btHandler, tempGetButton, heightGetButton, weightGetButton;
 @synthesize myPatientJSON, nVisit, visitList, patientNameLabel, dateField, systolicBPField, diastolicBPField, pulseField, temperatureField, heightField, weightField, visitNotes;
 
 @synthesize conditionsArray, medicationsArray, conditionsTableVC, medicationsTableVC;
@@ -38,6 +38,28 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)disableBTButtons
+{
+    self.tempGetButton.userInteractionEnabled = NO;
+    self.heightGetButton.userInteractionEnabled = NO;
+    self.weightGetButton.userInteractionEnabled = NO;
+    
+    self.tempGetButton.alpha = 0.4;
+    self.heightGetButton.alpha = 0.4;
+    self.weightGetButton.alpha = 0.4;
+}
+
+- (void)enableBTButtons
+{
+    self.tempGetButton.userInteractionEnabled = YES;
+    self.heightGetButton.userInteractionEnabled = YES;
+    self.weightGetButton.userInteractionEnabled = YES;
+    
+    self.tempGetButton.alpha = 1.0;
+    self.heightGetButton.alpha = 1.0;
+    self.weightGetButton.alpha = 1.0;
 }
 
 - (IBAction)getTemperatureFromMCU:(id)sender
@@ -76,6 +98,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // Disable the buttons that depend on the bluetooth
+    [self disableBTButtons];
     
     self.btHandler = [[STBluetoothHandler alloc] init];
     [self.btHandler bluetoothHandlerInit];
@@ -137,6 +162,9 @@
 // We don't use button methods, we just do this before whatever segue is triggered
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     // Gather data in newVisit dictionary
     self.nVisit = [[NSDictionary alloc] initWithObjectsAndKeys:
                      self.dateField.text, @"date",
@@ -188,6 +216,9 @@
     [hvc incomingSegue:@"fromNewVisitPage"];
     
     NSLog(@"Added a new Visit!");
+    
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 

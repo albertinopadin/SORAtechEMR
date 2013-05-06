@@ -515,18 +515,27 @@
                 EMLog(@"Successful disconnect");
                 // Handle a successfully terminated connection
                 self.connectionStatus = @"Successful disconnect";
+                [self.myNewVisitVC disableBTButtons];
+                [self.myReadVC disableBTButtons];
+                //[self.myWriteVC disableBTButtons];
                 break;
                 
             case EMConnectionStateConnected:
                 EMLog(@"Successful connection");
                 // Handle a successful connection
                 self.connectionStatus = @"Successful connection";
+                [self.myNewVisitVC enableBTButtons];
+                [self.myReadVC enableBTButtons];
+                [self.myWriteVC enableBTButtons];
                 break;
                 
             case EMConnectionStateDisrupted:
                 EMLog(@"Connection interrupted");
                 // Handle a disrupted connection
                 self.connectionStatus = @"Connection interrupted";
+                [self.myNewVisitVC disableBTButtons];
+                [self.myReadVC disableBTButtons];
+                //[self.myWriteVC disableBTButtons];
                 break;
                 
             case EMConnectionStateInvalidSchemaHash:
@@ -545,6 +554,9 @@
                 EMLog(@"Connection timeout");
                 // The connection timed out
                 self.connectionStatus = @"Connection timeout";
+                [self.myNewVisitVC disableBTButtons];
+                [self.myReadVC disableBTButtons];
+                //[self.myWriteVC disableBTButtons];
                 break;
                 
             default:
@@ -554,6 +566,7 @@
     }
     self.myWriteVC.btConnectionStatus.text = self.connectionStatus;
     self.myReadVC.btConnectionStatus.text = self.connectionStatus;
+    self.myNewVisitVC.btConnectionStatusLabel.text = self.connectionStatus;
 }
 
 //- (int)readDistance

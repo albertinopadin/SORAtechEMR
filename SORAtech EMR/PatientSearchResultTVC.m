@@ -165,6 +165,9 @@
 
 - (void)deletePatientFromDatabase:(NSDictionary *)thePatientToDelete
 {
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     // Get the user's key from the keychain
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
@@ -185,6 +188,9 @@
     [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&responseError];
     
     NSLog(@"Response satus code: %i", [response statusCode]);
+    
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 

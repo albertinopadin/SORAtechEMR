@@ -685,6 +685,7 @@
                     <connections>
                         <outlet property="btConnectionStatus" destination="9n7-ms-XeU" id="qBN-If-YBn"/>
                         <outlet property="cpyStatusLabel" destination="Me7-G3-MZz" id="9d9-hu-aOF"/>
+                        <outlet property="cpyToSmartCardButton" destination="Kpa-gP-YwG" id="3OV-tG-xFU"/>
                         <outlet property="patientIdLabel" destination="jUX-le-v7x" id="PnQ-HW-t2t"/>
                         <outlet property="patientNameLabel" destination="UnI-Qm-TRm" id="Iwr-UR-4qR"/>
                     </connections>
@@ -2341,12 +2342,15 @@
                         <outlet property="dateField" destination="XAZ-sn-jdc" id="TZ4-Tm-5VS"/>
                         <outlet property="diastolicBPField" destination="K5r-Fq-ZQa" id="sSL-u3-LFY"/>
                         <outlet property="heightField" destination="s7H-Kh-Jm8" id="BlS-dS-bDh"/>
+                        <outlet property="heightGetButton" destination="yfd-le-aiv" id="Wne-nS-cJx"/>
                         <outlet property="patientNameLabel" destination="je0-E7-keb" id="a2r-gr-i2Y"/>
                         <outlet property="pulseField" destination="29G-UM-BFO" id="pCt-pt-4dd"/>
                         <outlet property="systolicBPField" destination="08g-y6-ZzW" id="l8M-AF-WB3"/>
+                        <outlet property="tempGetButton" destination="ee0-UZ-aVX" id="ngm-1t-RO7"/>
                         <outlet property="temperatureField" destination="En6-gC-Vpu" id="AmI-4r-nfz"/>
                         <outlet property="visitNotes" destination="EdD-E6-L3K" id="R4G-tH-rMJ"/>
                         <outlet property="weightField" destination="xgU-iE-hLW" id="dNB-pV-gxQ"/>
+                        <outlet property="weightGetButton" destination="PS1-Wm-cEl" id="aBw-bJ-IvQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Q2-cH-AET" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3534,16 +3538,16 @@
                                 <color key="textColor" red="0.1063541638" green="0.16325580479999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="93" sectionHeaderHeight="22" sectionFooterHeight="22" id="5Mb-d2-D1i">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" id="5Mb-d2-D1i">
                                 <rect key="frame" x="20" y="52" width="728" height="839"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newPatientMedicationCell" rowHeight="93" id="PWE-QM-4oZ" customClass="NewPatientMedicationCell">
-                                        <rect key="frame" x="0.0" y="22" width="728" height="93"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newPatientMedicationCell" rowHeight="44" id="PWE-QM-4oZ" customClass="NewPatientMedicationCell">
+                                        <rect key="frame" x="0.0" y="22" width="728" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="728" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="728" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cVQ-AB-7TM">
@@ -4817,16 +4821,16 @@
                                 <color key="textColor" red="0.1063541638" green="0.16325580479999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="93" sectionHeaderHeight="22" sectionFooterHeight="22" id="ysS-EO-siQ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" id="ysS-EO-siQ">
                                 <rect key="frame" x="20" y="52" width="728" height="743"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newPatientMedicationCell" rowHeight="93" id="A8Z-Br-FFn" customClass="NewPatientMedicationCell">
-                                        <rect key="frame" x="0.0" y="22" width="728" height="93"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newPatientMedicationCell" rowHeight="44" id="A8Z-Br-FFn" customClass="NewPatientMedicationCell">
+                                        <rect key="frame" x="0.0" y="22" width="728" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="728" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="728" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vqL-l5-ozo">
@@ -4937,7 +4941,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBO-hk-Ed8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8705" y="7768"/>
+            <point key="canvasLocation" x="8705" y="7632"/>
         </scene>
         <!--Retrieve FromSM View Controller - Read Patient Info from Smart Card-->
         <scene sceneID="RbP-5X-zrc">
@@ -5062,6 +5066,8 @@
                     <connections>
                         <outlet property="btConnectionStatus" destination="YXm-s5-0cq" id="azI-Na-Fsj"/>
                         <outlet property="contentsOfSmartCard" destination="X15-ic-Beb" id="pK8-YP-VUs"/>
+                        <outlet property="prepopulateFieldsButton" destination="Nbj-aP-rku" id="Nkf-Rf-Xne"/>
+                        <outlet property="readFromSmartCardButton" destination="7fS-mj-u4g" id="zWH-5y-4on"/>
                         <outlet property="retrieveStatusLabel" destination="66s-Sf-Z3J" id="3nb-yJ-emV"/>
                     </connections>
                 </viewController>
@@ -5084,6 +5090,7 @@
             <relationships>
                 <relationship kind="action" name="copyToSmartCard:"/>
                 <relationship kind="outlet" name="btConnectionStatus" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cpyToSmartCardButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="patientIdLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
             </relationships>
@@ -5095,6 +5102,8 @@
                 <relationship kind="action" name="retrieveFromSmartCard:"/>
                 <relationship kind="outlet" name="btConnectionStatus" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="contentsOfSmartCard" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="prepopulateFieldsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="readFromSmartCardButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="EMConnectionIndicator" superclassName="UIControl">
@@ -5254,9 +5263,7 @@
             <relationships>
                 <relationship kind="outlet" name="cellNumLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="dosageTF" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="frequencyTF" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="medicationNameTF" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="purposeTF" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="NewPatientTBViewController" superclassName="UITabBarController">
@@ -5272,12 +5279,15 @@
                 <relationship kind="outlet" name="dateField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="diastolicBPField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="heightField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="heightGetButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="pulseField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="systolicBPField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tempGetButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="temperatureField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="visitNotes" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="weightField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="weightGetButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="PIPInsureeViewController" superclassName="UIViewController">

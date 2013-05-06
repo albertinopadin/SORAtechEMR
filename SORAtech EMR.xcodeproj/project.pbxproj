@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CE1C5B4C1734FC3C004403B1 /* EditVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1C5B4B1734FC3B004403B1 /* EditVisitViewController.m */; };
 		CE1C5B5A173516AA004403B1 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1C5B59173516A9004403B1 /* new.png */; };
+		CE2743CF17379FBB00A9628F /* NPatientMedCell_v1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2743CE17379FBB00A9628F /* NPatientMedCell_v1.xib */; };
+		CE2743D11737A0CC00A9628F /* PatientInfoMedCell_v1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2743D01737A0CB00A9628F /* PatientInfoMedCell_v1.xib */; };
 		CE3160BE16FEAEF500118DC0 /* PatientInfoConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */; };
 		CE3160C016FED38300118DC0 /* conditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160BF16FED38300118DC0 /* conditionCell.xib */; };
 		CE3160C216FED52E00118DC0 /* medicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160C116FED52E00118DC0 /* medicationCell.xib */; };
@@ -138,6 +140,8 @@
 		CE1C5B4A1734FC3B004403B1 /* EditVisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditVisitViewController.h; sourceTree = "<group>"; };
 		CE1C5B4B1734FC3B004403B1 /* EditVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditVisitViewController.m; sourceTree = "<group>"; };
 		CE1C5B59173516A9004403B1 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
+		CE2743CE17379FBB00A9628F /* NPatientMedCell_v1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NPatientMedCell_v1.xib; sourceTree = "<group>"; };
+		CE2743D01737A0CB00A9628F /* PatientInfoMedCell_v1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientInfoMedCell_v1.xib; sourceTree = "<group>"; };
 		CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientInfoConditionCell.xib; sourceTree = "<group>"; };
 		CE3160BF16FED38300118DC0 /* conditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = conditionCell.xib; sourceTree = "<group>"; };
 		CE3160C116FED52E00118DC0 /* medicationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = medicationCell.xib; sourceTree = "<group>"; };
@@ -481,6 +485,7 @@
 				CEE2C01B1717050700C636EC /* NPContactsViewController.m */,
 				CEE2C0181716FD6500C636EC /* MedicinePrescriber.xib */,
 				CEE2C0131716F0BD00C636EC /* NewPatientMedicineCell.xib */,
+				CE2743CE17379FBB00A9628F /* NPatientMedCell_v1.xib */,
 				CEE2C0101716EEE000C636EC /* NPMedicinesTableController.h */,
 				CEE2C0111716EEE200C636EC /* NPMedicinesTableController.m */,
 				CEE2C00D1716ED3700C636EC /* NPMedicinesViewController.h */,
@@ -520,6 +525,7 @@
 				CE3160C116FED52E00118DC0 /* medicationCell.xib */,
 				CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */,
 				CEF2226616FDF7240025FF94 /* PatientInfoMedicineCell.xib */,
+				CE2743D01737A0CB00A9628F /* PatientInfoMedCell_v1.xib */,
 				CEF2222D16FC49240025FF94 /* SORAtechEMR.xcdatamodeld */,
 				CEE2C0151716F40E00C636EC /* Medicine.h */,
 				CEE2C0161716F41100C636EC /* Medicine.m */,
@@ -733,6 +739,8 @@
 				CE5FAAD91730FF6D00AB8AB6 /* system.json in Resources */,
 				CE5FAAE01732887200AB8AB6 /* heightsensorbt_v1.json in Resources */,
 				CE1C5B5A173516AA004403B1 /* new.png in Resources */,
+				CE2743CF17379FBB00A9628F /* NPatientMedCell_v1.xib in Resources */,
+				CE2743D11737A0CC00A9628F /* PatientInfoMedCell_v1.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

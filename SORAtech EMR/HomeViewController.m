@@ -50,6 +50,9 @@
 {
     if ([segue.identifier isEqualToString:@"toSearchPatientSegue"])
     {
+        // Network Activity Indicator
+        //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        
         SearchResultsViewController *srvc = [segue destinationViewController];
         srvc.searchTerm = @"";
     }

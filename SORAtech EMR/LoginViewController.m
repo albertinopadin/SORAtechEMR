@@ -58,6 +58,9 @@
 
 - (IBAction)loginButtonPressed:(id)sender
 {
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     NSError *e, *e2 = nil;
     NSHTTPURLResponse *response = nil;
     
@@ -82,6 +85,9 @@
         KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
         [keychainStore setObject:loginKeyTextField.text forKey:CFBridgingRelease(kSecValueData)];
         
+        // Network Activity Indicator
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
         //Proceed with segue
         [self performSegueWithIdentifier:@"SuccessfulLoginSegue" sender:self];
     }
@@ -90,6 +96,9 @@
         // check for status code 403
         //                UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"There was a problem with the server" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         //                [loginError show];
+        
+        // Network Activity Indicator
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"You have typed an incorrect login key" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [loginError show];

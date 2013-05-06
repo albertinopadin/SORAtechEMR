@@ -60,6 +60,9 @@
 // Save the edited visit to the db
 - (IBAction)doneEditingVisit:(id)sender
 {
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     // First we send the request to edit the patient to the db and get the edited patient's info back
     [self prepareVisitEdit];
     
@@ -68,6 +71,9 @@
     ExistingVisitViewController *evVC = [vcs objectAtIndex:numVCs - 2];
     evVC.myPatientJSON = self.myPatientJSON;
     evVC.myVisitJSON = self.editedVisit;
+    
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     // Pop to previous vc:
     [self.navigationController popViewControllerAnimated:YES];
@@ -145,9 +151,11 @@
     }
     
     // Should have only one element in the json array, which is the edited patient's dictionary
-    NSArray *editedArr = [NSJSONSerialization JSONObjectWithData:visitGetData options:0 error:&getError];
+    //NSArray *editedArr = [NSJSONSerialization JSONObjectWithData:visitGetData options:0 error:&getError];
+    //self.editedVisit = [editedArr objectAtIndex:0];
     
-    self.editedVisit = [editedArr objectAtIndex:0];
+    // Corrected web service
+    self.editedVisit = [NSJSONSerialization JSONObjectWithData:visitGetData options:0 error:&getError];
     
     NSLog(@"Edited Visit!");
 }

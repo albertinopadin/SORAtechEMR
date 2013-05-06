@@ -37,6 +37,9 @@
 //- (IBAction)addConditionButtonPressed:(id)sender;
 //- (IBAction)addMedicationButtonPressed:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIButton *tempGetButton;
+@property (strong, nonatomic) IBOutlet UIButton *heightGetButton;
+@property (strong, nonatomic) IBOutlet UIButton *weightGetButton;
 @property (strong, nonatomic) IBOutlet UILabel *btConnectionStatusLabel;
 - (IBAction)getTemperatureFromMCU:(id)sender;
 - (IBAction)getHeightFromMCU:(id)sender;
@@ -45,5 +48,8 @@
 - (void)readHeightFinished;
 - (void)readWeightFinished;
 - (void)readTemperatureFinished;
+
+- (void)disableBTButtons;
+- (void)enableBTButtons;
 
 @end

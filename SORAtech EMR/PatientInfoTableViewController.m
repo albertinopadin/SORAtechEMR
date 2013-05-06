@@ -157,6 +157,8 @@
 //    self.secondaryInsuranceRelationshipToPrimaryLabel.text = [self verifyForNull:[self.myPatientJSON objectForKey:@"secondaryInsuranceRelationshipToPrimaryInsured"]];
 //    
 
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     // Get conditions
     [self fetchConditionsForPatientId:[[self.myPatientJSON valueForKey:@"patientId"] integerValue]];
@@ -226,6 +228,9 @@
     self.secondaryInsuranceRelationshipToPrimaryLabel.text = [self verifyForNull:[self.myPatientJSON valueForKey:@"secondaryInsuranceRelationshipToPrimaryInsured"]];
     
 
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
     
     [self.tableView reloadData];
     // Uncomment the following line to preserve selection between presentations.

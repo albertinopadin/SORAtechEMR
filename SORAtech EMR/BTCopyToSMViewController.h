@@ -19,6 +19,10 @@
 
 - (void)writeFinished;
 
+@property (strong, nonatomic) IBOutlet UIButton *cpyToSmartCardButton;
+- (void)disableBTButtons;
+- (void)enableBTButtons;
+
 - (IBAction)copyToSmartCard:(id)sender;
 
 @end

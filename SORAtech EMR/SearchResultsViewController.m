@@ -54,6 +54,9 @@
 // Queries the server for this particular doctor's patients. Must always be done in the viewDidLoad
 - (void)searchServer:(NSString *)searchString
 {
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     // Get doctor's key from keychain
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
@@ -83,6 +86,9 @@
     childTVC.searchResultsArray = [self.searchResults mutableCopy];
     
     [childTVC.tableView reloadData];
+    
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void)doSearch:(NSString *)searchString
@@ -198,11 +204,17 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Network Activity Indicator
+    //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     //self.searchBar.text = self.searchTerm;
     // Only get patients once on view appear
     [self searchServer:self.searchBar.text];
     // Appear with previous searches as they were
     [self doSearch:self.searchBar.text];
+    
+    // Network Activity Indicator
+    //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void)viewDidLoad
