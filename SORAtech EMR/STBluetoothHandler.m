@@ -17,7 +17,7 @@
 @property (strong, nonatomic) NSString *stringFromCard;
 
 @property (nonatomic) int distance;
-@property (nonatomic) int temperature;
+@property (nonatomic) float temperature;
 @property (nonatomic) int weight;
 
 @end
@@ -149,9 +149,9 @@
 
 - (void)readTemperature
 {
-    [[EMConnectionManager sharedManager] readResource:@"temperature" onSuccess:^(id readValue) {
+    [[EMConnectionManager sharedManager] readResource:@"tempx1000" onSuccess:^(id readValue) {
         
-        self.temperature = [readValue intValue];
+        self.temperature = [readValue floatValue];
         [self.myNewVisitVC readTemperatureFinished];
         
     } onFail:^(NSError *error) {
@@ -160,9 +160,9 @@
 
 }
 
-- (int)getPatientTemperature
+- (float)getPatientTemperature
 {
-    return self.temperature;
+    return self.temperature / 1000;
 }
 
 // Convert the patient JSON dictionary to a format suitable for the smart card --> String

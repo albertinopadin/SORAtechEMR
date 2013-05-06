@@ -33,7 +33,7 @@
 - (int)getPatientWeight;
 
 - (void)startTempRead;
-- (int)getPatientTemperature;
+- (float)getPatientTemperature;
 
 - (void)writePatientInformationToCard:(NSDictionary *)patientJSON;
 //- (BOOL)writeFinished;

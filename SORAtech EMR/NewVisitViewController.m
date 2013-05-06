@@ -64,7 +64,7 @@
 
 - (IBAction)getTemperatureFromMCU:(id)sender
 {
-
+    [self.btHandler startTempRead];
 }
 
 - (IBAction)getHeightFromMCU:(id)sender
@@ -90,7 +90,8 @@
 
 - (void)readTemperatureFinished
 {
-    
+    NSLog(@"From new visit vc, btHandler getPatientTemp: %.02f", [self.btHandler getPatientTemperature]);
+    self.temperatureField.text = [NSString stringWithFormat:@"%.02f", [self.btHandler getPatientTemperature]];
 }
 
 
