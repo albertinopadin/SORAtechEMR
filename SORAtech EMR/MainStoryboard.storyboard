@@ -2277,6 +2277,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="getTemperatureFromMCU:" destination="SjX-dl-eeM" eventType="touchUpInside" id="9bc-d3-IDV"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yfd-le-aiv">
                                 <rect key="frame" x="437" y="264" width="110" height="31"/>
@@ -2289,6 +2292,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="getHeightFromMCU:" destination="SjX-dl-eeM" eventType="touchUpInside" id="2LF-wh-Sj4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PS1-Wm-cEl">
                                 <rect key="frame" x="437" y="302" width="110" height="31"/>
@@ -2301,6 +2307,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="getWeightFromMCU:" destination="SjX-dl-eeM" eventType="touchUpInside" id="jsm-fs-YWG"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connection Status:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yZM-eo-Rs3">
                                 <rect key="frame" x="468" y="22" width="165" height="17"/>
@@ -2328,6 +2337,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="btConnectionStatusLabel" destination="mTe-7r-n4h" id="ty5-LM-xmu"/>
                         <outlet property="dateField" destination="XAZ-sn-jdc" id="TZ4-Tm-5VS"/>
                         <outlet property="diastolicBPField" destination="K5r-Fq-ZQa" id="sSL-u3-LFY"/>
                         <outlet property="heightField" destination="s7H-Kh-Jm8" id="BlS-dS-bDh"/>
@@ -5074,7 +5084,6 @@
             <relationships>
                 <relationship kind="action" name="copyToSmartCard:"/>
                 <relationship kind="outlet" name="btConnectionStatus" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cpyStatusLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="patientIdLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="patientNameLabel" candidateClass="UILabel"/>
             </relationships>
@@ -5086,7 +5095,6 @@
                 <relationship kind="action" name="retrieveFromSmartCard:"/>
                 <relationship kind="outlet" name="btConnectionStatus" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="contentsOfSmartCard" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="retrieveStatusLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="EMConnectionIndicator" superclassName="UIControl">
@@ -5257,6 +5265,10 @@
         <class className="NewVisitViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewVisitViewController.h"/>
             <relationships>
+                <relationship kind="action" name="getHeightFromMCU:"/>
+                <relationship kind="action" name="getTemperatureFromMCU:"/>
+                <relationship kind="action" name="getWeightFromMCU:"/>
+                <relationship kind="outlet" name="btConnectionStatusLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="dateField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="diastolicBPField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="heightField" candidateClass="UITextField"/>

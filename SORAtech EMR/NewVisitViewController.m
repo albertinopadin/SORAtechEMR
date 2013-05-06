@@ -10,13 +10,17 @@
 #import "STAppDelegate.h"
 #import "HomeViewController.h"
 #import "KeychainItemWrapper.h"
+#import "STBluetoothHandler.h"
 
 @interface NewVisitViewController ()
+
+@property (strong, nonatomic) STBluetoothHandler *btHandler;
 
 @end
 
 @implementation NewVisitViewController
 
+@synthesize btHandler; 
 @synthesize myPatientJSON, nVisit, visitList, patientNameLabel, dateField, systolicBPField, diastolicBPField, pulseField, temperatureField, heightField, weightField, visitNotes;
 
 @synthesize conditionsArray, medicationsArray, conditionsTableVC, medicationsTableVC;
@@ -36,10 +40,46 @@
     return self;
 }
 
+- (IBAction)getTemperatureFromMCU:(id)sender
+{
+
+}
+
+- (IBAction)getHeightFromMCU:(id)sender
+{
+    [self.btHandler startHeightRead];
+}
+
+- (IBAction)getWeightFromMCU:(id)sender
+{
+
+}
+
+- (void)readHeightFinished
+{
+    NSLog(@"From new visit vc, btHandler getPatientHeight: %i", [self.btHandler getPatientHeight]);
+    self.heightField.text = [NSString stringWithFormat:@"%i", [self.btHandler getPatientHeight]];
+}
+
+- (void)readWeightFinished
+{
+    
+}
+
+- (void)readTemperatureFinished
+{
+    
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.btHandler = [[STBluetoothHandler alloc] init];
+    [self.btHandler bluetoothHandlerInit];
+    self.btHandler.myNewVisitVC = self;
     
     self.patientNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",
                                   [self.myPatientJSON valueForKey:@"firstName"],

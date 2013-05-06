@@ -37,6 +37,11 @@
 //- (IBAction)addConditionButtonPressed:(id)sender;
 //- (IBAction)addMedicationButtonPressed:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UILabel *btConnectionStatusLabel;
+- (IBAction)getTemperatureFromMCU:(id)sender;
+- (IBAction)getHeightFromMCU:(id)sender;
+- (IBAction)getWeightFromMCU:(id)sender;
+
 - (void)readHeightFinished;
 - (void)readWeightFinished;
 - (void)readTemperatureFinished;

@@ -70,6 +70,9 @@
     //__block int self.distance = 0;
     [[EMConnectionManager sharedManager] readResource:@"distance" onSuccess:^(id readValue) {
         
+        NSLog(@"Read Distance int value: %i", [readValue intValue]);
+        NSLog(@"Read Distance: %@", readValue);
+        
         self.distance = [readValue intValue];
         [self.myNewVisitVC readHeightFinished];
         
@@ -94,9 +97,11 @@
     
     int distanceToPatient = self.distance;
     
-    int MAX_DISTANCE = 120;     // The max distance the ultrasonic sensor can read
+    int MAX_DISTANCE = 93;     // The max distance the ultrasonic sensor can read
     
     int patientHeight = MAX_DISTANCE - distanceToPatient;
+    
+    NSLog(@"patientHeight from btHandler: %i", patientHeight);
     
     return patientHeight;
 }
