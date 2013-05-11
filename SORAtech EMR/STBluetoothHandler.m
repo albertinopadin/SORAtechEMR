@@ -129,7 +129,10 @@
 {
     [[EMConnectionManager sharedManager] readResource:@"weight" onSuccess:^(id readValue) {
         
+        NSLog(@"Raw weight is: %@", readValue);
         self.weight = [readValue intValue];
+        NSLog(@"Raw weight is: %i", self.weight);
+        
         [self.myNewVisitVC readWeightFinished];
         
     } onFail:^(NSError *error) {

@@ -11,7 +11,7 @@
 		CE1C5B5A173516AA004403B1 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1C5B59173516A9004403B1 /* new.png */; };
 		CE2743CF17379FBB00A9628F /* NPatientMedCell_v1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2743CE17379FBB00A9628F /* NPatientMedCell_v1.xib */; };
 		CE2743D11737A0CC00A9628F /* PatientInfoMedCell_v1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2743D01737A0CB00A9628F /* PatientInfoMedCell_v1.xib */; };
-		CE2743D51737C56400A9628F /* heightsensorbt_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = CE2743D41737C56400A9628F /* heightsensorbt_v1.json */; };
+		CE2743D71737F1EF00A9628F /* heightsensorbt_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = CE2743D61737F1EF00A9628F /* heightsensorbt_v1.json */; };
 		CE3160BE16FEAEF500118DC0 /* PatientInfoConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */; };
 		CE3160C016FED38300118DC0 /* conditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160BF16FED38300118DC0 /* conditionCell.xib */; };
 		CE3160C216FED52E00118DC0 /* medicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3160C116FED52E00118DC0 /* medicationCell.xib */; };
@@ -142,7 +142,7 @@
 		CE1C5B59173516A9004403B1 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		CE2743CE17379FBB00A9628F /* NPatientMedCell_v1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NPatientMedCell_v1.xib; sourceTree = "<group>"; };
 		CE2743D01737A0CB00A9628F /* PatientInfoMedCell_v1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientInfoMedCell_v1.xib; sourceTree = "<group>"; };
-		CE2743D41737C56400A9628F /* heightsensorbt_v1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heightsensorbt_v1.json; sourceTree = "<group>"; };
+		CE2743D61737F1EF00A9628F /* heightsensorbt_v1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heightsensorbt_v1.json; sourceTree = "<group>"; };
 		CE3160BD16FEAEF500118DC0 /* PatientInfoConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientInfoConditionCell.xib; sourceTree = "<group>"; };
 		CE3160BF16FED38300118DC0 /* conditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = conditionCell.xib; sourceTree = "<group>"; };
 		CE3160C116FED52E00118DC0 /* medicationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = medicationCell.xib; sourceTree = "<group>"; };
@@ -419,7 +419,7 @@
 		CEF221B216FC477B0025FF94 = {
 			isa = PBXGroup;
 			children = (
-				CE2743D41737C56400A9628F /* heightsensorbt_v1.json */,
+				CE2743D61737F1EF00A9628F /* heightsensorbt_v1.json */,
 				CE5FAAAB1730FF6D00AB8AB6 /* Assets */,
 				CE5FAA971730FF1C00AB8AB6 /* Headers */,
 				CE5FAA931730FE9A00AB8AB6 /* QuartzCore.framework */,
@@ -740,7 +740,7 @@
 				CE1C5B5A173516AA004403B1 /* new.png in Resources */,
 				CE2743CF17379FBB00A9628F /* NPatientMedCell_v1.xib in Resources */,
 				CE2743D11737A0CC00A9628F /* PatientInfoMedCell_v1.xib in Resources */,
-				CE2743D51737C56400A9628F /* heightsensorbt_v1.json in Resources */,
+				CE2743D71737F1EF00A9628F /* heightsensorbt_v1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

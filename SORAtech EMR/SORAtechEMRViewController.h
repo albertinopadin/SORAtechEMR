@@ -10,6 +10,6 @@
 
 //This is just the intro page
 
-@interface SORAtechEMRViewController : UIViewController
+@interface SORAtechEMRViewController : UIViewController <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 @end

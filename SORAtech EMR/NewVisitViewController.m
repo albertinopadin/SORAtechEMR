@@ -79,7 +79,7 @@
 
 - (IBAction)getWeightFromMCU:(id)sender
 {
-
+    [self.btHandler startWeightRead];
 }
 
 - (void)readHeightFinished
@@ -96,13 +96,22 @@
 
 - (void)readWeightFinished
 {
+    NSLog(@"From new visit vc, btHandler getPatientWeight: %i", [self.btHandler getPatientWeight]);
+    //self.weightField.text = [NSString stringWithFormat:@"%i", [self.btHandler getPatientWeight]];
+    float rawWeight = [self.btHandler getPatientWeight];
+    //float poundWeight = (rawWeight/1024.00)*3.3*150 - 290;
+    float exp = rawWeight/1024.00;
     
+    //float poundWeight = pow(exp, 2.5)*400.00;
+    float poundWeight = pow(exp, 3.5*M_E)*700.00;
+    //self.weightField.text = [NSString stringWithFormat:@"%i", rawWeight];
+    self.weightField.text = [NSString stringWithFormat:@"%.02f lbs", poundWeight];
 }
 
 - (void)readTemperatureFinished
 {
     NSLog(@"From new visit vc, btHandler getPatientTemp: %.02f", [self.btHandler getPatientTemperature]);
-    self.temperatureField.text = [NSString stringWithFormat:@"%.02f", [self.btHandler getPatientTemperature]];
+    self.temperatureField.text = [NSString stringWithFormat:@"%.02f C", [self.btHandler getPatientTemperature]];
 }
 
 

@@ -48,11 +48,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // Network Activity Indicator
+    //[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     if ([segue.identifier isEqualToString:@"toSearchPatientSegue"])
     {
-        // Network Activity Indicator
-        //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-        
         SearchResultsViewController *srvc = [segue destinationViewController];
         srvc.searchTerm = @"";
     }

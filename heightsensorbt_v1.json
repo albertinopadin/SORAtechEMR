@@ -8,6 +8,14 @@
             "access": "r",
             "size": 2
         },
+        "weight": {
+            "id": 8,
+            "align": 2,
+            "attributes": {"readonly": true},
+            "type": "u2",
+            "access": "r",
+            "size": 2
+        },
         "$mcmDisconnect": {
             "id": -9,
             "align": 1,
@@ -32,14 +40,6 @@
             "access": "r",
             "size": 8
         },
-        "cardContents": {
-            "id": 3,
-            "align": 1,
-            "attributes": {"readwrite": true},
-            "type": "C:128",
-            "access": "rw",
-            "size": 128
-        },
         "$resourceCount": {
             "id": -7,
             "align": 1,
@@ -47,6 +47,14 @@
             "type": "S:system@emmoco.com.System/ResourceCount",
             "access": "r",
             "size": 2
+        },
+        "cardContents": {
+            "id": 3,
+            "align": 1,
+            "attributes": {"readwrite": true},
+            "type": "C:128",
+            "access": "rw",
+            "size": 128
         },
         "$schemaHash": {
             "id": -6,
@@ -134,37 +142,37 @@
     "manifest": {
         "protocolLevel": 12,
         "hash": [
-            176,
-            85,
-            185,
-            226,
-            239,
-            96,
-            51,
-            238,
-            153,
-            123,
-            88,
-            187,
-            99,
-            172,
-            165,
-            41
+            87,
+            6,
+            210,
+            139,
+            19,
+            11,
+            35,
+            112,
+            78,
+            106,
+            44,
+            174,
+            111,
+            182,
+            250,
+            132
         ],
         "toolVersion": "12.0.0.201211010336",
         "name": "HeightSensorBT_v1",
-        "$$md5": "3f33e0ddbf571b19e5130baeb6d427ae",
+        "$$md5": "c6b63c91d81159986e5c3c4cb9c25f74",
         "build": [
-            160,
-            39,
-            63,
-            121,
+            255,
+            163,
+            46,
+            122,
             62,
             1,
             0,
             0
         ],
-        "date": "2013-05-06T05:49:42-04:00",
+        "date": "2013-05-06T10:11:17-04:00",
         "maxAlign": 2,
         "maxSize": 128,
         "version": "1.0.0"
@@ -177,6 +185,7 @@
         "blockHalf",
         "tempx1000",
         "tempConnected",
+        "weight",
         "$mcmProtocolLevel",
         "$eapProtocolLevel",
         "$eapBuildDate",
@@ -263,7 +272,8 @@
         "distance",
         "led2",
         "tempConnected",
-        "tempx1000"
+        "tempx1000",
+        "weight"
     ],
     "imports": {"@emmoco.com.HeightSensorBT_v1": true}
 }

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PatientSearchResultTVC.h"
 
-@interface SearchResultsViewController : UIViewController <UISearchBarDelegate>
+@interface SearchResultsViewController : UIViewController <UISearchBarDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 @property (strong, nonatomic) NSArray *searchResults;
 @property (strong, nonatomic) NSString *searchTerm;

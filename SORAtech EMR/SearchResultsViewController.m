@@ -12,6 +12,8 @@
 
 @interface SearchResultsViewController ()
 
+@property (strong, nonatomic) NSMutableData *patientSearchData;
+
 @end
 
 @implementation SearchResultsViewController
@@ -61,15 +63,18 @@
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
-    NSError *error, *e = nil;
-    NSHTTPURLResponse *response = nil;
+    //NSError *error, *e = nil;
+    //NSHTTPURLResponse *response = nil;
     
     NSURLRequest *patientSearchRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/?key=%@", key]]];
     
-    NSData *patientSearchData = [NSURLConnection sendSynchronousRequest:patientSearchRequest returningResponse:&response error:&e];
+    //NSData *patientSearchData = [NSURLConnection sendSynchronousRequest:patientSearchRequest returningResponse:&response error:&e];
     
-    NSLog(@"Response for patients get is: %i", [response statusCode]);
+    [NSURLConnection connectionWithRequest:patientSearchRequest delegate:self];
     
+    //NSLog(@"Response for patients get is: %i", [response statusCode]);
+    
+    /*
     if (!patientSearchData) {
         NSLog(@"patientSearchData is nil");
         NSLog(@"Error: %@", e);
@@ -89,6 +94,46 @@
     
     // Network Activity Indicator
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+     */
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.patientSearchData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.patientSearchData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    NSError *error = nil;
+    
+    //Creates the array of dictionary objects, ordered alphabetically
+    // Each element in this array is a patient object, whose properties can be accessed as a dictionary
+    NSArray *patients = [NSJSONSerialization JSONObjectWithData:self.patientSearchData options:0 error:&error];
+    
+    self.searchResults = patients;
+    
+    childTVC = [[self childViewControllers] objectAtIndex:0];
+    
+    childTVC.searchResultsArray = [self.searchResults mutableCopy];
+    
+    [childTVC.tableView reloadData];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    UIAlertView *failConn = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"Connection to the server could not be established" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [failConn show];
 }
 
 - (void)doSearch:(NSString *)searchString
@@ -221,6 +266,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // Network Activity Indicator
+    //[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     //self.searchTerm = @"";
     
