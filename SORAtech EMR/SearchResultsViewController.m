@@ -18,7 +18,7 @@
 
 @implementation SearchResultsViewController
 
-@synthesize childTVC, searchBar, searchTerm, searchResults;
+@synthesize childTVC, searchBar, searchTerm, searchResults, patientSearchData;
 
 //This class will contain the code to get the patient list (of matching names to the search term)
 

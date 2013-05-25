@@ -17,10 +17,16 @@
 
 @property (strong, nonatomic) NSDictionary *selectedVisit;
 
+@property (strong, nonatomic) NSString *getType;
+//@property (strong, nonatomic) NSMutableData *singlePatientGetData;
+@property (strong, nonatomic) NSMutableData *visitsGetData;
+@property (nonatomic) BOOL patientLoaded;
+
 @end
 
 @implementation PatientVisitListViewController
 
+@synthesize getType, visitsGetData, patientLoaded;
 @synthesize selectedVisit, visitList, notesList, visitListTableViewController, visitListTableView, myPatientJSON, patientNameLabel, patientPhotoView;
 
 
@@ -44,6 +50,8 @@
 
 - (void)refreshPatientJSON
 {
+    self.patientLoaded = NO;
+    
     // Get doctor's key from keychain
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
@@ -55,6 +63,9 @@
     NSURLRequest *singlePatientGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/%@/?key=%@", [self.myPatientJSON valueForKey:@"patientId"], key]]];
     
     NSLog(@"Single Patient get URL: %@", [singlePatientGetRequest URL]);
+    
+    //self.getType = @"patient";
+    //[NSURLConnection connectionWithRequest:singlePatientGetRequest delegate:self];
     
     NSData *singlePatientGetData = [NSURLConnection sendSynchronousRequest:singlePatientGetRequest returningResponse:&response error:&e];
     
@@ -72,7 +83,6 @@
     
     // Corrected web service returns only the single array/dictionary
     self.myPatientJSON = [NSJSONSerialization JSONObjectWithData:singlePatientGetData options:0 error:&error];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -96,13 +106,19 @@
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
     
-    NSError *error, *e = nil;
-    NSHTTPURLResponse *response = nil;
+    //NSError *error, *e = nil;
+    //NSHTTPURLResponse *response = nil;
     
     NSURLRequest *visitsGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/%@/visits/?key=%@", [self.myPatientJSON valueForKey:@"patientId"], key]]];
     
     NSLog(@"Visits get URL: %@", [visitsGetRequest URL]);
     
+    //while (!patientLoaded);
+    
+    //self.getType = @"visits";
+    [NSURLConnection connectionWithRequest:visitsGetRequest delegate:self];
+    
+    /*
     NSData *visitsGetData = [NSURLConnection sendSynchronousRequest:visitsGetRequest returningResponse:&response error:&e];
     
     NSLog(@"Response for visits get is: %i", [response statusCode]);
@@ -127,6 +143,76 @@
     self.visitListTableViewController = [[UITableViewController alloc] init];
     [self.visitListTableViewController setTableView:visitListTableView];
     [self.visitListTableView reloadData];
+     */
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.visitsGetData = [[NSMutableData alloc] init];
+    
+//    if ([self.getType isEqualToString:@"patient"])
+//    {
+//        self.singlePatientGetData = [[NSMutableData alloc] init];
+//    }
+//    else if ([self.getType isEqualToString:@"visits"])
+//    {
+//        self.visitsGetData = [[NSMutableData alloc] init];
+//    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.visitsGetData appendData:data];
+    
+//    if ([self.getType isEqualToString:@"patient"])
+//    {
+//        [self.singlePatientGetData appendData:data];
+//    }
+//    else if ([self.getType isEqualToString:@"visits"])
+//    {
+//        [self.visitsGetData appendData:data];
+//    }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSError *error = nil;
+    
+//    if ([self.getType isEqualToString:@"patient"])
+//    {
+//        // Corrected web service returns only the single array/dictionary
+//        self.myPatientJSON = [NSJSONSerialization JSONObjectWithData:self.singlePatientGetData options:0 error:&error];
+//        self.patientLoaded = YES;
+//    }
+//    else if ([self.getType isEqualToString:@"visits"])
+    {
+        //Creates the array of dictionary objects, ordered alphabetically
+        // Each element in this array is a visit object, whose properties can be accessed as a dictionary
+        NSArray *vList = [NSJSONSerialization JSONObjectWithData:self.visitsGetData options:0 error:&error];
+        
+        NSLog(@"vList: %@", vList);
+        
+        self.visitList = [NSMutableArray arrayWithArray:vList];
+        
+        self.visitListTableView.delegate = self;
+        self.visitListTableView.dataSource = self;
+        
+        self.visitListTableViewController = [[UITableViewController alloc] init];
+        [self.visitListTableViewController setTableView:visitListTableView];
+        [self.visitListTableView reloadData];
+    }
+    
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    UIAlertView *failConn = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"Connection to the server could not be established" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [failConn show];
 }
 
 - (void)viewDidLoad

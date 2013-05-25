@@ -12,11 +12,12 @@
 
 @interface LoginViewController ()
 
+@property (strong, nonatomic) NSMutableData *loginData;
 @end
 
 @implementation LoginViewController
 
-@synthesize loginKeyTextField;
+@synthesize loginKeyTextField, loginData;
 
 //Getting the Managed Object Context, the window to our internal database
 - (NSManagedObjectContext *)managedObjectContext
@@ -61,21 +62,41 @@
     // Network Activity Indicator
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    NSError *e, *e2 = nil;
-    NSHTTPURLResponse *response = nil;
+    //NSHTTPURLResponse *response = nil;
     
     NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/isValidKey/?key=%@", loginKeyTextField.text]]];
     
-    NSData *loginData = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&e2];
+    //NSData *loginData = [NSURLConnection sendSynchronousRequest:loginRequest returningResponse:&response error:&e2];
     
-    if (!loginData) {
+    // Async Request
+    [NSURLConnection connectionWithRequest:loginRequest delegate:self];
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.loginData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.loginData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    //NSError *e = nil;
+    
+    if (!self.loginData) {
         NSLog(@"loginData is nil");
-        NSLog(@"Error: %@", e);
+        //NSLog(@"Error: %@", e);
     }
     
-    
     // Check if valid login
-    NSString *validLogin = [[NSString alloc] initWithData:loginData encoding:NSUTF8StringEncoding];
+    NSString *validLogin = [[NSString alloc] initWithData:self.loginData encoding:NSUTF8StringEncoding];
     
     if ([validLogin isEqualToString:@"true"])
     {
@@ -84,9 +105,6 @@
         // Storing the key in the keychain for persistent secure storage
         KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
         [keychainStore setObject:loginKeyTextField.text forKey:CFBridgingRelease(kSecValueData)];
-        
-        // Network Activity Indicator
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         //Proceed with segue
         [self performSegueWithIdentifier:@"SuccessfulLoginSegue" sender:self];
@@ -97,13 +115,18 @@
         //                UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"There was a problem with the server" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         //                [loginError show];
         
-        // Network Activity Indicator
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        
         UIAlertView *loginError = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"You have typed an incorrect login key" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [loginError show];
     }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
+    UIAlertView *failConn = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"Connection to the server could not be established" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [failConn show];
 }
 
 @end

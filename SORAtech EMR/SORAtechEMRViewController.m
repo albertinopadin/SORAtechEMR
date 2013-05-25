@@ -17,6 +17,8 @@
 
 @implementation SORAtechEMRViewController
 
+@synthesize loginData;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PatientVisitListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface PatientVisitListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 @property (retain, nonatomic) NSDictionary *myPatientJSON;
 @property (retain, nonatomic) NSMutableArray *visitList, *notesList;
