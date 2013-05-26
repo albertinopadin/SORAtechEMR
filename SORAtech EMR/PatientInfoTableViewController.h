@@ -11,7 +11,7 @@
 #import "PatientInfoConditionCell.h"
 #import "PatientInfoMedicineCell.h"
 
-@interface PatientInfoTableViewController : UITableViewController
+@interface PatientInfoTableViewController : UITableViewController <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 

@@ -17,9 +17,16 @@
 
 @interface PatientInfoTableViewController ()
 
+@property (strong, nonatomic) NSMutableData *medicationsGetData;
+@property (strong, nonatomic) NSMutableData *conditionsGetData;
+@property (strong, nonatomic) NSURLConnection *medGetConnection;
+@property (strong, nonatomic) NSURLConnection *condGetConnection;
+
 @end
 
 @implementation PatientInfoTableViewController
+
+@synthesize medicationsGetData, medGetConnection, conditionsGetData, condGetConnection;
 
 @synthesize myPatientJSON;
 
@@ -229,8 +236,7 @@
     
 
     // Network Activity Indicator
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    
+    //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     [self.tableView reloadData];
     // Uncomment the following line to preserve selection between presentations.
@@ -245,23 +251,22 @@
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
-    NSError *error, *e = nil;
-    NSHTTPURLResponse *response = nil;
+//    NSError *error, *e = nil;
+//    NSHTTPURLResponse *response = nil;
     
     NSURLRequest *conditionsGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/%i/conditions/?key=%@", pid, key]]];
     
-    NSData *conditionsGetData = [NSURLConnection sendSynchronousRequest:conditionsGetRequest returningResponse:&response error:&e];
+    //NSData *conditionsGetData = [NSURLConnection sendSynchronousRequest:conditionsGetRequest returningResponse:&response error:&e];
     
-    NSLog(@"Response for conditions get is: %i", [response statusCode]);
+    self.condGetConnection = [[NSURLConnection alloc] initWithRequest:conditionsGetRequest delegate:self];
     
-    if (!conditionsGetData) {
-        NSLog(@"conditionsGetData is nil");
-        NSLog(@"Error: %@", e);
-    }
+//    NSLog(@"Response for conditions get is: %i", [response statusCode]);
+//    
+//    if (!conditionsGetData) {
+//        NSLog(@"conditionsGetData is nil");
+//        NSLog(@"Error: %@", e);
+//    }
     
-    //Creates the array of dictionary objects, ordered alphabetically
-    // Each element in this array is a condition object, whose properties can be accessed as a dictionary
-    self.conditionList = [NSJSONSerialization JSONObjectWithData:conditionsGetData options:0 error:&error];
 }
 
 - (void)fetchMedicationsForPatientId:(NSInteger)pid
@@ -269,25 +274,84 @@
     KeychainItemWrapper *keychainStore = [[KeychainItemWrapper alloc] initWithIdentifier:@"ST_key" accessGroup:nil];
     NSString *key = [keychainStore objectForKey:CFBridgingRelease(kSecValueData)];
     
-    NSError *error, *e = nil;
-    NSHTTPURLResponse *response = nil;
+    //NSError *error, *e = nil;
+    //NSHTTPURLResponse *response = nil;
     
     NSURLRequest *medicationsGetRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.services.soratech.cardona150.com/emr/patients/%i/medications/?key=%@", pid, key]]];
     
-    NSData *medicationsGetData = [NSURLConnection sendSynchronousRequest:medicationsGetRequest returningResponse:&response error:&e];
+    //NSData *medicationsGetData = [NSURLConnection sendSynchronousRequest:medicationsGetRequest returningResponse:&response error:&e];
     
-    NSLog(@"Response for medications get is: %i", [response statusCode]);
+    self.medGetConnection = [[NSURLConnection alloc] initWithRequest:medicationsGetRequest delegate:self];
     
-    if (!medicationsGetData) {
-        NSLog(@"medicationsGetData is nil");
-        NSLog(@"Error: %@", e);
-    }
+   // NSLog(@"Response for medications get is: %i", [response statusCode]);
     
-    //Creates the array of dictionary objects, ordered alphabetically
-    // Each element in this array is a condition object, whose properties can be accessed as a dictionary
-    self.medicineList = [NSJSONSerialization JSONObjectWithData:medicationsGetData options:0 error:&error];
+//    if (!medicationsGetData) {
+//        NSLog(@"medicationsGetData is nil");
+//        NSLog(@"Error: %@", e);
+//    }
+    
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    if ([connection isEqual:self.condGetConnection]) {
+        self.conditionsGetData = [[NSMutableData alloc] init];
+    }
+    
+    if ([connection isEqual:self.medGetConnection]) {
+        self.medicationsGetData = [[NSMutableData alloc] init];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    if ([connection isEqual:self.condGetConnection]) {
+        [self.conditionsGetData appendData:data];
+        NSLog(@"In conditions get did receive data");
+    }
+    
+    if ([connection isEqual:self.medGetConnection]) {
+        [self.medicationsGetData appendData:data];
+    }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    if ([connection isEqual:self.condGetConnection]) {
+        NSError *error = nil;
+        //Creates the array of dictionary objects, ordered alphabetically
+        // Each element in this array is a condition object, whose properties can be accessed as a dictionary
+        self.conditionList = [NSJSONSerialization JSONObjectWithData:self.conditionsGetData options:0 error:&error];
+    }
+    
+    if ([connection isEqual:self.medGetConnection]) {
+        NSError *error = nil;
+        //Creates the array of dictionary objects, ordered alphabetically
+        // Each element in this array is a condition object, whose properties can be accessed as a dictionary
+        self.medicineList = [NSJSONSerialization JSONObjectWithData:self.medicationsGetData options:0 error:&error];
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    // Network Activity Indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    if ([connection isEqual:self.condGetConnection]) {
+        UIAlertView *failConn = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"Connection to the server could not be established - Conditions Get Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [failConn show];
+    }
+    
+    if ([connection isEqual:self.medGetConnection]) {
+        UIAlertView *failConn = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"Connection to the server could not be established - Medications Get Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [failConn show];
+    }
+}
 
 - (NSString *)verifyForNull:(id)theString
 {
